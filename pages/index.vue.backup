@@ -1,0 +1,40 @@
+<template>
+  <div class="min-h-screen bg-gray-50">
+    <header class="bg-white shadow-sm">
+      <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+        <h1 class="text-xl font-bold text-blue-700">RealCalc Hub</h1>
+        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700">Get Pro</button>
+      </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-12">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">Real Estate Investment Calculators</h2>
+        <p class="text-lg text-gray-500">Free tools for smarter property investment decisions</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <a v-for="calc in calculators" :key="calc.slug" :href="'/calculators/' + calc.slug"
+          class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100 cursor-pointer">
+          <div class="text-3xl mb-3">{{ calc.icon }}</div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-1">{{ calc.name }}</h3>
+          <p class="text-sm text-gray-500">{{ calc.description }}</p>
+        </a>
+      </div>
+    </main>
+  </div>
+</template>
+
+<script setup>
+const calculators = [
+  { slug: 'cap-rate', name: 'Cap Rate Calculator', icon: '📊', description: 'Calculate capitalization rate for any property' },
+  { slug: 'roi', name: 'ROI Calculator', icon: '💰', description: 'Measure return on investment for rentals' },
+  { slug: 'cash-on-cash', name: 'Cash-on-Cash Return', icon: '💵', description: 'Analyze annual cash flow vs invested cash' },
+  { slug: 'mortgage', name: 'Mortgage Calculator', icon: '🏠', description: 'Estimate monthly payments and total costs' },
+  { slug: 'rental-yield', name: 'Rental Yield', icon: '📈', description: 'Gross and net rental yield analysis' },
+  { slug: 'noi', name: 'NOI Calculator', icon: '🏢', description: 'Net Operating Income for commercial properties' },
+  { slug: 'dscr', name: 'DSCR Calculator', icon: '📋', description: 'Debt Service Coverage Ratio for lenders' },
+  { slug: 'arv', name: 'ARV Calculator', icon: '🔨', description: 'After Repair Value for fix-and-flip deals' },
+  { slug: 'flip-profit', name: 'Flip Profit Calculator', icon: '🔄', description: 'Estimate profit on house flipping projects' },
+]
+</script>
