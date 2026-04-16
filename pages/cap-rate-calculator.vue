@@ -53,45 +53,11 @@
     <div class="bg-white border-b border-gray-100">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 py-6">
 
-        <!-- H1 + intro -->
-        <div class="mb-4">
-          <h1 class="text-3xl sm:text-4xl font-extrabold mb-3 leading-tight" style="color: #1e3a5f;">
+        <!-- H1 -->
+        <div class="mb-2">
+          <h1 class="text-3xl sm:text-4xl font-extrabold leading-tight" style="color: #1e3a5f;">
             Cap Rate Calculator — Free Capitalization Rate Tool for US Real Estate Investors
           </h1>
-          <div class="space-y-3 max-w-3xl">
-            <p class="text-gray-700 text-base leading-relaxed">
-              The <strong>capitalization rate (cap rate)</strong> is the single most widely used metric in US real estate investment analysis. It measures a property's annual unlevered yield — the return you'd earn if you bought all-cash, with no mortgage. Every serious investor uses it to screen deals, anchor offer prices, and compare properties across markets on equal footing.
-            </p>
-            <p class="text-gray-600 text-sm leading-relaxed">
-              This free cap rate calculator covers all three use cases investors actually need: <strong>calculate cap rate</strong> from NOI and property value, <strong>find implied property value</strong> given your NOI and a target cap rate, and <strong>determine the NOI required</strong> to hit a specific yield on a given purchase price. Real-time results, no signup required.
-            </p>
-            <p class="text-gray-600 text-sm leading-relaxed">
-              Cap rate alone doesn't make or break a deal — context matters. A 4.5% cap in Dallas is not the same as a 4.5% cap in a declining Rust Belt market. That's why this tool includes <strong>2026 benchmarks by property type and state</strong>, a sensitivity table, GRM, and an investor returns module that layers in your financing to show levered cash-on-cash and DSCR alongside the unlevered cap rate.
-            </p>
-            <p class="text-gray-600 text-sm leading-relaxed">
-              Below the calculator you'll find the complete cap rate formula with a worked real-world example, interpretation guides, property type benchmarks, strategy notes for buy-and-hold, BRRRR, and commercial deals, plus an 8-question FAQ answering the most common investor questions.
-            </p>
-          </div>
-        </div>
-
-        <!-- On this page nav -->
-        <div class="hidden lg:block rounded-2xl border border-gray-200 bg-gray-50 p-4">
-          <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">On this page</p>
-          <ul class="flex flex-wrap gap-x-5 gap-y-1.5">
-            <li><a href="#calculator" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Calculator</a></li>
-            <li><a href="#overview" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Overview</a></li>
-            <li><a href="#how-to-use" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">How to Use</a></li>
-            <li><a href="#inputs-outputs" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Inputs &amp; Outputs</a></li>
-            <li><a href="#formula" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Formula</a></li>
-            <li><a href="#what-is-cap-rate" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">What is Cap Rate</a></li>
-            <li><a href="#result-meaning" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">What Your Result Means</a></li>
-            <li><a href="#benchmarks" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Benchmarks</a></li>
-            <li><a href="#strategy" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Strategy</a></li>
-            <li><a href="#applications" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Applications</a></li>
-            <li><a href="#industry-standards" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Industry Standards</a></li>
-            <li><a href="#limitations" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Limitations</a></li>
-            <li><a href="#faq" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">FAQ</a></li>
-          </ul>
         </div>
 
       </div>
@@ -1504,6 +1470,46 @@
 
         </div><!-- /right column -->
       </div><!-- /lg:flex -->
+
+      <!-- ═══════════════════════════════════════════════
+           INTRO TEXT + ON THIS PAGE NAV
+      ═══════════════════════════════════════════════ -->
+      <div class="mt-10 space-y-6">
+        <div class="space-y-3 max-w-3xl">
+          <p class="text-gray-700 text-base leading-relaxed">
+            The <strong>capitalization rate (cap rate)</strong> is the single most widely used metric in US real estate investment analysis. It measures a property's annual unlevered yield — the return you'd earn if you bought all-cash, with no mortgage. Every serious investor uses it to screen deals, anchor offer prices, and compare properties across markets on equal footing.
+          </p>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            This free cap rate calculator covers all three use cases investors actually need: <strong>calculate cap rate</strong> from NOI and property value, <strong>find implied property value</strong> given your NOI and a target cap rate, and <strong>determine the NOI required</strong> to hit a specific yield on a given purchase price. Real-time results, no signup required.
+          </p>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Cap rate alone doesn't make or break a deal — context matters. A 4.5% cap in Dallas is not the same as a 4.5% cap in a declining Rust Belt market. That's why this tool includes <strong>2026 benchmarks by property type and state</strong>, a sensitivity table, GRM, and an investor returns module that layers in your financing to show levered cash-on-cash and DSCR alongside the unlevered cap rate.
+          </p>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Below you'll find the complete cap rate formula with a worked real-world example, interpretation guides, property type benchmarks, strategy notes for buy-and-hold, BRRRR, and commercial deals, plus an 8-question FAQ answering the most common investor questions.
+          </p>
+        </div>
+
+        <!-- On this page nav -->
+        <div class="block rounded-2xl border border-gray-200 bg-gray-50 p-4">
+          <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">On this page</p>
+          <ul class="flex flex-wrap gap-x-5 gap-y-1.5">
+            <li><a href="#calculator" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Calculator</a></li>
+            <li><a href="#overview" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Overview</a></li>
+            <li><a href="#how-to-use" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">How to Use</a></li>
+            <li><a href="#inputs-outputs" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Inputs &amp; Outputs</a></li>
+            <li><a href="#formula" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Formula</a></li>
+            <li><a href="#what-is-cap-rate" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">What is Cap Rate</a></li>
+            <li><a href="#result-meaning" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">What Your Result Means</a></li>
+            <li><a href="#benchmarks" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Benchmarks</a></li>
+            <li><a href="#strategy" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Strategy</a></li>
+            <li><a href="#applications" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Applications</a></li>
+            <li><a href="#industry-standards" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Industry Standards</a></li>
+            <li><a href="#limitations" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Limitations</a></li>
+            <li><a href="#faq" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">FAQ</a></li>
+          </ul>
+        </div>
+      </div>
 
       <!-- ═══════════════════════════════════════════════
            HOW TO USE THIS CALCULATOR
