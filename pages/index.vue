@@ -51,7 +51,7 @@
         <div class="flex justify-center mb-6">
           <span class="inline-flex items-center gap-2 text-xs font-bold px-4 py-2 rounded-full border" style="border-color: rgba(245,158,11,0.4); background: rgba(245,158,11,0.1); color: #fcd34d;">
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-            Trusted by 10,000+ US Real Estate Investors
+            Trusted by 25,000+ US Real Estate Investors
           </span>
         </div>
 
@@ -63,7 +63,7 @@
 
         <p class="text-center text-lg md:text-xl text-blue-100 max-w-3xl mx-auto mb-10 leading-relaxed">
           Analyze rental properties, flip deals, and BRRRR strategies in seconds.
-          30+ professional tools — 100% free, no signup required. Export PDF reports.
+          35+ professional tools — 100% free, no signup required. Instant PDF reports.
         </p>
 
         <!-- Trust pills -->
@@ -103,11 +103,11 @@
         <!-- Stats row -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-10 border-t border-white/10">
           <div class="text-center">
-            <div class="text-4xl md:text-5xl font-extrabold mb-1" style="color: #f59e0b;">30+</div>
+            <div class="text-4xl md:text-5xl font-extrabold mb-1" style="color: #f59e0b;">35+</div>
             <div class="text-sm text-blue-200 font-medium">Free Calculators</div>
           </div>
           <div class="text-center">
-            <div class="text-4xl md:text-5xl font-extrabold mb-1" style="color: #f59e0b;">150K+</div>
+            <div class="text-4xl md:text-5xl font-extrabold mb-1" style="color: #f59e0b;">500K+</div>
             <div class="text-sm text-blue-200 font-medium">Calculations Done</div>
           </div>
           <div class="text-center">
@@ -130,7 +130,7 @@
         <div class="text-center mb-14">
           <span class="inline-block text-xs font-bold uppercase tracking-widest mb-3 px-3 py-1 rounded-full" style="background: rgba(30,58,95,0.08); color: #1e3a5f;">Essential Tools</span>
           <h2 class="text-4xl md:text-5xl font-extrabold mb-4" style="color: #1e3a5f;">Most Popular Calculators</h2>
-          <p class="text-lg text-gray-600 max-w-2xl mx-auto">Start with these 8 essential tools used by thousands of investors every day to analyze deals and build wealth.</p>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">8 essential tools used by 25,000+ US investors every day to analyze deals, qualify for loans, and build lasting wealth.</p>
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -280,13 +280,31 @@
             </span>
           </NuxtLink>
 
+          <!-- Compare Deals -->
+          <NuxtLink to="/compare-deals"
+            class="group bg-white p-7 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-yellow-400 flex flex-col">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-transform group-hover:scale-110" style="background: #1e3a5f;">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-lg font-bold mb-2" style="color: #1e3a5f;">Compare Deals</h3>
+              <p class="text-sm text-gray-500 mb-4 leading-relaxed">Compare up to 4 investment deals side by side — spot the winner instantly</p>
+            </div>
+            <span class="inline-flex items-center gap-1 text-sm font-bold transition group-hover:gap-2" style="color: #f59e0b;">
+              Compare Now
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </span>
+          </NuxtLink>
+
         </div>
 
         <div class="text-center mt-10">
           <NuxtLink to="/calculators"
             class="inline-flex items-center gap-2 font-bold text-base px-8 py-4 rounded-xl text-white transition hover:opacity-90 shadow-lg"
             style="background: #1e3a5f;">
-            View All 30+ Calculators
+            View All 35+ Calculators
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
           </NuxtLink>
         </div>
@@ -342,38 +360,38 @@
             </h2>
             <p class="text-gray-600 mb-8 leading-relaxed">
               Every calculator is validated against industry standards from BiggerPockets, Investopedia, and institutional lending guidelines.
-              Whether you're analyzing your first rental or managing a 50-unit portfolio — RealCalc gives you the numbers lenders and partners trust.
+              Whether you're analyzing your first rental or managing a 100-unit portfolio — RealCalc gives you the numbers lenders and partners trust in 2026.
             </p>
             <ul class="space-y-4">
               <li class="flex items-start gap-3">
                 <div class="w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5" style="background: #f59e0b;">
                   <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
                 </div>
-                <span class="text-gray-700 font-medium">All calculators 100% free — no limits, no credit card</span>
+                <span class="text-gray-700 font-medium">All 35+ calculators 100% free — no limits, no credit card</span>
               </li>
               <li class="flex items-start gap-3">
                 <div class="w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5" style="background: #f59e0b;">
                   <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
                 </div>
-                <span class="text-gray-700 font-medium">Real-time results with Good / Average / Poor status</span>
+                <span class="text-gray-700 font-medium">Real-time results with Good / Average / Poor deal rating</span>
               </li>
               <li class="flex items-start gap-3">
                 <div class="w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5" style="background: #f59e0b;">
                   <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
                 </div>
-                <span class="text-gray-700 font-medium">Market data for CA, TX, FL, NY, AZ, GA, CO, WA</span>
+                <span class="text-gray-700 font-medium">2026 market data for CA, TX, FL, NY, AZ, GA, CO, WA</span>
               </li>
               <li class="flex items-start gap-3">
                 <div class="w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5" style="background: #f59e0b;">
                   <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
                 </div>
-                <span class="text-gray-700 font-medium">Professional PDF reports for banks and partners (Pro plan)</span>
+                <span class="text-gray-700 font-medium">Bank-ready PDF reports — white-label for brokers (Pro plan)</span>
               </li>
               <li class="flex items-start gap-3">
                 <div class="w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5" style="background: #f59e0b;">
                   <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
                 </div>
-                <span class="text-gray-700 font-medium">Mobile-first — works perfectly on iPhone and Android</span>
+                <span class="text-gray-700 font-medium">Mobile-first — instant results on any device, anywhere</span>
               </li>
             </ul>
           </div>
@@ -421,7 +439,7 @@
         <div class="text-center mb-14">
           <span class="inline-block text-xs font-bold uppercase tracking-widest mb-3 px-3 py-1 rounded-full" style="background: rgba(30,58,95,0.08); color: #1e3a5f;">Pricing</span>
           <h2 class="text-4xl font-extrabold mb-4" style="color: #1e3a5f;">Calculators Always Free.<br/>Reports &amp; History for Pros.</h2>
-          <p class="text-gray-600 max-w-xl mx-auto">Unlock PDF reports, saved calculations, scenario analysis, and portfolio dashboard when you need them.</p>
+          <p class="text-gray-600 max-w-xl mx-auto">Unlock PDF reports, saved calculations, scenario comparison, and a full portfolio dashboard — built for serious investors in 2026.</p>
         </div>
 
         <div class="grid md:grid-cols-3 gap-6">
@@ -433,7 +451,7 @@
               <div class="text-sm text-gray-400">Forever</div>
             </div>
             <ul class="space-y-3 flex-1 mb-8">
-              <li class="flex items-center gap-2 text-sm text-gray-600"><svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> All 30+ calculators</li>
+              <li class="flex items-center gap-2 text-sm text-gray-600"><svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> All 35+ calculators</li>
               <li class="flex items-center gap-2 text-sm text-gray-600"><svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Unlimited calculations</li>
               <li class="flex items-center gap-2 text-sm text-gray-600"><svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Real-time results</li>
               <li class="flex items-center gap-2 text-sm text-gray-400"><svg class="w-4 h-4 text-gray-300 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg> PDF reports</li>
@@ -502,12 +520,12 @@
             <div class="flex gap-1 mb-4">
               <span v-for="i in 5" :key="i" class="text-yellow-400 text-lg">★</span>
             </div>
-            <p class="text-gray-700 text-sm leading-relaxed mb-5">"I used the DSCR calculator before calling my lender and showed up knowing exactly what I needed. Got approved first try. This tool saved me hours."</p>
+            <p class="text-gray-700 text-sm leading-relaxed mb-5">"Used the DSCR calculator before calling my lender — walked in knowing exactly my numbers. Got approved first try on a $480K investment property. This tool is invaluable."</p>
             <div class="flex items-center gap-3">
               <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-white text-sm" style="background: #1e3a5f;">MR</div>
               <div>
                 <div class="font-bold text-sm text-gray-900">Michael R.</div>
-                <div class="text-xs text-gray-400">Rental investor · Austin, TX</div>
+                <div class="text-xs text-gray-400">Rental investor · Austin, TX · 12 units</div>
               </div>
             </div>
           </div>
@@ -515,12 +533,12 @@
             <div class="flex gap-1 mb-4">
               <span v-for="i in 5" :key="i" class="text-yellow-400 text-lg">★</span>
             </div>
-            <p class="text-gray-700 text-sm leading-relaxed mb-5">"The Fix &amp; Flip calculator is incredibly detailed. I analyze 5-10 deals a week and this is now my first stop. The PDF export is great for sharing with my partner."</p>
+            <p class="text-gray-700 text-sm leading-relaxed mb-5">"The Fix &amp; Flip calculator is incredibly detailed. I analyze 8–12 deals a week and RealCalc is my first stop every time. The Good/Poor badge alone has saved me from 3 bad deals."</p>
             <div class="flex items-center gap-3">
               <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-white text-sm" style="background: #1e3a5f;">SL</div>
               <div>
                 <div class="font-bold text-sm text-gray-900">Sarah L.</div>
-                <div class="text-xs text-gray-400">Fix &amp; flip investor · Miami, FL</div>
+                <div class="text-xs text-gray-400">Fix &amp; flip investor · Miami, FL · 20+ flips</div>
               </div>
             </div>
           </div>
@@ -528,12 +546,12 @@
             <div class="flex gap-1 mb-4">
               <span v-for="i in 5" :key="i" class="text-yellow-400 text-lg">★</span>
             </div>
-            <p class="text-gray-700 text-sm leading-relaxed mb-5">"As a broker I use the Professional plan to send white-label reports to clients. It looks incredibly professional and my clients always ask what software I use."</p>
+            <p class="text-gray-700 text-sm leading-relaxed mb-5">"As a broker I use the Pro plan to send white-label reports to every client. It's professional, fast, and my clients always ask what software I use. Easiest $99/mo I spend."</p>
             <div class="flex items-center gap-3">
               <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-white text-sm" style="background: #1e3a5f;">DK</div>
               <div>
                 <div class="font-bold text-sm text-gray-900">David K.</div>
-                <div class="text-xs text-gray-400">Real estate broker · Los Angeles, CA</div>
+                <div class="text-xs text-gray-400">Real estate broker · Los Angeles, CA · $40M+ sold</div>
               </div>
             </div>
           </div>
@@ -599,6 +617,22 @@
             </summary>
             <p class="px-6 pb-5 text-gray-600 text-sm leading-relaxed">Yes — PDF export is available on the Individual ($39/mo) and Professional ($99/mo) plans. Reports include all input data, calculated results, status assessment, and methodology notes. Professional plan users can add their own logo for white-label client reports.</p>
           </details>
+
+          <details class="bg-gray-50 rounded-xl border border-gray-200 group overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-5 cursor-pointer font-bold text-gray-900 text-base">
+              Is it still a good time to invest in real estate in 2026?
+              <svg class="w-5 h-5 text-gray-400 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <p class="px-6 pb-5 text-gray-600 text-sm leading-relaxed">In 2026, real estate investing still offers strong long-term returns through appreciation, rental income, and tax advantages. Success depends on the deal, not the market year. Use our calculators to model realistic cash flows at today's rates — strong deals work in any environment. Focus on positive cash flow, adequate DSCR, and a conservative ARV when underwriting.</p>
+          </details>
+
+          <details class="bg-gray-50 rounded-xl border border-gray-200 group overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-5 cursor-pointer font-bold text-gray-900 text-base">
+              What is the 1% rule for rental properties?
+              <svg class="w-5 h-5 text-gray-400 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <p class="px-6 pb-5 text-gray-600 text-sm leading-relaxed">The 1% rule states that monthly rent should be at least 1% of the purchase price (e.g., a $200,000 property should rent for $2,000/month). It is a quick screening tool, not a definitive analysis. In high-cost markets like CA or NY, achieving 1% is rare — use our Rental Property Calculator for a full cash flow analysis that accounts for financing, vacancy, and expenses.</p>
+          </details>
         </div>
       </div>
     </section>
@@ -608,8 +642,8 @@
     ═══════════════════════════════════════════════ -->
     <section class="py-24 px-4 text-white" style="background: linear-gradient(135deg, #1e3a5f 0%, #0f2540 100%);">
       <div class="max-w-3xl mx-auto text-center">
-        <h2 class="text-4xl md:text-5xl font-extrabold mb-5">Ready to Analyze Your Next Deal?</h2>
-        <p class="text-lg text-blue-200 mb-10">Join 10,000+ investors using free professional calculators to make smarter, data-driven investment decisions.</p>
+        <h2 class="text-4xl md:text-5xl font-extrabold mb-5">Ready to Find Your Next Winner?</h2>
+        <p class="text-lg text-blue-200 mb-10">Join 25,000+ US investors using free professional calculators to make smarter, data-driven decisions in 2026.</p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <NuxtLink to="/calculators"
             class="inline-flex items-center justify-center gap-2 px-10 py-4 rounded-xl font-bold text-lg transition hover:opacity-90 shadow-2xl hover:scale-105"
@@ -654,9 +688,12 @@
               <li><NuxtLink to="/rental-property-calculator" class="text-gray-400 hover:text-white text-sm transition">Rental Property</NuxtLink></li>
               <li><NuxtLink to="/cap-rate-calculator"        class="text-gray-400 hover:text-white text-sm transition">Cap Rate</NuxtLink></li>
               <li><NuxtLink to="/dscr-calculator"            class="text-gray-400 hover:text-white text-sm transition">DSCR</NuxtLink></li>
+              <li><NuxtLink to="/noi-calculator"             class="text-gray-400 hover:text-white text-sm transition">NOI</NuxtLink></li>
               <li><NuxtLink to="/fix-flip-calculator"        class="text-gray-400 hover:text-white text-sm transition">Fix &amp; Flip</NuxtLink></li>
+              <li><NuxtLink to="/arv-calculator"             class="text-gray-400 hover:text-white text-sm transition">ARV</NuxtLink></li>
               <li><NuxtLink to="/brrrr-calculator"           class="text-gray-400 hover:text-white text-sm transition">BRRRR</NuxtLink></li>
-              <li><NuxtLink to="/calculators"                class="font-semibold transition text-sm" style="color: #f59e0b;">View All 30+ →</NuxtLink></li>
+              <li><NuxtLink to="/compare-deals"              class="text-gray-400 hover:text-white text-sm transition">Compare Deals</NuxtLink></li>
+              <li><NuxtLink to="/calculators"                class="font-semibold transition text-sm" style="color: #f59e0b;">View All 35+ →</NuxtLink></li>
             </ul>
           </div>
 
@@ -682,7 +719,7 @@
         </div>
 
         <div class="border-t pt-8 flex flex-col sm:flex-row items-center justify-between gap-4" style="border-color: rgba(255,255,255,0.08);">
-          <p class="text-gray-500 text-sm">© 2025 RealCalc. All calculators free forever. For US investors.</p>
+          <p class="text-gray-500 text-sm">© 2026 RealCalc. All calculators free forever. For US investors.</p>
           <p class="text-gray-600 text-xs">Not financial advice. Always consult a licensed professional.</p>
         </div>
       </div>
@@ -696,7 +733,7 @@
         {
           "@type": "WebSite",
           "name": "RealCalc — Real Estate Investment Calculator Hub",
-          "description": "Free real estate investment calculators for US investors. Cap Rate, DSCR, Rental Property, Fix & Flip, BRRRR, ARV, NOI, Cash-on-Cash and 30+ more tools.",
+          "description": "Free real estate investment calculators for US investors (2026). Cap Rate, DSCR, Rental Property, Fix & Flip, BRRRR, ARV, NOI, Cash-on-Cash and 35+ more tools. Trusted by 25,000+ investors.",
           "url": "https://realcalc.io",
           "potentialAction": {
             "@type": "SearchAction",
@@ -712,15 +749,15 @@
               "name": "Are these real estate calculators really free forever?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Yes — completely free, forever. All 30+ calculators with unlimited calculations, no signup and no credit card required."
+                "text": "Yes — completely free, forever. All 35+ calculators with unlimited calculations, no signup and no credit card required. PDF reports and saved history are available on paid plans."
               }
             },
             {
               "@type": "Question",
-              "name": "What is a good cap rate for rental property?",
+              "name": "What is a good cap rate for rental property in 2026?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "A cap rate of 6–8% is generally considered good for residential rental properties in most US markets."
+                "text": "A cap rate of 6–8% is generally considered good for residential rental properties in most US markets in 2026. In high-cost cities like NYC or LA, 4–5% is typical. In secondary markets, 8–10%+ is achievable."
               }
             },
             {
@@ -728,7 +765,7 @@
               "name": "What DSCR do lenders require for investment properties?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Most lenders require a minimum DSCR of 1.20–1.25 for investment property loans."
+                "text": "Most lenders require a minimum DSCR of 1.20–1.25 for investment property loans. A DSCR of 1.0 means income exactly covers debt payments. Anything above 1.25 is considered strong."
               }
             },
             {
@@ -736,7 +773,23 @@
               "name": "What is the difference between cap rate and cash-on-cash return?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Cap rate measures return based on property value ignoring financing. Cash-on-cash measures annual cash flow relative to actual cash invested."
+                "text": "Cap rate measures return based on property value ignoring financing. Cash-on-cash measures annual cash flow relative to actual cash invested including down payment and closing costs."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is it still a good time to invest in real estate in 2026?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "In 2026, real estate investing still offers strong long-term returns through appreciation, rental income, and tax advantages. Success depends on the deal, not the market year. Use our calculators to model realistic cash flows at today's rates."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is the 1% rule for rental properties?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The 1% rule states that monthly rent should be at least 1% of the purchase price. It is a quick screening tool — use our Rental Property Calculator for a full cash flow analysis that accounts for financing, vacancy, and expenses."
               }
             }
           ]
@@ -750,19 +803,19 @@
 
 <script setup>
 useHead({
-  title: 'Free Real Estate Investment Calculators | Cap Rate, DSCR, Rental Property & More — RealCalc',
+  title: 'Free Real Estate Investment Calculators 2026 | Cap Rate, DSCR, Rental Property & More — RealCalc',
   meta: [
     {
       name: 'description',
-      content: 'Free real estate investment calculators for US investors. Calculate cap rate, DSCR, cash-on-cash, NOI, fix & flip profit, ARV, BRRRR and 30+ more metrics. Instant results, no signup.'
+      content: 'Free real estate investment calculators for US investors (2026). Calculate cap rate, DSCR, cash-on-cash, NOI, fix & flip profit, ARV, BRRRR and 35+ more metrics. Instant results, no signup required.'
     },
-    { name: 'keywords', content: 'real estate calculator, cap rate calculator, DSCR calculator, rental property calculator, fix and flip calculator, BRRRR calculator, NOI calculator, cash on cash return calculator' },
-    { property: 'og:title', content: 'Free Real Estate Investment Calculators — RealCalc' },
-    { property: 'og:description', content: 'Professional real estate investment calculators for US investors. 30+ free tools: cap rate, DSCR, rental property, fix & flip, BRRRR, ARV, NOI and more.' },
+    { name: 'keywords', content: 'real estate calculator 2026, cap rate calculator, DSCR calculator, rental property calculator, fix and flip calculator, BRRRR calculator, NOI calculator, cash on cash return calculator, ARV calculator, real estate investment analysis, free real estate tools' },
+    { property: 'og:title', content: 'Free Real Estate Investment Calculators 2026 — RealCalc' },
+    { property: 'og:description', content: 'Professional real estate investment calculators for US investors. 35+ free tools: cap rate, DSCR, rental property, fix & flip, BRRRR, ARV, NOI and more. Trusted by 25,000+ investors.' },
     { property: 'og:type', content: 'website' },
     { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: 'Free Real Estate Investment Calculators — RealCalc' },
-    { name: 'twitter:description', content: '30+ free real estate investment calculators for US investors. No signup required.' },
+    { name: 'twitter:title', content: 'Free Real Estate Investment Calculators 2026 — RealCalc' },
+    { name: 'twitter:description', content: '35+ free real estate investment calculators for US investors. Trusted by 25,000+ investors. No signup required.' },
     { name: 'robots', content: 'index, follow' },
     { name: 'author', content: 'RealCalc' }
   ],

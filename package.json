@@ -1,21 +1,25 @@
 {
   "name": "real-estate-calc",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
+    "dev": "nuxt dev --host 0.0.0.0 --port 3000",
     "build": "nuxt build",
-    "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "start": "node .output/server/index.mjs",
+    "test": "vitest run"
   },
   "dependencies": {
-    "nuxt": "^3.21.2",
-    "vue": "^3.5.32",
-    "vue-router": "^5.0.4"
+    "@nuxt/icon": "^1.0.0",
+    "jspdf": "^4.2.1",
+    "nuxt": "^3.11.2",
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.0"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.2.2",
-    "tailwindcss": "^4.2.2"
+    "@nuxtjs/tailwindcss": "^6.11.4",
+    "vitest": "^4.1.4"
   }
 }
