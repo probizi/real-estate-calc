@@ -171,7 +171,7 @@
     <main id="calculator" class="max-w-[1100px] mx-auto px-4 pt-8 pb-10">
       <!-- Акцентная рамка калькулятора -->
       <div class="rounded-3xl p-[3px]" style="background: linear-gradient(135deg, #1e3a5f 0%, #f59e0b 50%, #1e3a5f 100%);">
-      <div class="bg-white rounded-[21px] overflow-hidden shadow-xl shadow-slate-200/60">
+      <div class="bg-white rounded-[21px] shadow-xl shadow-slate-200/60" style="overflow: clip;">
 
       <!-- ═══════════════════════════════════════════════
            CALCULATOR MODE SELECTOR
@@ -229,7 +229,7 @@
       </div>
 
       <!-- Two-column body: inputs left, results right -->
-      <div class="lg:grid lg:grid-cols-[3fr_2fr] items-stretch" style="align-items: stretch; grid-auto-rows: 1fr;">
+      <div class="lg:grid lg:grid-cols-[3fr_2fr] lg:items-stretch">
 
         <!-- ── INPUTS (left column) ── -->
         <div class="calc-inputs border-b lg:border-b-0 lg:border-r border-gray-200 bg-white min-w-0">
@@ -710,9 +710,8 @@
         </div>
 
         <!-- ── RESULTS (right column, sticky) ── -->
-        <div class="lg:self-stretch bg-gray-50 min-w-0 w-full" style="align-self: stretch; min-height: 100%;">
-        <div class="lg:sticky lg:top-[4.5rem] min-w-0 w-full">
-        <div class="space-y-4 p-4 lg:p-5 scrollbar-thin max-h-[calc(100vh-5rem)] overflow-y-auto">
+        <div class="bg-gray-50 min-w-0 lg:overflow-y-auto lg:h-full scrollbar-thin">
+        <div class="space-y-4 p-4 lg:p-5">
 
           <!-- Main Result -->
           <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
@@ -1280,7 +1279,6 @@
             </div>
           </div>
 
-        </div>
         </div>
         </div>
       </div>
