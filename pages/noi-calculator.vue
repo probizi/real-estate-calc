@@ -109,10 +109,11 @@
 
     <!-- MAIN -->
     <main id="calculator" class="max-w-[1100px] mx-auto px-4 pt-8 pb-10">
-          <div class="lg:grid lg:grid-cols-[3fr_2fr] lg:gap-8 items-start">
+      <div class="bg-white rounded-2xl shadow-xl" style="border: 1px solid #e5e7eb; border-top: 3px solid #f59e0b;">
+          <div class="lg:grid lg:grid-cols-[3fr_2fr] items-stretch">
 
             <!-- INPUTS (3 cols) -->
-            <div class="calc-inputs space-y-6 mb-8 lg:mb-0">
+            <div class="calc-inputs space-y-6">
 
               <!-- Income -->
               <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
@@ -197,8 +198,10 @@
             </div>
 
             <!-- RESULTS (2 cols) -->
-            <div class="lg:sticky lg:top-24">
-              <div class="sticky top-24 space-y-5">
+            <div class="self-stretch rounded-b-2xl lg:rounded-b-none lg:rounded-r-2xl border-t border-gray-200 lg:border-t-0 lg:border-l">
+              <!-- NOTE: overflow must be on the INNER div — overflow on a sticky element breaks stickiness in CSS spec -->
+              <div class="lg:sticky lg:top-[4.5rem] lg:self-stretch min-w-0 w-full bg-gray-50 flex flex-col">
+              <div class="lg:h-full lg:overflow-y-auto space-y-4 p-4 lg:p-5 scrollbar-thin">
 
                 <!-- Main Result -->
                 <div v-if="hasResult" class="rounded-xl border border-gray-200 bg-white overflow-hidden">
@@ -276,9 +279,12 @@
                 </div>
 
               </div>
+              </div>
             </div>
 
           </div>
+
+      </div>
 
           <!-- ══════════ SEO CONTENT SECTION ══════════ -->
           <div class="mt-12 space-y-8">

@@ -169,8 +169,9 @@
          MAIN CALCULATOR
     ═══════════════════════════════════════════════ -->
     <main id="calculator" class="max-w-[1100px] mx-auto px-4 pt-8 pb-10">
-      <!-- Unified calculator panel -->
-      <div class="bg-white rounded-2xl border border-gray-200">
+      <!-- Акцентная рамка калькулятора -->
+      <div class="rounded-3xl p-[3px]" style="background: linear-gradient(135deg, #1e3a5f 0%, #f59e0b 50%, #1e3a5f 100%);">
+      <div class="bg-white rounded-[21px] overflow-hidden shadow-xl shadow-slate-200/60">
 
       <!-- ═══════════════════════════════════════════════
            CALCULATOR MODE SELECTOR
@@ -228,7 +229,7 @@
       </div>
 
       <!-- Two-column body: inputs left, results right -->
-      <div class="lg:grid lg:grid-cols-[3fr_2fr] items-start">
+      <div class="lg:grid lg:grid-cols-[3fr_2fr] items-stretch">
 
         <!-- ── INPUTS (left column) ── -->
         <div class="calc-inputs border-b lg:border-b-0 lg:border-r border-gray-200 bg-white min-w-0">
@@ -709,9 +710,10 @@
         </div>
 
         <!-- ── RESULTS (right column, sticky) ── -->
+        <div class="self-stretch rounded-b-2xl lg:rounded-b-none lg:rounded-r-2xl border-t border-gray-200 lg:border-t-0 lg:border-l">
         <!-- NOTE: overflow must be on the INNER div — overflow on a sticky element breaks stickiness in CSS spec -->
-        <div class="lg:sticky lg:top-[4.5rem] lg:self-start min-w-0 w-full">
-        <div class="lg:max-h-[calc(100vh-5rem)] lg:overflow-y-auto space-y-4 p-4 lg:p-5 scrollbar-thin">
+        <div class="lg:sticky lg:top-[4.5rem] lg:self-stretch min-w-0 w-full bg-gray-50 flex flex-col">
+        <div class="lg:h-full lg:overflow-y-auto space-y-4 p-4 lg:p-5 scrollbar-thin">
 
           <!-- Main Result -->
           <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
@@ -1049,66 +1051,66 @@
             </div>
 
             <!-- Deal Context Panel — cap-rate mode only -->
-            <div v-if="calcMode === 'cap-rate' && hasResult" class="p-6 border-t border-gray-100" style="background: #f8fafc;">
-              <div class="flex items-start gap-3">
-                <div class="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center" style="background: #1e3a5f;">
-                  <svg class="w-4 h-4 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-                  </svg>
-                </div>
-                <div>
-                  <p class="text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Deal Context</p>
-                  <p class="text-sm text-gray-700 leading-relaxed">{{ insightText }}</p>
-                </div>
+            <div v-if="calcMode === 'cap-rate' && hasResult"
+              class="px-5 py-4 border-t border-gray-100 rounded-b-xl"
+              :style="`background: ${badge.bg1}12;`">
+              <!-- Badge + title -->
+              <div class="flex items-center gap-2 mb-2">
+                <span class="text-xs font-bold px-2.5 py-0.5 rounded-full text-white"
+                  :style="`background: ${badge.bg1}`">
+                  {{ badge.label }}
+                </span>
+                <span class="text-xs font-semibold text-gray-400 uppercase tracking-wide">Deal context</span>
               </div>
+              <!-- Insight text -->
+              <p class="text-sm leading-relaxed font-medium text-gray-700">{{ insightText }}</p>
             </div>
 
-            <!-- Sensitivity toggle + tables (collapsed by default) -->
+            <!-- Sensitivity — first 3 rows always visible, rest expand on click -->
             <div v-if="calcMode === 'cap-rate' && (sensitivityRows || impliedValues)" class="border-t border-gray-100">
-              <button @click="showSensitivity = !showSensitivity"
-                class="w-full flex items-center justify-between px-4 py-3 text-xs font-semibold text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition">
-                <div class="flex items-center gap-2">
-                  <svg class="w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-                  </svg>
-                  Sensitivity Analysis
+              <div class="px-4 pt-3 pb-1">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs font-semibold text-gray-500 uppercase tracking-wide flex items-center gap-1.5">
+                    <svg class="w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                    </svg>
+                    Cap rate at ±30% price change
+                  </span>
                 </div>
-                <svg class="w-3.5 h-3.5 transition-transform" :class="showSensitivity ? 'rotate-180' : ''"
-                  fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                </svg>
-              </button>
+                <!-- First 3 rows — always visible -->
+                <div v-if="sensitivityRows" class="space-y-0.5 mb-1">
+                  <div v-for="row in sensitivityRows.slice(0, 3)" :key="row.label"
+                    class="flex justify-between items-center text-xs px-2 py-1.5 rounded-lg"
+                    :class="row.isCurrent ? 'font-bold' : 'text-gray-600'"
+                    :style="row.isCurrent ? 'background: rgba(245,158,11,0.07);' : ''">
+                    <span :style="row.isCurrent ? 'color: #92400e;' : ''">{{ row.label }}</span>
+                    <span>{{ formatCurrency(row.value) }}</span>
+                    <span :class="row.capRate >= 6 ? 'text-emerald-600' : row.capRate >= 4 ? 'text-amber-600' : 'text-red-600'" class="font-semibold">
+                      {{ row.capRate.toFixed(2) }}%
+                    </span>
+                  </div>
+                </div>
+                <!-- Expand button -->
+                <button v-if="!showSensitivity" @click="showSensitivity = true"
+                  class="text-xs text-gray-400 hover:text-gray-600 transition px-2 py-1">
+                  Show all ranges ↓
+                </button>
+              </div>
 
               <div v-if="showSensitivity">
-                <!-- Sensitivity Table -->
-                <div v-if="sensitivityRows" class="px-4 pb-4 pt-1">
-                  <h4 class="text-xs font-bold uppercase tracking-wide text-gray-400 mb-2">
-                    Cap Rate at Different Property Values
-                    <span class="ml-1 font-normal normal-case">(NOI = {{ formatCurrency(noi) }})</span>
-                  </h4>
-                  <div class="overflow-x-auto">
-                    <table class="w-full text-xs">
-                      <thead>
-                        <tr class="border-b border-gray-100">
-                          <th class="text-left py-1.5 px-2 font-semibold text-gray-400">Change</th>
-                          <th class="text-right py-1.5 px-2 font-semibold text-gray-400">Value</th>
-                          <th class="text-right py-1.5 px-2 font-semibold text-gray-400">Cap Rate</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr v-for="row in sensitivityRows" :key="row.label"
-                          class="border-b border-gray-50"
-                          :class="row.isCurrent ? 'font-bold' : 'text-gray-600'"
-                          :style="row.isCurrent ? 'background: rgba(245,158,11,0.07);' : ''">
-                          <td class="py-1.5 px-2" :style="row.isCurrent ? 'color: #92400e;' : ''">{{ row.label }}</td>
-                          <td class="text-right py-1.5 px-2">{{ formatCurrency(row.value) }}</td>
-                          <td class="text-right py-1.5 px-2"
-                            :class="row.capRate >= 6 ? 'text-emerald-600' : row.capRate >= 4 ? 'text-amber-600' : 'text-red-600'">
-                            {{ row.capRate.toFixed(2) }}%
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+                <!-- Remaining rows (4–7) -->
+                <div v-if="sensitivityRows" class="px-4 pb-2 pt-0">
+                  <div class="space-y-0.5">
+                    <div v-for="row in sensitivityRows.slice(3)" :key="row.label"
+                      class="flex justify-between items-center text-xs px-2 py-1.5 rounded-lg"
+                      :class="row.isCurrent ? 'font-bold' : 'text-gray-600'"
+                      :style="row.isCurrent ? 'background: rgba(245,158,11,0.07);' : ''">
+                      <span :style="row.isCurrent ? 'color: #92400e;' : ''">{{ row.label }}</span>
+                      <span>{{ formatCurrency(row.value) }}</span>
+                      <span :class="row.capRate >= 6 ? 'text-emerald-600' : row.capRate >= 4 ? 'text-amber-600' : 'text-red-600'" class="font-semibold">
+                        {{ row.capRate.toFixed(2) }}%
+                      </span>
+                    </div>
                   </div>
                   <p class="text-xs text-gray-400 mt-2 italic">Price sensitivity — income and expenses held constant.</p>
                 </div>
@@ -1134,7 +1136,7 @@
 
             <!-- Share + PDF Export + Save Scenario -->
             <div v-if="hasResult" class="p-4 border-t border-gray-100 space-y-2">
-              <!-- Save Scenario (primary CTA) -->
+              <!-- 1. PRIMARY: Save -->
               <button @click="openSaveScenario"
                 class="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-sm transition hover:opacity-90"
                 style="background: #f59e0b; color: #1e3a5f;">
@@ -1143,28 +1145,30 @@
                 </svg>
                 Save Scenario
               </button>
-              <button @click="shareResult"
-                class="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-sm transition border-2"
-                :class="shareSuccess
-                  ? 'border-green-400 text-green-700 bg-green-50'
-                  : 'border-gray-200 text-gray-600 hover:border-gray-300 hover:text-gray-800'">
-                <svg v-if="!shareSuccess" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
-                </svg>
-                <svg v-else class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                </svg>
-                {{ shareSuccess ? 'Link copied to clipboard!' : 'Share Result' }}
-              </button>
-              <button @click="exportPDF"
-                class="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-sm transition hover:opacity-90"
-                style="background: #1e3a5f; color: white;">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                </svg>
-                Export PDF Report
-              </button>
-              <!-- Email capture -->
+              <!-- 2. SECONDARY: Share + PDF в одну строку -->
+              <div class="grid grid-cols-2 gap-2">
+                <button @click="shareResult"
+                  class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border"
+                  :class="shareSuccess
+                    ? 'border-green-400 text-green-700 bg-green-50'
+                    : 'border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50'">
+                  <svg v-if="!shareSuccess" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                  </svg>
+                  <svg v-else class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  {{ shareSuccess ? 'Copied!' : 'Share' }}
+                </button>
+                <button @click="exportPDF"
+                  class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                  </svg>
+                  Export PDF
+                </button>
+              </div>
+              <!-- 3. TERTIARY: Email -->
               <button @click="showEmailModal = true"
                 class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl font-semibold text-xs text-gray-500 hover:text-gray-700 border border-dashed border-gray-200 hover:border-gray-300 transition">
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1278,7 +1282,8 @@
           </div>
 
         </div>
-        </div><!-- /sticky outer wrapper -->
+        </div><!-- /sticky wrapper -->
+        </div><!-- /self-stretch wrapper -->
       </div>
 
       <!-- ═══════════════════════════════════════════════
@@ -1358,7 +1363,8 @@
         </p>
       </div>
 
-      </div><!-- /unified calculator panel -->
+      </div><!-- /bg-white inner -->
+      </div><!-- /gradient wrapper -->
 
       <!-- ═══════════════════════════════════════════════
            SEO CONTENT — editorial style (single container)
@@ -2449,10 +2455,9 @@ const capRate = computed(() =>
 const capRateFontClass = computed(() => {
   if (!hasResult.value) return 'text-5xl'
   const s = capRate.value.toFixed(2) + '%'
-  if (s.length >= 10) return 'text-2xl'
-  if (s.length >= 8)  return 'text-3xl'
-  if (s.length >= 6)  return 'text-5xl'
-  return 'text-6xl'
+  if (s.length >= 10) return 'text-3xl'
+  if (s.length >= 8)  return 'text-4xl'
+  return 'text-6xl'   // 5–7 символов — всегда одинаково крупно
 })
 
 // GRM — Gross Rent Multiplier (supplemental metric in cap-rate mode)
