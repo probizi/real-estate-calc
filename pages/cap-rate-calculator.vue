@@ -709,8 +709,9 @@
 
         </div>
 
-        <!-- ── RESULTS (right column, sticky) ── -->
-        <div class="bg-gray-50 min-w-0 lg:overflow-y-auto lg:h-full scrollbar-thin">
+        <!-- ── RESULTS (right column) ── -->
+        <div class="min-w-0 lg:relative lg:overflow-hidden">
+        <div class="bg-gray-50 scrollbar-thin lg:absolute lg:inset-0 lg:overflow-y-auto">
         <div class="space-y-4 p-4 lg:p-5">
 
           <!-- Main Result -->
@@ -1279,6 +1280,7 @@
             </div>
           </div>
 
+        </div>
         </div>
         </div>
       </div>
