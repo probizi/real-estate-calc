@@ -710,10 +710,9 @@
         </div>
 
         <!-- ── RESULTS (right column, sticky) ── -->
-        <div class="self-stretch rounded-b-2xl lg:rounded-b-none lg:rounded-r-2xl border-t border-gray-200 lg:border-t-0 lg:border-l bg-gray-50">
-        <!-- NOTE: overflow must be on the INNER div — overflow on a sticky element breaks stickiness in CSS spec -->
-        <div class="lg:sticky lg:top-[4.5rem] lg:self-stretch min-w-0 w-full bg-gray-50 flex flex-col">
-        <div class="lg:h-full lg:overflow-y-auto space-y-4 p-4 lg:p-5 scrollbar-thin">
+        <div class="lg:self-stretch bg-gray-50 min-w-0 w-full">
+        <div class="lg:sticky lg:top-[4.5rem] min-w-0 w-full">
+        <div class="space-y-4 p-4 lg:p-5 scrollbar-thin">
 
           <!-- Main Result -->
           <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
@@ -1282,8 +1281,8 @@
           </div>
 
         </div>
-        </div><!-- /sticky wrapper -->
-        </div><!-- /self-stretch wrapper -->
+        </div>
+        </div>
       </div>
 
       <!-- ═══════════════════════════════════════════════
