@@ -3,7 +3,7 @@
 
     <!-- HEADER -->
     <header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4">
+      <div class="max-w-[1100px] mx-auto px-4 sm:px-6 py-4">
         <div class="flex items-center justify-between">
           <NuxtLink to="/" class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: #1e3a5f;">
@@ -30,7 +30,7 @@
 
     <!-- BREADCRUMB -->
     <div class="bg-white border-b border-gray-100 px-4 py-3">
-      <div class="max-w-7xl mx-auto">
+      <div class="max-w-[1100px] mx-auto">
         <nav aria-label="Breadcrumb">
           <ol class="flex items-center gap-2 text-sm text-gray-400">
             <li><NuxtLink to="/" class="hover:text-gray-600 transition">Home</NuxtLink></li>
@@ -40,6 +40,44 @@
             <li class="text-gray-700 font-semibold">Cash-on-Cash Return</li>
           </ol>
         </nav>
+      </div>
+    </div>
+
+    <!-- PAGE TITLE + ON THIS PAGE NAV -->
+    <div class="bg-white border-b border-gray-100">
+      <div class="max-w-[1100px] mx-auto px-4 sm:px-6 py-6">
+
+        <!-- H1 -->
+        <div class="mb-4">
+          <h1 class="text-3xl sm:text-4xl font-extrabold leading-tight" style="color: #1e3a5f;">
+            Cash-on-Cash Return Calculator — Free CoC Tool for US Rental Properties
+          </h1>
+        </div>
+
+        <!-- On this page nav -->
+        <div class="block rounded-2xl border border-gray-200 bg-gray-50 p-4 mb-2">
+          <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">On this page</p>
+
+          <!-- Desktop: full list -->
+          <ul class="hidden md:flex flex-wrap gap-x-5 gap-y-1.5">
+            <li><a href="#calculator" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Calculator</a></li>
+            <li><a href="#what-is-coc" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">What Is CoC Return</a></li>
+            <li><a href="#coc-vs-cap-rate" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">CoC vs. Cap Rate</a></li>
+            <li><a href="#faq" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">FAQ</a></li>
+          </ul>
+
+          <!-- Mobile: first 4 always visible + collapsible rest -->
+          <div class="md:hidden">
+            <ul class="flex flex-wrap gap-x-4 gap-y-1.5">
+              <li><a href="#calculator" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Calculator</a></li>
+              <li><a href="#what-is-coc" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">What Is CoC Return</a></li>
+              <li><a href="#coc-vs-cap-rate" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">CoC vs. Cap Rate</a></li>
+              <li><a href="#faq" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">FAQ</a></li>
+            </ul>
+
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -59,115 +97,16 @@
     </div>
 
     <!-- MAIN -->
-    <main class="max-w-7xl mx-auto px-4 py-8">
-      <div class="flex flex-col lg:flex-row lg:gap-8 items-start">
-
-        <!-- LEFT SIDEBAR -->
-        <aside class="lg:w-72 xl:w-80 flex-shrink-0 space-y-5 order-2 lg:order-none mt-8 lg:mt-0">
-
-          <!-- Title card -->
-          <div class="rounded-2xl overflow-hidden" style="background: #1e3a5f;">
-            <div class="p-6">
-              <div class="inline-flex items-center text-xs font-bold px-2.5 py-1 rounded-full mb-3"
-                style="background: rgba(245,158,11,0.2); color: #fcd34d;">
-                Free · No Signup
-              </div>
-              <h1 class="text-2xl font-extrabold text-white mb-2 leading-tight">Cash-on-Cash Return Calculator</h1>
-              <p class="text-blue-200 text-sm leading-relaxed mb-4">Measure your actual return on cash invested — the most important leverage-adjusted metric for US rental property investors.</p>
-              <div class="p-3 rounded-xl text-center" style="background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.25);">
-                <span class="font-mono text-xs font-bold" style="color: #fcd34d;">CoC = Annual Cash Flow ÷ Total Cash Invested × 100</span>
-              </div>
-            </div>
-            <div class="px-6 pb-5 space-y-2 border-t border-white/10 pt-4">
-              <p class="text-xs font-bold uppercase tracking-wide text-blue-400 mb-2">US Benchmarks</p>
-              <div class="flex justify-between text-sm">
-                <span class="text-blue-200">Strong return</span>
-                <span class="font-bold text-green-400">≥ 8%</span>
-              </div>
-              <div class="flex justify-between text-sm">
-                <span class="text-blue-200">Acceptable return</span>
-                <span class="font-bold text-yellow-400">5–7.9%</span>
-              </div>
-              <div class="flex justify-between text-sm">
-                <span class="text-blue-200">Below average</span>
-                <span class="font-bold text-orange-400">&lt; 5%</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- How to Use -->
-          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
-            <h2 class="text-sm font-extrabold mb-4" style="color: #1e3a5f;">How to Use This Calculator</h2>
-            <ol class="space-y-4">
-              <li class="flex gap-3">
-                <span class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-extrabold text-white mt-0.5" style="background: #1e3a5f; min-width:1.5rem;">1</span>
-                <div>
-                  <p class="text-sm font-semibold text-gray-800">Choose input mode</p>
-                  <p class="text-xs text-gray-500 mt-0.5 leading-relaxed"><strong>Enter Directly</strong> — input the annual cash flow if you know it. <strong>Build from Scratch</strong> — enter rent, vacancy, expenses, and mortgage to calculate it.</p>
-                </div>
-              </li>
-              <li class="flex gap-3">
-                <span class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-extrabold text-white mt-0.5" style="background: #1e3a5f; min-width:1.5rem;">2</span>
-                <div>
-                  <p class="text-sm font-semibold text-gray-800">Enter total cash invested</p>
-                  <p class="text-xs text-gray-500 mt-0.5 leading-relaxed">Down payment + closing costs + any rehab. This is your total out-of-pocket capital — not the purchase price.</p>
-                </div>
-              </li>
-              <li class="flex gap-3">
-                <span class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-extrabold text-white mt-0.5" style="background: #1e3a5f; min-width:1.5rem;">3</span>
-                <div>
-                  <p class="text-sm font-semibold text-gray-800">Read your result</p>
-                  <p class="text-xs text-gray-500 mt-0.5 leading-relaxed">CoC return shows your actual yield on deployed capital. Results update instantly with a Good/Average/Poor rating vs. US investor benchmarks.</p>
-                </div>
-              </li>
-            </ol>
-            <div class="mt-4 p-3 rounded-xl bg-amber-50 border border-amber-100">
-              <p class="text-xs text-amber-800 font-medium"><strong>Pro tip:</strong> Use actual rent and verified expenses — not proforma estimates. CoC is only as accurate as the numbers you put in.</p>
-            </div>
-          </div>
-
-          <!-- Related calculators -->
-          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
-            <h3 class="text-xs font-bold uppercase tracking-wide text-gray-400 mb-3">Related Calculators</h3>
-            <div class="space-y-1">
-              <NuxtLink to="/cap-rate-calculator" class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg px-2 py-2 transition">
-                <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#f59e0b;"></span>
-                Cap Rate Calculator
-              </NuxtLink>
-              <NuxtLink to="/dscr-calculator" class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg px-2 py-2 transition">
-                <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#10b981;"></span>
-                DSCR Calculator
-              </NuxtLink>
-              <NuxtLink to="/rental-property-calculator" class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg px-2 py-2 transition">
-                <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#8b5cf6;"></span>
-                Rental Property Calculator
-              </NuxtLink>
-              <NuxtLink to="/noi-calculator" class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg px-2 py-2 transition">
-                <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#3b82f6;"></span>
-                NOI Calculator
-              </NuxtLink>
-            </div>
-          </div>
-
-        </aside>
-
-        <!-- RIGHT — Calculator -->
-        <div class="flex-1 min-w-0 order-1 lg:order-none">
-
-          <div class="grid lg:grid-cols-5 gap-8">
+    <main id="calculator" class="max-w-[1100px] mx-auto px-4 pt-8 pb-10">
+          <div class="lg:grid lg:grid-cols-[3fr_2fr] lg:gap-8 items-start">
 
             <!-- INPUTS (3 cols) -->
-            <div class="lg:col-span-3 space-y-6">
+            <div class="calc-inputs space-y-6 mb-8 lg:mb-0">
 
               <!-- Annual Cash Flow -->
-              <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-                <div class="px-6 py-4 border-b border-gray-100 flex items-center gap-3">
-                  <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background: rgba(34,197,94,0.12);">
-                    <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
-                    </svg>
-                  </div>
-                  <h2 class="font-bold text-sm" style="color: #1e3a5f;">Annual Pre-Tax Cash Flow</h2>
+              <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                <div class="calc-section-header">
+                  <h2 class="calc-section-title">Annual Pre-Tax Cash Flow</h2>
                 </div>
                 <div class="p-6">
                   <div class="flex items-center gap-1 p-1 bg-gray-100 rounded-xl w-fit mb-5" role="group">
@@ -189,7 +128,7 @@
                     <div class="relative">
                       <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
                       <input id="annual-cash-flow" v-model.number="form.annualCashFlow" type="number" step="100" placeholder="e.g. 6,000"
-                        class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                        class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
                     </div>
                     <p class="text-xs text-gray-400 mt-1">Gross rent − all operating expenses − annual mortgage payments</p>
                   </div>
@@ -201,7 +140,7 @@
                       <div class="relative">
                         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
                         <input id="gross-rent" v-model.number="form.grossRent" type="number" min="0" step="100" placeholder="e.g. 24,000"
-                          class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                          class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
                       </div>
                     </div>
                     <div>
@@ -209,7 +148,7 @@
                       <div class="relative">
                         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
                         <input id="vacancy-loss" v-model.number="form.vacancyLoss" type="number" min="0" step="100" placeholder="e.g. 1,200"
-                          class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                          class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
                       </div>
                     </div>
                     <div>
@@ -217,7 +156,7 @@
                       <div class="relative">
                         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
                         <input id="annual-expenses" v-model.number="form.annualExpenses" type="number" min="0" step="100" placeholder="e.g. 8,000"
-                          class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                          class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
                       </div>
                     </div>
                     <div>
@@ -225,7 +164,7 @@
                       <div class="relative">
                         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
                         <input id="annual-debt" v-model.number="form.annualDebtService" type="number" min="0" step="100" placeholder="e.g. 12,000"
-                          class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                          class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
                       </div>
                     </div>
                     <div v-if="computedCashFlow !== 0" class="p-3 rounded-xl text-sm font-medium bg-blue-50 border border-blue-100 text-blue-800">
@@ -236,14 +175,9 @@
               </div>
 
               <!-- Total Cash Invested -->
-              <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-                <div class="px-6 py-4 border-b border-gray-100 flex items-center gap-3">
-                  <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background: rgba(30,58,95,0.08);">
-                    <svg class="w-4 h-4" style="color: #1e3a5f;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2z"/>
-                    </svg>
-                  </div>
-                  <h2 class="font-bold text-sm" style="color: #1e3a5f;">Total Cash Invested</h2>
+              <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                <div class="calc-section-header">
+                  <h2 class="calc-section-title">Total Cash Invested</h2>
                 </div>
                 <div class="p-6 space-y-4">
                   <div>
@@ -251,7 +185,7 @@
                     <div class="relative">
                       <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
                       <input id="down-payment" v-model.number="form.downPayment" type="number" min="0" step="1000" placeholder="e.g. 60,000"
-                        class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                        class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
                     </div>
                   </div>
                   <div>
@@ -259,7 +193,7 @@
                     <div class="relative">
                       <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
                       <input id="closing-costs" v-model.number="form.closingCosts" type="number" min="0" step="500" placeholder="e.g. 5,000"
-                        class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                        class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
                     </div>
                   </div>
                   <div>
@@ -267,7 +201,7 @@
                     <div class="relative">
                       <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
                       <input id="rehab-costs" v-model.number="form.rehabCosts" type="number" min="0" step="500" placeholder="e.g. 10,000"
-                        class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                        class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
                     </div>
                     <p class="text-xs text-gray-400 mt-1">Any upfront repairs before renting</p>
                   </div>
@@ -281,24 +215,26 @@
             </div>
 
             <!-- RESULTS (2 cols) -->
-            <div class="lg:col-span-2">
+            <div class="lg:sticky lg:top-24">
               <div class="sticky top-24 space-y-5">
 
                 <!-- Main Result -->
-                <div v-if="hasResult" class="rounded-2xl p-6 text-white shadow-xl" style="background: linear-gradient(135deg, #1e3a5f, #16304f);">
-                  <p class="text-blue-300 text-xs font-bold uppercase tracking-widest mb-3">Cash-on-Cash Return</p>
-                  <div class="flex items-end gap-2 mb-4">
-                    <span class="text-6xl font-extrabold leading-none">{{ cashOnCash.toFixed(2) }}</span>
-                    <span class="text-3xl font-bold mb-1 text-blue-200">%</span>
+                <div v-if="hasResult" class="rounded-xl border border-gray-200 bg-white overflow-hidden">
+                  <div class="px-5 py-5 border-b border-gray-100">
+                    <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Cash-on-Cash Return</p>
+                    <div class="flex items-end gap-1.5 mb-3">
+                      <span class="text-6xl font-extrabold leading-none" style="color:#1e3a5f;">{{ cashOnCash.toFixed(2) }}</span>
+                      <span class="text-3xl font-bold mb-1 text-gray-400">%</span>
+                    </div>
+                    <span class="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full"
+                      :style="`background: ${badge.bg}; color: ${badge.textColor}`">
+                      {{ badge.label }}
+                    </span>
+                    <p class="text-gray-400 text-xs mt-2">Annual cash flow ÷ total cash invested × 100</p>
                   </div>
-                  <span class="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full"
-                    :style="`background: ${badge.bg}; color: ${badge.textColor}`">
-                    {{ badge.label }}
-                  </span>
-                  <p class="text-blue-300 text-xs mt-3">Annual cash flow ÷ total cash invested × 100</p>
                 </div>
 
-                <div v-else class="rounded-2xl p-8 text-center border-2 border-dashed border-gray-200 bg-white">
+                <div v-else class="rounded-xl p-8 text-center border border-dashed border-gray-200 bg-white">
                   <div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-3">
                     <svg class="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
@@ -309,7 +245,7 @@
                 </div>
 
                 <!-- Formula breakdown -->
-                <div v-if="hasResult" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 space-y-3">
+                <div v-if="hasResult" class="bg-white rounded-xl border border-gray-200 p-5 space-y-3">
                   <h3 class="text-xs font-bold uppercase tracking-widest text-gray-400">Calculation</h3>
                   <div class="space-y-2 text-sm">
                     <div class="flex justify-between">
@@ -328,7 +264,7 @@
                 </div>
 
                 <!-- Benchmarks -->
-                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+                <div class="bg-white rounded-xl border border-gray-200 p-5">
                   <h3 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">US Market Benchmarks</h3>
                   <div class="space-y-2">
                     <div v-for="bm in benchmarks" :key="bm.label" class="flex items-center gap-3">
@@ -350,7 +286,7 @@
           <div class="mt-12 space-y-8">
 
             <!-- What is CoC -->
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+            <div id="what-is-coc" class="bg-white rounded-2xl border border-gray-200 p-8">
               <h2 class="text-xl font-extrabold mb-4" style="color: #1e3a5f;">What Is Cash-on-Cash Return in Real Estate?</h2>
               <p class="text-gray-600 leading-relaxed mb-4">
                 <strong>Cash-on-cash return (CoC)</strong> measures the annual pre-tax cash flow you receive as a percentage of the total cash you invested in a property. Unlike cap rate (which ignores financing), CoC reflects the actual impact of your mortgage — making it the most relevant yield metric for leveraged real estate investors.
@@ -367,7 +303,7 @@
             </div>
 
             <!-- CoC vs Cap Rate -->
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+            <div id="coc-vs-cap-rate" class="bg-white rounded-2xl border border-gray-200 p-8">
               <h2 class="text-xl font-extrabold mb-4" style="color: #1e3a5f;">Cash-on-Cash Return vs. Cap Rate: What's the Difference?</h2>
               <div class="grid md:grid-cols-2 gap-5 mb-4">
                 <div class="p-5 rounded-xl bg-amber-50 border border-amber-100">
@@ -397,7 +333,7 @@
             </div>
 
             <!-- FAQ -->
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+            <div id="faq" class="bg-white rounded-2xl border border-gray-200 p-8">
               <h2 class="text-xl font-extrabold mb-6" style="color: #1e3a5f;">Frequently Asked Questions — Cash-on-Cash Return</h2>
               <div class="space-y-5">
                 <div class="border-b border-gray-100 pb-5">
@@ -420,7 +356,7 @@
             </div>
 
             <!-- Related CTA -->
-            <div class="rounded-2xl p-8 text-white" style="background: linear-gradient(135deg, #1e3a5f, #16304f);">
+            <div class="rounded-2xl p-8 text-white" style="background: #1e3a5f;">
               <h2 class="text-xl font-extrabold mb-2">Build the Full Picture</h2>
               <p class="text-blue-200 text-sm mb-6 leading-relaxed">Cash-on-cash return is one piece of the puzzle. Use our calculators together for a complete investment analysis.</p>
               <div class="grid sm:grid-cols-3 gap-3">
@@ -441,15 +377,13 @@
 
           </div>
           <!-- /SEO CONTENT -->
-
-        </div><!-- /right column -->
-      </div><!-- /lg:flex -->
     </main>
 
   </div>
 </template>
 
 <script setup>
+const isNavExpanded = ref(false)
 import { reactive, ref, computed } from 'vue'
 
 useHead({

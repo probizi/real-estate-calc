@@ -5,7 +5,7 @@
          HEADER
     ═══════════════════════════════════════════════ -->
     <header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4">
+      <div class="max-w-[1100px] mx-auto px-4 sm:px-6 py-4">
         <div class="flex items-center justify-between">
           <NuxtLink to="/" class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: #1e3a5f;">
@@ -33,7 +33,7 @@
     <!-- ═══════════════════════════════════════════════
          HERO
     ═══════════════════════════════════════════════ -->
-    <section class="text-white py-10 md:py-14 px-4" style="background: linear-gradient(135deg, #1e3a5f 0%, #16304f 50%, #0f2540 100%);">
+    <section class="text-white py-10 md:py-14 px-4" style="background: #1e3a5f;">
       <div class="max-w-5xl mx-auto text-center">
         <div class="inline-flex items-center gap-2 text-xs font-bold px-3 py-1.5 rounded-full mb-4"
           style="background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.3); color: #fcd34d;">
@@ -46,12 +46,12 @@
       </div>
     </section>
 
-    <main class="max-w-7xl mx-auto px-4 py-10">
+    <main class="max-w-[1100px] mx-auto px-4 py-10">
 
       <!-- ── Source Toggle ── -->
       <div class="flex items-center gap-3 mb-6 flex-wrap">
         <button @click="mode = 'saved'"
-          :class="mode === 'saved' ? 'font-bold text-white' : 'font-semibold text-gray-600 bg-white border border-gray-200 hover:bg-gray-50'"
+          :class="mode === 'saved' ? 'font-bold text-white' : 'font-semibold text-gray-600 bg-white border border-gray-400 hover:border-gray-500 hover:bg-gray-50'"
           class="px-5 py-2.5 rounded-xl text-sm transition"
           :style="mode === 'saved' ? 'background: #1e3a5f;' : ''">
           Saved Scenarios
@@ -62,7 +62,7 @@
           </span>
         </button>
         <button @click="mode = 'manual'"
-          :class="mode === 'manual' ? 'font-bold text-white' : 'font-semibold text-gray-600 bg-white border border-gray-200 hover:bg-gray-50'"
+          :class="mode === 'manual' ? 'font-bold text-white' : 'font-semibold text-gray-600 bg-white border border-gray-400 hover:border-gray-500 hover:bg-gray-50'"
           class="px-5 py-2.5 rounded-xl text-sm transition"
           :style="mode === 'manual' ? 'background: #1e3a5f;' : ''">
           Enter Manually
@@ -93,11 +93,11 @@
               Cap Rate Calculator
             </NuxtLink>
             <NuxtLink to="/cash-on-cash-calculator"
-              class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm border border-gray-200 text-gray-700 hover:bg-gray-50 transition">
+              class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm border border-gray-400 hover:border-gray-500 text-gray-700 hover:bg-gray-50 transition">
               Cash-on-Cash
             </NuxtLink>
             <NuxtLink to="/rental-property-calculator"
-              class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm border border-gray-200 text-gray-700 hover:bg-gray-50 transition">
+              class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm border border-gray-400 hover:border-gray-500 text-gray-700 hover:bg-gray-50 transition">
               Rental Property
             </NuxtLink>
           </div>
@@ -199,14 +199,14 @@
               <div class="mb-3">
                 <label class="block text-xs font-semibold text-gray-500 mb-1">Deal Name</label>
                 <input v-model="deal.name" type="text" placeholder="e.g. 123 Oak St"
-                  class="w-full px-3 py-2 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-sm font-semibold text-gray-900 transition" />
+                  class="w-full px-3 py-2 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-sm font-semibold text-gray-900 transition" />
               </div>
 
               <!-- Calculator type -->
               <div class="mb-3">
                 <label class="block text-xs font-semibold text-gray-500 mb-1">Calculator Type</label>
                 <select v-model="deal.calculator"
-                  class="w-full px-3 py-2 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-sm text-gray-700 transition bg-white">
+                  class="w-full px-3 py-2 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-sm text-gray-700 transition bg-white">
                   <option value="cap-rate">Cap Rate</option>
                   <option value="cash-on-cash">Cash-on-Cash</option>
                   <option value="rental-property">Rental Property</option>
@@ -244,7 +244,7 @@
     </main>
 
     <!-- Footer note -->
-    <div class="max-w-7xl mx-auto px-4 pb-12 text-center">
+    <div class="max-w-[1100px] mx-auto px-4 pb-12 text-center">
       <p class="text-xs text-gray-400">
         Comparison is for informational purposes only. Not financial advice. Verify all inputs with a licensed professional before making investment decisions.
       </p>

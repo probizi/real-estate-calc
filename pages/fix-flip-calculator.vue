@@ -3,7 +3,7 @@
 
     <!-- HEADER -->
     <header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4">
+      <div class="max-w-[1100px] mx-auto px-4 sm:px-6 py-4">
         <div class="flex items-center justify-between">
           <NuxtLink to="/" class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: #1e3a5f;">
@@ -30,7 +30,7 @@
 
     <!-- PAGE HEADER (breadcrumb only) -->
     <div class="bg-white border-b border-gray-100 px-4 py-3">
-      <div class="max-w-7xl mx-auto">
+      <div class="max-w-[1100px] mx-auto">
         <nav aria-label="Breadcrumb">
           <ol class="flex items-center gap-2 text-sm text-gray-400">
             <li><NuxtLink to="/" class="hover:text-gray-600 transition">Home</NuxtLink></li>
@@ -40,6 +40,59 @@
             <li class="text-gray-700 font-semibold">Fix & Flip</li>
           </ol>
         </nav>
+      </div>
+    </div>
+
+    <!-- PAGE TITLE + ON THIS PAGE NAV -->
+    <div class="bg-white border-b border-gray-100">
+      <div class="max-w-[1100px] mx-auto px-4 sm:px-6 py-6">
+
+        <!-- H1 -->
+        <div class="mb-4">
+          <h1 class="text-3xl sm:text-4xl font-extrabold leading-tight" style="color: #1e3a5f;">
+            Fix &amp; Flip Calculator — Net Profit, ROI &amp; Maximum Allowable Offer
+          </h1>
+        </div>
+
+        <!-- On this page nav -->
+        <div class="block rounded-2xl border border-gray-200 bg-gray-50 p-4 mb-2">
+          <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">On this page</p>
+
+          <!-- Desktop: full list -->
+          <ul class="hidden md:flex flex-wrap gap-x-5 gap-y-1.5">
+            <li><a href="#calculator" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Calculator</a></li>
+            <li><a href="#what-is-fix-flip" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">What Is Fix &amp; Flip</a></li>
+            <li><a href="#formulas" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Key Formulas</a></li>
+            <li><a href="#benchmarks" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Benchmarks</a></li>
+            <li><a href="#budget" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Budget Items</a></li>
+            <li><a href="#faq" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">FAQ</a></li>
+          </ul>
+
+          <!-- Mobile: first 4 always visible + collapsible rest -->
+          <div class="md:hidden">
+            <ul class="flex flex-wrap gap-x-4 gap-y-1.5">
+              <li><a href="#calculator" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Calculator</a></li>
+              <li><a href="#what-is-fix-flip" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">What Is Fix &amp; Flip</a></li>
+              <li><a href="#formulas" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Key Formulas</a></li>
+              <li><a href="#benchmarks" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Benchmarks</a></li>
+            </ul>
+            <ul v-show="isNavExpanded" class="flex flex-wrap gap-x-4 gap-y-1.5 mt-1.5">
+              <li><a href="#budget" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Budget Items</a></li>
+              <li><a href="#faq" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">FAQ</a></li>
+            </ul>
+            <button
+              @click="isNavExpanded = !isNavExpanded"
+              class="mt-2 flex items-center gap-1 text-xs font-bold transition"
+              style="color: #b45309;">
+              <svg class="w-3 h-3 transition-transform duration-200" :class="isNavExpanded ? 'rotate-180' : ''"
+                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+              <span>{{ isNavExpanded ? 'Show less' : 'Show all sections' }}</span>
+            </button>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -59,118 +112,16 @@
     </div>
 
     <!-- MAIN -->
-    <main class="max-w-7xl mx-auto px-4 py-8">
-      <div class="flex flex-col lg:flex-row lg:gap-8 items-start">
-
-        <!-- LEFT SIDEBAR — Title + How to Use + Links -->
-        <aside class="lg:w-72 xl:w-80 flex-shrink-0 space-y-5 order-2 lg:order-none mt-8 lg:mt-0">
-
-          <!-- Title card -->
-          <div class="rounded-2xl overflow-hidden" style="background: #1e3a5f;">
-            <div class="p-6">
-              <div class="inline-flex items-center text-xs font-bold px-2.5 py-1 rounded-full mb-3"
-                style="background: rgba(245,158,11,0.2); color: #fcd34d;">
-                Free · No Signup
-              </div>
-              <h1 class="text-2xl font-extrabold text-white mb-2 leading-tight">Fix & Flip Calculator</h1>
-              <p class="text-blue-200 text-sm leading-relaxed mb-4">Calculate net profit, ROI, and Maximum Allowable Offer (MAO) for your fix & flip deal. Know your numbers before you make an offer.</p>
-              <div class="p-3 rounded-xl text-center" style="background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.25);">
-                <span class="font-mono text-xs font-bold" style="color: #fcd34d;">Net Profit = ARV − Purchase − Rehab − All Costs</span>
-              </div>
-            </div>
-            <div class="px-6 pb-5 space-y-2 border-t border-white/10 pt-4">
-              <p class="text-xs font-bold uppercase tracking-wide text-blue-400 mb-2">Profit Targets</p>
-              <div class="flex justify-between text-sm">
-                <span class="text-blue-200">Strong profit margin</span>
-                <span class="font-bold text-green-400">≥ 20% of ARV</span>
-              </div>
-              <div class="flex justify-between text-sm">
-                <span class="text-blue-200">Acceptable</span>
-                <span class="font-bold text-yellow-400">10–19% of ARV</span>
-              </div>
-              <div class="flex justify-between text-sm">
-                <span class="text-blue-200">Too thin</span>
-                <span class="font-bold text-orange-400">&lt; 10% of ARV</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- How to Use -->
-          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
-            <h2 class="text-sm font-extrabold mb-4" style="color: #1e3a5f;">How to Use This Calculator</h2>
-            <ol class="space-y-4">
-              <li class="flex gap-3">
-                <span class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-extrabold text-white mt-0.5" style="background: #1e3a5f; min-width:1.5rem;">1</span>
-                <div>
-                  <p class="text-sm font-semibold text-gray-800">Enter acquisition costs</p>
-                  <p class="text-xs text-gray-500 mt-0.5 leading-relaxed">Purchase price + all buying closing costs. If using hard money or bridge financing, enter your actual loan amount.</p>
-                </div>
-              </li>
-              <li class="flex gap-3">
-                <span class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-extrabold text-white mt-0.5" style="background: #1e3a5f; min-width:1.5rem;">2</span>
-                <div>
-                  <p class="text-sm font-semibold text-gray-800">Enter rehab & holding costs</p>
-                  <p class="text-xs text-gray-500 mt-0.5 leading-relaxed">Total rehab budget + estimated months to complete. Monthly holding costs include loan interest, taxes, insurance, and utilities.</p>
-                </div>
-              </li>
-              <li class="flex gap-3">
-                <span class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-extrabold text-white mt-0.5" style="background: #1e3a5f; min-width:1.5rem;">3</span>
-                <div>
-                  <p class="text-sm font-semibold text-gray-800">Enter ARV & selling costs</p>
-                  <p class="text-xs text-gray-500 mt-0.5 leading-relaxed">After Repair Value based on comparable sales. Selling costs: agent commission (typically 5–6%) + closing costs.</p>
-                </div>
-              </li>
-              <li class="flex gap-3">
-                <span class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-extrabold text-white mt-0.5" style="background: #1e3a5f; min-width:1.5rem;">4</span>
-                <div>
-                  <p class="text-sm font-semibold text-gray-800">Read profit & MAO</p>
-                  <p class="text-xs text-gray-500 mt-0.5 leading-relaxed">The result shows net profit, ROI, annualized return, and the Maximum Allowable Offer — the most you can pay and still hit your target margin.</p>
-                </div>
-              </li>
-            </ol>
-            <div class="mt-4 p-3 rounded-xl bg-amber-50 border border-amber-100">
-              <p class="text-xs text-amber-800 font-medium"><strong>Pro tip:</strong> Always use the 70% Rule as a quick sanity check: Max Offer = ARV × 70% − Rehab Costs. This leaves room for holding costs, profit, and surprises.</p>
-            </div>
-          </div>
-
-          <!-- Related calculators -->
-          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
-            <h3 class="text-xs font-bold uppercase tracking-wide text-gray-400 mb-3">Related Calculators</h3>
-            <div class="space-y-1">
-              <NuxtLink to="/arv-calculator" class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg px-2 py-2 transition">
-                <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#f59e0b;"></span>
-                ARV Calculator
-              </NuxtLink>
-              <NuxtLink to="/brrrr-calculator" class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg px-2 py-2 transition">
-                <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#10b981;"></span>
-                BRRRR Calculator
-              </NuxtLink>
-              <NuxtLink to="/cap-rate-calculator" class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg px-2 py-2 transition">
-                <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#3b82f6;"></span>
-                Cap Rate Calculator
-              </NuxtLink>
-            </div>
-          </div>
-
-        </aside>
-
-        <!-- RIGHT — Calculator content -->
-        <div class="flex-1 min-w-0 order-1 lg:order-none">
-
-          <div class="grid lg:grid-cols-5 gap-8">
+    <main id="calculator" class="max-w-[1100px] mx-auto px-4 pt-8 pb-10">
+          <div class="lg:grid lg:grid-cols-[3fr_2fr] lg:gap-8 items-start">
 
             <!-- INPUTS -->
-            <div class="lg:col-span-3 space-y-6">
+            <div class="calc-inputs space-y-6 mb-8 lg:mb-0">
 
               <!-- Purchase & Rehab -->
-              <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-                <div class="px-6 py-4 border-b border-gray-100 flex items-center gap-3">
-                  <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background: rgba(30,58,95,0.08);">
-                    <svg class="w-4 h-4" style="color: #1e3a5f;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-                    </svg>
-                  </div>
-                  <h2 class="font-bold text-sm" style="color: #1e3a5f;">Purchase &amp; Rehab Costs</h2>
+              <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                <div class="calc-section-header">
+                  <h2 class="calc-section-title">Purchase &amp; Rehab Costs</h2>
                 </div>
                 <div class="p-6 space-y-4">
                   <div class="grid grid-cols-2 gap-4">
@@ -179,7 +130,7 @@
                       <div class="relative">
                         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
                         <input id="purchase-price" v-model.number="form.purchasePrice" type="number" min="0" step="1000" placeholder="e.g. 120,000"
-                          class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                          class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
                       </div>
                     </div>
                     <div>
@@ -187,7 +138,7 @@
                       <div class="relative">
                         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
                         <input id="rehab-cost" v-model.number="form.rehabCost" type="number" min="0" step="1000" placeholder="e.g. 40,000"
-                          class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                          class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
                       </div>
                     </div>
                     <div>
@@ -195,27 +146,22 @@
                       <div class="relative">
                         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
                         <input id="closing-buy" v-model.number="form.closingBuy" type="number" min="0" step="500" placeholder="e.g. 3,000"
-                          class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                          class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
                       </div>
                     </div>
                     <div>
                       <label for="holding-months" class="block text-sm font-semibold text-gray-700 mb-1.5">Hold Period (Months)</label>
                       <input id="holding-months" v-model.number="form.holdingMonths" type="number" min="1" max="36" step="1" placeholder="e.g. 6"
-                        class="w-full px-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                        class="w-full px-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
                     </div>
                   </div>
                 </div>
               </div>
 
               <!-- Holding Costs -->
-              <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-                <div class="px-6 py-4 border-b border-gray-100 flex items-center gap-3">
-                  <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background: rgba(245,158,11,0.12);">
-                    <svg class="w-4 h-4" style="color: #f59e0b;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-                  </div>
-                  <h2 class="font-bold text-sm" style="color: #1e3a5f;">Monthly Holding Costs</h2>
+              <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                <div class="calc-section-header">
+                  <h2 class="calc-section-title">Monthly Holding Costs</h2>
                 </div>
                 <div class="p-6 space-y-3">
                   <div class="grid grid-cols-2 gap-3">
@@ -224,7 +170,7 @@
                       <div class="relative">
                         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">$</span>
                         <input id="hard-money-interest" v-model.number="form.monthlyInterest" type="number" min="0" step="100" placeholder="e.g. 1,500"
-                          class="w-full pl-7 pr-4 py-2.5 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-medium text-sm transition" />
+                          class="w-full pl-7 pr-4 py-2.5 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-medium text-sm transition" />
                       </div>
                     </div>
                     <div>
@@ -232,7 +178,7 @@
                       <div class="relative">
                         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">$</span>
                         <input id="property-tax-mo" v-model.number="form.monthlyTax" type="number" min="0" step="25" placeholder="e.g. 250"
-                          class="w-full pl-7 pr-4 py-2.5 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-medium text-sm transition" />
+                          class="w-full pl-7 pr-4 py-2.5 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-medium text-sm transition" />
                       </div>
                     </div>
                     <div>
@@ -240,7 +186,7 @@
                       <div class="relative">
                         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">$</span>
                         <input id="insurance-mo" v-model.number="form.monthlyInsurance" type="number" min="0" step="25" placeholder="e.g. 150"
-                          class="w-full pl-7 pr-4 py-2.5 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-medium text-sm transition" />
+                          class="w-full pl-7 pr-4 py-2.5 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-medium text-sm transition" />
                       </div>
                     </div>
                     <div>
@@ -248,7 +194,7 @@
                       <div class="relative">
                         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">$</span>
                         <input id="utilities-mo" v-model.number="form.monthlyUtilities" type="number" min="0" step="25" placeholder="e.g. 100"
-                          class="w-full pl-7 pr-4 py-2.5 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-medium text-sm transition" />
+                          class="w-full pl-7 pr-4 py-2.5 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-medium text-sm transition" />
                       </div>
                     </div>
                   </div>
@@ -260,14 +206,9 @@
               </div>
 
               <!-- Sale -->
-              <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-                <div class="px-6 py-4 border-b border-gray-100 flex items-center gap-3">
-                  <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background: rgba(34,197,94,0.12);">
-                    <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-                  </div>
-                  <h2 class="font-bold text-sm" style="color: #1e3a5f;">After Repair Value &amp; Sale Costs</h2>
+              <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                <div class="calc-section-header">
+                  <h2 class="calc-section-title">After Repair Value &amp; Sale Costs</h2>
                 </div>
                 <div class="p-6 space-y-4">
                   <div>
@@ -275,7 +216,7 @@
                     <div class="relative">
                       <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
                       <input id="arv" v-model.number="form.arv" type="number" min="0" step="1000" placeholder="e.g. 220,000"
-                        class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                        class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
                     </div>
                   </div>
                   <div class="grid grid-cols-2 gap-4">
@@ -283,7 +224,7 @@
                       <label for="agent-commission" class="block text-sm font-semibold text-gray-700 mb-1.5">Agent Commission</label>
                       <div class="relative">
                         <input id="agent-commission" v-model.number="form.agentCommission" type="number" min="0" max="10" step="0.25" placeholder="e.g. 5"
-                          class="w-full pr-8 pl-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                          class="w-full pr-8 pl-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
                         <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">%</span>
                       </div>
                     </div>
@@ -292,7 +233,7 @@
                       <div class="relative">
                         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
                         <input id="closing-sell" v-model.number="form.closingSell" type="number" min="0" step="500" placeholder="e.g. 3,000"
-                          class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                          class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
                       </div>
                     </div>
                   </div>
@@ -302,33 +243,35 @@
             </div>
 
             <!-- RESULTS -->
-            <div class="lg:col-span-2">
+            <div class="lg:sticky lg:top-24">
               <div class="sticky top-24 space-y-5">
 
                 <!-- Main Result -->
-                <div v-if="hasResult" class="rounded-2xl p-6 text-white shadow-xl" style="background: linear-gradient(135deg, #1e3a5f, #16304f);">
-                  <p class="text-blue-300 text-xs font-bold uppercase tracking-widest mb-3">Net Profit</p>
-                  <div class="flex items-end gap-2 mb-4">
-                    <span class="text-4xl font-extrabold leading-none" :class="netProfit >= 0 ? 'text-white' : 'text-red-300'">
-                      {{ netProfit >= 0 ? '+' : '' }}{{ formatCurrency(netProfit) }}
+                <div v-if="hasResult" class="rounded-xl border border-gray-200 bg-white overflow-hidden">
+                  <div class="px-5 py-5 border-b border-gray-100">
+                    <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Net Profit</p>
+                    <div class="flex items-end gap-2 mb-3">
+                      <span class="text-5xl font-extrabold leading-none" :class="netProfit < 0 ? 'text-red-600' : ''" :style="netProfit >= 0 ? 'color:#1e3a5f;' : ''">
+                        {{ netProfit >= 0 ? '+' : '' }}{{ formatCurrency(netProfit) }}
+                      </span>
+                    </div>
+                    <span class="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full"
+                      :style="`background: ${badge.bg}; color: ${badge.textColor}`">
+                      {{ badge.label }}
                     </span>
-                  </div>
-                  <span class="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full"
-                    :style="`background: ${badge.bg}; color: ${badge.textColor}`">
-                    {{ badge.label }}
-                  </span>
-                  <div class="mt-4 text-xs text-blue-300 grid grid-cols-2 gap-2">
-                    <div><span>ROI</span><p class="text-white font-bold text-base">{{ roi.toFixed(1) }}%</p></div>
-                    <div><span>Annualized ROI</span><p class="text-white font-bold text-base">{{ annualizedROI.toFixed(1) }}%</p></div>
+                    <div class="mt-3 text-xs text-gray-500 grid grid-cols-2 gap-2">
+                      <div><span>ROI</span><p class="font-bold text-sm text-gray-800">{{ roi.toFixed(1) }}%</p></div>
+                      <div><span>Annualized ROI</span><p class="font-bold text-sm text-gray-800">{{ annualizedROI.toFixed(1) }}%</p></div>
+                    </div>
                   </div>
                 </div>
 
-                <div v-else class="rounded-2xl p-8 text-center border-2 border-dashed border-gray-200 bg-white">
+                <div v-else class="rounded-xl p-8 text-center border border-dashed border-gray-200 bg-white">
                   <p class="text-gray-400 font-medium text-sm">Enter purchase price & ARV<br>to see your flip profit</p>
                 </div>
 
                 <!-- P&L Breakdown -->
-                <div v-if="hasResult" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 space-y-3">
+                <div v-if="hasResult" class="bg-white rounded-xl border border-gray-200 p-5 space-y-3">
                   <h3 class="text-xs font-bold uppercase tracking-widest text-gray-400">Profit &amp; Loss</h3>
                   <div class="space-y-2 text-sm">
                     <div class="flex justify-between py-1 border-b border-gray-50 font-bold text-green-600">
@@ -359,7 +302,7 @@
                 </div>
 
                 <!-- MAO (70% Rule) -->
-                <div v-if="form.arv && form.rehabCost" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+                <div v-if="form.arv && form.rehabCost" class="bg-white rounded-2xl border border-gray-200 p-5">
                   <h3 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Maximum Allowable Offer</h3>
                   <p class="text-xs text-gray-500 mb-3">Based on the 70% Rule: MAO = (ARV × 70%) − Rehab Costs</p>
                   <div class="text-2xl font-extrabold mb-1" style="color: #1e3a5f;">{{ formatCurrency(mao) }}</div>
@@ -374,16 +317,14 @@
             </div>
 
           </div>
-        </div><!-- /right column -->
-      </div><!-- /lg:flex -->
     </main>
 
     <!-- SEO CONTENT -->
-    <div class="max-w-7xl mx-auto px-4 pb-16 mt-12 space-y-12">
+    <div class="max-w-[1100px] mx-auto px-4 pb-16 mt-12 space-y-12">
 
       <!-- What is Fix & Flip -->
-      <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-        <h2 class="text-2xl font-extrabold mb-4" style="color: #1e3a5f;">What Is Fix & Flip Investing?</h2>
+      <section class="bg-white rounded-2xl border border-gray-200 p-8">
+        <h2 id="what-is-fix-flip" class="text-2xl font-extrabold mb-4" style="color: #1e3a5f;">What Is Fix & Flip Investing?</h2>
         <div class="grid md:grid-cols-2 gap-6 text-gray-600 text-sm leading-relaxed">
           <div>
             <p class="mb-3">Fix and flip investing means purchasing a distressed or undervalued property, renovating it to increase its value, then selling it at a profit — ideally within 6–12 months. It's one of the most active strategies in US real estate, generating income rather than passive cash flow.</p>
@@ -398,24 +339,24 @@
 
       <!-- Key Formulas -->
       <section>
-        <h2 class="text-2xl font-extrabold mb-6" style="color: #1e3a5f;">Fix & Flip Key Formulas</h2>
+        <h2 id="formulas" class="text-2xl font-extrabold mb-6" style="color: #1e3a5f;">Fix & Flip Key Formulas</h2>
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+          <div class="bg-white rounded-2xl border border-gray-200 p-5">
             <div class="text-xs font-bold uppercase tracking-widest mb-2 text-blue-500">Net Profit</div>
             <div class="font-mono text-xs bg-gray-50 rounded-lg p-3 text-gray-700 mb-3">ARV − Purchase − Rehab − Holding − Closing</div>
             <p class="text-xs text-gray-500">Your bottom-line take-home after all costs are accounted for.</p>
           </div>
-          <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+          <div class="bg-white rounded-2xl border border-gray-200 p-5">
             <div class="text-xs font-bold uppercase tracking-widest mb-2 text-green-500">ROI</div>
             <div class="font-mono text-xs bg-gray-50 rounded-lg p-3 text-gray-700 mb-3">Net Profit ÷ Total Cash Invested × 100</div>
             <p class="text-xs text-gray-500">Return on your total cash deployed, including down payment and rehab funds.</p>
           </div>
-          <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+          <div class="bg-white rounded-2xl border border-gray-200 p-5">
             <div class="text-xs font-bold uppercase tracking-widest mb-2 text-yellow-500">Annualized ROI</div>
             <div class="font-mono text-xs bg-gray-50 rounded-lg p-3 text-gray-700 mb-3">ROI ÷ Hold Months × 12</div>
             <p class="text-xs text-gray-500">Normalizes short-term flips to an annual rate so you can compare against other investments.</p>
           </div>
-          <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+          <div class="bg-white rounded-2xl border border-gray-200 p-5">
             <div class="text-xs font-bold uppercase tracking-widest mb-2 text-orange-500">MAO (70% Rule)</div>
             <div class="font-mono text-xs bg-gray-50 rounded-lg p-3 text-gray-700 mb-3">(ARV × 70%) − Rehab Costs</div>
             <p class="text-xs text-gray-500">The maximum you can pay and still leave enough margin for profit and surprises.</p>
@@ -424,8 +365,8 @@
       </section>
 
       <!-- Fix & Flip Returns by US Market -->
-      <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-        <h2 class="text-2xl font-extrabold mb-2" style="color: #1e3a5f;">Fix & Flip Profit Benchmarks by US Market</h2>
+      <section class="bg-white rounded-2xl border border-gray-200 p-8">
+        <h2 id="benchmarks" class="text-2xl font-extrabold mb-2" style="color: #1e3a5f;">Fix & Flip Profit Benchmarks by US Market</h2>
         <p class="text-gray-500 text-sm mb-6">Typical gross profit per flip and average hold periods by state. Source: industry survey data, 2023–2024.</p>
         <div class="overflow-x-auto">
           <table class="w-full text-sm">
@@ -453,9 +394,9 @@
 
       <!-- Cost Breakdown Guide -->
       <section>
-        <h2 class="text-2xl font-extrabold mb-6" style="color: #1e3a5f;">What to Include in Your Fix & Flip Budget</h2>
+        <h2 id="budget" class="text-2xl font-extrabold mb-6" style="color: #1e3a5f;">What to Include in Your Fix & Flip Budget</h2>
         <div class="grid md:grid-cols-3 gap-6">
-          <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+          <div class="bg-white rounded-2xl border border-gray-200 p-6">
             <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background: rgba(30,58,95,0.08);">
               <svg class="w-5 h-5" style="color: #1e3a5f;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
             </div>
@@ -468,7 +409,7 @@
               <li class="flex items-start gap-2"><span class="text-red-400 mt-0.5">•</span>Attorney/closing agent fees</li>
             </ul>
           </div>
-          <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+          <div class="bg-white rounded-2xl border border-gray-200 p-6">
             <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background: rgba(245,158,11,0.12);">
               <svg class="w-5 h-5" style="color: #f59e0b;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             </div>
@@ -481,7 +422,7 @@
               <li class="flex items-start gap-2"><span class="text-yellow-500 mt-0.5">•</span>HOA dues (if applicable)</li>
             </ul>
           </div>
-          <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+          <div class="bg-white rounded-2xl border border-gray-200 p-6">
             <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background: rgba(34,197,94,0.12);">
               <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             </div>
@@ -498,8 +439,8 @@
       </section>
 
       <!-- FAQ -->
-      <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-        <h2 class="text-2xl font-extrabold mb-6" style="color: #1e3a5f;">Fix & Flip Calculator FAQ</h2>
+      <section class="bg-white rounded-2xl border border-gray-200 p-8">
+        <h2 id="faq" class="text-2xl font-extrabold mb-6" style="color: #1e3a5f;">Fix & Flip Calculator FAQ</h2>
         <div class="space-y-5">
           <div v-for="faq in faqs" :key="faq.q" class="border-b border-gray-100 pb-5 last:border-0 last:pb-0">
             <h3 class="font-bold text-gray-900 mb-2">{{ faq.q }}</h3>
@@ -509,7 +450,7 @@
       </section>
 
       <!-- CTA -->
-      <section class="rounded-2xl p-8 text-center text-white" style="background: linear-gradient(135deg, #1e3a5f, #16304f);">
+      <section class="rounded-2xl p-8 text-center text-white" style="background: #1e3a5f;">
         <h2 class="text-2xl font-extrabold mb-3">Analyze More Deals With Our Full Calculator Suite</h2>
         <p class="text-blue-200 mb-6 text-sm">Once you have your flip profit, use our other tools to evaluate rental hold strategies, ARV estimates, and BRRRR deals.</p>
         <div class="flex flex-wrap justify-center gap-3">
@@ -560,6 +501,7 @@
 </template>
 
 <script setup>
+const isNavExpanded = ref(false)
 import { reactive, computed } from 'vue'
 
 useHead({

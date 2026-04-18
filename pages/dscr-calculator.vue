@@ -3,7 +3,7 @@
 
     <!-- HEADER -->
     <header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4">
+      <div class="max-w-[1100px] mx-auto px-4 sm:px-6 py-4">
         <div class="flex items-center justify-between">
           <NuxtLink to="/" class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: #1e3a5f;">
@@ -30,7 +30,7 @@
 
     <!-- BREADCRUMB -->
     <div class="bg-white border-b border-gray-100 px-4 py-3">
-      <div class="max-w-7xl mx-auto">
+      <div class="max-w-[1100px] mx-auto">
         <nav aria-label="Breadcrumb">
           <ol class="flex items-center gap-2 text-sm text-gray-400">
             <li><NuxtLink to="/" class="hover:text-gray-600 transition">Home</NuxtLink></li>
@@ -40,6 +40,44 @@
             <li class="text-gray-700 font-semibold">DSCR Calculator</li>
           </ol>
         </nav>
+      </div>
+    </div>
+
+    <!-- PAGE TITLE + ON THIS PAGE NAV -->
+    <div class="bg-white border-b border-gray-100">
+      <div class="max-w-[1100px] mx-auto px-4 sm:px-6 py-6">
+
+        <!-- H1 -->
+        <div class="mb-4">
+          <h1 class="text-3xl sm:text-4xl font-extrabold leading-tight" style="color: #1e3a5f;">
+            DSCR Calculator — Free Debt Service Coverage Ratio Tool for US Investors
+          </h1>
+        </div>
+
+        <!-- On this page nav -->
+        <div class="block rounded-2xl border border-gray-200 bg-gray-50 p-4 mb-2">
+          <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">On this page</p>
+
+          <!-- Desktop: full list -->
+          <ul class="hidden md:flex flex-wrap gap-x-5 gap-y-1.5">
+            <li><a href="#calculator" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Calculator</a></li>
+            <li><a href="#what-is-dscr" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">What Is DSCR</a></li>
+            <li><a href="#dscr-loans" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">DSCR Loans</a></li>
+            <li><a href="#faq" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">FAQ</a></li>
+          </ul>
+
+          <!-- Mobile: first 4 always visible + collapsible rest -->
+          <div class="md:hidden">
+            <ul class="flex flex-wrap gap-x-4 gap-y-1.5">
+              <li><a href="#calculator" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Calculator</a></li>
+              <li><a href="#what-is-dscr" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">What Is DSCR</a></li>
+              <li><a href="#dscr-loans" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">DSCR Loans</a></li>
+              <li><a href="#faq" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">FAQ</a></li>
+            </ul>
+
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -59,122 +97,16 @@
     </div>
 
     <!-- MAIN -->
-    <main class="max-w-7xl mx-auto px-4 py-8">
-      <div class="flex flex-col lg:flex-row lg:gap-8 items-start">
-
-        <!-- LEFT SIDEBAR -->
-        <aside class="lg:w-72 xl:w-80 flex-shrink-0 space-y-5 order-2 lg:order-none mt-8 lg:mt-0">
-
-          <!-- Title card -->
-          <div class="rounded-2xl overflow-hidden" style="background: #1e3a5f;">
-            <div class="p-6">
-              <div class="inline-flex items-center text-xs font-bold px-2.5 py-1 rounded-full mb-3"
-                style="background: rgba(245,158,11,0.2); color: #fcd34d;">
-                Free · No Signup
-              </div>
-              <h1 class="text-2xl font-extrabold text-white mb-2 leading-tight">DSCR Calculator</h1>
-              <p class="text-blue-200 text-sm leading-relaxed mb-4">Calculate your Debt Service Coverage Ratio. Know exactly what lenders see — and whether your rental deal qualifies for a DSCR loan.</p>
-              <div class="p-3 rounded-xl text-center" style="background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.25);">
-                <span class="font-mono text-xs font-bold" style="color: #fcd34d;">DSCR = Annual NOI ÷ Annual Debt Service</span>
-              </div>
-            </div>
-            <div class="px-6 pb-5 space-y-2 border-t border-white/10 pt-4">
-              <p class="text-xs font-bold uppercase tracking-wide text-blue-400 mb-2">Lender Thresholds</p>
-              <div class="flex justify-between text-sm">
-                <span class="text-blue-200">Strong / lender approved</span>
-                <span class="font-bold text-green-400">≥ 1.25x</span>
-              </div>
-              <div class="flex justify-between text-sm">
-                <span class="text-blue-200">Marginal coverage</span>
-                <span class="font-bold text-yellow-400">1.0–1.24x</span>
-              </div>
-              <div class="flex justify-between text-sm">
-                <span class="text-blue-200">Negative cash flow</span>
-                <span class="font-bold text-orange-400">&lt; 1.0x</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- How to Use -->
-          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
-            <h2 class="text-sm font-extrabold mb-4" style="color: #1e3a5f;">How to Use This Calculator</h2>
-            <ol class="space-y-4">
-              <li class="flex gap-3">
-                <span class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-extrabold text-white mt-0.5" style="background: #1e3a5f; min-width:1.5rem;">1</span>
-                <div>
-                  <p class="text-sm font-semibold text-gray-800">Enter NOI or build from rent</p>
-                  <p class="text-xs text-gray-500 mt-0.5 leading-relaxed">Select <strong>Enter NOI directly</strong> if you know it, or <strong>Calculate from rent</strong> to build from monthly rent, vacancy %, and expense ratio.</p>
-                </div>
-              </li>
-              <li class="flex gap-3">
-                <span class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-extrabold text-white mt-0.5" style="background: #1e3a5f; min-width:1.5rem;">2</span>
-                <div>
-                  <p class="text-sm font-semibold text-gray-800">Enter debt service</p>
-                  <p class="text-xs text-gray-500 mt-0.5 leading-relaxed">Enter total annual P+I payments directly, or calculate from loan amount, rate, and term.</p>
-                </div>
-              </li>
-              <li class="flex gap-3">
-                <span class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-extrabold text-white mt-0.5" style="background: #1e3a5f; min-width:1.5rem;">3</span>
-                <div>
-                  <p class="text-sm font-semibold text-gray-800">Read your DSCR</p>
-                  <p class="text-xs text-gray-500 mt-0.5 leading-relaxed">≥ 1.25x = most lenders approve. 1.0–1.24x = marginal. Below 1.0x = property cannot cover debt from income alone.</p>
-                </div>
-              </li>
-              <li class="flex gap-3">
-                <span class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-extrabold text-white mt-0.5" style="background: #1e3a5f; min-width:1.5rem;">4</span>
-                <div>
-                  <p class="text-sm font-semibold text-gray-800">Review loan qualification</p>
-                  <p class="text-xs text-gray-500 mt-0.5 leading-relaxed">The results panel shows the minimum NOI required for each DSCR threshold — use this to size your offer or loan request.</p>
-                </div>
-              </li>
-            </ol>
-            <div class="mt-4 p-3 rounded-xl bg-amber-50 border border-amber-100">
-              <p class="text-xs text-amber-800 font-medium"><strong>Pro tip:</strong> Most DSCR loan programs underwrite using market rent (from an appraisal), not actual rent. Ask your lender which rent figure they use.</p>
-            </div>
-          </div>
-
-          <!-- Related calculators -->
-          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
-            <h3 class="text-xs font-bold uppercase tracking-wide text-gray-400 mb-3">Related Calculators</h3>
-            <div class="space-y-1">
-              <NuxtLink to="/cap-rate-calculator" class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg px-2 py-2 transition">
-                <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#f59e0b;"></span>
-                Cap Rate Calculator
-              </NuxtLink>
-              <NuxtLink to="/noi-calculator" class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg px-2 py-2 transition">
-                <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#10b981;"></span>
-                NOI Calculator
-              </NuxtLink>
-              <NuxtLink to="/cash-on-cash-calculator" class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg px-2 py-2 transition">
-                <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#3b82f6;"></span>
-                Cash-on-Cash Return
-              </NuxtLink>
-              <NuxtLink to="/rental-property-calculator" class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg px-2 py-2 transition">
-                <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#8b5cf6;"></span>
-                Rental Property Calculator
-              </NuxtLink>
-            </div>
-          </div>
-
-        </aside>
-
-        <!-- RIGHT — Calculator -->
-        <div class="flex-1 min-w-0 order-1 lg:order-none">
-
-          <div class="grid lg:grid-cols-5 gap-8">
+    <main id="calculator" class="max-w-[1100px] mx-auto px-4 pt-8 pb-10">
+          <div class="lg:grid lg:grid-cols-[3fr_2fr] lg:gap-8 items-start">
 
             <!-- INPUTS (3 cols) -->
-            <div class="lg:col-span-3 space-y-6">
+            <div class="calc-inputs space-y-6 mb-8 lg:mb-0">
 
               <!-- NOI / Income -->
-              <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-                <div class="px-6 py-4 border-b border-gray-100 flex items-center gap-3">
-                  <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background: rgba(245,158,11,0.12);">
-                    <svg class="w-4 h-4" style="color: #f59e0b;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-                  </div>
-                  <h2 class="font-bold text-sm" style="color: #1e3a5f;">Net Operating Income</h2>
+              <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                <div class="calc-section-header">
+                  <h2 class="calc-section-title">Net Operating Income</h2>
                 </div>
                 <div class="p-6">
                   <div class="flex items-center gap-1 p-1 bg-gray-100 rounded-xl w-fit mb-5" role="group">
@@ -196,7 +128,7 @@
                     <div class="relative">
                       <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
                       <input id="annual-noi" v-model.number="form.annualNOI" type="number" min="0" step="100" placeholder="e.g. 30,000"
-                        class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                        class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
                     </div>
                     <p class="text-xs text-gray-400 mt-1">Gross rent − vacancy − operating expenses (exclude mortgage)</p>
                   </div>
@@ -208,7 +140,7 @@
                       <div class="relative">
                         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
                         <input id="monthly-rent" v-model.number="form.monthlyRent" type="number" min="0" step="50" placeholder="e.g. 3,000"
-                          class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                          class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
                       </div>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
@@ -216,7 +148,7 @@
                         <label for="vacancy-pct" class="block text-sm font-semibold text-gray-700 mb-1.5">Vacancy Rate</label>
                         <div class="relative">
                           <input id="vacancy-pct" v-model.number="form.vacancyRate" type="number" min="0" max="100" step="0.5" placeholder="e.g. 5"
-                            class="w-full pr-8 pl-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                            class="w-full pr-8 pl-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
                           <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">%</span>
                         </div>
                       </div>
@@ -224,7 +156,7 @@
                         <label for="expense-ratio" class="block text-sm font-semibold text-gray-700 mb-1.5">Expense Ratio</label>
                         <div class="relative">
                           <input id="expense-ratio" v-model.number="form.expenseRatio" type="number" min="0" max="100" step="1" placeholder="e.g. 40"
-                            class="w-full pr-8 pl-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                            class="w-full pr-8 pl-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
                           <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">%</span>
                         </div>
                         <p class="text-xs text-gray-400 mt-1">Typical: 35–50%</p>
@@ -238,14 +170,9 @@
               </div>
 
               <!-- Debt Service -->
-              <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-                <div class="px-6 py-4 border-b border-gray-100 flex items-center gap-3">
-                  <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background: rgba(239,68,68,0.1);">
-                    <svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
-                    </svg>
-                  </div>
-                  <h2 class="font-bold text-sm" style="color: #1e3a5f;">Annual Debt Service</h2>
+              <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                <div class="calc-section-header">
+                  <h2 class="calc-section-title">Annual Debt Service</h2>
                 </div>
                 <div class="p-6">
                   <div class="flex items-center gap-1 p-1 bg-gray-100 rounded-xl w-fit mb-5" role="group">
@@ -266,7 +193,7 @@
                     <div class="relative">
                       <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
                       <input id="annual-debt" v-model.number="form.annualDebtService" type="number" min="0" step="100" placeholder="e.g. 24,000"
-                        class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                        class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
                     </div>
                     <p class="text-xs text-gray-400 mt-1">Total annual principal + interest payments</p>
                   </div>
@@ -277,7 +204,7 @@
                       <div class="relative">
                         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
                         <input id="loan-amount" v-model.number="form.loanAmount" type="number" min="0" step="5000" placeholder="e.g. 240,000"
-                          class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                          class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
                       </div>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
@@ -285,14 +212,14 @@
                         <label for="int-rate" class="block text-sm font-semibold text-gray-700 mb-1.5">Interest Rate</label>
                         <div class="relative">
                           <input id="int-rate" v-model.number="form.interestRate" type="number" min="0" max="30" step="0.125" placeholder="e.g. 7.25"
-                            class="w-full pr-8 pl-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                            class="w-full pr-8 pl-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
                           <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">%</span>
                         </div>
                       </div>
                       <div>
                         <label for="loan-term" class="block text-sm font-semibold text-gray-700 mb-1.5">Loan Term</label>
                         <select id="loan-term" v-model.number="form.loanTerm"
-                          class="w-full px-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition bg-white">
+                          class="w-full px-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition bg-white">
                           <option :value="30">30 years</option>
                           <option :value="20">20 years</option>
                           <option :value="15">15 years</option>
@@ -311,31 +238,35 @@
             </div>
 
             <!-- RESULTS (2 cols) -->
-            <div class="lg:col-span-2">
+            <div class="lg:sticky lg:top-24">
               <div class="sticky top-24 space-y-5">
 
                 <!-- Main Result -->
-                <div v-if="hasResult" class="rounded-2xl p-6 text-white shadow-xl" style="background: linear-gradient(135deg, #1e3a5f, #16304f);">
-                  <p class="text-blue-300 text-xs font-bold uppercase tracking-widest mb-3">DSCR</p>
-                  <div class="flex items-end gap-2 mb-2">
-                    <span class="text-6xl font-extrabold leading-none" :class="dscr >= 1.25 ? 'text-white' : dscr >= 1.0 ? 'text-yellow-300' : 'text-red-300'">
-                      {{ dscr.toFixed(2) }}
-                    </span>
-                    <span class="text-2xl font-bold mb-1 text-blue-200">x</span>
-                  </div>
-                  <div class="mb-4">
-                    <span class="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full"
-                      :style="`background: ${badge.bg}; color: ${badge.textColor}`">
-                      {{ badge.label }}
-                    </span>
-                  </div>
-                  <div class="text-xs text-blue-300 space-y-1">
-                    <div class="flex justify-between"><span>NOI</span><span class="text-white font-bold">{{ formatCurrency(effectiveNOI) }}/yr</span></div>
-                    <div class="flex justify-between"><span>Debt Service</span><span class="text-white font-bold">{{ formatCurrency(effectiveDebtService) }}/yr</span></div>
+                <div v-if="hasResult" class="rounded-xl border border-gray-200 bg-white overflow-hidden">
+                  <div class="px-5 py-5 border-b border-gray-100">
+                    <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">DSCR</p>
+                    <div class="flex items-end gap-1.5 mb-3">
+                      <span class="text-6xl font-extrabold leading-none"
+                        :class="dscr < 1.0 ? 'text-red-600' : dscr < 1.25 ? 'text-amber-600' : ''"
+                        :style="dscr >= 1.25 ? 'color:#1e3a5f;' : ''">
+                        {{ dscr.toFixed(2) }}
+                      </span>
+                      <span class="text-2xl font-bold mb-1 text-gray-400">x</span>
+                    </div>
+                    <div class="mb-3">
+                      <span class="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full"
+                        :style="`background: ${badge.bg}; color: ${badge.textColor}`">
+                        {{ badge.label }}
+                      </span>
+                    </div>
+                    <div class="text-xs text-gray-500 space-y-1">
+                      <div class="flex justify-between"><span>NOI</span><span class="font-semibold text-gray-700">{{ formatCurrency(effectiveNOI) }}/yr</span></div>
+                      <div class="flex justify-between"><span>Debt Service</span><span class="font-semibold text-gray-700">{{ formatCurrency(effectiveDebtService) }}/yr</span></div>
+                    </div>
                   </div>
                 </div>
 
-                <div v-else class="rounded-2xl p-8 text-center border-2 border-dashed border-gray-200 bg-white">
+                <div v-else class="rounded-xl p-8 text-center border border-dashed border-gray-200 bg-white">
                   <svg class="w-10 h-10 text-gray-200 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                   </svg>
@@ -344,7 +275,7 @@
                 </div>
 
                 <!-- Formula -->
-                <div v-if="hasResult" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 space-y-3">
+                <div v-if="hasResult" class="bg-white rounded-xl border border-gray-200 p-5 space-y-3">
                   <h3 class="text-xs font-bold uppercase tracking-widest text-gray-400">Calculation</h3>
                   <div class="text-center py-2">
                     <p class="text-sm text-gray-500 mb-1">DSCR = Annual NOI ÷ Annual Debt Service</p>
@@ -355,7 +286,7 @@
                 </div>
 
                 <!-- Lender Benchmarks -->
-                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+                <div class="bg-white rounded-xl border border-gray-200 p-5">
                   <h3 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Lender Requirements</h3>
                   <div class="space-y-3">
                     <div v-for="lender in lenderBenchmarks" :key="lender.type"
@@ -372,7 +303,7 @@
                 </div>
 
                 <!-- Min NOI needed -->
-                <div v-if="effectiveDebtService > 0" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+                <div v-if="effectiveDebtService > 0" class="bg-white rounded-2xl border border-gray-200 p-5">
                   <h3 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Minimum NOI to Qualify</h3>
                   <div class="space-y-2 text-sm">
                     <div v-for="threshold in [1.0, 1.1, 1.25, 1.35]" :key="threshold"
@@ -395,7 +326,7 @@
           <div class="mt-12 space-y-8">
 
             <!-- What is DSCR -->
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+            <div id="what-is-dscr" class="bg-white rounded-2xl border border-gray-200 p-8">
               <h2 class="text-xl font-extrabold mb-4" style="color: #1e3a5f;">What Is DSCR in Real Estate?</h2>
               <p class="text-gray-600 leading-relaxed mb-4">
                 The <strong>Debt Service Coverage Ratio (DSCR)</strong> measures a property's ability to cover its debt payments from its own income. It is the primary metric lenders use to underwrite investment property loans — especially DSCR loans that do not require personal income verification.
@@ -412,7 +343,7 @@
             </div>
 
             <!-- DSCR Loans -->
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+            <div id="dscr-loans" class="bg-white rounded-2xl border border-gray-200 p-8">
               <h2 class="text-xl font-extrabold mb-4" style="color: #1e3a5f;">DSCR Loans: How They Work for Real Estate Investors</h2>
               <p class="text-gray-600 leading-relaxed mb-4">
                 DSCR loans (also called investor cash flow loans) qualify borrowers based on the rental property's income — not the borrower's personal W-2 income, tax returns, or debt-to-income ratio. This makes them ideal for self-employed investors, those with multiple properties, and anyone who has "written off" income.
@@ -442,7 +373,7 @@
             </div>
 
             <!-- FAQ -->
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+            <div id="faq" class="bg-white rounded-2xl border border-gray-200 p-8">
               <h2 class="text-xl font-extrabold mb-6" style="color: #1e3a5f;">Frequently Asked Questions — DSCR</h2>
               <div class="space-y-5">
                 <div class="border-b border-gray-100 pb-5">
@@ -465,7 +396,7 @@
             </div>
 
             <!-- Related CTA -->
-            <div class="rounded-2xl p-8 text-white" style="background: linear-gradient(135deg, #1e3a5f, #16304f);">
+            <div class="rounded-2xl p-8 text-white" style="background: #1e3a5f;">
               <h2 class="text-xl font-extrabold mb-2">Complete Your Financing Analysis</h2>
               <p class="text-blue-200 text-sm mb-6 leading-relaxed">DSCR tells you if you can get the loan. These calculators tell you if the deal is worth making.</p>
               <div class="grid sm:grid-cols-3 gap-3">
@@ -486,9 +417,6 @@
 
           </div>
           <!-- /SEO CONTENT -->
-
-        </div><!-- /right column -->
-      </div><!-- /lg:flex -->
     </main>
 
     <!-- FAQ JSON-LD -->
@@ -529,6 +457,7 @@
 </template>
 
 <script setup>
+const isNavExpanded = ref(false)
 import { reactive, ref, computed } from 'vue'
 
 useHead({

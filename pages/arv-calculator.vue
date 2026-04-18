@@ -3,7 +3,7 @@
 
     <!-- HEADER -->
     <header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4">
+      <div class="max-w-[1100px] mx-auto px-4 sm:px-6 py-4">
         <div class="flex items-center justify-between">
           <NuxtLink to="/" class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: #1e3a5f;">
@@ -30,7 +30,7 @@
 
     <!-- PAGE HEADER (breadcrumb only) -->
     <div class="bg-white border-b border-gray-100 px-4 py-3">
-      <div class="max-w-7xl mx-auto">
+      <div class="max-w-[1100px] mx-auto">
         <nav aria-label="Breadcrumb">
           <ol class="flex items-center gap-2 text-sm text-gray-400">
             <li><NuxtLink to="/" class="hover:text-gray-600 transition">Home</NuxtLink></li>
@@ -40,6 +40,59 @@
             <li class="text-gray-700 font-semibold">ARV Calculator</li>
           </ol>
         </nav>
+      </div>
+    </div>
+
+    <!-- PAGE TITLE + ON THIS PAGE NAV -->
+    <div class="bg-white border-b border-gray-100">
+      <div class="max-w-[1100px] mx-auto px-4 sm:px-6 py-6">
+
+        <!-- H1 -->
+        <div class="mb-4">
+          <h1 class="text-3xl sm:text-4xl font-extrabold leading-tight" style="color: #1e3a5f;">
+            ARV Calculator — After Repair Value for Fix &amp; Flip Investors
+          </h1>
+        </div>
+
+        <!-- On this page nav -->
+        <div class="block rounded-2xl border border-gray-200 bg-gray-50 p-4 mb-2">
+          <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">On this page</p>
+
+          <!-- Desktop: full list -->
+          <ul class="hidden md:flex flex-wrap gap-x-5 gap-y-1.5">
+            <li><a href="#calculator" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Calculator</a></li>
+            <li><a href="#what-is-arv" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">What Is ARV</a></li>
+            <li><a href="#arv-decisions" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">ARV in Decisions</a></li>
+            <li><a href="#good-comps" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">How to Select Comps</a></li>
+            <li><a href="#market-prices" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Price Per Sq Ft</a></li>
+            <li><a href="#faq" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">FAQ</a></li>
+          </ul>
+
+          <!-- Mobile: first 4 always visible + collapsible rest -->
+          <div class="md:hidden">
+            <ul class="flex flex-wrap gap-x-4 gap-y-1.5">
+              <li><a href="#calculator" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Calculator</a></li>
+              <li><a href="#what-is-arv" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">What Is ARV</a></li>
+              <li><a href="#arv-decisions" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">ARV in Decisions</a></li>
+              <li><a href="#good-comps" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">How to Select Comps</a></li>
+            </ul>
+            <ul v-show="isNavExpanded" class="flex flex-wrap gap-x-4 gap-y-1.5 mt-1.5">
+              <li><a href="#market-prices" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Price Per Sq Ft</a></li>
+              <li><a href="#faq" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">FAQ</a></li>
+            </ul>
+            <button
+              @click="isNavExpanded = !isNavExpanded"
+              class="mt-2 flex items-center gap-1 text-xs font-bold transition"
+              style="color: #b45309;">
+              <svg class="w-3 h-3 transition-transform duration-200" :class="isNavExpanded ? 'rotate-180' : ''"
+                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+              <span>{{ isNavExpanded ? 'Show less' : 'Show all sections' }}</span>
+            </button>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -57,130 +110,28 @@
     </div>
 
     <!-- MAIN -->
-    <main class="max-w-7xl mx-auto px-4 py-8">
-      <div class="flex flex-col lg:flex-row lg:gap-8 items-start">
-
-        <!-- LEFT SIDEBAR — Title + How to Use + Links -->
-        <aside class="lg:w-72 xl:w-80 flex-shrink-0 space-y-5 order-2 lg:order-none mt-8 lg:mt-0">
-
-          <!-- Title card -->
-          <div class="rounded-2xl overflow-hidden" style="background: #1e3a5f;">
-            <div class="p-6">
-              <div class="inline-flex items-center text-xs font-bold px-2.5 py-1 rounded-full mb-3"
-                style="background: rgba(245,158,11,0.2); color: #fcd34d;">
-                Free · No Signup
-              </div>
-              <h1 class="text-2xl font-extrabold text-white mb-2 leading-tight">ARV Calculator</h1>
-              <p class="text-blue-200 text-sm leading-relaxed mb-4">Calculate After Repair Value using comparable sales. Used by fix & flip investors, BRRRR investors, and hard money lenders across the US.</p>
-              <div class="p-3 rounded-xl text-center" style="background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.25);">
-                <span class="font-mono text-xs font-bold" style="color: #fcd34d;">Max Offer = ARV × 70% − Rehab Costs</span>
-              </div>
-            </div>
-            <div class="px-6 pb-5 space-y-2 border-t border-white/10 pt-4">
-              <p class="text-xs font-bold uppercase tracking-wide text-blue-400 mb-2">Key Thresholds</p>
-              <div class="flex justify-between text-sm">
-                <span class="text-blue-200">Full recapture (BRRRR)</span>
-                <span class="font-bold text-green-400">ARV &gt; All-in × 1.33</span>
-              </div>
-              <div class="flex justify-between text-sm">
-                <span class="text-blue-200">Profitable flip</span>
-                <span class="font-bold text-yellow-400">Profit &gt; 20% ARV</span>
-              </div>
-              <div class="flex justify-between text-sm">
-                <span class="text-blue-200">Hard money LTV limit</span>
-                <span class="font-bold text-orange-400">Loan ≤ 70% ARV</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- How to Use -->
-          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
-            <h2 class="text-sm font-extrabold mb-4" style="color: #1e3a5f;">How to Use This Calculator</h2>
-            <ol class="space-y-4">
-              <li class="flex gap-3">
-                <span class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-extrabold text-white mt-0.5" style="background: #1e3a5f; min-width:1.5rem;">1</span>
-                <div>
-                  <p class="text-sm font-semibold text-gray-800">Enter subject property size</p>
-                  <p class="text-xs text-gray-500 mt-0.5 leading-relaxed">Input the square footage of the property you're analyzing.</p>
-                </div>
-              </li>
-              <li class="flex gap-3">
-                <span class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-extrabold text-white mt-0.5" style="background: #1e3a5f; min-width:1.5rem;">2</span>
-                <div>
-                  <p class="text-sm font-semibold text-gray-800">Add comparable sales</p>
-                  <p class="text-xs text-gray-500 mt-0.5 leading-relaxed">Enter 2–5 recent sales of similar properties nearby. Include sale price and size. The calculator derives price per sq ft.</p>
-                </div>
-              </li>
-              <li class="flex gap-3">
-                <span class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-extrabold text-white mt-0.5" style="background: #1e3a5f; min-width:1.5rem;">3</span>
-                <div>
-                  <p class="text-sm font-semibold text-gray-800">Apply adjustments</p>
-                  <p class="text-xs text-gray-500 mt-0.5 leading-relaxed">Add or subtract value for features that differ from comps: garage, pool, lot size, or other factors.</p>
-                </div>
-              </li>
-              <li class="flex gap-3">
-                <span class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-extrabold text-white mt-0.5" style="background: #1e3a5f; min-width:1.5rem;">4</span>
-                <div>
-                  <p class="text-sm font-semibold text-gray-800">Read ARV & offers</p>
-                  <p class="text-xs text-gray-500 mt-0.5 leading-relaxed">The result shows ARV, your max offer under the 70% rule, and how much equity you'd have after purchase + rehab.</p>
-                </div>
-              </li>
-            </ol>
-            <div class="mt-4 p-3 rounded-xl bg-amber-50 border border-amber-100">
-              <p class="text-xs text-amber-800 font-medium"><strong>Pro tip:</strong> Use only closed sales within the last 6 months, within 0.5–1 mile, and similar size (±20%). Avoid active listings and pending sales as comps.</p>
-            </div>
-          </div>
-
-          <!-- Related calculators -->
-          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
-            <h3 class="text-xs font-bold uppercase tracking-wide text-gray-400 mb-3">Related Calculators</h3>
-            <div class="space-y-1">
-              <NuxtLink to="/fix-flip-calculator" class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg px-2 py-2 transition">
-                <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#ef4444;"></span>
-                Fix & Flip Calculator
-              </NuxtLink>
-              <NuxtLink to="/brrrr-calculator" class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg px-2 py-2 transition">
-                <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#10b981;"></span>
-                BRRRR Calculator
-              </NuxtLink>
-              <NuxtLink to="/cap-rate-calculator" class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg px-2 py-2 transition">
-                <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#f59e0b;"></span>
-                Cap Rate Calculator
-              </NuxtLink>
-            </div>
-          </div>
-
-        </aside>
-
-        <!-- RIGHT — Calculator content -->
-        <div class="flex-1 min-w-0 order-1 lg:order-none">
-
-      <div class="grid lg:grid-cols-5 gap-8">
+    <main id="calculator" class="max-w-[1100px] mx-auto px-4 pt-8 pb-10">
+      <div class="lg:grid lg:grid-cols-[3fr_2fr] lg:gap-8 items-start">
 
         <!-- INPUTS -->
-        <div class="lg:col-span-3 space-y-6">
+        <div class="calc-inputs space-y-6 mb-8 lg:mb-0">
 
           <!-- Subject Property -->
-          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-            <div class="px-6 py-4 border-b border-gray-100 flex items-center gap-3">
-              <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background: rgba(30,58,95,0.08);">
-                <svg class="w-4 h-4" style="color: #1e3a5f;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-                </svg>
-              </div>
-              <h2 class="font-bold text-sm" style="color: #1e3a5f;">Subject Property</h2>
+          <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+            <div class="calc-section-header">
+              <h2 class="calc-section-title">Subject Property</h2>
             </div>
             <div class="p-6 space-y-4">
               <div class="grid grid-cols-2 gap-4">
                 <div>
                   <label for="sqft" class="block text-sm font-semibold text-gray-700 mb-1.5">Square Footage</label>
                   <input id="sqft" v-model.number="form.sqft" type="number" min="100" step="50" placeholder="e.g. 1,400"
-                    class="w-full px-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                    class="w-full px-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
                 </div>
                 <div>
                   <label for="bedrooms" class="block text-sm font-semibold text-gray-700 mb-1.5">Bedrooms</label>
                   <select id="bedrooms" v-model.number="form.bedrooms"
-                    class="w-full px-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none font-semibold text-base transition bg-white"
+                    class="w-full px-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none font-semibold text-base transition bg-white"
                     :class="form.bedrooms === null ? 'text-gray-400' : 'text-gray-900'">
                     <option :value="null" disabled>e.g. 3 bed</option>
                     <option v-for="n in 8" :key="n" :value="n">{{ n }} bed</option>
@@ -189,7 +140,7 @@
                 <div>
                   <label for="bathrooms" class="block text-sm font-semibold text-gray-700 mb-1.5">Bathrooms</label>
                   <select id="bathrooms" v-model.number="form.bathrooms"
-                    class="w-full px-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none font-semibold text-base transition bg-white"
+                    class="w-full px-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none font-semibold text-base transition bg-white"
                     :class="form.bathrooms === null ? 'text-gray-400' : 'text-gray-900'">
                     <option :value="null" disabled>e.g. 2 bath</option>
                     <option value="1">1 bath</option>
@@ -204,7 +155,7 @@
                 <div>
                   <label for="condition" class="block text-sm font-semibold text-gray-700 mb-1.5">Post-Rehab Condition</label>
                   <select id="condition" v-model="form.condition"
-                    class="w-full px-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none font-semibold text-base transition bg-white"
+                    class="w-full px-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none font-semibold text-base transition bg-white"
                     :class="!form.condition ? 'text-gray-400' : 'text-gray-900'">
                     <option value="" disabled>Select condition</option>
                     <option value="turnkey">Turnkey / Like New</option>
@@ -217,21 +168,16 @@
           </div>
 
           <!-- Comparable Sales -->
-          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-            <div class="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
-              <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background: rgba(245,158,11,0.12);">
-                  <svg class="w-4 h-4" style="color: #f59e0b;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
-                  </svg>
-                </div>
-                <h2 class="font-bold text-sm" style="color: #1e3a5f;">Comparable Sales (Comps)</h2>
+          <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+            <div class="calc-section-header">
+              <h2 class="calc-section-title">Comparable Sales (Comps)</h2>
+              <div class="ml-auto">
+                <button @click="addComp"
+                  class="text-xs font-bold px-3 py-1.5 rounded-lg transition hover:opacity-90 text-white"
+                  style="background: #1e3a5f;">
+                  + Add Comp
+                </button>
               </div>
-              <button @click="addComp"
-                class="text-xs font-bold px-3 py-1.5 rounded-lg transition hover:opacity-90 text-white"
-                style="background: #1e3a5f;">
-                + Add Comp
-              </button>
             </div>
             <div class="p-6 space-y-4">
               <p class="text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
@@ -248,13 +194,13 @@
                     <div class="relative">
                       <span class="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400 text-xs">$</span>
                       <input v-model.number="comp.salePrice" type="number" min="0" step="1000" placeholder="e.g. 220,000"
-                        class="w-full pl-5 pr-2 py-2 rounded-lg border border-gray-200 focus:border-yellow-400 outline-none text-gray-900 font-medium text-sm transition" />
+                        class="w-full pl-5 pr-2 py-2 rounded-lg border border-gray-400 hover:border-gray-500 focus:border-yellow-400 outline-none text-gray-900 font-medium text-sm transition" />
                     </div>
                   </div>
                   <div>
                     <label class="block text-xs font-semibold text-gray-600 mb-1">Sq Ft</label>
                     <input v-model.number="comp.sqft" type="number" min="100" step="50" placeholder="e.g. 1,350"
-                      class="w-full px-2 py-2 rounded-lg border border-gray-200 focus:border-yellow-400 outline-none text-gray-900 font-medium text-sm transition" />
+                      class="w-full px-2 py-2 rounded-lg border border-gray-400 hover:border-gray-500 focus:border-yellow-400 outline-none text-gray-900 font-medium text-sm transition" />
                   </div>
                   <div>
                     <label class="block text-xs font-semibold text-gray-600 mb-1">Price/sqft</label>
@@ -274,14 +220,9 @@
           </div>
 
           <!-- Adjustments -->
-          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-            <div class="px-6 py-4 border-b border-gray-100 flex items-center gap-3">
-              <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background: rgba(239,68,68,0.1);">
-                <svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
-                </svg>
-              </div>
-              <h2 class="font-bold text-sm" style="color: #1e3a5f;">Value Adjustments</h2>
+          <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+            <div class="calc-section-header">
+              <h2 class="calc-section-title">Value Adjustments</h2>
             </div>
             <div class="p-6 space-y-3">
               <p class="text-xs text-gray-500">Add/subtract value differences between your property and the comps.</p>
@@ -291,7 +232,7 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">$</span>
                     <input v-model.number="form.adj.garage" type="number" step="1000" placeholder="0"
-                      class="w-full pl-7 pr-4 py-2.5 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-medium text-sm transition" />
+                      class="w-full pl-7 pr-4 py-2.5 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-medium text-sm transition" />
                   </div>
                 </div>
                 <div>
@@ -299,7 +240,7 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">$</span>
                     <input v-model.number="form.adj.pool" type="number" step="1000" placeholder="0"
-                      class="w-full pl-7 pr-4 py-2.5 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-medium text-sm transition" />
+                      class="w-full pl-7 pr-4 py-2.5 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-medium text-sm transition" />
                   </div>
                 </div>
                 <div>
@@ -307,7 +248,7 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">$</span>
                     <input v-model.number="form.adj.lot" type="number" step="1000" placeholder="0"
-                      class="w-full pl-7 pr-4 py-2.5 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-medium text-sm transition" />
+                      class="w-full pl-7 pr-4 py-2.5 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-medium text-sm transition" />
                   </div>
                 </div>
                 <div>
@@ -315,7 +256,7 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">$</span>
                     <input v-model.number="form.adj.other" type="number" step="1000" placeholder="0"
-                      class="w-full pl-7 pr-4 py-2.5 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-medium text-sm transition" />
+                      class="w-full pl-7 pr-4 py-2.5 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-medium text-sm transition" />
                   </div>
                 </div>
               </div>
@@ -325,26 +266,28 @@
         </div>
 
         <!-- RESULTS -->
-        <div class="lg:col-span-2">
+        <div class="lg:sticky lg:top-24">
           <div class="sticky top-24 space-y-5">
 
             <!-- Main Result -->
-            <div v-if="hasResult" class="rounded-2xl p-6 text-white shadow-xl" style="background: linear-gradient(135deg, #1e3a5f, #16304f);">
-              <p class="text-blue-300 text-xs font-bold uppercase tracking-widest mb-3">Estimated ARV</p>
-              <div class="text-4xl font-extrabold mb-4">{{ formatCurrency(estimatedARV) }}</div>
-              <div class="text-xs text-blue-300 space-y-1">
-                <div class="flex justify-between"><span>Price/sqft</span><span class="text-white font-bold">{{ formatCurrency(avgPricePerSqft) }}/sqft</span></div>
-                <div class="flex justify-between"><span>Base Value</span><span class="text-white font-bold">{{ formatCurrency(baseValue) }}</span></div>
-                <div class="flex justify-between"><span>Adjustments</span><span class="text-white font-bold">{{ totalAdjustments >= 0 ? '+' : '' }}{{ formatCurrency(totalAdjustments) }}</span></div>
+            <div v-if="hasResult" class="rounded-xl border border-gray-200 bg-white overflow-hidden">
+              <div class="px-5 py-5 border-b border-gray-100">
+                <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Estimated ARV</p>
+                <div class="text-5xl font-extrabold mb-3" style="color:#1e3a5f;">{{ formatCurrency(estimatedARV) }}</div>
+                <div class="text-xs text-gray-500 space-y-1">
+                  <div class="flex justify-between"><span>Price/sqft</span><span class="font-semibold text-gray-700">{{ formatCurrency(avgPricePerSqft) }}/sqft</span></div>
+                  <div class="flex justify-between"><span>Base Value</span><span class="font-semibold text-gray-700">{{ formatCurrency(baseValue) }}</span></div>
+                  <div class="flex justify-between"><span>Adjustments</span><span class="font-semibold text-gray-700">{{ totalAdjustments >= 0 ? '+' : '' }}{{ formatCurrency(totalAdjustments) }}</span></div>
+                </div>
               </div>
             </div>
 
-            <div v-else class="rounded-2xl p-8 text-center border-2 border-dashed border-gray-200 bg-white">
+            <div v-else class="rounded-xl p-8 text-center border border-dashed border-gray-200 bg-white">
               <p class="text-gray-400 font-medium text-sm">Enter subject property sqft<br>and at least 1 comp to calculate ARV</p>
             </div>
 
             <!-- Confidence Range -->
-            <div v-if="hasResult" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+            <div v-if="hasResult" class="bg-white rounded-xl border border-gray-200 p-5">
               <h3 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Confidence Range</h3>
               <div class="space-y-2 text-sm">
                 <div class="flex justify-between">
@@ -364,7 +307,7 @@
             </div>
 
             <!-- Lending Calculations -->
-            <div v-if="hasResult" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+            <div v-if="hasResult" class="bg-white rounded-xl border border-gray-200 p-5">
               <h3 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Lender LTV on ARV</h3>
               <div class="space-y-2 text-sm">
                 <div v-for="ltv in [65, 70, 75, 80]" :key="ltv" class="flex justify-between">
@@ -376,13 +319,13 @@
             </div>
 
             <!-- 70% Rule MAO -->
-            <div v-if="hasResult" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+            <div v-if="hasResult" class="bg-white rounded-2xl border border-gray-200 p-5">
               <h3 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">70% Rule — Max Offer</h3>
               <p class="text-xs text-gray-500 mb-2">Enter your rehab estimate:</p>
               <div class="relative mb-3">
                 <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
                 <input v-model.number="rehabEstimate" type="number" min="0" step="1000" placeholder="e.g. 30,000"
-                  class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                  class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
               </div>
               <div class="text-xl font-extrabold" style="color: #1e3a5f;">
                 MAO = {{ formatCurrency(mao70) }}
@@ -394,16 +337,14 @@
         </div>
 
       </div>
-        </div><!-- /right column -->
-      </div><!-- /lg:flex -->
     </main>
 
     <!-- SEO CONTENT -->
-    <div class="max-w-7xl mx-auto px-4 pb-16 mt-12 space-y-12">
+    <div class="max-w-[1100px] mx-auto px-4 pb-16 mt-12 space-y-12">
 
       <!-- What is ARV -->
-      <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-        <h2 class="text-2xl font-extrabold mb-4" style="color: #1e3a5f;">What Is After Repair Value (ARV)?</h2>
+      <section class="bg-white rounded-2xl border border-gray-200 p-8">
+        <h2 id="what-is-arv" class="text-2xl font-extrabold mb-4" style="color: #1e3a5f;">What Is After Repair Value (ARV)?</h2>
         <div class="grid md:grid-cols-2 gap-6 text-gray-600 text-sm leading-relaxed">
           <div>
             <p class="mb-3">After Repair Value (ARV) is the estimated market value of a property after it has been fully renovated and is in move-in ready condition. It's the foundational number in fix & flip and BRRRR investing — everything from your offer price to your hard money loan amount is calculated as a percentage of ARV.</p>
@@ -418,24 +359,24 @@
 
       <!-- How ARV is Used -->
       <section>
-        <h2 class="text-2xl font-extrabold mb-6" style="color: #1e3a5f;">How ARV Drives Every Investment Decision</h2>
+        <h2 id="arv-decisions" class="text-2xl font-extrabold mb-6" style="color: #1e3a5f;">How ARV Drives Every Investment Decision</h2>
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+          <div class="bg-white rounded-2xl border border-gray-200 p-5">
             <div class="text-xs font-bold uppercase tracking-widest mb-2 text-red-500">Fix & Flip MAO</div>
             <div class="font-mono text-xs bg-gray-50 rounded-lg p-3 text-gray-700 mb-3">ARV × 70% − Rehab</div>
             <p class="text-xs text-gray-500">Maximum you can pay and still achieve a profitable flip with room for surprises.</p>
           </div>
-          <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+          <div class="bg-white rounded-2xl border border-gray-200 p-5">
             <div class="text-xs font-bold uppercase tracking-widest mb-2 text-green-500">BRRRR Refinance</div>
             <div class="font-mono text-xs bg-gray-50 rounded-lg p-3 text-gray-700 mb-3">ARV × 75–80% LTV</div>
             <p class="text-xs text-gray-500">Cash-out refinance loan amount to pull your capital back out after renovation.</p>
           </div>
-          <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+          <div class="bg-white rounded-2xl border border-gray-200 p-5">
             <div class="text-xs font-bold uppercase tracking-widest mb-2 text-blue-500">Hard Money Loan</div>
             <div class="font-mono text-xs bg-gray-50 rounded-lg p-3 text-gray-700 mb-3">ARV × 65–75% LTV</div>
             <p class="text-xs text-gray-500">Most hard money lenders base their loan limit on a percentage of ARV, not purchase price.</p>
           </div>
-          <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+          <div class="bg-white rounded-2xl border border-gray-200 p-5">
             <div class="text-xs font-bold uppercase tracking-widest mb-2 text-yellow-500">Equity Created</div>
             <div class="font-mono text-xs bg-gray-50 rounded-lg p-3 text-gray-700 mb-3">ARV − (Purchase + Rehab)</div>
             <p class="text-xs text-gray-500">The wealth created through renovation — the spread between all-in cost and finished value.</p>
@@ -444,8 +385,8 @@
       </section>
 
       <!-- Comp Selection Guide -->
-      <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-        <h2 class="text-2xl font-extrabold mb-6" style="color: #1e3a5f;">How to Select Good Comps</h2>
+      <section class="bg-white rounded-2xl border border-gray-200 p-8">
+        <h2 id="good-comps" class="text-2xl font-extrabold mb-6" style="color: #1e3a5f;">How to Select Good Comps</h2>
         <div class="grid md:grid-cols-2 gap-8">
           <div>
             <h3 class="font-bold text-green-700 mb-3 flex items-center gap-2">
@@ -479,8 +420,8 @@
       </section>
 
       <!-- ARV by US Market -->
-      <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-        <h2 class="text-2xl font-extrabold mb-2" style="color: #1e3a5f;">Median Price Per Sq Ft by US Market</h2>
+      <section class="bg-white rounded-2xl border border-gray-200 p-8">
+        <h2 id="market-prices" class="text-2xl font-extrabold mb-2" style="color: #1e3a5f;">Median Price Per Sq Ft by US Market</h2>
         <p class="text-gray-500 text-sm mb-6">Typical renovated home price per sq ft for comparable sales benchmarking. Updated 2024.</p>
         <div class="overflow-x-auto">
           <table class="w-full text-sm">
@@ -507,8 +448,8 @@
       </section>
 
       <!-- FAQ -->
-      <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-        <h2 class="text-2xl font-extrabold mb-6" style="color: #1e3a5f;">ARV Calculator FAQ</h2>
+      <section class="bg-white rounded-2xl border border-gray-200 p-8">
+        <h2 id="faq" class="text-2xl font-extrabold mb-6" style="color: #1e3a5f;">ARV Calculator FAQ</h2>
         <div class="space-y-5">
           <div v-for="faq in faqs" :key="faq.q" class="border-b border-gray-100 pb-5 last:border-0 last:pb-0">
             <h3 class="font-bold text-gray-900 mb-2">{{ faq.q }}</h3>
@@ -518,7 +459,7 @@
       </section>
 
       <!-- CTA -->
-      <section class="rounded-2xl p-8 text-center text-white" style="background: linear-gradient(135deg, #1e3a5f, #16304f);">
+      <section class="rounded-2xl p-8 text-center text-white" style="background: #1e3a5f;">
         <h2 class="text-2xl font-extrabold mb-3">Put Your ARV to Work</h2>
         <p class="text-blue-200 mb-6 text-sm">Once you have an accurate ARV, plug it into our Fix & Flip or BRRRR calculators to model your complete deal returns.</p>
         <div class="flex flex-wrap justify-center gap-3">
@@ -564,6 +505,7 @@
 </template>
 
 <script setup>
+const isNavExpanded = ref(false)
 import { reactive, ref, computed } from 'vue'
 
 useHead({

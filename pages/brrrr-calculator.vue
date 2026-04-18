@@ -3,7 +3,7 @@
 
     <!-- HEADER -->
     <header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4">
+      <div class="max-w-[1100px] mx-auto px-4 sm:px-6 py-4">
         <div class="flex items-center justify-between">
           <NuxtLink to="/" class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: #1e3a5f;">
@@ -30,7 +30,7 @@
 
     <!-- PAGE HEADER (breadcrumb only) -->
     <div class="bg-white border-b border-gray-100 px-4 py-3">
-      <div class="max-w-7xl mx-auto">
+      <div class="max-w-[1100px] mx-auto">
         <nav aria-label="Breadcrumb">
           <ol class="flex items-center gap-2 text-sm text-gray-400">
             <li><NuxtLink to="/" class="hover:text-gray-600 transition">Home</NuxtLink></li>
@@ -40,6 +40,59 @@
             <li class="text-gray-700 font-semibold">BRRRR Calculator</li>
           </ol>
         </nav>
+      </div>
+    </div>
+
+    <!-- PAGE TITLE + ON THIS PAGE NAV -->
+    <div class="bg-white border-b border-gray-100">
+      <div class="max-w-[1100px] mx-auto px-4 sm:px-6 py-6">
+
+        <!-- H1 -->
+        <div class="mb-4">
+          <h1 class="text-3xl sm:text-4xl font-extrabold leading-tight" style="color: #1e3a5f;">
+            BRRRR Calculator — Buy, Rehab, Rent, Refinance, Repeat Strategy
+          </h1>
+        </div>
+
+        <!-- On this page nav -->
+        <div class="block rounded-2xl border border-gray-200 bg-gray-50 p-4 mb-2">
+          <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">On this page</p>
+
+          <!-- Desktop: full list -->
+          <ul class="hidden md:flex flex-wrap gap-x-5 gap-y-1.5">
+            <li><a href="#calculator" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Calculator</a></li>
+            <li><a href="#what-is-brrrr" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">What Is BRRRR</a></li>
+            <li><a href="#step-by-step" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Step by Step</a></li>
+            <li><a href="#brrrr-vs-buy-hold" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">BRRRR vs. Buy &amp; Hold</a></li>
+            <li><a href="#benchmarks" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Benchmarks</a></li>
+            <li><a href="#faq" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">FAQ</a></li>
+          </ul>
+
+          <!-- Mobile: first 4 always visible + collapsible rest -->
+          <div class="md:hidden">
+            <ul class="flex flex-wrap gap-x-4 gap-y-1.5">
+              <li><a href="#calculator" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Calculator</a></li>
+              <li><a href="#what-is-brrrr" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">What Is BRRRR</a></li>
+              <li><a href="#step-by-step" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Step by Step</a></li>
+              <li><a href="#brrrr-vs-buy-hold" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">BRRRR vs. Buy &amp; Hold</a></li>
+            </ul>
+            <ul v-show="isNavExpanded" class="flex flex-wrap gap-x-4 gap-y-1.5 mt-1.5">
+              <li><a href="#benchmarks" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Benchmarks</a></li>
+              <li><a href="#faq" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">FAQ</a></li>
+            </ul>
+            <button
+              @click="isNavExpanded = !isNavExpanded"
+              class="mt-2 flex items-center gap-1 text-xs font-bold transition"
+              style="color: #b45309;">
+              <svg class="w-3 h-3 transition-transform duration-200" :class="isNavExpanded ? 'rotate-180' : ''"
+                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+              <span>{{ isNavExpanded ? 'Show less' : 'Show all sections' }}</span>
+            </button>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -64,115 +117,14 @@
     </div>
 
     <!-- MAIN -->
-    <main class="max-w-7xl mx-auto px-4 py-8">
-      <div class="flex flex-col lg:flex-row lg:gap-8 items-start">
-
-        <!-- LEFT SIDEBAR — Title + How to Use + Links -->
-        <aside class="lg:w-72 xl:w-80 flex-shrink-0 space-y-5 order-2 lg:order-none mt-8 lg:mt-0">
-
-          <!-- Title card -->
-          <div class="rounded-2xl overflow-hidden" style="background: #1e3a5f;">
-            <div class="p-6">
-              <div class="inline-flex items-center text-xs font-bold px-2.5 py-1 rounded-full mb-3"
-                style="background: rgba(245,158,11,0.2); color: #fcd34d;">
-                Free · No Signup
-              </div>
-              <h1 class="text-2xl font-extrabold text-white mb-2 leading-tight">BRRRR Calculator</h1>
-              <p class="text-blue-200 text-sm leading-relaxed mb-4">Analyze your Buy, Rehab, Rent, Refinance, Repeat deal. Calculate equity, cash recaptured, infinite return, and ongoing cash flow.</p>
-              <div class="p-3 rounded-xl text-center" style="background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.25);">
-                <span class="font-mono text-xs font-bold" style="color: #fcd34d;">Infinite Return: $0 cash left in deal</span>
-              </div>
-            </div>
-            <div class="px-6 pb-5 space-y-2 border-t border-white/10 pt-4">
-              <p class="text-xs font-bold uppercase tracking-wide text-blue-400 mb-2">Cash Recapture</p>
-              <div class="flex justify-between text-sm">
-                <span class="text-blue-200">Cash recaptured</span>
-                <span class="font-bold text-green-400">≥ 100%</span>
-              </div>
-              <div class="flex justify-between text-sm">
-                <span class="text-blue-200">Good deal</span>
-                <span class="font-bold text-yellow-400">75–99%</span>
-              </div>
-              <div class="flex justify-between text-sm">
-                <span class="text-blue-200">Capital still tied up</span>
-                <span class="font-bold text-orange-400">&lt; 75%</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- How to Use -->
-          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
-            <h2 class="text-sm font-extrabold mb-4" style="color: #1e3a5f;">How to Use This Calculator</h2>
-            <ol class="space-y-4">
-              <li class="flex gap-3">
-                <span class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-extrabold text-white mt-0.5" style="background: #1e3a5f; min-width:1.5rem;">1</span>
-                <div>
-                  <p class="text-sm font-semibold text-gray-800">Enter acquisition costs</p>
-                  <p class="text-xs text-gray-500 mt-0.5 leading-relaxed">Purchase price + closing costs + any hard money or bridge loan fees.</p>
-                </div>
-              </li>
-              <li class="flex gap-3">
-                <span class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-extrabold text-white mt-0.5" style="background: #1e3a5f; min-width:1.5rem;">2</span>
-                <div>
-                  <p class="text-sm font-semibold text-gray-800">Enter rehab details</p>
-                  <p class="text-xs text-gray-500 mt-0.5 leading-relaxed">Total rehab budget and estimated completion time (in months). Holding costs are calculated from monthly expenses × rehab months.</p>
-                </div>
-              </li>
-              <li class="flex gap-3">
-                <span class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-extrabold text-white mt-0.5" style="background: #1e3a5f; min-width:1.5rem;">3</span>
-                <div>
-                  <p class="text-sm font-semibold text-gray-800">Enter rent & expenses</p>
-                  <p class="text-xs text-gray-500 mt-0.5 leading-relaxed">Post-rehab monthly rent, expected vacancy %, and monthly operating expenses (excluding mortgage).</p>
-                </div>
-              </li>
-              <li class="flex gap-3">
-                <span class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-extrabold text-white mt-0.5" style="background: #1e3a5f; min-width:1.5rem;">4</span>
-                <div>
-                  <p class="text-sm font-semibold text-gray-800">Enter refinance terms</p>
-                  <p class="text-xs text-gray-500 mt-0.5 leading-relaxed">ARV, LTV %, interest rate, and loan term. The calculator shows how much cash you can pull out and what stays in the deal.</p>
-                </div>
-              </li>
-            </ol>
-            <div class="mt-4 p-3 rounded-xl bg-amber-50 border border-amber-100">
-              <p class="text-xs text-amber-800 font-medium"><strong>Pro tip:</strong> Most BRRRR investors target 75–80% LTV on the refi. At 75% LTV, you need ARV to be at least 1.33× your all-in cost to fully recapture capital.</p>
-            </div>
-          </div>
-
-          <!-- Related calculators -->
-          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
-            <h3 class="text-xs font-bold uppercase tracking-wide text-gray-400 mb-3">Related Calculators</h3>
-            <div class="space-y-1">
-              <NuxtLink to="/arv-calculator" class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg px-2 py-2 transition">
-                <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#f59e0b;"></span>
-                ARV Calculator
-              </NuxtLink>
-              <NuxtLink to="/fix-flip-calculator" class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg px-2 py-2 transition">
-                <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#ef4444;"></span>
-                Fix & Flip Calculator
-              </NuxtLink>
-              <NuxtLink to="/cap-rate-calculator" class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg px-2 py-2 transition">
-                <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#3b82f6;"></span>
-                Cap Rate Calculator
-              </NuxtLink>
-              <NuxtLink to="/rental-property-calculator" class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg px-2 py-2 transition">
-                <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#8b5cf6;"></span>
-                Rental Property Calculator
-              </NuxtLink>
-            </div>
-          </div>
-
-        </aside>
-
-        <!-- RIGHT — Calculator content -->
-        <div class="flex-1 min-w-0 order-1 lg:order-none">
-
-      <div class="grid lg:grid-cols-5 gap-8">
+    <main id="calculator" class="max-w-[1100px] mx-auto px-4 pt-8 pb-10">
+      <div class="lg:grid lg:grid-cols-[3fr_2fr] lg:gap-8 items-start">
 
         <!-- INPUTS -->
-        <div class="lg:col-span-3 space-y-6">
+        <div class="calc-inputs space-y-6 mb-8 lg:mb-0">
 
           <!-- BUY -->
-          <div v-show="activeStep === 0" class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+          <div v-show="activeStep === 0" class="bg-white rounded-2xl border border-gray-200 overflow-hidden">
             <div class="px-6 py-4 border-b border-gray-100 flex items-center gap-3">
               <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-white text-xs font-extrabold" style="background: #1e3a5f;">B</div>
               <h2 class="font-bold text-sm" style="color: #1e3a5f;">BUY — Acquisition</h2>
@@ -184,7 +136,7 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
                     <input id="purchase-price" v-model.number="form.purchasePrice" type="number" min="0" step="1000" placeholder="e.g. 100,000"
-                      class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                      class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
                   </div>
                 </div>
                 <div>
@@ -192,7 +144,7 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
                     <input id="closing-buy" v-model.number="form.closingCosts" type="number" min="0" step="500" placeholder="e.g. 3,000"
-                      class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                      class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
                   </div>
                 </div>
               </div>
@@ -205,7 +157,7 @@
           </div>
 
           <!-- REHAB -->
-          <div v-show="activeStep === 1" class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+          <div v-show="activeStep === 1" class="bg-white rounded-2xl border border-gray-200 overflow-hidden">
             <div class="px-6 py-4 border-b border-gray-100 flex items-center gap-3">
               <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-white text-xs font-extrabold" style="background: #f59e0b; color: #1e3a5f;">R</div>
               <h2 class="font-bold text-sm" style="color: #1e3a5f;">REHAB — Renovation Costs</h2>
@@ -217,14 +169,14 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
                     <input id="rehab-cost" v-model.number="form.rehabCost" type="number" min="0" step="1000" placeholder="e.g. 30,000"
-                      class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                      class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
                   </div>
                 </div>
                 <div>
                   <label for="rehab-months" class="block text-sm font-semibold text-gray-700 mb-1.5">Rehab Duration</label>
                   <div class="relative">
                     <input id="rehab-months" v-model.number="form.rehabMonths" type="number" min="1" max="24" step="1" placeholder="e.g. 3"
-                      class="w-full pr-16 pl-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                      class="w-full pr-16 pl-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
                     <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm font-medium">months</span>
                   </div>
                 </div>
@@ -233,7 +185,7 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
                     <input id="holding-monthly" v-model.number="form.monthlyHolding" type="number" min="0" step="100" placeholder="e.g. 1,500"
-                      class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                      class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
                   </div>
                   <p class="text-xs text-gray-400 mt-1">Interest, taxes, insurance during rehab</p>
                 </div>
@@ -242,7 +194,7 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
                     <input id="arv" v-model.number="form.arv" type="number" min="0" step="1000" placeholder="e.g. 180,000"
-                      class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                      class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
                   </div>
                 </div>
               </div>
@@ -254,7 +206,7 @@
           </div>
 
           <!-- RENT -->
-          <div v-show="activeStep === 2" class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+          <div v-show="activeStep === 2" class="bg-white rounded-2xl border border-gray-200 overflow-hidden">
             <div class="px-6 py-4 border-b border-gray-100 flex items-center gap-3">
               <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-white text-xs font-extrabold" style="background: #16a34a;">R</div>
               <h2 class="font-bold text-sm" style="color: #1e3a5f;">RENT — Rental Income</h2>
@@ -266,14 +218,14 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
                     <input id="monthly-rent" v-model.number="form.monthlyRent" type="number" min="0" step="50" placeholder="e.g. 1,500"
-                      class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                      class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
                   </div>
                 </div>
                 <div>
                   <label for="vacancy-rate" class="block text-sm font-semibold text-gray-700 mb-1.5">Vacancy Rate</label>
                   <div class="relative">
                     <input id="vacancy-rate" v-model.number="form.vacancyRate" type="number" min="0" max="100" step="0.5" placeholder="e.g. 8"
-                      class="w-full pr-8 pl-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                      class="w-full pr-8 pl-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
                     <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">%</span>
                   </div>
                 </div>
@@ -282,7 +234,7 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
                     <input id="monthly-expenses" v-model.number="form.monthlyExpenses" type="number" min="0" step="50" placeholder="e.g. 500"
-                      class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                      class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
                   </div>
                   <p class="text-xs text-gray-400 mt-1">Taxes, insurance, maintenance, mgmt</p>
                 </div>
@@ -295,7 +247,7 @@
           </div>
 
           <!-- REFINANCE -->
-          <div v-show="activeStep === 3" class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+          <div v-show="activeStep === 3" class="bg-white rounded-2xl border border-gray-200 overflow-hidden">
             <div class="px-6 py-4 border-b border-gray-100 flex items-center gap-3">
               <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-white text-xs font-extrabold" style="background: #7c3aed;">R</div>
               <h2 class="font-bold text-sm" style="color: #1e3a5f;">REFINANCE — Cash-Out Refi</h2>
@@ -306,7 +258,7 @@
                   <label for="refi-ltv" class="block text-sm font-semibold text-gray-700 mb-1.5">Refi LTV</label>
                   <div class="relative">
                     <input id="refi-ltv" v-model.number="form.refiLTV" type="number" min="0" max="100" step="5" placeholder="e.g. 75"
-                      class="w-full pr-8 pl-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                      class="w-full pr-8 pl-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
                     <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">%</span>
                   </div>
                   <p class="text-xs text-gray-400 mt-1">Typical: 70–75% of ARV</p>
@@ -315,14 +267,14 @@
                   <label for="refi-rate" class="block text-sm font-semibold text-gray-700 mb-1.5">Refi Interest Rate</label>
                   <div class="relative">
                     <input id="refi-rate" v-model.number="form.refiRate" type="number" min="0" max="30" step="0.125" placeholder="e.g. 7.5"
-                      class="w-full pr-8 pl-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                      class="w-full pr-8 pl-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
                     <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">%</span>
                   </div>
                 </div>
                 <div>
                   <label for="refi-term" class="block text-sm font-semibold text-gray-700 mb-1.5">Loan Term</label>
                   <select id="refi-term" v-model.number="form.refiTerm"
-                    class="w-full px-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition bg-white">
+                    class="w-full px-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition bg-white">
                     <option :value="30">30 years</option>
                     <option :value="20">20 years</option>
                     <option :value="15">15 years</option>
@@ -333,7 +285,7 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
                     <input id="refi-closing" v-model.number="form.refiClosingCosts" type="number" min="0" step="500" placeholder="e.g. 4,000"
-                      class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                      class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-400 hover:border-gray-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-base transition" />
                   </div>
                 </div>
               </div>
@@ -349,7 +301,7 @@
           </div>
 
           <!-- REPEAT summary (step 4) — show on desktop always -->
-          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+          <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden">
             <div class="px-6 py-4 border-b border-gray-100 flex items-center gap-3">
               <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-white text-xs font-extrabold" style="background: #f59e0b; color: #1e3a5f;">R</div>
               <h2 class="font-bold text-sm" style="color: #1e3a5f;">REPEAT — Deal Summary</h2>
@@ -390,41 +342,42 @@
         </div>
 
         <!-- RESULTS -->
-        <div class="lg:col-span-2">
+        <div class="lg:sticky lg:top-24">
           <div class="sticky top-24 space-y-5">
 
             <!-- Headline Metrics -->
-            <div v-if="hasResult" class="rounded-2xl p-6 text-white shadow-xl" style="background: linear-gradient(135deg, #1e3a5f, #16304f);">
-              <p class="text-blue-300 text-xs font-bold uppercase tracking-widest mb-4">BRRRR Results</p>
-              <div class="grid grid-cols-2 gap-4 mb-4">
-                <div>
-                  <p class="text-blue-300 text-xs mb-1">Cash Left in Deal</p>
-                  <p class="text-2xl font-extrabold" :class="cashLeftInDeal <= 0 ? 'text-yellow-300' : 'text-white'">
-                    {{ formatCurrency(cashLeftInDeal) }}
-                  </p>
-                </div>
-                <div>
-                  <p class="text-blue-300 text-xs mb-1">Equity Created</p>
-                  <p class="text-2xl font-extrabold text-green-300">{{ formatCurrency(equityCreated) }}</p>
-                </div>
-                <div>
-                  <p class="text-blue-300 text-xs mb-1">Monthly Cash Flow</p>
-                  <p class="text-2xl font-extrabold" :class="monthlyCashFlow >= 0 ? 'text-white' : 'text-red-300'">
-                    {{ monthlyCashFlow >= 0 ? '+' : '' }}{{ formatCurrency(monthlyCashFlow) }}
-                  </p>
-                </div>
-                <div>
-                  <p class="text-blue-300 text-xs mb-1">Cash-on-Cash</p>
-                  <p class="text-2xl font-extrabold" :class="cashOnCash > 100 ? 'text-yellow-300' : 'text-white'">
-                    {{ cashOnCash > 999 ? '∞' : cashOnCash.toFixed(1) + '%' }}
-                  </p>
+            <div v-if="hasResult" class="rounded-xl border border-gray-200 bg-white overflow-hidden">
+              <div class="px-5 py-4 border-b border-gray-100">
+                <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">BRRRR Results</p>
+                <div class="grid grid-cols-2 gap-3">
+                  <div>
+                    <p class="text-xs text-gray-400 mb-1">Cash Left in Deal</p>
+                    <p class="text-xl font-extrabold" :class="cashLeftInDeal <= 0 ? 'text-amber-600' : ''" :style="cashLeftInDeal > 0 ? 'color:#1e3a5f;' : ''">
+                      {{ formatCurrency(cashLeftInDeal) }}
+                    </p>
+                  </div>
+                  <div>
+                    <p class="text-xs text-gray-400 mb-1">Equity Created</p>
+                    <p class="text-xl font-extrabold text-green-600">{{ formatCurrency(equityCreated) }}</p>
+                  </div>
+                  <div>
+                    <p class="text-xs text-gray-400 mb-1">Monthly Cash Flow</p>
+                    <p class="text-xl font-extrabold" :class="monthlyCashFlow >= 0 ? '' : 'text-red-600'" :style="monthlyCashFlow >= 0 ? 'color:#1e3a5f;' : ''">
+                      {{ monthlyCashFlow >= 0 ? '+' : '' }}{{ formatCurrency(monthlyCashFlow) }}
+                    </p>
+                  </div>
+                  <div>
+                    <p class="text-xs text-gray-400 mb-1">Cash-on-Cash</p>
+                    <p class="text-xl font-extrabold" :class="cashOnCash > 100 ? 'text-amber-600' : ''" :style="cashOnCash <= 100 ? 'color:#1e3a5f;' : ''">
+                      {{ cashOnCash > 999 ? '∞' : cashOnCash.toFixed(1) + '%' }}
+                    </p>
+                  </div>
                 </div>
               </div>
-
-              <div class="rounded-xl p-3 text-xs"
-                :style="cashLeftInDeal <= 0 ? 'background: rgba(245,158,11,0.2); color: #fde68a;' : 'background: rgba(255,255,255,0.08); color: #93c5fd;'">
+              <div class="px-5 py-3 text-xs"
+                :class="cashLeftInDeal <= 0 ? 'bg-amber-50 text-amber-800' : 'bg-gray-50 text-gray-500'">
                 <span v-if="cashLeftInDeal <= 0">
-                  🏆 Full capital recapture! Cash-on-cash is effectively infinite — you have no money left in this deal.
+                  Full capital recapture! Cash-on-cash is effectively infinite — you have no money left in this deal.
                 </span>
                 <span v-else>
                   {{ formatCurrency(cashLeftInDeal) }} remaining in deal. Increase ARV or LTV to recapture more capital.
@@ -432,12 +385,12 @@
               </div>
             </div>
 
-            <div v-else class="rounded-2xl p-8 text-center border-2 border-dashed border-gray-200 bg-white">
+            <div v-else class="rounded-xl p-8 text-center border border-dashed border-gray-200 bg-white">
               <p class="text-gray-400 font-medium text-sm">Complete all 4 steps<br>to see your BRRRR results</p>
             </div>
 
             <!-- Rental Performance -->
-            <div v-if="hasResult" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+            <div v-if="hasResult" class="bg-white rounded-xl border border-gray-200 p-5">
               <h3 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Rental Performance</h3>
               <div class="space-y-2 text-sm">
                 <div class="flex justify-between"><span class="text-gray-500">Monthly Rent</span><span class="font-semibold text-green-600">+{{ formatCurrency(effectiveMonthlyRent) }}</span></div>
@@ -451,7 +404,7 @@
             </div>
 
             <!-- Property Value vs Costs -->
-            <div v-if="hasResult && form.arv" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+            <div v-if="hasResult && form.arv" class="bg-white rounded-xl border border-gray-200 p-5">
               <h3 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Equity Analysis</h3>
               <div class="space-y-2 text-sm">
                 <div class="flex justify-between"><span class="text-gray-500">ARV</span><span class="font-semibold">{{ formatCurrency(form.arv) }}</span></div>
@@ -465,16 +418,14 @@
         </div>
 
       </div>
-        </div><!-- /right column -->
-      </div><!-- /lg:flex -->
     </main>
 
     <!-- SEO CONTENT -->
-    <div class="max-w-7xl mx-auto px-4 pb-16 mt-12 space-y-12">
+    <div class="max-w-[1100px] mx-auto px-4 pb-16 mt-12 space-y-12">
 
       <!-- What is BRRRR -->
-      <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-        <h2 class="text-2xl font-extrabold mb-4" style="color: #1e3a5f;">What Is the BRRRR Strategy?</h2>
+      <section class="bg-white rounded-2xl border border-gray-200 p-8">
+        <h2 id="what-is-brrrr" class="text-2xl font-extrabold mb-4" style="color: #1e3a5f;">What Is the BRRRR Strategy?</h2>
         <div class="grid md:grid-cols-2 gap-6 text-gray-600 text-sm leading-relaxed">
           <div>
             <p class="mb-3">BRRRR stands for Buy, Rehab, Rent, Refinance, Repeat. It's a wealth-building strategy that allows investors to recycle the same capital across multiple properties by pulling it back out through a cash-out refinance after renovation and stabilization.</p>
@@ -489,9 +440,9 @@
 
       <!-- 5 Steps Visual -->
       <section>
-        <h2 class="text-2xl font-extrabold mb-6" style="color: #1e3a5f;">The BRRRR Method — Step by Step</h2>
+        <h2 id="step-by-step" class="text-2xl font-extrabold mb-6" style="color: #1e3a5f;">The BRRRR Method — Step by Step</h2>
         <div class="grid sm:grid-cols-5 gap-4">
-          <div v-for="(s, i) in brrrrSteps" :key="i" class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 text-center">
+          <div v-for="(s, i) in brrrrSteps" :key="i" class="bg-white rounded-2xl border border-gray-200 p-5 text-center">
             <div class="w-12 h-12 rounded-full mx-auto mb-3 flex items-center justify-center text-white font-extrabold text-lg" :style="`background: ${s.color}`">{{ s.letter }}</div>
             <h3 class="font-bold text-gray-900 mb-1">{{ s.name }}</h3>
             <p class="text-xs text-gray-500 leading-relaxed">{{ s.desc }}</p>
@@ -500,8 +451,8 @@
       </section>
 
       <!-- BRRRR vs Buy & Hold -->
-      <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-        <h2 class="text-2xl font-extrabold mb-6" style="color: #1e3a5f;">BRRRR vs. Traditional Buy & Hold</h2>
+      <section class="bg-white rounded-2xl border border-gray-200 p-8">
+        <h2 id="brrrr-vs-buy-hold" class="text-2xl font-extrabold mb-6" style="color: #1e3a5f;">BRRRR vs. Traditional Buy & Hold</h2>
         <div class="overflow-x-auto">
           <table class="w-full text-sm">
             <thead>
@@ -548,8 +499,8 @@
       </section>
 
       <!-- BRRRR by US Market -->
-      <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-        <h2 class="text-2xl font-extrabold mb-2" style="color: #1e3a5f;">BRRRR Deal Benchmarks by US Market</h2>
+      <section class="bg-white rounded-2xl border border-gray-200 p-8">
+        <h2 id="benchmarks" class="text-2xl font-extrabold mb-2" style="color: #1e3a5f;">BRRRR Deal Benchmarks by US Market</h2>
         <p class="text-gray-500 text-sm mb-6">Typical all-in cost, ARV spread, and refi recapture rates in active BRRRR markets. 2024 data.</p>
         <div class="overflow-x-auto">
           <table class="w-full text-sm">
@@ -576,8 +527,8 @@
       </section>
 
       <!-- FAQ -->
-      <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-        <h2 class="text-2xl font-extrabold mb-6" style="color: #1e3a5f;">BRRRR Calculator FAQ</h2>
+      <section class="bg-white rounded-2xl border border-gray-200 p-8">
+        <h2 id="faq" class="text-2xl font-extrabold mb-6" style="color: #1e3a5f;">BRRRR Calculator FAQ</h2>
         <div class="space-y-5">
           <div v-for="faq in faqs" :key="faq.q" class="border-b border-gray-100 pb-5 last:border-0 last:pb-0">
             <h3 class="font-bold text-gray-900 mb-2">{{ faq.q }}</h3>
@@ -587,7 +538,7 @@
       </section>
 
       <!-- CTA -->
-      <section class="rounded-2xl p-8 text-center text-white" style="background: linear-gradient(135deg, #1e3a5f, #16304f);">
+      <section class="rounded-2xl p-8 text-center text-white" style="background: #1e3a5f;">
         <h2 class="text-2xl font-extrabold mb-3">Analyze Every Angle of Your Deal</h2>
         <p class="text-blue-200 mb-6 text-sm">Use our full calculator suite to estimate ARV, model the fix & flip exit, or analyze the rental cash flow before and after refinance.</p>
         <div class="flex flex-wrap justify-center gap-3">
@@ -638,6 +589,7 @@
 </template>
 
 <script setup>
+const isNavExpanded = ref(false)
 import { reactive, ref, computed } from 'vue'
 
 useHead({

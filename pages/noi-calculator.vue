@@ -3,7 +3,7 @@
 
     <!-- HEADER -->
     <header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4">
+      <div class="max-w-[1100px] mx-auto px-4 sm:px-6 py-4">
         <div class="flex items-center justify-between">
           <NuxtLink to="/" class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: #1e3a5f;">
@@ -30,7 +30,7 @@
 
     <!-- BREADCRUMB -->
     <div class="bg-white border-b border-gray-100 px-4 py-3">
-      <div class="max-w-7xl mx-auto">
+      <div class="max-w-[1100px] mx-auto">
         <nav aria-label="Breadcrumb">
           <ol class="flex items-center gap-2 text-sm text-gray-400">
             <li><NuxtLink to="/" class="hover:text-gray-600 transition">Home</NuxtLink></li>
@@ -40,6 +40,57 @@
             <li class="text-gray-700 font-semibold">NOI Calculator</li>
           </ol>
         </nav>
+      </div>
+    </div>
+
+    <!-- PAGE TITLE + ON THIS PAGE NAV -->
+    <div class="bg-white border-b border-gray-100">
+      <div class="max-w-[1100px] mx-auto px-4 sm:px-6 py-6">
+
+        <!-- H1 -->
+        <div class="mb-4">
+          <h1 class="text-3xl sm:text-4xl font-extrabold leading-tight" style="color: #1e3a5f;">
+            NOI Calculator — Free Net Operating Income Tool for US Real Estate
+          </h1>
+        </div>
+
+        <!-- On this page nav -->
+        <div class="block rounded-2xl border border-gray-200 bg-gray-50 p-4 mb-2">
+          <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">On this page</p>
+
+          <!-- Desktop: full list -->
+          <ul class="hidden md:flex flex-wrap gap-x-5 gap-y-1.5">
+            <li><a href="#calculator" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Calculator</a></li>
+            <li><a href="#what-is-noi" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">What Is NOI</a></li>
+            <li><a href="#include-exclude" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Include &amp; Exclude</a></li>
+            <li><a href="#market-ratios" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Market Ratios</a></li>
+            <li><a href="#faq" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">FAQ</a></li>
+          </ul>
+
+          <!-- Mobile: first 4 always visible + collapsible rest -->
+          <div class="md:hidden">
+            <ul class="flex flex-wrap gap-x-4 gap-y-1.5">
+              <li><a href="#calculator" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Calculator</a></li>
+              <li><a href="#what-is-noi" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">What Is NOI</a></li>
+              <li><a href="#include-exclude" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Include &amp; Exclude</a></li>
+              <li><a href="#market-ratios" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Market Ratios</a></li>
+            </ul>
+            <ul v-show="isNavExpanded" class="flex flex-wrap gap-x-4 gap-y-1.5 mt-1.5">
+              <li><a href="#faq" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">FAQ</a></li>
+            </ul>
+            <button
+              @click="isNavExpanded = !isNavExpanded"
+              class="mt-2 flex items-center gap-1 text-xs font-bold transition"
+              style="color: #b45309;">
+              <svg class="w-3 h-3 transition-transform duration-200" :class="isNavExpanded ? 'rotate-180' : ''"
+                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+              <span>{{ isNavExpanded ? 'Show less' : 'Show all sections' }}</span>
+            </button>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -57,133 +108,27 @@
     </div>
 
     <!-- MAIN -->
-    <main class="max-w-7xl mx-auto px-4 py-8">
-      <div class="flex flex-col lg:flex-row lg:gap-8 items-start">
-
-        <!-- LEFT SIDEBAR -->
-        <aside class="lg:w-72 xl:w-80 flex-shrink-0 space-y-5 order-2 lg:order-none mt-8 lg:mt-0">
-
-          <!-- Title card -->
-          <div class="rounded-2xl overflow-hidden" style="background: #1e3a5f;">
-            <div class="p-6">
-              <div class="inline-flex items-center text-xs font-bold px-2.5 py-1 rounded-full mb-3"
-                style="background: rgba(245,158,11,0.2); color: #fcd34d;">
-                Free · No Signup
-              </div>
-              <h1 class="text-2xl font-extrabold text-white mb-2 leading-tight">NOI Calculator</h1>
-              <p class="text-blue-200 text-sm leading-relaxed mb-4">Calculate Net Operating Income — the foundation of every real estate valuation. Used by lenders, appraisers, and investors across the US.</p>
-              <div class="p-3 rounded-xl text-center" style="background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.25);">
-                <span class="font-mono text-xs font-bold" style="color: #fcd34d;">NOI = Gross Income − Vacancy − Operating Expenses</span>
-              </div>
-            </div>
-            <div class="px-6 pb-5 space-y-2 border-t border-white/10 pt-4">
-              <p class="text-xs font-bold uppercase tracking-wide text-blue-400 mb-2">Key Benchmarks</p>
-              <div class="flex justify-between text-sm">
-                <span class="text-blue-200">Expense ratio (healthy)</span>
-                <span class="font-bold text-green-400">35–45%</span>
-              </div>
-              <div class="flex justify-between text-sm">
-                <span class="text-blue-200">Expense ratio (high)</span>
-                <span class="font-bold text-yellow-400">45–60%</span>
-              </div>
-              <div class="flex justify-between text-sm">
-                <span class="text-blue-200">DSCR lender threshold</span>
-                <span class="font-bold text-blue-400">NOI ÷ Debt ≥ 1.25x</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- How to Use -->
-          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
-            <h2 class="text-sm font-extrabold mb-4" style="color: #1e3a5f;">How to Use This Calculator</h2>
-            <ol class="space-y-4">
-              <li class="flex gap-3">
-                <span class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-extrabold text-white mt-0.5" style="background: #1e3a5f; min-width:1.5rem;">1</span>
-                <div>
-                  <p class="text-sm font-semibold text-gray-800">Enter gross income</p>
-                  <p class="text-xs text-gray-500 mt-0.5 leading-relaxed">Total annual rental income at 100% occupancy. Use actual collected rents from the T-12 (trailing 12-month report), not asking prices.</p>
-                </div>
-              </li>
-              <li class="flex gap-3">
-                <span class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-extrabold text-white mt-0.5" style="background: #1e3a5f; min-width:1.5rem;">2</span>
-                <div>
-                  <p class="text-sm font-semibold text-gray-800">Set vacancy rate</p>
-                  <p class="text-xs text-gray-500 mt-0.5 leading-relaxed">Expected % of time units are empty. Typical US range: 5–8% for stabilized rentals. Do not enter 0 unless the property has a long-term lease with no gaps.</p>
-                </div>
-              </li>
-              <li class="flex gap-3">
-                <span class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-extrabold text-white mt-0.5" style="background: #1e3a5f; min-width:1.5rem;">3</span>
-                <div>
-                  <p class="text-sm font-semibold text-gray-800">Enter operating expenses</p>
-                  <p class="text-xs text-gray-500 mt-0.5 leading-relaxed">Annual costs: property taxes, insurance, management fees (8–12%), maintenance and repairs. <strong>Never include mortgage payments</strong> — NOI is unlevered.</p>
-                </div>
-              </li>
-              <li class="flex gap-3">
-                <span class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-extrabold text-white mt-0.5" style="background: #1e3a5f; min-width:1.5rem;">4</span>
-                <div>
-                  <p class="text-sm font-semibold text-gray-800">Read NOI & implied value</p>
-                  <p class="text-xs text-gray-500 mt-0.5 leading-relaxed">NOI updates in real time. The results panel shows the breakdown and implied property values at different cap rates.</p>
-                </div>
-              </li>
-            </ol>
-            <div class="mt-4 p-3 rounded-xl bg-amber-50 border border-amber-100">
-              <p class="text-xs text-amber-800 font-medium"><strong>Pro tip:</strong> A rule of thumb — expenses run 35–50% of gross income. If a seller's numbers show 25%, dig deeper before accepting them.</p>
-            </div>
-          </div>
-
-          <!-- Related calculators -->
-          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
-            <h3 class="text-xs font-bold uppercase tracking-wide text-gray-400 mb-3">Related Calculators</h3>
-            <div class="space-y-1">
-              <NuxtLink to="/cap-rate-calculator" class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg px-2 py-2 transition">
-                <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#f59e0b;"></span>
-                Cap Rate Calculator
-              </NuxtLink>
-              <NuxtLink to="/dscr-calculator" class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg px-2 py-2 transition">
-                <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#10b981;"></span>
-                DSCR Calculator
-              </NuxtLink>
-              <NuxtLink to="/cash-on-cash-calculator" class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg px-2 py-2 transition">
-                <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#3b82f6;"></span>
-                Cash-on-Cash Return
-              </NuxtLink>
-              <NuxtLink to="/rental-property-calculator" class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg px-2 py-2 transition">
-                <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#8b5cf6;"></span>
-                Rental Property Calculator
-              </NuxtLink>
-            </div>
-          </div>
-
-        </aside>
-
-        <!-- RIGHT — Calculator -->
-        <div class="flex-1 min-w-0 order-1 lg:order-none">
-
-          <div class="grid lg:grid-cols-5 gap-8">
+    <main id="calculator" class="max-w-[1100px] mx-auto px-4 pt-8 pb-10">
+          <div class="lg:grid lg:grid-cols-[3fr_2fr] lg:gap-8 items-start">
 
             <!-- INPUTS (3 cols) -->
-            <div class="lg:col-span-3 space-y-6">
+            <div class="calc-inputs space-y-6 mb-8 lg:mb-0">
 
               <!-- Income -->
-              <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-                <div class="px-6 py-4 border-b border-gray-100 flex items-center gap-3">
-                  <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background: rgba(245,158,11,0.12);">
-                    <svg class="w-4 h-4" style="color: #f59e0b;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-                  </div>
-                  <h2 class="font-bold text-sm" style="color: #1e3a5f;">Gross Income</h2>
+              <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                <div class="calc-section-header">
+                  <h2 class="calc-section-title">Gross Income</h2>
                 </div>
-                <div class="p-6 space-y-4">
+                <div class="p-5 space-y-3">
                   <div>
-                    <label for="gross-rent" class="block text-sm font-semibold text-gray-700 mb-1.5">
+                    <label for="gross-rent" class="block text-xs font-semibold text-gray-700 mb-1">
                       Gross Scheduled Rent (Annual)
                     </label>
                     <div class="relative">
-                      <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
+                      <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
                       <input id="gross-rent" v-model.number="form.grossRent" type="number" min="0" step="100"
                         placeholder="e.g. 48,000"
-                        class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                        class="w-full pl-8 pr-4 py-2 rounded-lg border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                     </div>
                     <p class="text-xs text-gray-400 mt-1">100% occupancy, all units combined</p>
                   </div>
@@ -191,23 +136,23 @@
                     <div>
                       <label for="other-income" class="block text-sm font-semibold text-gray-700 mb-1.5">Other Income (Annual)</label>
                       <div class="relative">
-                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">$</span>
+                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
                         <input id="other-income" v-model.number="form.otherIncome" type="number" min="0" step="100"
                           placeholder="e.g. 1,200"
-                          class="w-full pl-8 pr-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
+                          class="w-full pl-8 pr-4 py-2 rounded-lg border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                       </div>
                       <p class="text-xs text-gray-400 mt-1">Laundry, parking, storage</p>
                     </div>
                     <div>
-                      <label for="vacancy-rate" class="block text-sm font-semibold text-gray-700 mb-1.5">
+                      <label for="vacancy-rate" class="block text-xs font-semibold text-gray-700 mb-1">
                         Vacancy Rate
                         <span class="text-xs font-normal text-gray-400 ml-1">(typical 5–8%)</span>
                       </label>
                       <div class="relative">
                         <input id="vacancy-rate" v-model.number="form.vacancyRate" type="number" min="0" max="100" step="0.5"
                           placeholder="e.g. 5"
-                          class="w-full pr-8 pl-4 py-4 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-base transition" />
-                        <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">%</span>
+                          class="w-full pr-8 pl-4 py-2 rounded-lg border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                        <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">%</span>
                       </div>
                     </div>
                   </div>
@@ -218,16 +163,11 @@
               </div>
 
               <!-- Operating Expenses -->
-              <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-                <div class="px-6 py-4 border-b border-gray-100 flex items-center gap-3">
-                  <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background: rgba(239,68,68,0.1);">
-                    <svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z"/>
-                    </svg>
-                  </div>
-                  <h2 class="font-bold text-sm" style="color: #1e3a5f;">Annual Operating Expenses</h2>
+              <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                <div class="calc-section-header">
+                  <h2 class="calc-section-title">Annual Operating Expenses</h2>
                 </div>
-                <div class="p-6 space-y-3">
+                <div class="p-5 space-y-3">
                   <p class="text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
                     NOI excludes mortgage payments, depreciation, and income taxes. These are <strong>operating</strong> expenses only.
                   </p>
@@ -238,7 +178,7 @@
                         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">$</span>
                         <input :id="`exp-${exp.key}`" v-model.number="form.expenses[exp.key]" type="number" min="0" step="100"
                           :placeholder="exp.placeholder"
-                          class="w-full pl-7 pr-4 py-2.5 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-medium text-sm transition" />
+                          class="w-full pl-7 pr-4 py-2 rounded-lg border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-medium text-sm transition" />
                       </div>
                       <p v-if="exp.hint" class="text-xs text-gray-400 mt-0.5">{{ exp.hint }}</p>
                     </div>
@@ -257,29 +197,31 @@
             </div>
 
             <!-- RESULTS (2 cols) -->
-            <div class="lg:col-span-2">
+            <div class="lg:sticky lg:top-24">
               <div class="sticky top-24 space-y-5">
 
                 <!-- Main Result -->
-                <div v-if="hasResult" class="rounded-2xl p-6 text-white shadow-xl" style="background: linear-gradient(135deg, #1e3a5f, #16304f);">
-                  <p class="text-blue-300 text-xs font-bold uppercase tracking-widest mb-3">Annual NOI</p>
-                  <div class="flex items-end gap-2 mb-4">
-                    <span class="text-4xl font-extrabold leading-none" :class="annualNOI >= 0 ? 'text-white' : 'text-red-300'">
-                      {{ formatCurrency(annualNOI) }}
-                    </span>
-                    <span class="text-xs font-bold px-2 py-1 rounded-full mb-1"
-                      :class="noiRating === 'Good' ? 'bg-green-500/20 text-green-300' : noiRating === 'Average' ? 'bg-yellow-500/20 text-yellow-300' : 'bg-red-500/20 text-red-300'">
-                      {{ noiRating }}
-                    </span>
+                <div v-if="hasResult" class="rounded-xl border border-gray-200 bg-white overflow-hidden">
+                  <div class="px-5 py-5 border-b border-gray-100">
+                    <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Annual NOI</p>
+                    <div class="flex items-end gap-3 mb-2">
+                      <span class="text-5xl font-extrabold leading-none" :class="annualNOI >= 0 ? '' : 'text-red-600'" :style="annualNOI >= 0 ? 'color:#1e3a5f;' : ''">
+                        {{ formatCurrency(annualNOI) }}
+                      </span>
+                      <span class="text-xs font-bold px-2 py-1 rounded-full mb-1"
+                        :class="noiRating === 'Good' ? 'bg-green-100 text-green-700' : noiRating === 'Average' ? 'bg-amber-100 text-amber-700' : 'bg-red-100 text-red-700'">
+                        {{ noiRating }}
+                      </span>
+                    </div>
+                    <p class="text-sm text-gray-500">Monthly: <span class="font-semibold text-gray-800">{{ formatCurrency(monthlyNOI) }}</span></p>
                   </div>
-                  <p class="text-blue-200 text-sm mb-3">Monthly: <span class="font-bold text-white">{{ formatCurrency(monthlyNOI) }}</span></p>
-                  <div class="text-xs text-blue-300 space-y-1">
-                    <div class="flex justify-between"><span>Expense Ratio</span><span class="text-white font-bold">{{ expenseRatio.toFixed(1) }}%</span></div>
-                    <div class="flex justify-between"><span>Net Income Ratio</span><span class="text-white font-bold">{{ (100 - expenseRatio).toFixed(1) }}%</span></div>
+                  <div class="px-5 py-3 bg-gray-50 space-y-1.5 text-xs text-gray-500">
+                    <div class="flex justify-between"><span>Expense Ratio</span><span class="font-semibold text-gray-700">{{ expenseRatio.toFixed(1) }}%</span></div>
+                    <div class="flex justify-between"><span>Net Income Ratio</span><span class="font-semibold text-gray-700">{{ (100 - expenseRatio).toFixed(1) }}%</span></div>
                   </div>
                 </div>
 
-                <div v-else class="rounded-2xl p-8 text-center border-2 border-dashed border-gray-200 bg-white">
+                <div v-else class="rounded-xl p-8 text-center border border-dashed border-gray-200 bg-white">
                   <svg class="w-10 h-10 text-gray-200 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                   </svg>
@@ -288,7 +230,7 @@
                 </div>
 
                 <!-- NOI Breakdown -->
-                <div v-if="hasResult" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 space-y-3">
+                <div v-if="hasResult" class="bg-white rounded-xl border border-gray-200 p-5 space-y-3">
                   <h3 class="text-xs font-bold uppercase tracking-widest text-gray-400">NOI Breakdown</h3>
                   <div class="space-y-2 text-sm">
                     <div class="flex justify-between py-1 border-b border-gray-50">
@@ -319,7 +261,7 @@
                 </div>
 
                 <!-- Implied Property Value -->
-                <div v-if="hasResult && annualNOI > 0" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+                <div v-if="hasResult && annualNOI > 0" class="bg-white rounded-xl border border-gray-200 p-5">
                   <h3 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">Implied Property Value</h3>
                   <p class="text-xs text-gray-500 mb-3">Value = NOI ÷ Cap Rate</p>
                   <div class="space-y-1.5">
@@ -342,7 +284,7 @@
           <div class="mt-12 space-y-8">
 
             <!-- What is NOI -->
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+            <div id="what-is-noi" class="bg-white rounded-2xl border border-gray-200 p-8">
               <h2 class="text-xl font-extrabold mb-4" style="color: #1e3a5f;">What Is Net Operating Income (NOI)?</h2>
               <p class="text-gray-600 leading-relaxed mb-4">
                 <strong>Net Operating Income (NOI)</strong> is the annual income generated by an investment property after subtracting all operating expenses — but before deducting mortgage payments, depreciation, or income taxes. It is the single most important number in commercial and residential real estate analysis.
@@ -359,7 +301,7 @@
             </div>
 
             <!-- What to Include / Exclude -->
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+            <div id="include-exclude" class="bg-white rounded-2xl border border-gray-200 p-8">
               <h2 class="text-xl font-extrabold mb-6" style="color: #1e3a5f;">What to Include and Exclude from NOI</h2>
               <div class="grid md:grid-cols-2 gap-6">
                 <div>
@@ -399,7 +341,7 @@
             </div>
 
             <!-- NOI by Market -->
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+            <div id="market-ratios" class="bg-white rounded-2xl border border-gray-200 p-8">
               <h2 class="text-xl font-extrabold mb-2" style="color: #1e3a5f;">Typical NOI Expense Ratios by Market (2026)</h2>
               <p class="text-gray-500 text-sm mb-6">Operating expenses as % of gross income for stabilized residential rental properties. Higher-cost markets tend to have higher expense ratios due to taxes and insurance.</p>
               <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -447,7 +389,7 @@
             </div>
 
             <!-- FAQ -->
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+            <div id="faq" class="bg-white rounded-2xl border border-gray-200 p-8">
               <h2 class="text-xl font-extrabold mb-6" style="color: #1e3a5f;">Frequently Asked Questions — NOI</h2>
               <div class="space-y-5">
                 <div class="border-b border-gray-100 pb-5">
@@ -478,7 +420,7 @@
             </div>
 
             <!-- Related Calculators CTA -->
-            <div class="rounded-2xl p-8 text-white" style="background: linear-gradient(135deg, #1e3a5f, #16304f);">
+            <div class="rounded-2xl p-8 text-white" style="background: #1e3a5f;">
               <h2 class="text-xl font-extrabold mb-2">Use NOI in Your Full Analysis</h2>
               <p class="text-blue-200 text-sm mb-6 leading-relaxed">NOI is the starting point. Run it through our other calculators for a complete picture of any investment opportunity.</p>
               <div class="grid sm:grid-cols-3 gap-3">
@@ -502,9 +444,6 @@
 
           </div>
           <!-- /SEO CONTENT -->
-
-        </div><!-- /right column -->
-      </div><!-- /lg:flex -->
     </main>
 
     <!-- FAQ JSON-LD Schema -->
@@ -553,6 +492,7 @@
 </template>
 
 <script setup>
+const isNavExpanded = ref(false)
 import { reactive, computed } from 'vue'
 
 useHead({

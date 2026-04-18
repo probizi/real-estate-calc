@@ -5,7 +5,7 @@
          HEADER
     ═══════════════════════════════════════════════ -->
     <header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4">
+      <div class="max-w-[1100px] mx-auto px-4 sm:px-6 py-4">
         <div class="flex items-center justify-between">
           <NuxtLink to="/" class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: #1e3a5f;">
@@ -34,7 +34,7 @@
          PAGE HEADER (breadcrumb only)
     ═══════════════════════════════════════════════ -->
     <div class="bg-white border-b border-gray-100 px-4 py-3">
-      <div class="max-w-7xl mx-auto">
+      <div class="max-w-[1100px] mx-auto">
         <nav aria-label="Breadcrumb">
           <ol class="flex items-center gap-2 text-sm text-gray-400">
             <li><NuxtLink to="/" class="hover:text-gray-600 transition">Home</NuxtLink></li>
@@ -51,7 +51,7 @@
          PAGE TITLE + ON THIS PAGE NAV
     ═══════════════════════════════════════════════ -->
     <div class="bg-white border-b border-gray-100">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-6">
+      <div class="max-w-[1100px] mx-auto px-4 sm:px-6 py-6">
 
         <!-- H1 -->
         <div class="mb-4">
@@ -63,7 +63,9 @@
         <!-- On this page nav -->
         <div class="block rounded-2xl border border-gray-200 bg-gray-50 p-4 mb-2">
           <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">On this page</p>
-          <ul class="flex flex-wrap gap-x-5 gap-y-1.5">
+
+          <!-- Desktop: full list (unchanged) -->
+          <ul class="hidden md:flex flex-wrap gap-x-5 gap-y-1.5">
             <li><a href="#calculator" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Calculator</a></li>
             <li><a href="#overview" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Overview</a></li>
             <li><a href="#how-to-use" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">How to Use</a></li>
@@ -78,6 +80,37 @@
             <li><a href="#limitations" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Limitations</a></li>
             <li><a href="#faq" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">FAQ</a></li>
           </ul>
+
+          <!-- Mobile: first 3 always visible (vertical) + collapsible rest -->
+          <div class="md:hidden">
+            <ul class="flex flex-col gap-y-2">
+              <li><a href="#calculator" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Calculator</a></li>
+              <li><a href="#overview" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Overview</a></li>
+              <li><a href="#how-to-use" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">How to Use</a></li>
+            </ul>
+            <ul v-show="isNavExpanded" class="flex flex-col gap-y-2 mt-2">
+              <li><a href="#inputs-outputs" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Inputs &amp; Outputs</a></li>
+              <li><a href="#formula" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Formula</a></li>
+              <li><a href="#what-is-cap-rate" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">What is Cap Rate</a></li>
+              <li><a href="#result-meaning" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">What Your Result Means</a></li>
+              <li><a href="#benchmarks" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Benchmarks</a></li>
+              <li><a href="#strategy" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Strategy</a></li>
+              <li><a href="#applications" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Applications</a></li>
+              <li><a href="#industry-standards" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Industry Standards</a></li>
+              <li><a href="#limitations" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Limitations</a></li>
+              <li><a href="#faq" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">FAQ</a></li>
+            </ul>
+            <button
+              @click="isNavExpanded = !isNavExpanded"
+              class="mt-2 flex items-center gap-1 text-xs font-bold transition"
+              style="color: #b45309;">
+              <svg class="w-3 h-3 transition-transform duration-200" :class="isNavExpanded ? 'rotate-180' : ''"
+                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+              <span>{{ isNavExpanded ? 'Show less' : 'Show all sections' }}</span>
+            </button>
+          </div>
         </div>
 
       </div>
@@ -86,7 +119,7 @@
     <!-- ═══════════════════════════════════════════════
          MOBILE LIVE RESULT BAR (sticky, hidden on desktop)
     ═══════════════════════════════════════════════ -->
-    <div class="lg:hidden sticky top-16 z-40 bg-white border-b border-gray-200 shadow-sm">
+    <div class="lg:hidden sticky top-[4.5rem] z-40 bg-white border-b border-gray-200 shadow-sm">
       <div class="px-4 py-3 flex items-center justify-between max-w-6xl mx-auto">
         <div class="flex items-center gap-2 text-sm text-gray-500 font-medium">
           <svg class="w-4 h-4 flex-shrink-0" style="color: #1e3a5f;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -135,176 +168,58 @@
     <!-- ═══════════════════════════════════════════════
          MAIN CALCULATOR
     ═══════════════════════════════════════════════ -->
-    <main id="calculator" class="max-w-7xl mx-auto px-4 py-8">
-      <div class="flex flex-col lg:flex-row lg:gap-8 items-start">
-
-        <!-- ══════════════════════════════════════════
-             LEFT SIDEBAR — Title card + Related links
-        ══════════════════════════════════════════ -->
-        <aside class="lg:w-72 xl:w-80 flex-shrink-0 space-y-5 order-2 lg:order-none mt-8 lg:mt-0">
-
-          <!-- Title card -->
-          <div class="rounded-2xl overflow-hidden" style="background: #1e3a5f;">
-            <div class="p-6">
-              <div class="inline-flex items-center text-xs font-bold px-2.5 py-1 rounded-full mb-3"
-                style="background: rgba(245,158,11,0.2); color: #fcd34d;">
-                Free · No Signup
-              </div>
-              <h2 class="text-2xl font-extrabold text-white mb-2 leading-tight">Cap Rate Calculator</h2>
-              <p class="text-blue-200 text-sm leading-relaxed mb-4">
-                The #1 metric US investors use to compare rental property returns. Covers all three use cases: find cap rate, implied value, or required NOI.
-              </p>
-              <div class="p-3 rounded-xl text-center" style="background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.25);">
-                <span class="font-mono text-sm font-bold" style="color: #fcd34d;">Cap Rate = NOI ÷ Value × 100</span>
-              </div>
-            </div>
-            <div class="px-6 pb-5 space-y-2 border-t border-white/10 pt-4">
-              <p class="text-xs font-bold uppercase tracking-wide text-blue-400 mb-2">US Benchmarks</p>
-              <div class="flex justify-between text-sm">
-                <span class="text-blue-200">Midwest / Southeast</span>
-                <span class="font-bold text-green-400">≥ 7%</span>
-              </div>
-              <div class="flex justify-between text-sm">
-                <span class="text-blue-200">Major metros</span>
-                <span class="font-bold text-yellow-400">5–6.9%</span>
-              </div>
-              <div class="flex justify-between text-sm">
-                <span class="text-blue-200">NY / LA / SF</span>
-                <span class="font-bold text-orange-400">&lt; 5%</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Related calculators -->
-          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
-            <h3 class="text-xs font-bold uppercase tracking-wide text-gray-400 mb-3">Related Calculators</h3>
-            <div class="space-y-1">
-              <NuxtLink to="/noi-calculator" class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg px-2 py-2 transition">
-                <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#f59e0b;"></span>
-                NOI Calculator
-              </NuxtLink>
-              <NuxtLink to="/cash-on-cash-calculator" class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg px-2 py-2 transition">
-                <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#3b82f6;"></span>
-                Cash-on-Cash Return
-              </NuxtLink>
-              <NuxtLink to="/dscr-calculator" class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg px-2 py-2 transition">
-                <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#10b981;"></span>
-                DSCR Calculator
-              </NuxtLink>
-              <NuxtLink to="/rental-property-calculator" class="flex items-center gap-2.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg px-2 py-2 transition">
-                <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#8b5cf6;"></span>
-                Rental Property Calculator
-              </NuxtLink>
-            </div>
-          </div>
-
-        </aside>
-
-        <!-- ══════════════════════════════════════════
-             RIGHT — Calculator content
-        ══════════════════════════════════════════ -->
-        <div class="flex-1 min-w-0 space-y-6 order-1 lg:order-none">
+    <main id="calculator" class="max-w-[1100px] mx-auto px-4 pt-8 pb-10">
+      <!-- Unified calculator panel -->
+      <div class="bg-white rounded-2xl border border-gray-200">
 
       <!-- ═══════════════════════════════════════════════
            CALCULATOR MODE SELECTOR
       ═══════════════════════════════════════════════ -->
-      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-        <div class="px-4 pt-3 pb-2">
-          <p class="text-xs font-bold uppercase tracking-wide text-center mb-2" style="color: #1e3a5f;">
+      <div class="border-b border-gray-100 rounded-t-2xl bg-white">
+        <div class="px-5 pt-4 pb-3">
+          <p class="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-2">
             What do you want to calculate?
           </p>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-
+          <!-- Compact tab control -->
+          <div class="calc-mode-tabs">
             <!-- Mode 1: Find Cap Rate -->
             <button @click="calcMode = 'cap-rate'"
-              class="relative flex flex-col items-center text-center px-3 py-2 rounded-xl border-2 transition font-semibold text-sm"
-              :class="calcMode === 'cap-rate'
-                ? 'border-yellow-400 bg-yellow-50 text-gray-900 shadow-sm'
-                : 'border-gray-200 text-gray-500 hover:border-yellow-300 hover:bg-yellow-50/40'">
-              <span v-if="calcMode === 'cap-rate'"
-                class="absolute -top-2 -right-2 text-xs font-bold px-2 py-0.5 rounded-full text-white"
-                style="background: #f59e0b; color: #1e3a5f;">Active</span>
-              <div class="w-8 h-8 rounded-xl flex items-center justify-center mb-1.5 transition"
-                :style="calcMode === 'cap-rate' ? 'background:#f59e0b;' : 'background:#f3f4f6;'">
-                <svg class="w-5 h-5" :class="calcMode === 'cap-rate' ? 'text-white' : 'text-gray-400'"
-                  fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-                </svg>
-              </div>
-              <span class="font-extrabold text-base leading-tight" :style="calcMode === 'cap-rate' ? 'color:#1e3a5f;' : ''">Find Cap Rate</span>
-              <span class="text-xs mt-1 leading-snug" :class="calcMode === 'cap-rate' ? 'text-amber-700' : 'text-gray-400'">
-                NOI ÷ Property Value
-              </span>
-              <span class="text-xs mt-2 px-2.5 py-0.5 rounded-full font-semibold"
-                :class="calcMode === 'cap-rate' ? 'bg-amber-100 text-amber-800' : 'bg-gray-100 text-gray-400'">
-                Standard
-              </span>
+              class="calc-mode-tab"
+              :class="calcMode === 'cap-rate' ? 'calc-mode-tab-active' : 'calc-mode-tab-inactive'">
+              <span class="block text-xs font-bold leading-tight" :style="calcMode === 'cap-rate' ? 'color:#1e3a5f;' : ''">Find Cap Rate</span>
+              <span class="block text-xs mt-0.5" :class="calcMode === 'cap-rate' ? 'text-amber-700' : 'text-gray-400'">NOI ÷ Property Value</span>
+              <span class="inline-block text-xs mt-1 px-2 py-0.5 rounded-full font-semibold"
+                :class="calcMode === 'cap-rate' ? 'bg-amber-100 text-amber-800' : 'bg-gray-200 text-gray-400'">Standard</span>
             </button>
-
             <!-- Mode 2: Find Property Value -->
             <button @click="calcMode = 'find-value'"
-              class="relative flex flex-col items-center text-center px-3 py-2 rounded-xl border-2 transition font-semibold text-sm"
-              :class="calcMode === 'find-value'
-                ? 'border-blue-400 bg-blue-50 text-gray-900 shadow-sm'
-                : 'border-gray-200 text-gray-500 hover:border-blue-300 hover:bg-blue-50/40'">
-              <span v-if="calcMode === 'find-value'"
-                class="absolute -top-2 -right-2 text-xs font-bold px-2 py-0.5 rounded-full text-white bg-blue-500">Active</span>
-              <div class="w-8 h-8 rounded-xl flex items-center justify-center mb-1.5 transition"
-                :style="calcMode === 'find-value' ? 'background:#3b82f6;' : 'background:#f3f4f6;'">
-                <svg class="w-5 h-5" :class="calcMode === 'find-value' ? 'text-white' : 'text-gray-400'"
-                  fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-                </svg>
-              </div>
-              <span class="font-extrabold text-base leading-tight" :style="calcMode === 'find-value' ? 'color:#1e40af;' : ''">Find Property Value</span>
-              <span class="text-xs mt-1 leading-snug" :class="calcMode === 'find-value' ? 'text-blue-700' : 'text-gray-400'">
-                NOI ÷ Target Cap Rate
-              </span>
-              <span class="text-xs mt-2 px-2.5 py-0.5 rounded-full font-semibold"
-                :class="calcMode === 'find-value' ? 'bg-blue-100 text-blue-800' : 'bg-gray-100 text-gray-400'">
-                Reverse
-              </span>
+              class="calc-mode-tab"
+              :class="calcMode === 'find-value' ? 'calc-mode-tab-active' : 'calc-mode-tab-inactive'">
+              <span class="block text-xs font-bold leading-tight" :style="calcMode === 'find-value' ? 'color:#1e3a5f;' : ''">Find Property Value</span>
+              <span class="block text-xs mt-0.5" :class="calcMode === 'find-value' ? 'text-blue-700' : 'text-gray-400'">NOI ÷ Target Cap Rate</span>
+              <span class="inline-block text-xs mt-1 px-2 py-0.5 rounded-full font-semibold"
+                :class="calcMode === 'find-value' ? 'bg-blue-100 text-blue-800' : 'bg-gray-200 text-gray-400'">Reverse</span>
             </button>
-
             <!-- Mode 3: Find Required NOI -->
             <button @click="calcMode = 'find-noi'"
-              class="relative flex flex-col items-center text-center px-3 py-2 rounded-xl border-2 transition font-semibold text-sm"
-              :class="calcMode === 'find-noi'
-                ? 'border-emerald-400 bg-emerald-50 text-gray-900 shadow-sm'
-                : 'border-gray-200 text-gray-500 hover:border-emerald-300 hover:bg-emerald-50/40'">
-              <span v-if="calcMode === 'find-noi'"
-                class="absolute -top-2 -right-2 text-xs font-bold px-2 py-0.5 rounded-full text-white bg-emerald-500">Active</span>
-              <div class="w-8 h-8 rounded-xl flex items-center justify-center mb-1.5 transition"
-                :style="calcMode === 'find-noi' ? 'background:#10b981;' : 'background:#f3f4f6;'">
-                <svg class="w-5 h-5" :class="calcMode === 'find-noi' ? 'text-white' : 'text-gray-400'"
-                  fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-              </div>
-              <span class="font-extrabold text-base leading-tight" :style="calcMode === 'find-noi' ? 'color:#065f46;' : ''">Find Required NOI</span>
-              <span class="text-xs mt-1 leading-snug" :class="calcMode === 'find-noi' ? 'text-emerald-700' : 'text-gray-400'">
-                Property Value × Cap Rate
-              </span>
-              <span class="text-xs mt-2 px-2.5 py-0.5 rounded-full font-semibold"
-                :class="calcMode === 'find-noi' ? 'bg-emerald-100 text-emerald-800' : 'bg-gray-100 text-gray-400'">
-                Reverse
-              </span>
+              class="calc-mode-tab"
+              :class="calcMode === 'find-noi' ? 'calc-mode-tab-active' : 'calc-mode-tab-inactive'">
+              <span class="block text-xs font-bold leading-tight" :style="calcMode === 'find-noi' ? 'color:#1e3a5f;' : ''">Find Required NOI</span>
+              <span class="block text-xs mt-0.5" :class="calcMode === 'find-noi' ? 'text-emerald-700' : 'text-gray-400'">Property Value × Cap Rate</span>
+              <span class="inline-block text-xs mt-1 px-2 py-0.5 rounded-full font-semibold"
+                :class="calcMode === 'find-noi' ? 'bg-emerald-100 text-emerald-800' : 'bg-gray-200 text-gray-400'">Reverse</span>
             </button>
-
           </div>
 
           <!-- Mode descriptions -->
-          <div class="mt-3 mb-1 text-center">
+          <div class="mt-2.5">
             <p v-if="calcMode === 'cap-rate'" class="text-xs text-gray-500 leading-relaxed">
               Enter income, expenses, and property value to calculate the capitalization rate. Best for evaluating and comparing properties.
             </p>
-            <p v-else-if="calcMode === 'find-value'" class="text-xs text-blue-700 leading-relaxed bg-blue-50 px-4 py-2 rounded-xl inline-block">
+            <p v-else-if="calcMode === 'find-value'" class="text-xs text-blue-700 leading-relaxed bg-blue-50 px-3 py-1.5 rounded-lg">
               Enter income, expenses, and a <strong>target cap rate</strong> — the calculator will show the implied property value at that yield.
             </p>
-            <p v-else class="text-xs text-emerald-700 leading-relaxed bg-emerald-50 px-4 py-2 rounded-xl inline-block">
+            <p v-else class="text-xs text-emerald-700 leading-relaxed bg-emerald-50 px-3 py-1.5 rounded-lg">
               Enter the asking price and a <strong>target cap rate</strong> — the calculator will show the NOI required to justify that price.
             </p>
           </div>
@@ -312,38 +227,33 @@
         </div>
       </div>
 
-      <div class="grid lg:grid-cols-5 gap-6">
+      <!-- Two-column body: inputs left, results right -->
+      <div class="lg:grid lg:grid-cols-[3fr_2fr] items-start">
 
-        <!-- ── INPUTS (3 cols) ── -->
-        <div class="lg:col-span-3 space-y-3">
+        <!-- ── INPUTS (left column) ── -->
+        <div class="calc-inputs border-b lg:border-b-0 lg:border-r border-gray-200 bg-white min-w-0">
 
-          <!-- Income Card — shown in cap-rate and find-value modes -->
+          <!-- Income — shown in cap-rate and find-value modes -->
           <div v-if="calcMode === 'cap-rate' || calcMode === 'find-value'"
-            class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-            <div class="px-4 py-2.5 border-b border-gray-100 flex items-center gap-3">
-              <div class="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0" style="background: rgba(245,158,11,0.12);">
-                <svg class="w-4 h-4" style="color: #f59e0b;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-              </div>
-              <h2 class="font-bold text-sm" style="color: #1e3a5f;">Income</h2>
+            class="border-b border-gray-100">
+            <div class="calc-section-header">
+              <h2 class="calc-section-title">Income</h2>
             </div>
-            <div class="p-3 space-y-2.5">
+            <div class="px-4 py-3 space-y-2.5">
 
               <!-- Income mode toggle -->
               <div>
                 <p id="income-mode-label" class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">How do you want to enter income?</p>
-                <div class="flex items-center gap-1 p-1 bg-gray-100 rounded-xl w-fit" role="group" aria-labelledby="income-mode-label">
+                <div class="flex items-center gap-1 p-1 bg-white border border-gray-200 rounded-xl w-fit shadow-sm" role="group" aria-labelledby="income-mode-label">
                   <button @click="incomeMode = 'monthly'"
                     :aria-pressed="incomeMode === 'monthly'"
-                    :class="incomeMode === 'monthly' ? 'bg-white shadow text-gray-900 font-bold' : 'text-gray-500 hover:text-gray-700'"
+                    :class="incomeMode === 'monthly' ? 'bg-amber-50 shadow text-gray-900 font-bold border border-amber-200' : 'text-gray-500 hover:text-gray-700'"
                     class="px-4 py-2 rounded-lg text-sm transition font-medium">
                     Monthly Rent
                   </button>
                   <button @click="incomeMode = 'annual'"
                     :aria-pressed="incomeMode === 'annual'"
-                    :class="incomeMode === 'annual' ? 'bg-white shadow text-gray-900 font-bold' : 'text-gray-500 hover:text-gray-700'"
+                    :class="incomeMode === 'annual' ? 'bg-amber-50 shadow text-gray-900 font-bold border border-amber-200' : 'text-gray-500 hover:text-gray-700'"
                     class="px-4 py-2 rounded-lg text-sm transition font-medium">
                     Annual Income
                   </button>
@@ -361,7 +271,7 @@
                     <input id="monthly-rent" v-model="form.monthlyRent" type="number" min="0" step="50"
                       placeholder="Enter monthly rent per unit"
                       aria-label="Monthly rent per unit in dollars"
-                      class="w-full pl-8 pr-4 py-2 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                      class="w-full pl-8 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                   </div>
                 </div>
                 <div>
@@ -371,7 +281,7 @@
                   <input id="num-units" v-model="form.numUnits" type="number" min="1" step="1"
                     placeholder="Enter number of units"
                     aria-label="Number of rental units"
-                    class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                    class="w-full px-4 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                 </div>
                 <div v-if="form.numUnits !== null && form.numUnits !== '' && Number(form.numUnits) <= 0"
                   class="p-2.5 rounded-xl text-xs font-medium text-red-800 bg-red-50 border border-red-200" role="alert">
@@ -394,7 +304,7 @@
                   <input id="gross-income" v-model="form.grossIncome" type="number" min="0" step="100"
                     placeholder="Enter total yearly rental income"
                     aria-label="Gross annual rental income in dollars"
-                    class="w-full pl-8 pr-4 py-2 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                    class="w-full pl-8 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                 </div>
                 <p class="text-xs text-gray-400 mt-1">Full-year total for all units (12 months × all units)</p>
               </div>
@@ -411,8 +321,8 @@
                     aria-label="Vacancy rate as a percentage"
                     :aria-invalid="vacancyRateInvalid"
                     :aria-describedby="vacancyRateInvalid ? 'vacancy-error' : undefined"
-                    :class="vacancyRateInvalid ? 'border-red-400 focus:border-red-400 focus:ring-red-400/20' : 'border-gray-200 focus:border-yellow-400 focus:ring-yellow-400/20'"
-                    class="w-full pr-8 pl-4 py-2 rounded-xl border focus:ring-2 outline-none text-gray-900 font-semibold text-sm transition" />
+                    :class="vacancyRateInvalid ? 'border-red-400 focus:border-red-400 focus:ring-red-400/20' : 'border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-yellow-400/40'"
+                    class="w-full pr-8 pl-4 py-2 rounded-xl border focus:ring-2 outline-none text-gray-900 font-semibold text-sm transition bg-white" />
                   <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm" aria-hidden="true">%</span>
                 </div>
                 <p v-if="vacancyRateInvalid" id="vacancy-error" class="text-xs text-red-500 mt-1" role="alert">
@@ -423,33 +333,27 @@
             </div>
           </div>
 
-          <!-- Expenses Card — shown in cap-rate and find-value modes -->
+          <!-- Expenses — shown in cap-rate and find-value modes -->
           <div v-if="calcMode === 'cap-rate' || calcMode === 'find-value'"
-            class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-            <div class="px-4 py-2.5 border-b border-gray-100 flex items-center gap-3">
-              <div class="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0" style="background: rgba(239,68,68,0.1);">
-                <svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z"/>
-                </svg>
-              </div>
-              <h2 class="font-bold text-sm" style="color: #1e3a5f;">Annual Operating Expenses</h2>
+            class="border-b border-gray-100">
+            <div class="calc-section-header">
+              <h2 class="calc-section-title">Annual Operating Expenses</h2>
             </div>
-            <div class="p-3 space-y-2.5">
+            <div class="px-4 py-3 space-y-2.5">
 
               <!-- Toggle: Simple vs Detailed -->
               <div>
                 <p id="expense-mode-label" class="sr-only">Expense entry mode</p>
-                <div class="flex items-center gap-3 p-1 bg-gray-100 rounded-xl w-fit" role="group" aria-labelledby="expense-mode-label">
+                <div class="flex items-center gap-3 p-1 bg-white border border-gray-200 rounded-xl w-fit shadow-sm" role="group" aria-labelledby="expense-mode-label">
                   <button @click="expenseMode = 'simple'"
                     :aria-pressed="expenseMode === 'simple'"
-                    :class="expenseMode === 'simple' ? 'bg-white shadow text-gray-900 font-bold' : 'text-gray-500 hover:text-gray-700'"
+                    :class="expenseMode === 'simple' ? 'bg-amber-50 shadow text-gray-900 font-bold border border-amber-200' : 'text-gray-500 hover:text-gray-700'"
                     class="px-4 py-2 rounded-lg text-sm transition font-medium">
                     Simple
                   </button>
                   <button @click="expenseMode = 'detailed'"
                     :aria-pressed="expenseMode === 'detailed'"
-                    :class="expenseMode === 'detailed' ? 'bg-white shadow text-gray-900 font-bold' : 'text-gray-500 hover:text-gray-700'"
+                    :class="expenseMode === 'detailed' ? 'bg-amber-50 shadow text-gray-900 font-bold border border-amber-200' : 'text-gray-500 hover:text-gray-700'"
                     class="px-4 py-2 rounded-lg text-sm transition font-medium">
                     Detailed
                   </button>
@@ -467,7 +371,7 @@
                   <input id="total-expenses" v-model="form.totalExpenses" type="number" min="0" step="100"
                     placeholder="Enter total yearly operating expenses"
                     aria-label="Total annual operating expenses in dollars"
-                    class="w-full pl-8 pr-4 py-2 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                    class="w-full pl-8 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                 </div>
                 <p class="text-xs text-gray-400 mt-1">
                   Enter the <strong>annual</strong> total — rule of thumb: 35–50% of gross income.
@@ -489,7 +393,7 @@
                     <input :id="`exp-${exp.key}`" v-model="form.expenses[exp.key]" type="number" min="0" step="100"
                       :placeholder="exp.placeholder"
                       :aria-label="`${exp.label} annual amount in dollars`"
-                      class="w-full pl-7 pr-4 py-2 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-medium text-sm transition" />
+                      class="w-full pl-7 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-medium text-sm transition" />
                   </div>
                   <p v-if="exp.hint" class="text-xs text-gray-400 mt-0.5">{{ exp.hint }}</p>
                 </div>
@@ -504,33 +408,27 @@
             </div>
           </div>
 
-          <!-- Property Value Card — shown in cap-rate and find-noi modes -->
+          <!-- Property Value — shown in cap-rate and find-noi modes -->
           <div v-if="calcMode === 'cap-rate' || calcMode === 'find-noi'"
-            class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-            <div class="px-4 py-2.5 border-b border-gray-100 flex items-center gap-3">
-              <div class="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0" style="background: rgba(30,58,95,0.08);">
-                <svg class="w-4 h-4" style="color: #1e3a5f;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-                </svg>
-              </div>
-              <h2 class="font-bold text-sm" style="color: #1e3a5f;">Property Value</h2>
+            class="border-b border-gray-100">
+            <div class="calc-section-header">
+              <h2 class="calc-section-title">Property Value</h2>
             </div>
-            <div class="p-3 space-y-2.5">
+            <div class="px-4 py-3 space-y-2.5">
 
               <!-- Value basis toggle — FIRST so user picks context before entering values -->
               <div>
                 <p id="value-basis-label" class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">Calculate cap rate using:</p>
-                <div class="flex items-center gap-1 p-1 bg-gray-100 rounded-xl w-fit" role="group" aria-labelledby="value-basis-label">
+                <div class="flex items-center gap-1 p-1 bg-white border border-gray-200 rounded-xl w-fit shadow-sm" role="group" aria-labelledby="value-basis-label">
                   <button @click="valueBasis = 'purchase'"
                     :aria-pressed="valueBasis === 'purchase'"
-                    :class="valueBasis === 'purchase' ? 'bg-white shadow text-gray-900 font-bold' : 'text-gray-500 hover:text-gray-700'"
+                    :class="valueBasis === 'purchase' ? 'bg-amber-50 shadow text-gray-900 font-bold border border-amber-200' : 'text-gray-500 hover:text-gray-700'"
                     class="px-3 py-1.5 rounded-lg text-sm transition font-medium">
                     Purchase Price
                   </button>
                   <button @click="valueBasis = 'market'"
                     :aria-pressed="valueBasis === 'market'"
-                    :class="valueBasis === 'market' ? 'bg-white shadow text-gray-900 font-bold' : 'text-gray-500 hover:text-gray-700'"
+                    :class="valueBasis === 'market' ? 'bg-amber-50 shadow text-gray-900 font-bold border border-amber-200' : 'text-gray-500 hover:text-gray-700'"
                     class="px-3 py-1.5 rounded-lg text-sm transition font-medium">
                     Market Value
                   </button>
@@ -557,8 +455,8 @@
                     aria-label="Purchase price in dollars"
                     class="w-full pl-8 pr-4 py-2 rounded-xl border outline-none text-gray-900 font-semibold text-sm transition"
                     :class="valueBasis === 'purchase'
-                      ? 'border-yellow-400 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-400/20'
-                      : 'border-gray-200 focus:border-gray-400 focus:ring-2 focus:ring-gray-200'" />
+                      ? 'border-yellow-400 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-400/40'
+                      : 'border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40'" />
                 </div>
                 <p class="text-xs text-gray-400 mt-1">Acquisition cost only — no financing</p>
               </div>
@@ -579,8 +477,8 @@
                     aria-label="Current market value in dollars"
                     class="w-full pl-8 pr-4 py-2 rounded-xl border outline-none text-gray-900 font-semibold text-sm transition"
                     :class="valueBasis === 'market'
-                      ? 'border-yellow-400 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-400/20'
-                      : 'border-gray-200 focus:border-gray-400 focus:ring-2 focus:ring-gray-200'" />
+                      ? 'border-yellow-400 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-400/40'
+                      : 'border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40'" />
                 </div>
                 <p class="text-xs text-gray-400 mt-1">Today's estimated value — use for refi or comparison</p>
               </div>
@@ -602,7 +500,7 @@
                 </label>
                 <select id="asset-class" v-model="assetClass"
                   aria-label="Select asset class for benchmark context"
-                  class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-medium text-sm transition bg-white">
+                  class="w-full px-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-medium text-sm transition bg-white">
                   <option value="">Not specified (generic benchmarks)</option>
                   <option value="sfr">Single Family Residence (SFR)</option>
                   <option value="small-multi">Small Multifamily (2–4 units)</option>
@@ -618,25 +516,13 @@
             </div>
           </div>
 
-          <!-- ── TARGET CAP RATE CARD — reverse modes only ── -->
+          <!-- ── TARGET CAP RATE — reverse modes only ── -->
           <div v-if="calcMode !== 'cap-rate'"
-            class="bg-white rounded-2xl shadow-sm border-2 overflow-hidden transition"
-            :class="calcMode === 'find-value' ? 'border-blue-200' : 'border-emerald-200'">
-            <div class="px-4 py-2.5 border-b flex items-center gap-3"
-              :class="calcMode === 'find-value' ? 'border-blue-100 bg-blue-50' : 'border-emerald-100 bg-emerald-50'">
-              <div class="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
-                :style="calcMode === 'find-value' ? 'background:#3b82f6;' : 'background:#10b981;'">
-                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
-                </svg>
-              </div>
+            class="border-b border-gray-100">
+            <div class="calc-section-header">
               <div>
-                <h2 class="font-bold text-sm"
-                  :class="calcMode === 'find-value' ? 'text-blue-900' : 'text-emerald-900'">
-                  Target Cap Rate
-                </h2>
-                <p class="text-xs mt-0.5"
+                <h2 class="calc-section-title">Target Cap Rate</h2>
+                <p class="text-xs mt-0.5 ml-3 pl-0"
                   :class="calcMode === 'find-value' ? 'text-blue-600' : 'text-emerald-600'">
                   {{ calcMode === 'find-value'
                     ? 'What yield does the market trade at?'
@@ -644,7 +530,7 @@
                 </p>
               </div>
             </div>
-            <div class="p-3 space-y-2.5">
+            <div class="px-4 py-3 space-y-2.5">
 
               <div>
                 <label for="reverse-cap-rate" class="block text-xs font-semibold text-gray-700 mb-1">
@@ -656,7 +542,7 @@
                     min="0.1" max="30" step="0.1"
                     placeholder="Enter target cap rate"
                     aria-label="Target capitalization rate as a percentage"
-                    class="w-full pr-10 pl-4 py-2 rounded-xl border-2 outline-none text-gray-900 font-bold text-base transition"
+                    class="w-full pr-10 pl-4 py-2 rounded-xl border outline-none text-gray-900 font-bold text-base transition bg-white"
                     :class="calcMode === 'find-value'
                       ? 'border-blue-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-400/20'
                       : 'border-emerald-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-400/20'" />
@@ -695,7 +581,7 @@
                   <span class="ml-1 text-xs font-normal text-gray-400">(optional — context for benchmarks)</span>
                 </label>
                 <select id="asset-class-rev" v-model="assetClass"
-                  class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-medium text-sm transition bg-white">
+                  class="w-full px-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-medium text-sm transition bg-white">
                   <option value="">Not specified</option>
                   <option value="sfr">Single Family Residence (SFR)</option>
                   <option value="small-multi">Small Multifamily (2–4 units)</option>
@@ -709,19 +595,13 @@
 
           <!-- ── INVESTOR MODE TOGGLE — cap-rate mode only ── -->
           <button v-if="calcMode === 'cap-rate'" @click="investorOpen = !investorOpen"
-            class="w-full flex items-center justify-between px-5 py-3 rounded-2xl border-2 font-semibold text-sm transition"
+            class="w-full flex items-center justify-between px-5 py-3 text-sm transition border-b border-gray-100"
             :class="investorOpen
-              ? 'border-yellow-400 text-yellow-800 bg-yellow-50'
-              : 'border-gray-200 text-gray-600 hover:border-yellow-300 hover:text-yellow-700 hover:bg-yellow-50/40'">
-            <div class="flex items-center gap-2.5">
-              <div class="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
-                :style="investorOpen ? 'background:#f59e0b;' : 'background:#f3f4f6;'">
-                <svg class="w-4 h-4" :class="investorOpen ? 'text-white' : 'text-gray-500'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/>
-                </svg>
-              </div>
+              ? 'bg-amber-50 text-amber-800 font-semibold'
+              : 'text-gray-600 hover:bg-gray-50 hover:text-gray-800 font-medium'">
+            <div class="flex items-center gap-2">
               <span>Investor Mode — Add Financing</span>
-              <span v-if="investorOpen" class="text-xs font-bold px-2 py-0.5 rounded-full" style="background:#fef3c7;color:#92400e;">ON</span>
+              <span v-if="investorOpen" class="text-xs font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800">ON</span>
             </div>
             <svg class="w-4 h-4 transition-transform flex-shrink-0" :class="investorOpen ? 'rotate-180' : ''"
               fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -730,19 +610,14 @@
           </button>
 
           <!-- ── INVESTOR MODE INPUTS — cap-rate mode only ── -->
-          <div v-if="calcMode === 'cap-rate' && investorOpen" class="bg-white rounded-2xl shadow-sm border border-yellow-200 overflow-hidden">
-            <div class="px-4 py-2.5 border-b border-yellow-100 flex items-center gap-3" style="background:linear-gradient(90deg,#fffbeb,#fef3c7);">
-              <div class="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0" style="background:#f59e0b;">
-                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/>
-                </svg>
-              </div>
+          <div v-if="calcMode === 'cap-rate' && investorOpen" class="border-b border-gray-100">
+            <div class="calc-section-header">
               <div>
-                <h2 class="font-bold text-sm" style="color:#92400e;">Financing & Investor Returns</h2>
-                <p class="text-xs text-amber-700 mt-0.5">See levered returns — Cash Flow, CoC, DSCR</p>
+                <h2 class="calc-section-title">Financing & Investor Returns</h2>
+                <p class="text-xs text-amber-700 mt-0.5 ml-3">See levered returns — Cash Flow, CoC, DSCR</p>
               </div>
             </div>
-            <div class="p-3 space-y-2.5">
+            <div class="px-4 py-3 space-y-2.5">
 
               <!-- Down Payment % -->
               <div>
@@ -750,7 +625,7 @@
                 <div class="relative">
                   <input id="dp-pct" v-model="investorForm.downPaymentPct" type="number" min="0" max="100" step="1"
                     placeholder="Enter down payment percentage"
-                    class="w-full pr-8 pl-4 py-2 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition"/>
+                    class="w-full pr-8 pl-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition"/>
                   <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">%</span>
                 </div>
                 <p v-if="hasResult && propertyValueCalc > 0" class="text-xs text-gray-400 mt-1">
@@ -764,7 +639,7 @@
                 <div class="relative">
                   <input id="interest-rate" v-model="investorForm.interestRate" type="number" min="0" max="30" step="0.125"
                     placeholder="Enter annual loan interest rate"
-                    class="w-full pr-8 pl-4 py-2 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition"/>
+                    class="w-full pr-8 pl-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition"/>
                   <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold">%</span>
                 </div>
               </div>
@@ -773,7 +648,7 @@
               <div>
                 <label for="loan-term" class="block text-xs font-semibold text-gray-700 mb-1">Loan Term</label>
                 <select id="loan-term" v-model="investorForm.loanTermYears"
-                  class="w-full px-4 py-2 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-medium text-sm transition bg-white">
+                  class="w-full px-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-medium text-sm transition bg-white">
                   <option :value="15">15 years</option>
                   <option :value="20">20 years</option>
                   <option :value="25">25 years</option>
@@ -791,7 +666,7 @@
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">$</span>
                     <input id="closing-costs" v-model="investorForm.closingCosts" type="number" min="0" step="500"
                       placeholder="Enter closing costs"
-                      class="w-full pl-7 pr-4 py-2 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-medium text-sm transition"/>
+                      class="w-full pl-7 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-medium text-sm transition"/>
                   </div>
                   <p class="text-xs text-gray-400 mt-0.5">Typical: 2–5% of purchase price</p>
                 </div>
@@ -803,7 +678,7 @@
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">$</span>
                     <input id="rehab-costs" v-model="investorForm.rehabCosts" type="number" min="0" step="1000"
                       placeholder="Enter rehab or initial repair costs"
-                      class="w-full pl-7 pr-4 py-2 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-medium text-sm transition"/>
+                      class="w-full pl-7 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-medium text-sm transition"/>
                   </div>
                 </div>
 
@@ -814,7 +689,7 @@
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">$</span>
                     <input id="cash-reserves" v-model="investorForm.cashReserves" type="number" min="0" step="500"
                       placeholder="Enter cash reserves"
-                      class="w-full pl-7 pr-4 py-2 rounded-xl border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-medium text-sm transition"/>
+                      class="w-full pl-7 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-medium text-sm transition"/>
                   </div>
                   <p class="text-xs text-gray-400 mt-0.5">6–12 months expenses recommended</p>
                 </div>
@@ -824,80 +699,85 @@
           </div>
 
           <!-- Reset Button -->
-          <button @click="resetForm"
-            class="w-full py-2.5 rounded-xl border-2 border-gray-200 text-gray-500 font-semibold text-sm hover:border-gray-300 hover:text-gray-700 transition">
-            Reset All Fields
-          </button>
+          <div class="px-4 py-3">
+            <button @click="resetForm"
+              class="w-full py-2 rounded-lg border border-gray-200 text-gray-400 font-medium text-xs hover:border-gray-300 hover:text-gray-600 transition">
+              Reset All Fields
+            </button>
+          </div>
 
         </div>
 
-        <!-- ── RESULTS (2 cols) ── -->
-        <div class="lg:col-span-2 space-y-6">
+        <!-- ── RESULTS (right column, sticky) ── -->
+        <!-- NOTE: overflow must be on the INNER div — overflow on a sticky element breaks stickiness in CSS spec -->
+        <div class="lg:sticky lg:top-[4.5rem] lg:self-start min-w-0 w-full">
+        <div class="lg:max-h-[calc(100vh-5rem)] lg:overflow-y-auto space-y-4 p-4 lg:p-5 scrollbar-thin">
 
           <!-- Main Result -->
-          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden sticky top-24">
+          <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
 
             <!-- Primary Result Display — mode-aware -->
 
             <!-- MODE: Cap Rate (standard) -->
-            <div v-if="calcMode === 'cap-rate'" class="p-6 text-center border-b border-gray-100"
-              :style="hasResult ? `background: linear-gradient(135deg, ${badge.bg1}, ${badge.bg2})` : 'background: linear-gradient(135deg, #f8fafc, #f1f5f9)'">
-              <p class="text-sm font-semibold mb-2" :class="hasResult ? 'text-white/80' : 'text-gray-400'">
+            <div v-if="calcMode === 'cap-rate'" class="px-5 py-5 border-b border-gray-100 bg-white">
+              <p class="text-xs font-semibold uppercase tracking-wide mb-2 text-gray-400">
                 Cap Rate
-                <span v-if="hasResult" class="ml-1 font-normal opacity-70 text-xs">({{ valueBasis === 'purchase' ? 'on purchase price' : 'on market value' }})</span>
+                <span v-if="hasResult" class="ml-1 font-normal normal-case">({{ valueBasis === 'purchase' ? 'on purchase price' : 'on market value' }})</span>
               </p>
-              <div class="text-6xl md:text-7xl font-extrabold mb-3 leading-none"
-                :class="hasResult ? 'text-white' : 'text-gray-200'">
+              <div class="font-extrabold leading-none overflow-hidden text-ellipsis whitespace-nowrap w-full transition-all mb-3"
+                :class="[hasResult ? '' : 'text-gray-200', capRateFontClass]"
+                :style="hasResult ? `color: ${badge.bg1}` : ''">
                 {{ hasResult ? capRate.toFixed(2) + '%' : '—' }}
               </div>
               <div v-if="hasResult"
-                class="inline-flex items-center gap-2 px-4 py-2 rounded-full font-bold text-sm border border-white/30 bg-white/20 text-white">
-                <span class="w-2 h-2 rounded-full bg-white"></span>
+                class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-xs text-white"
+                :style="`background: ${badge.bg1}`">
+                <span class="w-1.5 h-1.5 rounded-full bg-white/70 flex-shrink-0"></span>
                 {{ badge.label }}
               </div>
-              <div v-else class="text-gray-300 text-sm">Enter values to see result</div>
+              <div v-else class="text-sm text-gray-300">Enter values to see result</div>
             </div>
 
             <!-- MODE: Find Property Value -->
-            <div v-else-if="calcMode === 'find-value'" class="p-6 text-center border-b border-gray-100"
-              :style="findValueResult ? 'background: linear-gradient(135deg, #1d4ed8, #1e40af)' : 'background: linear-gradient(135deg, #f8fafc, #f1f5f9)'">
-              <p class="text-sm font-semibold mb-1" :class="findValueResult ? 'text-blue-100' : 'text-gray-400'">
+            <div v-else-if="calcMode === 'find-value'" class="px-5 py-5 border-b border-gray-100 bg-white">
+              <p class="text-xs font-semibold uppercase tracking-wide mb-1 text-gray-400">
                 Implied Property Value
               </p>
-              <p class="text-xs mb-3 opacity-70" :class="findValueResult ? 'text-blue-200' : 'text-gray-300'">
+              <p class="text-xs mb-2 text-gray-400">
                 {{ findValueResult ? `at ${reverseCapRate}% cap rate` : 'NOI ÷ Target Cap Rate' }}
               </p>
-              <div class="font-extrabold mb-3 leading-none"
-                :class="[findValueResult ? 'text-white' : 'text-gray-200', findValueResult ? 'text-4xl md:text-5xl' : 'text-6xl']">
+              <div class="font-extrabold mb-3 leading-none overflow-hidden text-ellipsis whitespace-nowrap w-full"
+                :class="findValueResult ? 'text-5xl' : 'text-6xl text-gray-200'"
+                :style="findValueResult ? 'color:#1e40af;' : ''">
                 {{ findValueResult ? formatCurrency(findValueResult) : '—' }}
               </div>
               <div v-if="findValueResult && noi > 0"
-                class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full font-semibold text-xs border border-white/30 bg-white/20 text-white">
+                class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-semibold text-xs bg-blue-100 text-blue-700">
                 Based on NOI of {{ formatCurrency(noi) }}
               </div>
-              <div v-else-if="!findValueResult" class="text-gray-300 text-sm">
+              <div v-else-if="!findValueResult" class="text-sm text-gray-300">
                 {{ noi <= 0 ? 'Enter income & expenses to calculate NOI' : 'Enter a target cap rate' }}
               </div>
             </div>
 
             <!-- MODE: Find Required NOI -->
-            <div v-else class="p-6 text-center border-b border-gray-100"
-              :style="findNOIResult ? 'background: linear-gradient(135deg, #059669, #047857)' : 'background: linear-gradient(135deg, #f8fafc, #f1f5f9)'">
-              <p class="text-sm font-semibold mb-1" :class="findNOIResult ? 'text-emerald-100' : 'text-gray-400'">
+            <div v-else class="px-5 py-5 border-b border-gray-100 bg-white">
+              <p class="text-xs font-semibold uppercase tracking-wide mb-1 text-gray-400">
                 Required NOI / Year
               </p>
-              <p class="text-xs mb-3 opacity-70" :class="findNOIResult ? 'text-emerald-200' : 'text-gray-300'">
+              <p class="text-xs mb-2 text-gray-400">
                 {{ findNOIResult ? `to hit ${reverseCapRate}% cap rate on ${formatCurrency(propertyValueCalc)}` : 'Property Value × Cap Rate' }}
               </p>
-              <div class="font-extrabold mb-3 leading-none"
-                :class="[findNOIResult ? 'text-white' : 'text-gray-200', findNOIResult ? 'text-4xl md:text-5xl' : 'text-6xl']">
+              <div class="font-extrabold mb-3 leading-none overflow-hidden text-ellipsis whitespace-nowrap w-full"
+                :class="findNOIResult ? 'text-5xl' : 'text-6xl text-gray-200'"
+                :style="findNOIResult ? 'color:#065f46;' : ''">
                 {{ findNOIResult ? formatCurrency(findNOIResult) : '—' }}
               </div>
               <div v-if="findNOIResult && findNOIGrossHint"
-                class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full font-semibold text-xs border border-white/30 bg-white/20 text-white">
+                class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-semibold text-xs bg-emerald-100 text-emerald-700">
                 ≈ {{ formatCurrency(findNOIGrossHint) }} gross rent needed
               </div>
-              <div v-else-if="!findNOIResult" class="text-gray-300 text-sm">
+              <div v-else-if="!findNOIResult" class="text-sm text-gray-300">
                 Enter property value and target cap rate
               </div>
             </div>
@@ -1057,11 +937,11 @@
               </div>
 
               <!-- Formula -->
-              <div class="mt-4 p-3 rounded-xl bg-gray-50 border border-gray-100">
+              <div class="mt-4 p-3 rounded-xl bg-gray-50 border border-gray-100 overflow-hidden">
                 <p class="text-xs text-center text-gray-400 font-medium">
                   Cap Rate = NOI ÷ Property Value × 100
                 </p>
-                <p class="text-xs text-center text-gray-500 font-semibold mt-1">
+                <p class="text-xs text-center text-gray-500 font-semibold mt-1 break-all">
                   {{ formatCurrency(noi) }} ÷ {{ formatCurrency(propertyValueCalc) }} × 100 = <span style="color: #1e3a5f;">{{ capRate.toFixed(2) }}%</span>
                 </p>
                 <p class="text-xs text-center text-gray-400 mt-2 italic">Simplified estimate — not a full underwriting model.</p>
@@ -1154,30 +1034,6 @@
                 </div>
               </div>
 
-              <!-- Market Benchmarks -->
-              <div class="mt-4">
-                <h4 class="text-xs font-bold uppercase tracking-wide text-gray-400 mb-3">
-                  Yield Ranges
-                  <span v-if="assetClass && assetClassContext" class="ml-1 font-normal normal-case text-gray-400">— {{ assetClassContext.label }}</span>
-                </h4>
-                <div class="space-y-2">
-                  <div v-for="bm in marketBenchmarks" :key="bm.label"
-                    class="flex items-center justify-between text-sm">
-                    <span class="text-gray-500">{{ bm.label }}</span>
-                    <div class="flex items-center gap-2">
-                      <span class="font-semibold text-gray-700">{{ bm.range }}</span>
-                      <span v-if="bm.yours" class="text-xs px-2 py-0.5 rounded-full font-bold"
-                        :style="`background: ${badge.bg1}20; color: ${badge.bg1}`">
-                        yours
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <p class="text-xs text-gray-400 mt-3 leading-relaxed">
-                  Rough US rule-of-thumb ranges only — not thresholds for a "good deal." A 4% yield in Manhattan can outperform an 8% yield in a declining market. Compare against local submarket comps and current conditions.
-                </p>
-              </div>
-
               <!-- GRM Row -->
               <div v-if="grm !== null" class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center text-sm">
                 <div>
@@ -1207,57 +1063,73 @@
               </div>
             </div>
 
-            <!-- Sensitivity Table -->
-            <div v-if="calcMode === 'cap-rate' && sensitivityRows" class="px-6 pb-6 border-t border-gray-100 pt-5">
-              <h4 class="text-xs font-bold uppercase tracking-wide text-gray-400 mb-3">
-                Cap Rate at Different Property Values
-                <span class="ml-1 font-normal normal-case text-gray-400">(NOI fixed at {{ formatCurrency(noi) }})</span>
-              </h4>
-              <div class="overflow-x-auto -mx-1">
-                <table class="w-full text-xs">
-                  <thead>
-                    <tr class="border-b border-gray-100">
-                      <th class="text-left py-1.5 px-2 font-semibold text-gray-400">Change</th>
-                      <th class="text-right py-1.5 px-2 font-semibold text-gray-400">Value</th>
-                      <th class="text-right py-1.5 px-2 font-semibold text-gray-400">Cap Rate</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr v-for="row in sensitivityRows" :key="row.label"
-                      class="border-b border-gray-50 transition"
-                      :class="row.isCurrent ? 'font-bold' : 'text-gray-600'"
-                      :style="row.isCurrent ? 'background: rgba(245,158,11,0.07);' : ''">
-                      <td class="py-1.5 px-2" :style="row.isCurrent ? 'color: #92400e;' : ''">
-                        {{ row.label }}
-                      </td>
-                      <td class="text-right py-1.5 px-2">{{ formatCurrency(row.value) }}</td>
-                      <td class="text-right py-1.5 px-2"
-                        :class="row.capRate >= 6 ? 'text-emerald-600' : row.capRate >= 4 ? 'text-amber-600' : 'text-red-600'">
-                        {{ row.capRate.toFixed(2) }}%
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <p class="text-xs text-gray-400 mt-2 italic">Price sensitivity — assumes expenses and income stay constant.</p>
-            </div>
+            <!-- Sensitivity toggle + tables (collapsed by default) -->
+            <div v-if="calcMode === 'cap-rate' && (sensitivityRows || impliedValues)" class="border-t border-gray-100">
+              <button @click="showSensitivity = !showSensitivity"
+                class="w-full flex items-center justify-between px-4 py-3 text-xs font-semibold text-gray-500 hover:text-gray-800 hover:bg-gray-50 transition">
+                <div class="flex items-center gap-2">
+                  <svg class="w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                  </svg>
+                  Sensitivity Analysis
+                </div>
+                <svg class="w-3.5 h-3.5 transition-transform" :class="showSensitivity ? 'rotate-180' : ''"
+                  fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </button>
 
-            <!-- Implied Value Reverse Calc — cap-rate mode only -->
-            <div v-if="calcMode === 'cap-rate' && impliedValues" class="px-6 pb-6 border-t border-gray-100 pt-5">
-              <h4 class="text-xs font-bold uppercase tracking-wide text-gray-400 mb-3">
-                Implied Property Value at Target Cap Rates
-                <span class="ml-1 font-normal normal-case text-gray-400">(Value = NOI ÷ Rate)</span>
-              </h4>
-              <div class="space-y-1.5">
-                <div v-for="row in impliedValues" :key="row.rate"
-                  class="flex items-center justify-between text-xs px-2 py-1.5 rounded-lg"
-                  :class="row.isCurrent ? 'font-bold' : 'text-gray-600'"
-                  :style="row.isCurrent ? 'background: rgba(245,158,11,0.1); color: #92400e;' : ''">
-                  <span>{{ row.rate }}% cap rate</span>
-                  <span>{{ formatCurrency(row.impliedValue) }}</span>
+              <div v-if="showSensitivity">
+                <!-- Sensitivity Table -->
+                <div v-if="sensitivityRows" class="px-4 pb-4 pt-1">
+                  <h4 class="text-xs font-bold uppercase tracking-wide text-gray-400 mb-2">
+                    Cap Rate at Different Property Values
+                    <span class="ml-1 font-normal normal-case">(NOI = {{ formatCurrency(noi) }})</span>
+                  </h4>
+                  <div class="overflow-x-auto">
+                    <table class="w-full text-xs">
+                      <thead>
+                        <tr class="border-b border-gray-100">
+                          <th class="text-left py-1.5 px-2 font-semibold text-gray-400">Change</th>
+                          <th class="text-right py-1.5 px-2 font-semibold text-gray-400">Value</th>
+                          <th class="text-right py-1.5 px-2 font-semibold text-gray-400">Cap Rate</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="row in sensitivityRows" :key="row.label"
+                          class="border-b border-gray-50"
+                          :class="row.isCurrent ? 'font-bold' : 'text-gray-600'"
+                          :style="row.isCurrent ? 'background: rgba(245,158,11,0.07);' : ''">
+                          <td class="py-1.5 px-2" :style="row.isCurrent ? 'color: #92400e;' : ''">{{ row.label }}</td>
+                          <td class="text-right py-1.5 px-2">{{ formatCurrency(row.value) }}</td>
+                          <td class="text-right py-1.5 px-2"
+                            :class="row.capRate >= 6 ? 'text-emerald-600' : row.capRate >= 4 ? 'text-amber-600' : 'text-red-600'">
+                            {{ row.capRate.toFixed(2) }}%
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p class="text-xs text-gray-400 mt-2 italic">Price sensitivity — income and expenses held constant.</p>
+                </div>
+
+                <!-- Implied Value Reverse Calc -->
+                <div v-if="impliedValues" class="px-4 pb-4 pt-2 border-t border-gray-50">
+                  <h4 class="text-xs font-bold uppercase tracking-wide text-gray-400 mb-2">
+                    Implied Value at Target Cap Rates
+                  </h4>
+                  <div class="space-y-1">
+                    <div v-for="row in impliedValues" :key="row.rate"
+                      class="flex items-center justify-between text-xs px-2 py-1.5 rounded-lg"
+                      :class="row.isCurrent ? 'font-bold' : 'text-gray-600'"
+                      :style="row.isCurrent ? 'background: rgba(245,158,11,0.1); color: #92400e;' : ''">
+                      <span>{{ row.rate }}% cap rate</span>
+                      <span>{{ formatCurrency(row.impliedValue) }}</span>
+                    </div>
+                  </div>
+                  <p class="text-xs text-gray-400 mt-2 italic">Value = NOI ÷ Rate. Check if asking price aligns with market.</p>
                 </div>
               </div>
-              <p class="text-xs text-gray-400 mt-2 italic">Use this to check if the asking price aligns with market cap rates in your area.</p>
             </div>
 
             <!-- Share + PDF Export + Save Scenario -->
@@ -1305,12 +1177,9 @@
           </div>
 
           <!-- ── INVESTOR RESULTS CARD — cap-rate mode only ── -->
-          <div v-if="calcMode === 'cap-rate' && investorOpen && hasResult" class="bg-white rounded-2xl shadow-sm border border-yellow-200 overflow-hidden">
-            <div class="px-5 py-3 border-b border-yellow-100 flex items-center gap-2" style="background:linear-gradient(90deg,#fffbeb,#fef3c7);">
-              <svg class="w-4 h-4 flex-shrink-0" style="color:#d97706;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
-              </svg>
-              <h3 class="font-bold text-sm" style="color:#92400e;">Levered Returns</h3>
+          <div v-if="calcMode === 'cap-rate' && investorOpen && hasResult" class="bg-white rounded-2xl border border-gray-200 overflow-hidden">
+            <div class="px-5 py-3 border-b border-gray-100 flex items-center">
+              <h3 class="calc-section-title">Levered Returns</h3>
             </div>
             <div class="p-5 space-y-3">
 
@@ -1409,12 +1278,13 @@
           </div>
 
         </div>
+        </div><!-- /sticky outer wrapper -->
       </div>
 
       <!-- ═══════════════════════════════════════════════
            SCENARIOS
       ═══════════════════════════════════════════════ -->
-      <div v-if="calcMode === 'cap-rate' && hasResult && scenarios" class="mt-10">
+      <div v-if="calcMode === 'cap-rate' && hasResult && scenarios" class="px-5 lg:px-6 pb-6 pt-4 border-t border-gray-100">
         <button @click="scenariosOpen = !scenariosOpen"
           class="w-full flex items-center justify-between px-6 py-4 rounded-2xl border-2 font-semibold text-sm transition mb-4"
           :class="scenariosOpen
@@ -1488,36 +1358,35 @@
         </p>
       </div>
 
-        </div><!-- /right column -->
-      </div><!-- /lg:flex -->
-
-
+      </div><!-- /unified calculator panel -->
 
       <!-- ═══════════════════════════════════════════════
-           HOW TO USE THIS CALCULATOR
+           SEO CONTENT — editorial style (single container)
       ═══════════════════════════════════════════════ -->
-      <!-- ═══════════════════════════════════════════════
-           INTRO TEXT
-      ═══════════════════════════════════════════════ -->
-      <div class="space-y-3 max-w-3xl mt-12">
-        <p class="text-gray-700 text-base leading-relaxed">
-          The <strong>capitalization rate (cap rate)</strong> is the single most widely used metric in US real estate investment analysis. It measures a property's annual unlevered yield — the return you'd earn if you bought all-cash, with no mortgage. Every serious investor uses it to screen deals, anchor offer prices, and compare properties across markets on equal footing.
-        </p>
-        <p class="text-gray-600 text-sm leading-relaxed">
-          This free cap rate calculator covers all three use cases investors actually need: <strong>calculate cap rate</strong> from NOI and property value, <strong>find implied property value</strong> given your NOI and a target cap rate, and <strong>determine the NOI required</strong> to hit a specific yield on a given purchase price. Real-time results, no signup required.
-        </p>
-        <p class="text-gray-600 text-sm leading-relaxed">
-          Cap rate alone doesn't make or break a deal — context matters. A 4.5% cap in Dallas is not the same as a 4.5% cap in a declining Rust Belt market. That's why this tool includes <strong>2026 benchmarks by property type and state</strong>, a sensitivity table, GRM, and an investor returns module that layers in your financing to show levered cash-on-cash and DSCR alongside the unlevered cap rate.
-        </p>
-        <p class="text-gray-600 text-sm leading-relaxed">
-          Below you'll find the complete cap rate formula with a worked real-world example, interpretation guides, property type benchmarks, strategy notes for buy-and-hold, BRRRR, and commercial deals, plus an 8-question FAQ answering the most common investor questions.
-        </p>
+      <div class="mt-6 bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+
+      <!-- INTRO TEXT -->
+      <div class="border-b border-gray-100 px-8 py-8">
+        <div class="space-y-3">
+          <p class="text-gray-700 text-base leading-relaxed">
+            The <strong>capitalization rate (cap rate)</strong> is the single most widely used metric in US real estate investment analysis. It measures a property's annual unlevered yield — the return you'd earn if you bought all-cash, with no mortgage. Every serious investor uses it to screen deals, anchor offer prices, and compare properties across markets on equal footing.
+          </p>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            This free cap rate calculator covers all three use cases investors actually need: <strong>calculate cap rate</strong> from NOI and property value, <strong>find implied property value</strong> given your NOI and a target cap rate, and <strong>determine the NOI required</strong> to hit a specific yield on a given purchase price. Real-time results, no signup required.
+          </p>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Cap rate alone doesn't make or break a deal — context matters. A 4.5% cap in Dallas is not the same as a 4.5% cap in a declining Rust Belt market. That's why this tool includes <strong>2026 benchmarks by property type and state</strong>, a sensitivity table, GRM, and an investor returns module that layers in your financing to show levered cash-on-cash and DSCR alongside the unlevered cap rate.
+          </p>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Below you'll find the complete cap rate formula with a worked real-world example, interpretation guides, property type benchmarks, strategy notes for buy-and-hold, BRRRR, and commercial deals, plus an 8-question FAQ answering the most common investor questions.
+          </p>
+        </div>
       </div>
 
       <!-- ═══════════════════════════════════════════════
            OVERVIEW
       ═══════════════════════════════════════════════ -->
-      <div id="overview" class="mt-12 bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+      <div id="overview" class="border-b border-gray-100 px-8 py-8">
         <h2 class="text-xl font-extrabold mb-3" style="color: #1e3a5f;">Overview</h2>
         <p class="text-gray-600 leading-relaxed mb-3">
           The <strong>cap rate calculator</strong> is designed for US real estate investors who need a fast, reliable way to evaluate income-producing properties. It computes the capitalization rate from your rental income, vacancy, and operating expenses — or works in reverse to find implied property value or required NOI.
@@ -1530,13 +1399,10 @@
         </p>
       </div>
 
-      <div id="how-to-use" class="mt-6 bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-        <div class="px-8 py-6 border-b border-gray-100" style="background: linear-gradient(to right, #f8fafc, #ffffff);">
-          <h2 class="text-xl font-extrabold" style="color: #1e3a5f;">How to Use This Cap Rate Calculator</h2>
-          <p class="text-gray-500 text-sm mt-1">Follow these steps to analyze any US rental property in under 2 minutes</p>
-        </div>
-        <div class="p-8">
-          <div class="grid md:grid-cols-2 gap-10">
+      <div id="how-to-use" class="border-b border-gray-100 px-8 py-8">
+        <h2 class="text-xl font-extrabold mb-1" style="color: #1e3a5f;">How to Use This Cap Rate Calculator</h2>
+        <p class="text-gray-500 text-sm mb-6">Follow these steps to analyze any US rental property in under 2 minutes</p>
+        <div class="grid md:grid-cols-2 gap-10">
             <!-- Step-by-step -->
             <ol class="space-y-5">
               <li class="flex gap-4">
@@ -1598,17 +1464,70 @@
             </div>
           </div>
         </div>
+
+      <!-- ═══════════════════════════════════════════════
+           INPUTS & OUTPUTS REFERENCE TABLE
+      ═══════════════════════════════════════════════ -->
+      <div id="inputs-outputs" class="border-b border-gray-100">
+        <div class="px-8 py-5 border-b border-gray-100">
+          <h2 class="text-lg font-extrabold" style="color: #1e3a5f;">Inputs & Outputs — Field Reference</h2>
+          <p class="text-gray-500 text-sm mt-0.5">What each field means and where to find the numbers</p>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-gray-100" style="background:#f8fafc;">
+                <th class="text-left px-6 py-3 font-bold text-gray-500 uppercase text-xs tracking-wide w-40">Field</th>
+                <th class="text-left px-4 py-3 font-bold text-gray-500 uppercase text-xs tracking-wide">What it means</th>
+                <th class="text-left px-4 py-3 font-bold text-gray-500 uppercase text-xs tracking-wide w-48">Where to find it</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-50">
+              <tr>
+                <td class="px-6 py-3 font-semibold text-gray-800">Monthly Rent</td>
+                <td class="px-4 py-3 text-gray-600">Rent collected per unit per month. Use <em>actual</em> collected rent, not asking price.</td>
+                <td class="px-4 py-3 text-gray-500">Lease agreements, property management reports</td>
+              </tr>
+              <tr class="bg-gray-50/40">
+                <td class="px-6 py-3 font-semibold text-gray-800">Vacancy Rate</td>
+                <td class="px-4 py-3 text-gray-600">% of time units are empty. Typical US range: 5–8% for stabilized rentals.</td>
+                <td class="px-4 py-3 text-gray-500">Local market data, CoStar, historical occupancy from seller's T-12</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-3 font-semibold text-gray-800">Operating Expenses</td>
+                <td class="px-4 py-3 text-gray-600">All annual costs to operate the property: taxes, insurance, management, maintenance. <strong>Exclude debt service.</strong></td>
+                <td class="px-4 py-3 text-gray-500">Seller's T-12 P&L, county tax records, insurance quotes</td>
+              </tr>
+              <tr class="bg-gray-50/40">
+                <td class="px-6 py-3 font-semibold text-gray-800">Purchase Price</td>
+                <td class="px-4 py-3 text-gray-600">Agreed acquisition cost. Does not include closing costs or rehab.</td>
+                <td class="px-4 py-3 text-gray-500">Purchase contract, listing price</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-3 font-semibold text-gray-800">NOI (output)</td>
+                <td class="px-4 py-3 text-gray-600">Net Operating Income. EGI minus all operating expenses. The core income metric for income-producing property.</td>
+                <td class="px-4 py-3 text-gray-500 italic">Calculated automatically</td>
+              </tr>
+              <tr class="bg-gray-50/40">
+                <td class="px-6 py-3 font-semibold text-gray-800">Cap Rate (output)</td>
+                <td class="px-4 py-3 text-gray-600">Annual unlevered yield on total property value. Primary metric for comparing income properties across markets.</td>
+                <td class="px-4 py-3 text-gray-500 italic">Calculated automatically</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <!-- ═══════════════════════════════════════════════
            FORMULA & CALCULATION METHOD
       ═══════════════════════════════════════════════ -->
-      <div id="formula" class="mt-10 bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-        <div class="px-8 py-6 border-b border-gray-100" style="background: linear-gradient(to right, #f8fafc, #ffffff);">
+
+      <div id="formula" class="border-b border-gray-100">
+        <div class="px-8 py-6 border-b border-gray-100">
           <h2 class="text-xl font-extrabold" style="color: #1e3a5f;">Cap Rate Formula & Calculation Method</h2>
           <p class="text-gray-500 text-sm mt-1">The exact math this calculator uses — plus a real Dallas, TX example</p>
         </div>
-        <div class="p-8">
+        <div class="px-8 py-8">
           <div class="grid md:grid-cols-2 gap-10">
 
             <!-- Formula steps -->
@@ -1653,20 +1572,20 @@
             <!-- Formula box + notes -->
             <div class="space-y-4">
               <!-- Formula visual -->
-              <div class="p-5 rounded-2xl text-center" style="background: linear-gradient(135deg, #1e3a5f, #16304f);">
-                <p class="text-xs font-bold uppercase tracking-widest text-blue-300 mb-3">The Formula</p>
-                <div class="font-mono font-bold text-lg text-white mb-2">Cap Rate = NOI ÷ Value × 100</div>
-                <div class="font-mono text-xs text-blue-200 mb-1">NOI = EGI − Operating Expenses</div>
-                <div class="font-mono text-xs text-blue-300">EGI = Gross Income − Vacancy Loss</div>
+              <div class="p-5 rounded-xl text-center border border-gray-200 bg-gray-50">
+                <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">The Formula</p>
+                <div class="font-mono font-bold text-lg mb-2" style="color:#1e3a5f;">Cap Rate = NOI ÷ Value × 100</div>
+                <div class="font-mono text-xs text-gray-500 mb-1">NOI = EGI − Operating Expenses</div>
+                <div class="font-mono text-xs text-gray-500">EGI = Gross Income − Vacancy Loss</div>
                 <!-- Text diagram -->
-                <div class="mt-4 p-3 rounded-xl text-left font-mono text-xs" style="background: rgba(255,255,255,0.07); color: #93c5fd; line-height: 1.7;">
+                <div class="mt-4 p-3 rounded-lg border border-gray-200 text-left font-mono text-xs bg-white" style="color: #374151; line-height: 1.7;">
                   <div>Gross Rent Income</div>
                   <div>− Vacancy Loss (6%)</div>
-                  <div class="border-t border-blue-700 pt-1">= Effective Gross Income</div>
+                  <div class="border-t border-gray-300 pt-1">= Effective Gross Income</div>
                   <div>− Operating Expenses</div>
-                  <div class="border-t border-blue-700 pt-1">= NOI</div>
+                  <div class="border-t border-gray-300 pt-1">= NOI</div>
                   <div>÷ Property Value</div>
-                  <div class="border-t border-blue-700 pt-1 font-extrabold" style="color:#fcd34d;">= Cap Rate (%)</div>
+                  <div class="border-t border-gray-300 pt-1 font-extrabold" style="color:#1e3a5f;">= Cap Rate (%)</div>
                 </div>
               </div>
               <div class="p-4 rounded-xl border border-blue-100 bg-blue-50">
@@ -1719,65 +1638,11 @@
       </div>
 
       <!-- ═══════════════════════════════════════════════
-           INPUTS & OUTPUTS REFERENCE TABLE
-      ═══════════════════════════════════════════════ -->
-      <div id="inputs-outputs" class="mt-8 bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-        <div class="px-8 py-5 border-b border-gray-100">
-          <h2 class="text-lg font-extrabold" style="color: #1e3a5f;">Inputs & Outputs — Field Reference</h2>
-          <p class="text-gray-500 text-sm mt-0.5">What each field means and where to find the numbers</p>
-        </div>
-        <div class="overflow-x-auto">
-          <table class="w-full text-sm">
-            <thead>
-              <tr class="border-b border-gray-100" style="background:#f8fafc;">
-                <th class="text-left px-6 py-3 font-bold text-gray-500 uppercase text-xs tracking-wide w-40">Field</th>
-                <th class="text-left px-4 py-3 font-bold text-gray-500 uppercase text-xs tracking-wide">What it means</th>
-                <th class="text-left px-4 py-3 font-bold text-gray-500 uppercase text-xs tracking-wide w-48">Where to find it</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-50">
-              <tr>
-                <td class="px-6 py-3 font-semibold text-gray-800">Monthly Rent</td>
-                <td class="px-4 py-3 text-gray-600">Rent collected per unit per month. Use <em>actual</em> collected rent, not asking price.</td>
-                <td class="px-4 py-3 text-gray-500">Lease agreements, property management reports</td>
-              </tr>
-              <tr class="bg-gray-50/40">
-                <td class="px-6 py-3 font-semibold text-gray-800">Vacancy Rate</td>
-                <td class="px-4 py-3 text-gray-600">% of time units are empty. Typical US range: 5–8% for stabilized rentals.</td>
-                <td class="px-4 py-3 text-gray-500">Local market data, CoStar, historical occupancy from seller's T-12</td>
-              </tr>
-              <tr>
-                <td class="px-6 py-3 font-semibold text-gray-800">Operating Expenses</td>
-                <td class="px-4 py-3 text-gray-600">All annual costs to operate the property: taxes, insurance, management, maintenance. <strong>Exclude debt service.</strong></td>
-                <td class="px-4 py-3 text-gray-500">Seller's T-12 P&L, county tax records, insurance quotes</td>
-              </tr>
-              <tr class="bg-gray-50/40">
-                <td class="px-6 py-3 font-semibold text-gray-800">Purchase Price</td>
-                <td class="px-4 py-3 text-gray-600">Agreed acquisition cost. Does not include closing costs or rehab.</td>
-                <td class="px-4 py-3 text-gray-500">Purchase contract, listing price</td>
-              </tr>
-              <tr>
-                <td class="px-6 py-3 font-semibold text-gray-800">NOI (output)</td>
-                <td class="px-4 py-3 text-gray-600">Net Operating Income. EGI minus all operating expenses. The core income metric for income-producing property.</td>
-                <td class="px-4 py-3 text-gray-500 italic">Calculated automatically</td>
-              </tr>
-              <tr class="bg-gray-50/40">
-                <td class="px-6 py-3 font-semibold text-gray-800">Cap Rate (output)</td>
-                <td class="px-4 py-3 text-gray-600">Annual unlevered yield on total property value. Primary metric for comparing income properties across markets.</td>
-                <td class="px-4 py-3 text-gray-500 italic">Calculated automatically</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- ═══════════════════════════════════════════════
            EDUCATIONAL CONTENT + FAQ
       ═══════════════════════════════════════════════ -->
-      <div class="mt-10 grid md:grid-cols-2 gap-8">
 
         <!-- What is Cap Rate -->
-        <div id="what-is-cap-rate" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+        <div id="what-is-cap-rate" class="border-b border-gray-100 px-8 py-8">
           <h2 class="text-xl font-extrabold mb-4" style="color: #1e3a5f;">What Is Cap Rate (Capitalization Rate)?</h2>
           <p class="text-gray-600 leading-relaxed mb-4">
             The <strong>capitalization rate</strong> — universally called <strong>cap rate</strong> — is the ratio of a property's annual Net Operating Income (NOI) to its current market value or purchase price, expressed as a percentage. It answers a single, powerful question: <em>if I paid all cash, what annual return would this property generate?</em> Because it excludes financing, cap rate lets investors compare a $200k duplex in Memphis against a $2M apartment building in Denver on a single, consistent scale.
@@ -1791,7 +1656,7 @@
         </div>
 
         <!-- Good vs Bad -->
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+        <div class="border-b border-gray-100 px-8 py-8">
           <h2 class="text-xl font-extrabold mb-4" style="color: #1e3a5f;">What's a Typical Cap Rate?</h2>
           <div class="space-y-3 mb-4">
             <div v-for="tier in capRateTiers" :key="tier.label"
@@ -1808,12 +1673,67 @@
           <p class="text-xs text-gray-400 leading-relaxed">These are rough US averages, not definitions of a good or bad deal. Context, market cycle, and asset quality matter far more than the number alone. Cap rates compress in high-demand markets and expand when interest rates rise or local fundamentals weaken.</p>
         </div>
 
+      <!-- ═══════════════════════════════════════════════
+           WHAT YOUR RESULT MEANS
+      ═══════════════════════════════════════════════ -->
+      <div id="result-meaning" class="border-b border-gray-100 px-8 py-8">
+        <h2 class="text-xl font-extrabold mb-2" style="color: #1e3a5f;">What Your Cap Rate Result Means</h2>
+        <p class="text-gray-600 leading-relaxed mb-5">
+          Your cap rate is an annual unlevered income yield — what the property earns on its full value, before financing. Here is how to interpret each range:
+        </p>
+        <div class="space-y-3 mb-5">
+          <!-- GOOD -->
+          <div class="flex gap-4 p-4 rounded-xl bg-green-50 border border-green-200">
+            <div class="flex-shrink-0 mt-0.5">
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-green-500 text-white">GOOD</span>
+            </div>
+            <div>
+              <p class="font-bold text-sm text-green-800">≥ 7% — Strong Yield</p>
+              <p class="text-sm text-green-700 mt-1 leading-relaxed">Common in Midwest secondary markets (Indianapolis, Columbus, Memphis) and Southeast cities (Atlanta suburbs, Birmingham). Strong cash flow from day one. <em>Important check:</em> a cap rate this high can signal elevated risk — deferred maintenance, weak tenant base, or a declining submarket. Always ask why the yield is this elevated. If the fundamentals are solid, this is a legitimate high-performer.</p>
+            </div>
+          </div>
+          <!-- AVERAGE -->
+          <div class="flex gap-4 p-4 rounded-xl bg-blue-50 border border-blue-200">
+            <div class="flex-shrink-0 mt-0.5">
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-500 text-white">AVERAGE</span>
+            </div>
+            <div>
+              <p class="font-bold text-sm text-blue-800">5–6.9% — Market-Rate Yield</p>
+              <p class="text-sm text-blue-700 mt-1 leading-relaxed">The standard range for stabilized income properties in major US metros — Dallas, Phoenix, Denver, Charlotte, Nashville. This is where most institutional buyers set minimum thresholds for secondary markets. Balanced income and appreciation profile. If you're financing at today's rates (~7%), verify DSCR before proceeding.</p>
+            </div>
+          </div>
+          <!-- POOR / COASTAL -->
+          <div class="flex gap-4 p-4 rounded-xl bg-amber-50 border border-amber-200">
+            <div class="flex-shrink-0 mt-0.5">
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-500 text-white">POOR</span>
+            </div>
+            <div>
+              <p class="font-bold text-sm text-amber-800">3–4.9% — Low / Coastal Yield</p>
+              <p class="text-sm text-amber-700 mt-1 leading-relaxed">Standard for gateway markets — Los Angeles (3.5–4.5%), San Francisco (3–4%), NYC boroughs (3.5–5%), Seattle (4–5.5%). At these levels the deal is an <strong>appreciation play</strong>, not an income play. Current-period cash flow is minimal or negative when financed. Justified only with strong rent-growth conviction and long hold period.</p>
+            </div>
+          </div>
+          <!-- NEGATIVE / RED FLAG -->
+          <div class="flex gap-4 p-4 rounded-xl bg-red-50 border border-red-200">
+            <div class="flex-shrink-0 mt-0.5">
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-red-500 text-white">RED FLAG</span>
+            </div>
+            <div>
+              <p class="font-bold text-sm text-red-800">&lt; 3% or Negative NOI</p>
+              <p class="text-sm text-red-700 mt-1 leading-relaxed">Sub-3% cap rates appear only in top-tier trophy assets (Manhattan penthouses, SF tech-corridor offices) or signal a significant data problem. Negative NOI means operating expenses exceed income — the property is cash-flow negative before debt service. Do not proceed without a clear value-add or repositioning plan.</p>
+            </div>
+          </div>
+        </div>
+        <!-- RIS_CONTEXT -->
+        <div class="p-4 rounded-xl border border-gray-200 bg-gray-50">
+          <p class="text-sm font-semibold text-gray-800 mb-1">Why the same cap rate can be good in one market and poor in another</p>
+          <p class="text-sm text-gray-600 leading-relaxed">A 5% cap rate in Dallas reflects a strong, growing market with high occupancy and rent growth — investors accept lower initial yield because fundamentals support future appreciation. That same 5% cap rate in a Rust Belt city with declining population and rising vacancy is a warning sign. Cap rate is a ratio; the quality of the NOI underneath it matters just as much as the number. Always cross-reference with local submarket vacancy trends, population and job growth data, and comparable recent sales before drawing conclusions.</p>
+        </div>
       </div>
 
       <!-- ═══════════════════════════════════════════════
            CAP RATE BY US MARKET
       ═══════════════════════════════════════════════ -->
-      <div id="benchmarks" class="mt-8 bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+      <div id="benchmarks" class="border-b border-gray-100 px-8 py-8">
         <h2 class="text-xl font-extrabold mb-2" style="color: #1e3a5f;">Cap Rate Benchmarks by Market &amp; Property Type (2026)</h2>
         <p class="text-gray-500 text-sm mb-6">Typical stabilized cap rates by property type and US geography. Use as a starting point — always verify with current local broker comps and CoStar data.</p>
 
@@ -1940,66 +1860,9 @@
       </div>
 
       <!-- ═══════════════════════════════════════════════
-           WHAT YOUR RESULT MEANS
-      ═══════════════════════════════════════════════ -->
-      <div id="result-meaning" class="mt-8 bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-        <h2 class="text-xl font-extrabold mb-2" style="color: #1e3a5f;">What Your Cap Rate Result Means</h2>
-        <p class="text-gray-600 leading-relaxed mb-5">
-          Your cap rate is an annual unlevered income yield — what the property earns on its full value, before financing. Here is how to interpret each range:
-        </p>
-        <div class="space-y-3 mb-5">
-          <!-- GOOD -->
-          <div class="flex gap-4 p-4 rounded-xl bg-green-50 border border-green-200">
-            <div class="flex-shrink-0 mt-0.5">
-              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-green-500 text-white">GOOD</span>
-            </div>
-            <div>
-              <p class="font-bold text-sm text-green-800">≥ 7% — Strong Yield</p>
-              <p class="text-sm text-green-700 mt-1 leading-relaxed">Common in Midwest secondary markets (Indianapolis, Columbus, Memphis) and Southeast cities (Atlanta suburbs, Birmingham). Strong cash flow from day one. <em>Important check:</em> a cap rate this high can signal elevated risk — deferred maintenance, weak tenant base, or a declining submarket. Always ask why the yield is this elevated. If the fundamentals are solid, this is a legitimate high-performer.</p>
-            </div>
-          </div>
-          <!-- AVERAGE -->
-          <div class="flex gap-4 p-4 rounded-xl bg-blue-50 border border-blue-200">
-            <div class="flex-shrink-0 mt-0.5">
-              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-500 text-white">AVERAGE</span>
-            </div>
-            <div>
-              <p class="font-bold text-sm text-blue-800">5–6.9% — Market-Rate Yield</p>
-              <p class="text-sm text-blue-700 mt-1 leading-relaxed">The standard range for stabilized income properties in major US metros — Dallas, Phoenix, Denver, Charlotte, Nashville. This is where most institutional buyers set minimum thresholds for secondary markets. Balanced income and appreciation profile. If you're financing at today's rates (~7%), verify DSCR before proceeding.</p>
-            </div>
-          </div>
-          <!-- POOR / COASTAL -->
-          <div class="flex gap-4 p-4 rounded-xl bg-amber-50 border border-amber-200">
-            <div class="flex-shrink-0 mt-0.5">
-              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-500 text-white">POOR</span>
-            </div>
-            <div>
-              <p class="font-bold text-sm text-amber-800">3–4.9% — Low / Coastal Yield</p>
-              <p class="text-sm text-amber-700 mt-1 leading-relaxed">Standard for gateway markets — Los Angeles (3.5–4.5%), San Francisco (3–4%), NYC boroughs (3.5–5%), Seattle (4–5.5%). At these levels the deal is an <strong>appreciation play</strong>, not an income play. Current-period cash flow is minimal or negative when financed. Justified only with strong rent-growth conviction and long hold period.</p>
-            </div>
-          </div>
-          <!-- NEGATIVE / RED FLAG -->
-          <div class="flex gap-4 p-4 rounded-xl bg-red-50 border border-red-200">
-            <div class="flex-shrink-0 mt-0.5">
-              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-red-500 text-white">RED FLAG</span>
-            </div>
-            <div>
-              <p class="font-bold text-sm text-red-800">&lt; 3% or Negative NOI</p>
-              <p class="text-sm text-red-700 mt-1 leading-relaxed">Sub-3% cap rates appear only in top-tier trophy assets (Manhattan penthouses, SF tech-corridor offices) or signal a significant data problem. Negative NOI means operating expenses exceed income — the property is cash-flow negative before debt service. Do not proceed without a clear value-add or repositioning plan.</p>
-            </div>
-          </div>
-        </div>
-        <!-- RIS_CONTEXT -->
-        <div class="p-4 rounded-xl border border-gray-200 bg-gray-50">
-          <p class="text-sm font-semibold text-gray-800 mb-1">Why the same cap rate can be good in one market and poor in another</p>
-          <p class="text-sm text-gray-600 leading-relaxed">A 5% cap rate in Dallas reflects a strong, growing market with high occupancy and rent growth — investors accept lower initial yield because fundamentals support future appreciation. That same 5% cap rate in a Rust Belt city with declining population and rising vacancy is a warning sign. Cap rate is a ratio; the quality of the NOI underneath it matters just as much as the number. Always cross-reference with local submarket vacancy trends, population and job growth data, and comparable recent sales before drawing conclusions.</p>
-        </div>
-      </div>
-
-      <!-- ═══════════════════════════════════════════════
            STRATEGY
       ═══════════════════════════════════════════════ -->
-      <div id="strategy" class="mt-8 bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+      <div id="strategy" class="border-b border-gray-100 px-8 py-8">
         <h2 class="text-xl font-extrabold mb-2" style="color: #1e3a5f;">When Cap Rate Matters Most</h2>
         <p class="text-gray-500 text-sm mb-6">How cap rate fits into each major US real estate investment strategy</p>
         <div class="grid md:grid-cols-2 gap-6">
@@ -2076,7 +1939,7 @@
       <!-- ═══════════════════════════════════════════════
            APPLICATIONS
       ═══════════════════════════════════════════════ -->
-      <div id="applications" class="mt-8 bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+      <div id="applications" class="border-b border-gray-100 px-8 py-8">
         <h2 class="text-xl font-extrabold mb-4" style="color: #1e3a5f;">Applications of Cap Rate Analysis</h2>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <div class="p-4 rounded-xl border border-gray-100 bg-gray-50">
@@ -2109,7 +1972,7 @@
       <!-- ═══════════════════════════════════════════════
            INDUSTRY STANDARDS
       ═══════════════════════════════════════════════ -->
-      <div id="industry-standards" class="mt-8 bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+      <div id="industry-standards" class="border-b border-gray-100 px-8 py-8">
         <h2 class="text-xl font-extrabold mb-4" style="color: #1e3a5f;">Industry Standards &amp; Professional Guidelines</h2>
         <div class="grid md:grid-cols-3 gap-6">
 
@@ -2170,7 +2033,7 @@
       <!-- ═══════════════════════════════════════════════
            LIMITATIONS
       ═══════════════════════════════════════════════ -->
-      <div id="limitations" class="mt-8 bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+      <div id="limitations" class="border-b border-gray-100 px-8 py-8">
         <h2 class="text-xl font-extrabold mb-4" style="color: #1e3a5f;">Limitations of Cap Rate</h2>
         <div class="grid sm:grid-cols-2 gap-5">
           <div class="p-4 rounded-xl border border-red-100 bg-red-50/50">
@@ -2206,7 +2069,7 @@
       <!-- ═══════════════════════════════════════════════
            COMMON MISTAKES
       ═══════════════════════════════════════════════ -->
-      <div id="common-mistakes" class="mt-8 bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+      <div id="common-mistakes" class="border-b border-gray-100 px-8 py-8">
         <h2 class="text-xl font-extrabold mb-4" style="color: #1e3a5f;">Common Mistakes When Calculating Cap Rate</h2>
         <div class="space-y-3">
           <div class="flex gap-4 p-4 rounded-xl border border-amber-100 bg-amber-50/50">
@@ -2248,7 +2111,7 @@
       </div>
 
       <!-- FAQ Section -->
-      <div id="faq" class="mt-10 bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+      <div id="faq" class="px-8 py-8">
         <h2 class="text-2xl font-extrabold mb-8 text-center" style="color: #1e3a5f;">
           Frequently Asked Questions
         </h2>
@@ -2274,9 +2137,11 @@
         </div>
       </div>
 
+      </div><!-- /editorial wrapper -->
+
       <!-- Other Calculators CTA -->
-      <div class="mt-10 rounded-2xl p-8 text-center text-white"
-        style="background: linear-gradient(135deg, #1e3a5f 0%, #16304f 100%);">
+      <div id="related-calculators" class="mt-6 rounded-2xl p-8 text-center text-white"
+        style="background: #1e3a5f;">
         <h2 class="text-2xl font-extrabold mb-2">Ready to Dig Deeper?</h2>
         <p class="text-blue-200 mb-6">Cap rate is just the start. Use our full toolkit for complete deal analysis.</p>
         <div class="flex flex-wrap justify-center gap-3">
@@ -2319,7 +2184,7 @@
          FOOTER
     ═══════════════════════════════════════════════ -->
     <footer class="mt-16 border-t border-gray-200 bg-white py-8 px-4">
-      <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="max-w-[1100px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
         <p class="text-sm text-gray-400">© 2026 RealCalc. For informational purposes only. Not financial advice.</p>
         <div class="flex gap-6">
           <NuxtLink to="/privacy" class="text-sm text-gray-400 hover:text-gray-600 transition">Privacy</NuxtLink>
@@ -2457,6 +2322,7 @@ const valueBasis   = ref('purchase')
 const openFaq      = ref(null)
 const assetClass   = ref('')
 const shareSuccess = ref(false)
+const isNavExpanded = ref(false)
 
 // Investor Returns module
 const investorOpen = ref(false)
@@ -2471,6 +2337,9 @@ const investorForm = reactive({
 
 // Scenarios module
 const scenariosOpen = ref(false)
+
+// Sensitivity / analysis panel toggle (collapsed by default to keep results compact)
+const showSensitivity = ref(false)
 
 // ── Calculator Mode ──────────────────────────────────────────────────────────
 // 'cap-rate'  → standard: NOI / Property Value → Cap Rate
@@ -2575,6 +2444,16 @@ const noi = computed(() =>
 const capRate = computed(() =>
   propertyValueCalc.value > 0 ? (noi.value / propertyValueCalc.value) * 100 : 0
 )
+
+// Adaptive font size — shrinks for very large cap rate numbers
+const capRateFontClass = computed(() => {
+  if (!hasResult.value) return 'text-5xl'
+  const s = capRate.value.toFixed(2) + '%'
+  if (s.length >= 10) return 'text-2xl'
+  if (s.length >= 8)  return 'text-3xl'
+  if (s.length >= 6)  return 'text-5xl'
+  return 'text-6xl'
+})
 
 // GRM — Gross Rent Multiplier (supplemental metric in cap-rate mode)
 const grm = computed(() => {
@@ -3059,7 +2938,8 @@ function resetForm() {
   investorOpen.value   = false
   shareSuccess.value   = false
   openFaq.value        = null
-  scenariosOpen.value  = false
+  scenariosOpen.value   = false
+  showSensitivity.value = false
 }
 
 function toggleFaq(i) {
