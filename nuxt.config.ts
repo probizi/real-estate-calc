@@ -32,6 +32,9 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
 
   nitro: {
-    compressPublicAssets: true
+    compressPublicAssets: true,
+    prerender: {
+      failOnError: false
+    }
   }
 })

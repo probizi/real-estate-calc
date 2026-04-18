@@ -229,7 +229,7 @@
       </div>
 
       <!-- Two-column body: inputs left, results right -->
-      <div class="lg:grid lg:grid-cols-[3fr_2fr] items-stretch">
+      <div class="lg:grid lg:grid-cols-[3fr_2fr] items-stretch" style="align-items: stretch; grid-auto-rows: 1fr;">
 
         <!-- ── INPUTS (left column) ── -->
         <div class="calc-inputs border-b lg:border-b-0 lg:border-r border-gray-200 bg-white min-w-0">
@@ -710,9 +710,9 @@
         </div>
 
         <!-- ── RESULTS (right column, sticky) ── -->
-        <div class="lg:self-stretch bg-gray-50 min-w-0 w-full">
+        <div class="lg:self-stretch bg-gray-50 min-w-0 w-full" style="align-self: stretch; min-height: 100%;">
         <div class="lg:sticky lg:top-[4.5rem] min-w-0 w-full">
-        <div class="space-y-4 p-4 lg:p-5 scrollbar-thin">
+        <div class="space-y-4 p-4 lg:p-5 scrollbar-thin max-h-[calc(100vh-5rem)] overflow-y-auto">
 
           <!-- Main Result -->
           <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
