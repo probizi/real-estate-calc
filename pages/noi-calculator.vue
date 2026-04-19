@@ -66,11 +66,16 @@
             <li><a href="#result-meaning" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Result Meaning</a></li>
             <li><a href="#include-exclude" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Include &amp; Exclude</a></li>
             <li><a href="#benchmarks" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Benchmarks</a></li>
+            <li><a href="#strategy" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Strategy</a></li>
+            <li><a href="#applications" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Applications</a></li>
+            <li><a href="#industry-standards" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Industry Standards</a></li>
+            <li><a href="#limitations" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Limitations</a></li>
             <li><a href="#noi-vs-cashflow" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">NOI vs Cash Flow</a></li>
             <li><a href="#property-types" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Property Types</a></li>
             <li><a href="#common-mistakes" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Common Mistakes</a></li>
             <li><a href="#market-ratios" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Market Ratios</a></li>
             <li><a href="#faq" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">FAQ</a></li>
+            <li><a href="#related-calculators" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Related Calculators</a></li>
           </ul>
 
           <div class="md:hidden">
@@ -86,11 +91,16 @@
               <li><a href="#result-meaning" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Result Meaning</a></li>
               <li><a href="#include-exclude" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Include &amp; Exclude</a></li>
               <li><a href="#benchmarks" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Benchmarks</a></li>
+              <li><a href="#strategy" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Strategy</a></li>
+              <li><a href="#applications" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Applications</a></li>
+              <li><a href="#industry-standards" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Industry Standards</a></li>
+              <li><a href="#limitations" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Limitations</a></li>
               <li><a href="#noi-vs-cashflow" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">NOI vs Cash Flow</a></li>
               <li><a href="#property-types" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Property Types</a></li>
               <li><a href="#common-mistakes" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Common Mistakes</a></li>
               <li><a href="#market-ratios" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Market Ratios</a></li>
               <li><a href="#faq" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">FAQ</a></li>
+              <li><a href="#related-calculators" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Related Calculators</a></li>
             </ul>
             <button
               @click="isNavExpanded = !isNavExpanded"
@@ -1072,6 +1082,215 @@
         </div>
       </div>
 
+      <!-- ═══════════════════════════════════════════════
+           STRATEGY
+      ═══════════════════════════════════════════════ -->
+      <div id="strategy" class="border-b border-gray-100 px-8 py-8">
+        <h2 class="text-xl font-extrabold mb-2" style="color: #1e3a5f;">When NOI Matters Most</h2>
+        <p class="text-gray-500 text-sm mb-6">How NOI fits into each major US real estate investment strategy.</p>
+        <div class="grid md:grid-cols-2 gap-6">
+
+          <!-- Buy & Hold -->
+          <div class="p-5 rounded-xl border border-gray-100 bg-gray-50">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-bold text-white" style="background:#1e3a5f;">Buy &amp; Hold</span>
+            </div>
+            <p class="text-gray-700 text-sm leading-relaxed mb-3">
+              NOI is one of the cleanest first-pass metrics for long-term rental investing because it tells you whether the property works operationally before financing structure enters the discussion. For example, if a duplex in Columbus produces $38,000 of NOI on $72,000 of annual gross rent, the 52.8% NOI Margin suggests the building is retaining a healthy share of income and may deserve deeper analysis.
+            </p>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              For buy-and-hold investors, the practical move is to use NOI first, then layer in DSCR, cap rate, and cash-on-cash return. If the operating line is weak, leverage usually makes the deal look worse, not better.
+            </p>
+          </div>
+
+          <!-- BRRRR -->
+          <div class="p-5 rounded-xl border border-blue-100 bg-blue-50">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-bold text-white bg-blue-600">BRRRR</span>
+            </div>
+            <p class="text-gray-700 text-sm leading-relaxed mb-3">
+              In BRRRR, NOI matters twice: once when you buy the underperforming property and again when you refinance the stabilized one. The initial acquisition may have weak or even negative NOI because of vacancy and rehab disruption, but the exit refinance case depends on what the stabilized NOI becomes once rents, occupancy, and expenses normalize.
+            </p>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              A BRRRR investor might buy a 6-unit building with $22,000 current NOI, renovate it, then stabilize it to $54,000 NOI. That stabilized number is what starts to support refinance proceeds and long-term hold logic.
+            </p>
+          </div>
+
+          <!-- Commercial -->
+          <div class="p-5 rounded-xl border border-amber-100 bg-amber-50/60">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-bold" style="background:#f59e0b; color:#1e3a5f;">Commercial</span>
+            </div>
+            <p class="text-gray-700 text-sm leading-relaxed mb-3">
+              In commercial real estate, NOI is central because valuation often flows directly from income. Appraisers, brokers, and lenders use NOI as the base number that later interacts with cap rate, debt sizing, and yield expectations. That is why commercial underwriting fights so hard over lease rollover, recoveries, and normalized expenses: a small NOI change can move value materially.
+            </p>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              In practice, a cleaner and more durable NOI usually commands a stronger valuation than a noisy one. Predictability matters almost as much as the raw number.
+            </p>
+          </div>
+
+          <!-- Fix & Flip -->
+          <div class="p-5 rounded-xl border border-emerald-100 bg-emerald-50/60">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-bold text-white" style="background:#059669;">Fix &amp; Flip</span>
+            </div>
+            <p class="text-gray-700 text-sm leading-relaxed mb-3">
+              NOI matters less for a pure cosmetic flip of an owner-occupied house, but it absolutely matters when the flip buyer is likely to be an investor. A small apartment building or mixed-use asset may be sold on a stabilized income story rather than only on comps, so the post-renovation NOI becomes part of the exit positioning.
+            </p>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              If the planned exit buyer is a landlord, showing a defensible stabilized NOI can support a stronger sale narrative than talking only about finishes and curb appeal.
+            </p>
+          </div>
+
+          <!-- Bid Pricing -->
+          <div class="p-5 rounded-xl border border-gray-100 bg-gray-50">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-bold text-white" style="background:#6366f1;">Bid Pricing</span>
+            </div>
+            <h3 class="font-bold text-gray-800 mb-2 text-sm">Using NOI to Set a Maximum Offer</h3>
+            <div class="p-3 rounded-xl bg-white border border-gray-100 font-mono text-sm text-center mb-3" style="color: #1e3a5f;">
+              Max Price = NOI / Target Cap Rate
+            </div>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              This is the income-approach logic investors use every day. If a property is expected to stabilize at $80,000 NOI and your target cap rate is 6.5%, the rough value indication is about $1.23 million, which helps anchor your maximum offer before financing assumptions are layered in.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════
+           APPLICATIONS
+      ═══════════════════════════════════════════════ -->
+      <div id="applications" class="border-b border-gray-100 px-8 py-8">
+        <h2 class="text-xl font-extrabold mb-4" style="color: #1e3a5f;">Applications of NOI Analysis</h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="p-4 rounded-xl border border-gray-100 bg-gray-50">
+            <p class="font-bold text-sm mb-2" style="color: #1e3a5f;">Deal Screening</p>
+            <p class="text-sm text-gray-600">Use NOI to eliminate weak deals quickly. If the property's NOI Margin is already below 25% on honest assumptions, it usually does not deserve a full underwriting pass unless it is a deliberate turnaround play.</p>
+          </div>
+          <div class="p-4 rounded-xl border border-gray-100 bg-gray-50">
+            <p class="font-bold text-sm mb-2" style="color: #1e3a5f;">Portfolio Comparison</p>
+            <p class="text-sm text-gray-600">NOI and NOI Margin help compare unlike properties on a cleaner basis than gross rent alone. A portfolio with slightly lower top-line rent may still be better if its operating structure is materially more efficient.</p>
+          </div>
+          <div class="p-4 rounded-xl border border-gray-100 bg-gray-50">
+            <p class="font-bold text-sm mb-2" style="color: #1e3a5f;">Offer Price Negotiation</p>
+            <p class="text-sm text-gray-600">If a broker's pro forma overstates NOI by understating taxes, repairs, or vacancy, you can use corrected NOI to justify a lower offer. This is one of the most practical negotiation uses of underwriting.</p>
+          </div>
+          <div class="p-4 rounded-xl border border-gray-100 bg-gray-50">
+            <p class="font-bold text-sm mb-2" style="color: #1e3a5f;">Refinance Analysis</p>
+            <p class="text-sm text-gray-600">NOI feeds directly into debt sizing through DSCR logic. If NOI improves after stabilization, refinance proceeds can often improve even without a dramatic cap-rate change. Agency multifamily underwriting relies on DSCR thresholds, which makes clean NOI a prerequisite for realistic refinance analysis.</p>
+          </div>
+          <div class="p-4 rounded-xl border border-gray-100 bg-gray-50">
+            <p class="font-bold text-sm mb-2" style="color: #1e3a5f;">Exit Strategy Modeling</p>
+            <p class="text-sm text-gray-600">Investors use projected stabilized NOI to estimate possible exit value under multiple cap-rate assumptions. That makes NOI one of the bridge metrics between operations and resale strategy.</p>
+          </div>
+          <div class="p-4 rounded-xl border border-gray-100 bg-gray-50">
+            <p class="font-bold text-sm mb-2" style="color: #1e3a5f;">BRRRR &amp; Value-Add</p>
+            <p class="text-sm text-gray-600">Value-add investors use current NOI, renovation-period NOI, and stabilized NOI as three separate checkpoints. The spread between those states helps determine whether the renovation thesis is actually creating economic value.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════
+           INDUSTRY STANDARDS
+      ═══════════════════════════════════════════════ -->
+      <div id="industry-standards" class="border-b border-gray-100 px-8 py-8">
+        <h2 class="text-xl font-extrabold mb-4" style="color: #1e3a5f;">Industry Standards &amp; Professional Guidelines</h2>
+        <p class="text-gray-500 text-sm mb-6">NOI is not just an investor metric; it is embedded in agency underwriting, valuation practice, and lender decision-making.</p>
+        <div class="grid md:grid-cols-3 gap-6">
+
+          <!-- Fannie Mae / Freddie Mac -->
+          <div class="p-5 rounded-xl border border-gray-100 bg-gray-50">
+            <div class="flex items-center gap-2 mb-3">
+              <div class="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0" style="background:#1e3a5f;">
+                <span class="text-xs font-extrabold text-white">F</span>
+              </div>
+              <h3 class="font-bold text-gray-800 text-sm">Fannie Mae &amp; Freddie Mac</h3>
+            </div>
+            <ul class="space-y-2 text-sm text-gray-600">
+              <li class="flex gap-2"><span class="text-amber-500 font-bold flex-shrink-0">→</span> Fannie Mae Multifamily defines and uses underwritten DSCR as a core loan-sizing metric, which makes NOI a key upstream input in agency multifamily underwriting.</li>
+              <li class="flex gap-2"><span class="text-amber-500 font-bold flex-shrink-0">→</span> Fannie Mae's Near-Stabilization term sheet shows a <strong>1.25x</strong> minimum DSCR for Tier 2 loans and <strong>1.15x</strong> for certain MAH loans, reinforcing why accurate NOI matters before financing is structured.</li>
+              <li class="flex gap-2"><span class="text-amber-500 font-bold flex-shrink-0">→</span> Freddie Mac Multifamily cites a <strong>maximum 80% LTV</strong> and <strong>minimum 1.25x DSCR</strong> for fixed-rate loans, putting NOI at the center of debt sizing.</li>
+              <li class="flex gap-2"><span class="text-amber-500 font-bold flex-shrink-0">→</span> Bad NOI inputs produce bad DSCR outputs, which can distort leverage, valuation, and refinance expectations.</li>
+            </ul>
+          </div>
+
+          <!-- CCIM -->
+          <div class="p-5 rounded-xl border border-gray-100 bg-gray-50">
+            <div class="flex items-center gap-2 mb-3">
+              <div class="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0" style="background:#1e3a5f;">
+                <span class="text-xs font-extrabold text-white">C</span>
+              </div>
+              <h3 class="font-bold text-gray-800 text-sm">CCIM Guidelines</h3>
+            </div>
+            <p class="text-gray-600 text-sm leading-relaxed mb-3">
+              CCIM methodology consistently treats NOI as a foundational metric in income-based real estate analysis. In practice, CCIM emphasizes normalizing income and expenses so property performance can be compared and capitalized on a consistent basis.
+            </p>
+            <ul class="space-y-2 text-sm text-gray-600">
+              <li class="flex gap-2"><span class="text-amber-500 font-bold flex-shrink-0">→</span> NOI should reflect real operating performance, not financing choices.</li>
+              <li class="flex gap-2"><span class="text-amber-500 font-bold flex-shrink-0">→</span> Comparable income-property analysis works only when income and expenses are normalized consistently.</li>
+              <li class="flex gap-2"><span class="text-amber-500 font-bold flex-shrink-0">→</span> Investors should separate recurring operating items from nonrecurring events before drawing conclusions.</li>
+            </ul>
+          </div>
+
+          <!-- Common Lender Thresholds -->
+          <div class="p-5 rounded-xl border border-gray-100 bg-gray-50">
+            <div class="flex items-center gap-2 mb-3">
+              <div class="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0" style="background:#1e3a5f;">
+                <span class="text-xs font-extrabold text-white">$</span>
+              </div>
+              <h3 class="font-bold text-gray-800 text-sm">Common Lender Thresholds</h3>
+            </div>
+            <ul class="space-y-2 text-sm text-gray-600">
+              <li class="flex gap-2"><span class="text-amber-500 font-bold flex-shrink-0">→</span> <strong>DSCR ≥ 1.25x</strong> is a widely used comfort level for many stabilized income-property loans.</li>
+              <li class="flex gap-2"><span class="text-amber-500 font-bold flex-shrink-0">→</span> <strong>DSCR 1.00x–1.24x</strong> is usually a caution zone where leverage may be limited or pricing worsens.</li>
+              <li class="flex gap-2"><span class="text-amber-500 font-bold flex-shrink-0">→</span> <strong>LTV at or below 75%–80%</strong> is common for many stabilized multifamily and commercial structures, depending on asset quality and execution.</li>
+              <li class="flex gap-2"><span class="text-amber-500 font-bold flex-shrink-0">→</span> Lenders often stress NOI by using higher vacancy assumptions, higher underwriting rates, or normalized expense loads rather than taking seller numbers at face value.</li>
+              <li class="flex gap-2"><span class="text-amber-500 font-bold flex-shrink-0">→</span> The cleaner and more stable the NOI, the easier it is to defend the debt ask.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════
+           LIMITATIONS
+      ═══════════════════════════════════════════════ -->
+      <div id="limitations" class="border-b border-gray-100 px-8 py-8">
+        <h2 class="text-xl font-extrabold mb-4" style="color: #1e3a5f;">Limitations of NOI</h2>
+        <p class="text-gray-500 text-sm mb-5">NOI is essential, but it has blind spots.</p>
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div class="p-4 rounded-xl border border-red-100 bg-red-50/50">
+            <p class="font-bold text-sm text-red-800 mb-2">Does Not Capture Appreciation</p>
+            <p class="text-sm text-gray-600">NOI tells you what the property earns operationally, not what the asset might gain in value from market appreciation. A market with flat current NOI can still be attractive if it has unusually strong future rent growth or redevelopment upside.</p>
+          </div>
+          <div class="p-4 rounded-xl border border-red-100 bg-red-50/50">
+            <p class="font-bold text-sm text-red-800 mb-2">Ignores Financing</p>
+            <p class="text-sm text-gray-600">NOI is explicitly a pre-debt metric. Two investors buying the same asset with different leverage can have identical NOI and completely different cash flow, DSCR, and equity returns.</p>
+          </div>
+          <div class="p-4 rounded-xl border border-red-100 bg-red-50/50">
+            <p class="font-bold text-sm text-red-800 mb-2">Point-in-Time Snapshot</p>
+            <p class="text-sm text-gray-600">NOI is only as good as the period it represents. A trailing 12-month NOI, current run-rate NOI, and stabilized forward NOI may all be different numbers, especially in lease-up, renovation, or distress situations.</p>
+          </div>
+          <div class="p-4 rounded-xl border border-red-100 bg-red-50/50">
+            <p class="font-bold text-sm text-red-800 mb-2">Quality of Input Data</p>
+            <p class="text-sm text-gray-600">Garbage in, garbage out applies hard here. If the rent roll is inflated, the expenses are underreported, or a tax reassessment is ignored, the NOI can look "strong" while the real deal is weak.</p>
+          </div>
+        </div>
+
+        <!-- When Not to Use -->
+        <div class="mt-6">
+          <h3 class="font-bold text-gray-800 mb-3">When Not to Use NOI as the Primary Metric</h3>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li class="flex gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-red-400 flex-shrink-0 mt-1.5"></span><strong>Vacant properties:</strong> If the building is mostly or fully vacant, trailing NOI may tell you almost nothing about future stabilized performance.</li>
+            <li class="flex gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-red-400 flex-shrink-0 mt-1.5"></span><strong>Short-term rentals:</strong> STR income is more volatile and operationally intensive, so ADR, occupancy, seasonality, and management complexity deserve heavier weight.</li>
+            <li class="flex gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-red-400 flex-shrink-0 mt-1.5"></span><strong>Land and development deals:</strong> Raw land, teardown sites, and development plays are not primarily NOI stories at the acquisition stage.</li>
+            <li class="flex gap-2.5"><span class="w-1.5 h-1.5 rounded-full bg-red-400 flex-shrink-0 mt-1.5"></span><strong>Owner-occupied property:</strong> If the deal is being bought mainly for owner use, operational income may be secondary to strategic or business value.</li>
+          </ul>
+        </div>
+      </div>
+
       <!-- Common Mistakes -->
       <div id="common-mistakes" class="border-b border-gray-100 px-8 py-8">
         <h2 class="text-xl font-extrabold mb-4" style="color: #1e3a5f;">5 Common NOI Calculation Mistakes</h2>
@@ -1202,7 +1421,7 @@
       </div>
 
       <!-- Related Calculators CTA -->
-      <div class="px-8 py-8">
+      <div id="related-calculators" class="px-8 py-8">
         <div class="rounded-2xl p-8 text-white" style="background: #1e3a5f;">
           <h2 class="text-xl font-extrabold mb-2">Use NOI in Your Full Analysis</h2>
           <p class="text-blue-200 text-sm mb-6 leading-relaxed">NOI is the starting point. Run it through our other calculators for a complete picture of any investment opportunity.</p>
