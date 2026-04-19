@@ -235,7 +235,7 @@
 
               <div>
                 <label for="gross-rent" class="block text-xs font-semibold text-gray-700 mb-1">
-                  Gross Scheduled Rent (Annual)
+                  Gross Rental Income (Annual)
                   <span class="ml-1 text-xs font-normal text-gray-400">(100% occupancy)</span>
                 </label>
                 <div class="relative">
@@ -253,7 +253,7 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
                     <input id="other-income" v-model="form.otherIncome" type="number" min="0" step="100"
-                      placeholder="e.g. 2,400"
+                      placeholder="Laundry, parking, storage"
                       class="w-full pl-8 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition bg-white" />
                   </div>
                   <p class="text-xs text-gray-400 mt-0.5">Laundry, parking, storage</p>
@@ -264,9 +264,19 @@
                     <span class="text-xs font-normal text-gray-400 ml-1">(optional)</span>
                   </label>
                   <input id="num-units" v-model="form.numUnits" type="number" min="1" step="1"
-                    placeholder="e.g. 4"
+                    placeholder="Total unit count"
                     class="w-full px-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition bg-white" />
                   <p class="text-xs text-gray-400 mt-0.5">For per-unit metrics</p>
+                </div>
+                <div>
+                  <label for="rentable-sqft" class="block text-xs font-semibold text-gray-700 mb-1">
+                    Rentable Square Feet
+                    <span class="text-xs font-normal text-gray-400 ml-1">(optional)</span>
+                  </label>
+                  <input id="rentable-sqft" v-model="form.rentableSqft" type="number" min="1" step="10"
+                    placeholder="Total rentable sq ft"
+                    class="w-full px-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition bg-white" />
+                  <p class="text-xs text-gray-400 mt-0.5">For per-sqft metrics</p>
                 </div>
               </div>
 
@@ -303,7 +313,7 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
                     <input id="fi-other-income" v-model="form.otherIncome" type="number" min="0" step="100"
-                      placeholder="e.g. 2,400"
+                      placeholder="Laundry, parking, storage"
                       class="w-full pl-8 pr-4 py-2 rounded-xl border border-blue-200 hover:border-blue-300 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 outline-none text-gray-900 font-semibold text-sm transition bg-white" />
                   </div>
                   <p class="text-xs text-gray-400 mt-0.5">Laundry, parking, storage</p>
@@ -315,7 +325,7 @@
                   </label>
                   <div class="relative">
                     <input id="fi-vacancy" v-model="form.vacancyRate" type="number" min="0" max="100" step="0.5"
-                      placeholder="e.g. 5"
+                      placeholder="Typical 5–8%"
                       class="w-full pr-8 pl-4 py-2 rounded-xl border border-blue-200 hover:border-blue-300 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 outline-none text-gray-900 font-semibold text-sm transition bg-white" />
                     <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">%</span>
                   </div>
@@ -466,7 +476,7 @@
               <h3 class="text-xs font-bold uppercase tracking-wide text-gray-400 mb-3">Breakdown</h3>
 
               <div class="flex justify-between items-center py-2 border-b border-gray-50">
-                <span class="text-sm text-gray-500">Gross Scheduled Rent</span>
+                <span class="text-sm text-gray-500">Gross Rental Income</span>
                 <span class="font-semibold text-green-600">+{{ formatCurrency(Number(form.grossRent) || 0) }}</span>
               </div>
               <div class="flex justify-between items-center py-2 border-b border-gray-50">
@@ -510,17 +520,22 @@
                   <p class="text-xs text-gray-400 mt-0.5">of EGI</p>
                 </div>
                 <div class="rounded-xl p-3 text-center border"
-                  :class="noiMargin < 0 ? 'bg-red-50 border-red-200' : noiMargin < 40 ? 'bg-amber-50 border-amber-200' : 'bg-green-50 border-green-200'">
+                  :class="noiMargin < 0 ? 'bg-red-50 border-red-200' : noiMargin < 25 ? 'bg-orange-50 border-orange-200' : noiMargin < 40 ? 'bg-amber-50 border-amber-200' : noiMargin < 50 ? 'bg-blue-50 border-blue-200' : 'bg-green-50 border-green-200'">
                   <p class="text-xs font-semibold mb-0.5"
-                    :class="noiMargin < 0 ? 'text-red-500' : noiMargin < 40 ? 'text-amber-600' : 'text-green-600'">NOI Margin</p>
+                    :class="noiMargin < 0 ? 'text-red-500' : noiMargin < 25 ? 'text-orange-600' : noiMargin < 40 ? 'text-amber-600' : noiMargin < 50 ? 'text-blue-600' : 'text-green-600'">NOI Margin</p>
                   <p class="text-base font-extrabold"
-                    :class="noiMargin < 0 ? 'text-red-700' : noiMargin < 40 ? 'text-amber-700' : 'text-green-700'">
+                    :class="noiMargin < 0 ? 'text-red-700' : noiMargin < 25 ? 'text-orange-700' : noiMargin < 40 ? 'text-amber-700' : noiMargin < 50 ? 'text-blue-700' : 'text-green-700'">
                     {{ noiMargin.toFixed(1) }}%</p>
                   <p class="text-xs text-gray-400 mt-0.5">of GRI</p>
                 </div>
                 <div v-if="noiPerUnit !== null" class="rounded-xl p-3 text-center border border-gray-100 bg-gray-50">
                   <p class="text-xs font-semibold text-gray-500 mb-0.5">NOI/Unit</p>
                   <p class="text-base font-extrabold text-gray-700">{{ formatCurrency(noiPerUnit) }}</p>
+                  <p class="text-xs text-gray-400 mt-0.5">per year</p>
+                </div>
+                <div v-if="noiPerSqft !== null" class="rounded-xl p-3 text-center border border-gray-100 bg-gray-50">
+                  <p class="text-xs font-semibold text-gray-500 mb-0.5">NOI/Sqft</p>
+                  <p class="text-base font-extrabold text-gray-700">${{ noiPerSqft.toFixed(2) }}</p>
                   <p class="text-xs text-gray-400 mt-0.5">per year</p>
                 </div>
               </div>
@@ -592,7 +607,7 @@
             <div v-if="calcMode === 'find-expenses' && maxExpenses !== null" class="p-6 space-y-3">
               <h3 class="text-xs font-bold uppercase tracking-wide text-gray-400 mb-3">How we got there</h3>
               <div class="flex justify-between items-center py-2 border-b border-gray-50">
-                <span class="text-sm text-gray-500">Gross Scheduled Rent</span>
+                <span class="text-sm text-gray-500">Gross Rental Income</span>
                 <span class="font-semibold text-gray-900">{{ formatCurrency(Number(form.grossRent) || 0) }}</span>
               </div>
               <div class="flex justify-between items-center py-2 border-b border-gray-50">
@@ -620,6 +635,39 @@
                   Max Expenses = EGI − Target NOI = {{ formatCurrency(egi) }} − {{ formatCurrency(Number(form.targetNOI)||0) }} = <strong>{{ formatCurrency(maxExpenses) }}</strong>
                 </p>
               </div>
+            </div>
+
+            <!-- Share + PDF Export -->
+            <div v-if="hasResult || requiredGRI || maxExpenses !== null" class="p-4 border-t border-gray-100 space-y-2">
+              <div class="grid grid-cols-2 gap-2">
+                <button @click="shareResult"
+                  class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border"
+                  :class="shareSuccess
+                    ? 'border-green-400 text-green-700 bg-green-50'
+                    : 'border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50'">
+                  <svg v-if="!shareSuccess" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                  </svg>
+                  <svg v-else class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  {{ shareSuccess ? 'Copied!' : 'Share' }}
+                </button>
+                <button @click="exportPDF"
+                  class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                  </svg>
+                  Export PDF
+                </button>
+              </div>
+              <button @click="showEmailModal = true"
+                class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl font-semibold text-xs text-gray-500 hover:text-gray-700 border border-dashed border-gray-200 hover:border-gray-300 transition">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+                Email me this analysis
+              </button>
             </div>
 
             <!-- Empty state -->
@@ -666,7 +714,7 @@
             <strong>Net Operating Income (NOI)</strong> is the single most important number in US real estate investment analysis. It drives cap rate calculations, DSCR underwriting, income-approach valuations, and every serious proforma an investor builds. This free NOI calculator covers all three use cases investors actually need: calculate NOI from income and expenses, find the gross rent required to hit a target NOI, and determine the maximum expenses allowed to achieve a specific return.
           </p>
           <p class="text-gray-600 text-sm leading-relaxed">
-            Unlike simplified spreadsheets, this tool separates Gross Scheduled Rent from Other Income, applies vacancy correctly before calculating EGI, and flags Negative NOI scenarios with a clear tier label. All results update in real time — no signup required.
+            Unlike simplified spreadsheets, this tool separates Gross Rental Income from Other Income, applies vacancy correctly before calculating EGI, and flags Negative NOI scenarios with a clear tier label. All results update in real time — no signup required.
           </p>
         </div>
       </div>
@@ -696,7 +744,7 @@
           <li class="flex gap-4">
             <span class="w-7 h-7 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0 mt-0.5" style="background:#1e3a5f;">2</span>
             <div>
-              <p class="font-semibold text-gray-800 mb-1">Enter Gross Scheduled Rent</p>
+              <p class="font-semibold text-gray-800 mb-1">Enter Gross Rental Income</p>
               <p class="text-gray-600 text-sm leading-relaxed">This is 100% occupancy annual rent for all units — what you'd collect if every unit were rented for the full year. Do not subtract vacancy here; the calculator handles that separately.</p>
             </div>
           </li>
@@ -718,7 +766,7 @@
             <span class="w-7 h-7 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0 mt-0.5" style="background:#1e3a5f;">5</span>
             <div>
               <p class="font-semibold text-gray-800 mb-1">Interpret your results</p>
-              <p class="text-gray-600 text-sm leading-relaxed">Review the NOI amount, tier badge (Good / Average / Poor / Negative NOI), NOI Margin, Expense Ratio, and the implied property value table. Use the breakdown to identify which expenses are driving costs.</p>
+              <p class="text-gray-600 text-sm leading-relaxed">Review the NOI amount, tier badge (Institutional Grade / Strong Performer / Solid / Weak / Critical / Negative NOI), NOI Margin, Expense Ratio, and the implied property value table. Use the breakdown to identify which expenses are driving costs.</p>
             </div>
           </li>
         </ol>
@@ -734,7 +782,7 @@
               Inputs
             </h3>
             <ul class="space-y-3 text-sm text-gray-600">
-              <li><strong>Gross Scheduled Rent (GRI)</strong> — Annual rent at 100% occupancy, all units. The baseline before vacancy.</li>
+              <li><strong>Gross Rental Income (GRI)</strong> — Annual rent at 100% occupancy, all units. The baseline before vacancy.</li>
               <li><strong>Other Income</strong> — Non-rent income: laundry ($50–200/unit/yr), parking ($600–2,400/space/yr), storage, pet fees.</li>
               <li><strong>Vacancy Rate</strong> — Expected percentage of units vacant. National average 5–7%; use local market data. Applied only to rent, not other income.</li>
               <li><strong>Operating Expenses</strong> — All recurring property costs except debt service: taxes, insurance, management (8–12%), maintenance (1% of value), utilities, HOA, reserves.</li>
@@ -771,14 +819,17 @@
             <p class="font-bold text-base" style="color:#1e3a5f;">NOI = EGI − Total Operating Expenses</p>
           </div>
           <div class="p-4 rounded-xl border-2" style="border-color:#f59e0b40; background:#fffbeb;">
-            <p class="text-xs font-bold uppercase tracking-wide text-amber-700 mb-2">Worked Example</p>
+            <p class="text-xs font-bold uppercase tracking-wide text-amber-700 mb-2">Worked Example — Dallas 4-Unit, 2026</p>
             <div class="space-y-1 text-sm text-gray-700">
-              <p>GRI = $120,000 | Vacancy = 8% | Other Income = $6,000 | Expenses = $42,000</p>
-              <p>Vacancy Loss = $120,000 × 8% = $9,600</p>
-              <p>EGI = $120,000 − $9,600 + $6,000 = <strong>$116,400</strong></p>
-              <p>NOI = $116,400 − $42,000 = <strong style="color:#1e3a5f;">$74,400</strong></p>
-              <p>NOI Margin = $74,400 ÷ $120,000 = <strong>62.0%</strong></p>
-              <p>Expense Ratio = $42,000 ÷ $116,400 = <strong>36.1%</strong></p>
+              <p>GRI = $112,800 | Vacancy = 6.5% | Other Income = $4,800 | Expenses = $47,500 | Units = 4</p>
+              <p>Vacancy Loss = $112,800 × 6.5% = $7,332</p>
+              <p>EGI = $112,800 − $7,332 + $4,800 = <strong>$110,268</strong></p>
+              <p>NOI = $110,268 − $47,500 = <strong style="color:#1e3a5f;">$62,768</strong></p>
+              <p>NOI Margin = $62,768 ÷ $112,800 = <strong>55.6%</strong> → Strong Performer</p>
+              <p>NOI per Unit = $62,768 ÷ 4 = <strong>$15,692</strong></p>
+            </div>
+            <div class="mt-3 p-3 rounded-lg bg-amber-100/60 border border-amber-200 text-xs text-amber-900 leading-relaxed">
+              <strong>Interpretation:</strong> A 55.6% NOI Margin is in the Strong Performer range for a US residential asset. In Dallas 2026, a 6.5% vacancy assumption is more defensible than 5% — Sun Belt markets continue to absorb new supply, and underwriting to a tighter vacancy leaves no cushion for lease-up periods between turns.
             </div>
           </div>
           <div class="grid md:grid-cols-2 gap-4">
@@ -816,36 +867,38 @@
       <!-- What Your Result Means -->
       <div id="result-meaning" class="border-b border-gray-100 px-8 py-8">
         <h2 class="text-xl font-extrabold mb-4" style="color: #1e3a5f;">What Your NOI Result Means</h2>
+        <p class="text-gray-500 text-sm mb-5">The tier badge is determined by <strong>NOI Margin</strong> — NOI as a percentage of Gross Rental Income. Expense Ratio (expenses ÷ EGI) remains a useful derived metric but is not the primary performance signal.</p>
         <div class="space-y-4">
-          <div class="flex gap-4 p-4 rounded-xl border border-green-200 bg-green-50">
-            <span class="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center text-white text-xs font-bold flex-shrink-0 mt-0.5">G</span>
+          <div class="flex gap-4 p-4 rounded-xl border" style="border-color:#d1fae5; background:#f0fdf4;">
+            <span class="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0 mt-0.5" style="background:#059669;">IG</span>
             <div>
-              <p class="font-bold text-green-800 mb-1">Good — Expense Ratio ≤ 45%</p>
-              <p class="text-green-700 text-sm leading-relaxed">Your property is operating efficiently. Operating expenses consume less than 45% of Effective Gross Income. Typical of well-maintained properties in landlord-friendly markets (TX, AZ, GA) with professional management and controlled vacancy. This tier supports strong cap rates and DSCR above 1.25x at market financing.</p>
+              <p class="font-bold mb-1" style="color:#065f46;">Institutional Grade — NOI Margin ≥ 60%</p>
+              <p class="text-sm leading-relaxed" style="color:#047857;">The property retains an unusually high share of rent after vacancy and operating expenses. This often signals efficient operations, a favorable cost structure, or underwritten expenses that must still be verified. Supports premium valuations and strong DSCR at institutional financing.</p>
             </div>
           </div>
-          <div class="flex gap-4 p-4 rounded-xl border border-amber-200 bg-amber-50">
-            <span class="w-6 h-6 rounded-full bg-amber-500 flex items-center justify-center text-white text-xs font-bold flex-shrink-0 mt-0.5">A</span>
+          <div class="flex gap-4 p-4 rounded-xl border" style="border-color:#a7f3d0; background:#ecfdf5;">
+            <span class="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0 mt-0.5" style="background:#10B981;">SP</span>
             <div>
-              <p class="font-bold text-amber-800 mb-1">Average — Expense Ratio 45–60%</p>
-              <p class="text-amber-700 text-sm leading-relaxed">Expenses are in the normal range for higher-cost markets (CA, NY, FL, CO, WA). This tier is common for properties with high property taxes, above-average insurance costs, or aging systems requiring more maintenance. Profitability depends heavily on purchase price and financing terms.</p>
+              <p class="font-bold mb-1" style="color:#065f46;">Strong Performer — NOI Margin 50%–59.99%</p>
+              <p class="text-sm leading-relaxed" style="color:#047857;">Strong operating range for many stabilized US rental properties. More than half of gross rent reaches the operating line, providing a good cushion against moderate expense growth or brief vacancy increases.</p>
             </div>
           </div>
-          <div class="flex gap-4 p-4 rounded-xl border border-red-200 bg-red-50">
-            <span class="w-6 h-6 rounded-full bg-red-500 flex items-center justify-center text-white text-xs font-bold flex-shrink-0 mt-0.5">P</span>
+          <div class="flex gap-4 p-4 rounded-xl border" style="border-color:#bfdbfe; background:#eff6ff;">
+            <span class="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0 mt-0.5" style="background:#2563EB;">S</span>
             <div>
-              <p class="font-bold text-red-800 mb-1">Poor — Expense Ratio &gt; 60%</p>
-              <p class="text-amber-700 text-sm leading-relaxed" style="color:#7f1d1d;">Operating expenses exceed 60% of EGI. This property has thin margins — a small drop in rents or increase in expenses can push NOI negative. Investigate which line items are elevated. This may indicate deferred maintenance, abnormally high management fees, or a market with extreme operating costs.</p>
+              <p class="font-bold mb-1" style="color:#1e40af;">Solid — NOI Margin 40%–49.99%</p>
+              <p class="text-sm leading-relaxed" style="color:#1d4ed8;">Common workable range for many stabilized assets. The cushion is thinner, so management quality and expense control matter more. Serviceable in most US markets at moderate leverage.</p>
             </div>
           </div>
-          <div class="flex gap-4 p-4 rounded-xl border border-red-300 bg-red-100">
-            <span class="w-6 h-6 rounded-full bg-red-700 flex items-center justify-center text-white text-xs font-bold flex-shrink-0 mt-0.5">!</span>
+          <div class="flex gap-4 p-4 rounded-xl border" style="border-color:#fde68a; background:#fffbeb;">
+            <span class="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0 mt-0.5" style="background:#D97706;">W</span>
             <div>
-              <p class="font-bold text-red-900 mb-1">Negative NOI — Expenses Exceed EGI</p>
-              <p class="text-red-800 text-sm leading-relaxed">The property is losing money before debt service. This is rare for stabilized income properties but can occur during high vacancy periods, major deferred maintenance cycles, or in rent-stabilized markets. Properties with negative NOI are typically valued on replacement cost or sales comparison — not the income approach.</p>
+              <p class="font-bold mb-1" style="color:#92400e;">Weak to Negative NOI — NOI Margin below 40%</p>
+              <p class="text-sm leading-relaxed" style="color:#78350f;">Below 40% the property becomes fragile. NOI Margin 25%–39.99% is <strong>Weak</strong> — thin margins mean small expense shocks can threaten cash flow. Below 25% is <strong>Critical</strong>. Negative NOI means the property loses money before debt service and cannot be valued on the income approach.</p>
             </div>
           </div>
         </div>
+        <p class="text-xs text-gray-400 mt-4 italic">Expense Ratio (operating expenses ÷ EGI) remains a useful supporting metric — see the breakdown panel and the Benchmarks section below. It does not drive the tier badge.</p>
       </div>
 
       <!-- Include / Exclude -->
@@ -892,47 +945,59 @@
 
       <!-- Benchmarks -->
       <div id="benchmarks" class="border-b border-gray-100 px-8 py-8">
-        <h2 class="text-xl font-extrabold mb-2" style="color: #1e3a5f;">NOI Benchmarks — What Is a Good NOI?</h2>
-        <p class="text-gray-500 text-sm mb-6">There is no single "good" NOI — it must be evaluated relative to property cost. What matters is the NOI yield (cap rate) and the NOI margin (as a % of gross rent). Here are the key thresholds used by professional investors in 2026.</p>
-        <div class="overflow-x-auto">
+        <h2 class="text-xl font-extrabold mb-2" style="color: #1e3a5f;">NOI Benchmarks — NOI Margin by Property Type</h2>
+        <p class="text-gray-500 text-sm mb-5">NOI Margin (NOI ÷ Gross Rental Income) is the primary benchmark metric. Ranges below reflect stabilized assets in 2026 — geography drives the spread between coastal and Midwest/SE performance.</p>
+        <div class="overflow-x-auto mb-4">
           <table class="w-full text-sm border-collapse">
             <thead>
               <tr class="border-b-2 border-gray-200">
-                <th class="text-left py-3 pr-4 font-bold text-gray-700">Metric</th>
-                <th class="text-center py-3 px-3 font-bold text-green-700">Good</th>
-                <th class="text-center py-3 px-3 font-bold text-amber-700">Average</th>
-                <th class="text-center py-3 px-3 font-bold text-red-700">Poor</th>
+                <th class="text-left py-3 pr-4 font-bold text-gray-700">Property Type</th>
+                <th class="text-center py-3 px-3 font-bold text-amber-700">Low (Coastal)</th>
+                <th class="text-center py-3 px-3 font-bold text-blue-700">Average (Sun Belt)</th>
+                <th class="text-center py-3 px-3 font-bold text-green-700">Strong (Midwest / SE)</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-gray-100">
               <tr>
-                <td class="py-3 pr-4 text-gray-700 font-medium">NOI Margin (NOI ÷ GRI)</td>
-                <td class="py-3 px-3 text-center font-semibold text-green-700">&gt; 50%</td>
-                <td class="py-3 px-3 text-center font-semibold text-amber-700">35–50%</td>
-                <td class="py-3 px-3 text-center font-semibold text-red-700">&lt; 35%</td>
+                <td class="py-3 pr-4 text-gray-700 font-medium">Single-Family Rental (SFR)</td>
+                <td class="py-3 px-3 text-center font-semibold text-amber-700">55%–58%</td>
+                <td class="py-3 px-3 text-center font-semibold text-blue-700">58%–62%</td>
+                <td class="py-3 px-3 text-center font-semibold text-green-700">62%–65%</td>
+              </tr>
+              <tr class="bg-gray-50/50">
+                <td class="py-3 pr-4 text-gray-700 font-medium">Small Multifamily (2–4 units)</td>
+                <td class="py-3 px-3 text-center font-semibold text-amber-700">50%–54%</td>
+                <td class="py-3 px-3 text-center font-semibold text-blue-700">54%–57%</td>
+                <td class="py-3 px-3 text-center font-semibold text-green-700">57%–60%</td>
               </tr>
               <tr>
-                <td class="py-3 pr-4 text-gray-700 font-medium">Expense Ratio (Exp ÷ EGI)</td>
-                <td class="py-3 px-3 text-center font-semibold text-green-700">&lt; 45%</td>
-                <td class="py-3 px-3 text-center font-semibold text-amber-700">45–60%</td>
-                <td class="py-3 px-3 text-center font-semibold text-red-700">&gt; 60%</td>
+                <td class="py-3 pr-4 text-gray-700 font-medium">Multifamily 5+ Units</td>
+                <td class="py-3 px-3 text-center font-semibold text-amber-700">45%–48%</td>
+                <td class="py-3 px-3 text-center font-semibold text-blue-700">48%–52%</td>
+                <td class="py-3 px-3 text-center font-semibold text-green-700">52%–55%</td>
+              </tr>
+              <tr class="bg-gray-50/50">
+                <td class="py-3 pr-4 text-gray-700 font-medium">Retail / Strip Center</td>
+                <td class="py-3 px-3 text-center font-semibold text-amber-700">50%–55%</td>
+                <td class="py-3 px-3 text-center font-semibold text-blue-700">55%–60%</td>
+                <td class="py-3 px-3 text-center font-semibold text-green-700">60%–65%</td>
               </tr>
               <tr>
-                <td class="py-3 pr-4 text-gray-700 font-medium">NOI per Unit (multifamily)</td>
-                <td class="py-3 px-3 text-center font-semibold text-green-700">&gt; $8,000</td>
-                <td class="py-3 px-3 text-center font-semibold text-amber-700">$4,000–$8,000</td>
-                <td class="py-3 px-3 text-center font-semibold text-red-700">&lt; $4,000</td>
+                <td class="py-3 pr-4 text-gray-700 font-medium">Industrial / Warehouse</td>
+                <td class="py-3 px-3 text-center font-semibold text-amber-700">55%–60%</td>
+                <td class="py-3 px-3 text-center font-semibold text-blue-700">60%–65%</td>
+                <td class="py-3 px-3 text-center font-semibold text-green-700">65%–70%</td>
               </tr>
-              <tr>
-                <td class="py-3 pr-4 text-gray-700 font-medium">Implied Cap Rate</td>
-                <td class="py-3 px-3 text-center font-semibold text-green-700">&gt; 7%</td>
-                <td class="py-3 px-3 text-center font-semibold text-amber-700">5–7%</td>
-                <td class="py-3 px-3 text-center font-semibold text-red-700">&lt; 5%</td>
+              <tr class="bg-gray-50/50">
+                <td class="py-3 pr-4 text-gray-700 font-medium">Office</td>
+                <td class="py-3 px-3 text-center font-semibold text-amber-700">40%–45%</td>
+                <td class="py-3 px-3 text-center font-semibold text-blue-700">45%–50%</td>
+                <td class="py-3 px-3 text-center font-semibold text-green-700">50%–55%</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <p class="text-xs text-gray-400 mt-3 italic">Benchmarks vary by market, property type, and asset quality. High-cost coastal markets (NY, CA) routinely operate at 45–60% expense ratios and still trade at 4–5% cap rates due to rent growth expectations.</p>
+        <p class="text-xs text-gray-400 italic">Expense Ratio (operating expenses ÷ EGI) is a useful secondary metric — a rough inverse of NOI Margin. Above 60% expense ratio warrants scrutiny regardless of property type. Benchmarks assume stabilized occupancy and market-rate management fees.</p>
       </div>
 
       <!-- NOI vs Cash Flow -->
@@ -971,28 +1036,28 @@
 
       <!-- NOI by Property Type -->
       <div id="property-types" class="border-b border-gray-100 px-8 py-8">
-        <h2 class="text-xl font-extrabold mb-2" style="color: #1e3a5f;">NOI by Property Type</h2>
-        <p class="text-gray-500 text-sm mb-5">Operating expense ratios and typical NOI margins vary significantly by asset class.</p>
+        <h2 class="text-xl font-extrabold mb-2" style="color: #1e3a5f;">NOI Margin by Property Type</h2>
+        <p class="text-gray-500 text-sm mb-5">NOI Margin ranges for stabilized US assets. Geography and lease structure are the main drivers of the spread within each type.</p>
         <div class="grid sm:grid-cols-2 gap-4">
           <div class="p-4 rounded-xl border border-gray-100 bg-gray-50">
-            <p class="font-bold text-sm mb-1" style="color:#1e3a5f;">Single Family Rental (SFR)</p>
-            <p class="text-xl font-extrabold text-amber-600 mb-1">40–55% expense ratio</p>
-            <p class="text-xs text-gray-500">Higher per-unit management and maintenance costs. No economies of scale. Typical cap rates 4–7% depending on market. Best suited for appreciation plays in growing markets.</p>
+            <p class="font-bold text-sm mb-1" style="color:#1e3a5f;">Single-Family Rental (SFR)</p>
+            <p class="text-xl font-extrabold text-green-600 mb-1">55%–65% NOI Margin</p>
+            <p class="text-xs text-gray-500">Higher per-unit management and maintenance costs offset by lower tenant turnover. No economies of scale. Coastal markets compress toward the low end; Midwest/SE assets often reach the high end. Typical cap rates 4–7% depending on market.</p>
           </div>
           <div class="p-4 rounded-xl border border-gray-100 bg-gray-50">
             <p class="font-bold text-sm mb-1" style="color:#1e3a5f;">Small Multifamily (2–4 units)</p>
-            <p class="text-xl font-extrabold text-green-600 mb-1">35–50% expense ratio</p>
-            <p class="text-xs text-gray-500">Better economies of scale than SFR. Management fees often lower for owner-managed. Vacancy risk higher per unit than larger complexes. Ideal entry point for new investors.</p>
+            <p class="text-xl font-extrabold text-green-600 mb-1">50%–60% NOI Margin</p>
+            <p class="text-xs text-gray-500">Better economies of scale than SFR. Management fees often lower for owner-managed properties. Vacancy risk is concentrated — one empty unit has outsized impact. Ideal entry point for new investors building toward 5+ unit portfolios.</p>
           </div>
           <div class="p-4 rounded-xl border border-gray-100 bg-gray-50">
-            <p class="font-bold text-sm mb-1" style="color:#1e3a5f;">Large Multifamily (5+ units)</p>
-            <p class="text-xl font-extrabold text-green-600 mb-1">35–48% expense ratio</p>
-            <p class="text-xs text-gray-500">Strong economies of scale. Professional management standard. Vacancy risk distributed across many units. DSCR loans and commercial financing widely available. Best NOI consistency.</p>
+            <p class="font-bold text-sm mb-1" style="color:#1e3a5f;">Multifamily 5+ Units</p>
+            <p class="text-xl font-extrabold text-blue-600 mb-1">45%–55% NOI Margin</p>
+            <p class="text-xs text-gray-500">Strong economies of scale. Professional management standard. Vacancy risk distributed across units. DSCR loans and commercial financing widely available. Lower NOI Margin than SFR is offset by income consistency and institutional demand.</p>
           </div>
           <div class="p-4 rounded-xl border border-gray-100 bg-gray-50">
-            <p class="font-bold text-sm mb-1" style="color:#1e3a5f;">Commercial / Mixed-Use</p>
-            <p class="text-xl font-extrabold text-amber-600 mb-1">30–50% expense ratio</p>
-            <p class="text-xs text-gray-500">Triple-net (NNN) leases push many expenses to tenants, lowering owner expense ratio. Gross leases have higher ratios. Longer vacancy periods but lower turnover. Higher NOI margins possible with NNN structures.</p>
+            <p class="font-bold text-sm mb-1" style="color:#1e3a5f;">Commercial / Industrial / Office</p>
+            <p class="text-xl font-extrabold text-amber-600 mb-1">40%–70% NOI Margin</p>
+            <p class="text-xs text-gray-500">Wide range driven by lease structure. Triple-net (NNN) leases push expenses to tenants, supporting 65–70% margins for industrial. Office runs 40–55%. Retail strips 50–65%. Longer lease terms provide income visibility but vacancy periods are extended.</p>
           </div>
         </div>
       </div>
@@ -1041,48 +1106,48 @@
 
       <!-- Market Ratios by State -->
       <div id="market-ratios" class="border-b border-gray-100 px-8 py-8">
-        <h2 class="text-xl font-extrabold mb-2" style="color: #1e3a5f;">Typical NOI Expense Ratios by Market (2026)</h2>
-        <p class="text-gray-500 text-sm mb-6">Operating expenses as % of EGI for stabilized residential rental properties. Higher-cost markets tend to have higher expense ratios due to property taxes and insurance.</p>
+        <h2 class="text-xl font-extrabold mb-2" style="color: #1e3a5f;">Typical NOI Margin by State (2026)</h2>
+        <p class="text-gray-500 text-sm mb-6">NOI Margin ranges for stabilized residential rental properties. Property-tax burden, insurance costs, and regulatory environment drive the spread across states.</p>
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div class="p-4 rounded-xl border border-gray-100 bg-gray-50">
+          <div class="p-4 rounded-xl border border-blue-100 bg-blue-50/40">
             <p class="font-bold text-sm mb-1" style="color:#1e3a5f;">California (CA)</p>
-            <p class="text-2xl font-extrabold text-amber-600 mb-1">40–55%</p>
-            <p class="text-xs text-gray-500">High property taxes and insurance. LA/SF portfolios often run close to 50%. Rent control in many cities adds management complexity.</p>
+            <p class="text-2xl font-extrabold text-green-600 mb-1">55%–65%</p>
+            <p class="text-xs text-gray-600 leading-relaxed">Despite high headline costs, California's effective property-tax burden is lower than Texas and New York — Prop 13 limits reassessment and helps support stronger NOI margins. Regulation, labor, and maintenance costs offset part of that advantage, but the net result often lands higher than investors expect.</p>
           </div>
           <div class="p-4 rounded-xl border border-gray-100 bg-gray-50">
             <p class="font-bold text-sm mb-1" style="color:#1e3a5f;">Texas (TX)</p>
-            <p class="text-2xl font-extrabold text-green-600 mb-1">35–45%</p>
-            <p class="text-xs text-gray-500">High property tax rates but no income tax. Dallas/Houston average mid-40s. Strong landlord laws and growing renter population.</p>
+            <p class="text-2xl font-extrabold text-amber-600 mb-1">42%–55%</p>
+            <p class="text-xs text-gray-500">Among the highest property tax rates in the US compress NOI margins below what investors from low-tax states expect. No state income tax. Dallas and Houston markets face ongoing supply pressure in 2026. Strong landlord-friendly laws reduce management friction.</p>
           </div>
           <div class="p-4 rounded-xl border border-gray-100 bg-gray-50">
             <p class="font-bold text-sm mb-1" style="color:#1e3a5f;">Florida (FL)</p>
-            <p class="text-2xl font-extrabold text-amber-600 mb-1">38–50%</p>
-            <p class="text-xs text-gray-500">Rising insurance costs post-hurricanes. Coastal properties see higher ratios. No state income tax. Strong migration inflow supporting rents.</p>
+            <p class="text-2xl font-extrabold text-amber-600 mb-1">40%–55%</p>
+            <p class="text-xs text-gray-500">Rising insurance costs post-hurricane cycles reduce margins on coastal properties. No state income tax. Strong migration inflow continues to support rents, partially offsetting expense growth in interior markets.</p>
           </div>
           <div class="p-4 rounded-xl border border-gray-100 bg-gray-50">
             <p class="font-bold text-sm mb-1" style="color:#1e3a5f;">New York (NY)</p>
-            <p class="text-2xl font-extrabold text-red-600 mb-1">45–60%</p>
-            <p class="text-xs text-gray-500">NYC: very high property taxes and operating costs. Rent-stabilized units can exceed 60%. Strong appreciation historically offsets thin NOI margins.</p>
+            <p class="text-2xl font-extrabold text-amber-600 mb-1">42%–55%</p>
+            <p class="text-xs text-gray-500">Very high property taxes and operating costs in NYC. Rent-stabilized units face the most pressure. Strong long-run appreciation historically compensates for thin operating margins in gateway submarkets.</p>
           </div>
           <div class="p-4 rounded-xl border border-gray-100 bg-gray-50">
             <p class="font-bold text-sm mb-1" style="color:#1e3a5f;">Arizona (AZ)</p>
-            <p class="text-2xl font-extrabold text-green-600 mb-1">33–43%</p>
-            <p class="text-xs text-gray-500">Lower insurance and taxes. Phoenix among the most landlord-friendly operating environments. Strong population growth supporting demand.</p>
+            <p class="text-2xl font-extrabold text-green-600 mb-1">48%–60%</p>
+            <p class="text-xs text-gray-500">Lower insurance and property taxes than Sun Belt peers. Phoenix remains one of the more landlord-friendly operating environments. New supply in 2025–2026 is worth monitoring when setting vacancy assumptions.</p>
           </div>
           <div class="p-4 rounded-xl border border-gray-100 bg-gray-50">
             <p class="font-bold text-sm mb-1" style="color:#1e3a5f;">Georgia (GA)</p>
-            <p class="text-2xl font-extrabold text-green-600 mb-1">33–43%</p>
-            <p class="text-xs text-gray-500">Atlanta metro. Favorable operating costs. Management fees are the biggest variable. Business-friendly regulatory environment.</p>
+            <p class="text-2xl font-extrabold text-green-600 mb-1">50%–62%</p>
+            <p class="text-xs text-gray-500">Atlanta metro offers favorable operating costs relative to most large metros. Management fees are the biggest variable. Business-friendly regulatory environment and strong in-migration support rental demand.</p>
           </div>
           <div class="p-4 rounded-xl border border-gray-100 bg-gray-50">
             <p class="font-bold text-sm mb-1" style="color:#1e3a5f;">Colorado (CO)</p>
-            <p class="text-2xl font-extrabold text-amber-600 mb-1">38–48%</p>
-            <p class="text-xs text-gray-500">Denver. Moderate taxes. Snow removal and maintenance add to operating costs. Strong tech-sector rental demand in metro areas.</p>
+            <p class="text-2xl font-extrabold text-green-600 mb-1">52%–62%</p>
+            <p class="text-xs text-gray-500">Denver metro. Moderate taxes. Snow removal and higher maintenance standards add to operating costs, keeping the range tighter than GA or AZ. Strong tech-sector rental demand in metro areas supports durable rent levels.</p>
           </div>
           <div class="p-4 rounded-xl border border-gray-100 bg-gray-50">
             <p class="font-bold text-sm mb-1" style="color:#1e3a5f;">Washington (WA)</p>
-            <p class="text-2xl font-extrabold text-amber-600 mb-1">38–50%</p>
-            <p class="text-xs text-gray-500">Seattle area. High property taxes and management costs. No state income tax. Tenant-friendly laws increase management complexity and costs.</p>
+            <p class="text-2xl font-extrabold text-green-600 mb-1">50%–60%</p>
+            <p class="text-xs text-gray-500">Seattle area. High property taxes and management costs. No state income tax. Tenant-friendly regulatory environment increases management complexity and legal costs, which should be fully budgeted in any underwriting.</p>
           </div>
         </div>
       </div>
@@ -1097,7 +1162,7 @@
           </div>
           <div class="border-b border-gray-100 pb-5">
             <h3 class="font-bold text-gray-800 mb-2">What is a good NOI for a rental property?</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">There is no single "good" NOI — it depends on the purchase price and market. What matters is the NOI yield (cap rate). A $25,000 NOI on a $300,000 property (8.3% cap) is excellent; the same $25,000 on a $600,000 property (4.2% cap) is marginal in most US markets. Always evaluate NOI relative to cost. The implied property value table above shows this relationship directly.</p>
+            <p class="text-gray-600 text-sm leading-relaxed">A good NOI should be judged through <strong>NOI Margin</strong> (NOI ÷ Gross Rental Income) rather than raw dollar amount — the same $50,000 NOI can be excellent or weak depending on the rent base it came from. The tiers used by professional investors: <strong>60%+ = Institutional Grade</strong>; <strong>50%–59.99% = Strong Performer</strong>; <strong>40%–49.99% = Solid</strong>; <strong>below 40% requires tighter scrutiny</strong> — thin margins mean small expense shocks or vacancy upticks can threaten cash flow viability. For cap rate context, always pair NOI Margin with the implied property value table: the same NOI margin on a higher-priced asset produces a lower yield.</p>
           </div>
           <div class="border-b border-gray-100 pb-5">
             <h3 class="font-bold text-gray-800 mb-2">Should I include a management fee even if I self-manage?</h3>
@@ -1191,10 +1256,10 @@
         },
         {
           "@type": "Question",
-          "name": "What is a good NOI expense ratio?",
+          "name": "What is a good NOI margin for a rental property?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A good expense ratio (operating expenses as a percentage of EGI) is below 45%. Average is 45-60%. Above 60% is poor. High-cost markets like New York and California routinely see 45-60% expense ratios due to property taxes and insurance costs."
+            "text": "NOI Margin (NOI divided by Gross Rental Income) is the primary performance signal. A good NOI should be judged through NOI Margin rather than raw dollars. 60% or higher is Institutional Grade; 50%–59.99% is Strong Performer; 40%–49.99% is Solid; below 40% requires tighter scrutiny. Below 25% is Critical, and a negative NOI Margin means the property loses money before debt service and cannot be valued on the income approach."
           }
         }
       ]
@@ -1220,17 +1285,19 @@ useHead({
 const isNavExpanded = ref(false)
 const calcMode = ref('calc-noi') // 'calc-noi' | 'find-income' | 'find-expenses'
 const expenseMode = ref('simple') // 'simple' | 'detailed'
+const shareSuccess = ref(false)
+const showEmailModal = ref(false)
 
 // ── Expense Fields ────────────────────────────────────────────────────────────
 const expenseFields = [
-  { key: 'propertyTax', label: 'Property Taxes',        placeholder: 'e.g. 4,200',  hint: 'Annual tax bill' },
-  { key: 'insurance',   label: 'Insurance',             placeholder: 'e.g. 1,800',  hint: 'Hazard + liability' },
-  { key: 'management',  label: 'Property Management',   placeholder: 'e.g. 4,800',  hint: '8–10% of gross rents' },
-  { key: 'maintenance', label: 'Maintenance & Repairs', placeholder: 'e.g. 2,400',  hint: 'Routine upkeep' },
-  { key: 'utilities',   label: 'Utilities (landlord)',  placeholder: 'e.g. 600',    hint: 'If paid by owner' },
-  { key: 'hoa',         label: 'HOA Fees',              placeholder: 'e.g. 0',      hint: 'If applicable' },
-  { key: 'reserves',    label: 'Reserves',              placeholder: 'e.g. 1,200',  hint: 'Roof, HVAC, appliances' },
-  { key: 'other',       label: 'Other Expenses',        placeholder: 'e.g. 500',    hint: 'Misc operating costs' },
+  { key: 'propertyTax', label: 'Property Taxes',        placeholder: 'Annual tax bill',       hint: 'Annual tax bill' },
+  { key: 'insurance',   label: 'Insurance',             placeholder: 'Hazard + liability',    hint: 'Hazard + liability' },
+  { key: 'management',  label: 'Property Management',   placeholder: '8–10% of gross rents',  hint: '8–10% of gross rents' },
+  { key: 'maintenance', label: 'Maintenance & Repairs', placeholder: 'Routine upkeep',        hint: 'Routine upkeep' },
+  { key: 'utilities',   label: 'Utilities (landlord)',  placeholder: 'If paid by owner',      hint: 'If paid by owner' },
+  { key: 'hoa',         label: 'HOA Fees',              placeholder: 'If applicable',         hint: 'If applicable' },
+  { key: 'reserves',    label: 'Reserves',              placeholder: 'Roof, HVAC, appliances',hint: 'Roof, HVAC, appliances' },
+  { key: 'other',       label: 'Other Expenses',        placeholder: 'Misc operating costs',  hint: 'Misc operating costs' },
 ]
 
 // ── Form State ────────────────────────────────────────────────────────────────
@@ -1239,6 +1306,7 @@ const form = reactive({
   otherIncome:        null,
   vacancyRate:        null,
   numUnits:           null,
+  rentableSqft:       null,
   totalExpensesSimple: null,
   targetNOI:          null,
   expenses: {
@@ -1258,6 +1326,7 @@ function resetForm() {
   form.otherIncome = null
   form.vacancyRate = null
   form.numUnits = null
+  form.rentableSqft = null
   form.totalExpensesSimple = null
   form.targetNOI = null
   Object.keys(form.expenses).forEach(k => { form.expenses[k] = null })
@@ -1320,21 +1389,32 @@ const noiPerUnit = computed(() => {
   return annualNOI.value / units
 })
 
-// Tier
+const noiPerSqft = computed(() => {
+  const sqft = Number(form.rentableSqft) || 0
+  if (!hasResult.value || sqft <= 0) return null
+  return annualNOI.value / sqft
+})
+
+// Tier — based on NOI Margin
 const tier = computed(() => {
   if (!hasResult.value) return 'N/A'
-  if (annualNOI.value < 0) return 'Negative NOI'
-  if (expenseRatio.value > 60) return 'Poor'
-  if (expenseRatio.value > 45) return 'Average'
-  return 'Good'
+  const m = noiMargin.value
+  if (m < 0)   return 'Negative NOI'
+  if (m < 25)  return 'Critical'
+  if (m < 40)  return 'Weak'
+  if (m < 50)  return 'Solid'
+  if (m < 60)  return 'Strong Performer'
+  return 'Institutional Grade'
 })
 
 const tierColor = computed(() => {
   switch (tier.value) {
-    case 'Good': return '#16a34a'
-    case 'Average': return '#d97706'
-    case 'Poor': return '#dc2626'
-    case 'Negative NOI': return '#7f1d1d'
+    case 'Institutional Grade': return '#059669'
+    case 'Strong Performer':    return '#10B981'
+    case 'Solid':               return '#2563EB'
+    case 'Weak':                return '#D97706'
+    case 'Critical':            return '#EA580C'
+    case 'Negative NOI':        return '#B91C1C'
     default: return '#6b7280'
   }
 })
@@ -1395,6 +1475,250 @@ function formatCurrency(val) {
   return new Intl.NumberFormat('en-US', {
     style: 'currency', currency: 'USD', maximumFractionDigits: 0
   }).format(n)
+}
+
+// ─── URL PERSISTENCE ─────────────────────────────────────────────────────────
+function buildShareParams() {
+  const p = new URLSearchParams()
+  if (calcMode.value !== 'calc-noi') p.set('cm', calcMode.value)
+  if (form.grossRent)          p.set('gr',  form.grossRent)
+  if (form.otherIncome)        p.set('oi',  form.otherIncome)
+  if (form.vacancyRate)        p.set('vr',  form.vacancyRate)
+  if (form.numUnits)           p.set('nu',  form.numUnits)
+  if (form.rentableSqft)       p.set('rs',  form.rentableSqft)
+  if (expenseMode.value !== 'simple') p.set('em', expenseMode.value)
+  if (expenseMode.value === 'simple' && form.totalExpensesSimple) p.set('te', form.totalExpensesSimple)
+  if (expenseMode.value === 'detailed') {
+    if (form.expenses.propertyTax)  p.set('ept', form.expenses.propertyTax)
+    if (form.expenses.insurance)    p.set('ei',  form.expenses.insurance)
+    if (form.expenses.management)   p.set('emg', form.expenses.management)
+    if (form.expenses.maintenance)  p.set('emt', form.expenses.maintenance)
+    if (form.expenses.utilities)    p.set('eu',  form.expenses.utilities)
+    if (form.expenses.hoa)          p.set('eho', form.expenses.hoa)
+    if (form.expenses.reserves)     p.set('er',  form.expenses.reserves)
+    if (form.expenses.other)        p.set('eot', form.expenses.other)
+  }
+  if (form.targetNOI) p.set('tn', form.targetNOI)
+  return p.toString()
+}
+
+async function shareResult() {
+  const params = buildShareParams()
+  const url = `${window.location.origin}${window.location.pathname}${params ? '?' + params : ''}`
+  try {
+    await navigator.clipboard.writeText(url)
+    shareSuccess.value = true
+    setTimeout(() => { shareSuccess.value = false }, 3000)
+  } catch {
+    const el = document.createElement('input')
+    el.value = url
+    document.body.appendChild(el)
+    el.select()
+    document.execCommand('copy')
+    document.body.removeChild(el)
+    shareSuccess.value = true
+    setTimeout(() => { shareSuccess.value = false }, 3000)
+  }
+}
+
+// ─── PDF EXPORT ──────────────────────────────────────────────────────────────
+async function exportPDF() {
+  const { jsPDF } = await import('jspdf')
+  const doc = new jsPDF()
+
+  const navy = [30, 58, 95]
+  const gold = [245, 158, 11]
+  const gray = [107, 114, 128]
+
+  // Header
+  doc.setFillColor(...navy)
+  doc.rect(0, 0, 210, 40, 'F')
+  doc.setTextColor(255, 255, 255)
+  doc.setFontSize(22)
+  doc.setFont('helvetica', 'bold')
+  doc.text('RealCalc', 20, 20)
+  doc.setFontSize(11)
+  doc.setFont('helvetica', 'normal')
+  doc.text('NOI Analysis Report', 20, 30)
+  doc.setFontSize(9)
+  doc.text(`Generated: ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}`, 130, 20)
+
+  // Hero result (mode-aware)
+  doc.setFillColor(...gold)
+  doc.rect(15, 50, 180, 30, 'F')
+  doc.setTextColor(30, 58, 95)
+  doc.setFontSize(28)
+  doc.setFont('helvetica', 'bold')
+
+  let heroValue, heroLabel, heroSub
+  if (calcMode.value === 'find-income') {
+    heroValue = formatCurrency(requiredGRI.value)
+    heroLabel = 'REQUIRED GROSS RENT (Annual)'
+    heroSub = `To generate ${formatCurrency(Number(form.targetNOI))} NOI/yr`
+  } else if (calcMode.value === 'find-expenses') {
+    heroValue = formatCurrency(maxExpenses.value)
+    heroLabel = 'MAX OPERATING EXPENSES (Annual)'
+    heroSub = `EGI − Target NOI of ${formatCurrency(Number(form.targetNOI))}`
+  } else {
+    heroValue = formatCurrency(annualNOI.value)
+    heroLabel = 'NET OPERATING INCOME (Annual)'
+    heroSub = `Tier: ${tier.value}`
+  }
+
+  doc.text(heroValue, 105, 69, { align: 'center' })
+  doc.setFontSize(10)
+  doc.text(heroLabel, 105, 77, { align: 'center' })
+
+  doc.setFontSize(12)
+  doc.setFont('helvetica', 'bold')
+  doc.setTextColor(...navy)
+  doc.text(heroSub, 105, 92, { align: 'center' })
+
+  // Financial Breakdown
+  doc.setFontSize(13)
+  doc.text('Financial Breakdown', 20, 108)
+
+  let rows = []
+  if (calcMode.value === 'find-income') {
+    rows = [
+      ['Target Annual NOI', formatCurrency(Number(form.targetNOI) || 0)],
+      ['Operating Expenses', formatCurrency(totalExpensesCalc.value)],
+      ['Other Income (offset)', `-${formatCurrency(Number(form.otherIncome) || 0)}`],
+      ['Vacancy Rate', `${form.vacancyRate || 0}%`],
+      ['Required Gross Rent', formatCurrency(requiredGRI.value || 0)],
+      ['≈ Monthly Gross Rent', formatCurrency((requiredGRI.value || 0) / 12)],
+    ]
+  } else if (calcMode.value === 'find-expenses') {
+    rows = [
+      ['Gross Rental Income', formatCurrency(Number(form.grossRent) || 0)],
+      ['Other Income', `+${formatCurrency(Number(form.otherIncome) || 0)}`],
+      [`Vacancy Loss (${form.vacancyRate || 0}%)`, `-${formatCurrency(vacancyLoss.value)}`],
+      ['Effective Gross Income (EGI)', formatCurrency(egi.value)],
+      ['Target NOI', `-${formatCurrency(Number(form.targetNOI) || 0)}`],
+      ['Max Operating Expenses', formatCurrency(maxExpenses.value)],
+    ]
+  } else {
+    rows = [
+      ['Gross Rental Income', formatCurrency(Number(form.grossRent) || 0)],
+      ['Other Income', formatCurrency(Number(form.otherIncome) || 0)],
+      [`Vacancy Loss (${form.vacancyRate || 0}%)`, `-${formatCurrency(vacancyLoss.value)}`],
+      ['Effective Gross Income (EGI)', formatCurrency(egi.value)],
+    ]
+    if (expenseMode.value === 'detailed') {
+      expenseFields.forEach(ef => {
+        const v = Number(form.expenses[ef.key]) || 0
+        if (v > 0) rows.push([`  — ${ef.label}`, `-${formatCurrency(v)}`])
+      })
+      rows.push(['Total Operating Expenses', `-${formatCurrency(totalExpensesCalc.value)}`])
+    } else {
+      rows.push(['Total Operating Expenses', `-${formatCurrency(totalExpensesCalc.value)}`])
+    }
+    rows.push(['Net Operating Income (NOI)', formatCurrency(annualNOI.value)])
+  }
+
+  let y = 115
+  rows.forEach((row, i) => {
+    if (i % 2 === 0) {
+      doc.setFillColor(248, 250, 252)
+      doc.rect(15, y - 5, 180, 10, 'F')
+    }
+    doc.setTextColor(...gray)
+    doc.setFontSize(9)
+    doc.setFont('helvetica', 'normal')
+    doc.text(row[0], 20, y)
+    doc.setTextColor(...navy)
+    doc.setFont('helvetica', 'bold')
+    doc.text(row[1], 190, y, { align: 'right' })
+    y += 12
+  })
+
+  // Key Metrics — calc-noi only
+  const metrics = []
+  if (calcMode.value === 'calc-noi') {
+    metrics.push(
+      ['NOI Margin', `${noiMargin.value.toFixed(1)}%`],
+      ['Expense Ratio', `${expenseRatio.value.toFixed(1)}%`],
+      ['Monthly NOI', formatCurrency(annualNOI.value / 12)],
+    )
+    if (noiPerUnit.value !== null) metrics.push(['NOI per Unit', formatCurrency(noiPerUnit.value)])
+  }
+  if (calcMode.value === 'find-income' && requiredGRI.value) {
+    metrics.push(['Monthly Gross Rent', formatCurrency(requiredGRI.value / 12)])
+  }
+  if (noiPerSqft.value !== null && calcMode.value === 'calc-noi') metrics.push(['NOI per Sq Ft', `$${noiPerSqft.value.toFixed(2)}`])
+
+  if (metrics.length > 0) {
+    y += 6
+    doc.setTextColor(...navy)
+    doc.setFontSize(11)
+    doc.setFont('helvetica', 'bold')
+    doc.text('Key Metrics', 20, y)
+    y += 8
+  }
+
+  metrics.forEach((m, i) => {
+    if (i % 2 === 0) {
+      doc.setFillColor(248, 250, 252)
+      doc.rect(15, y - 5, 180, 10, 'F')
+    }
+    doc.setTextColor(...gray)
+    doc.setFontSize(9)
+    doc.setFont('helvetica', 'normal')
+    doc.text(m[0], 20, y)
+    doc.setTextColor(...navy)
+    doc.setFont('helvetica', 'bold')
+    doc.text(m[1], 190, y, { align: 'right' })
+    y += 12
+  })
+
+  // Implied Value table
+  if (annualNOI.value > 0) {
+    y += 4
+    doc.setTextColor(...navy)
+    doc.setFontSize(11)
+    doc.setFont('helvetica', 'bold')
+    doc.text('Implied Property Value (Value = NOI ÷ Cap Rate)', 20, y)
+    y += 8
+    ;[4, 5, 6, 7, 8, 9, 10].forEach((cr, i) => {
+      if (i % 2 === 0) {
+        doc.setFillColor(248, 250, 252)
+        doc.rect(15, y - 5, 180, 10, 'F')
+      }
+      doc.setTextColor(...gray)
+      doc.setFontSize(9)
+      doc.setFont('helvetica', 'normal')
+      doc.text(`At ${cr}% cap rate`, 20, y)
+      doc.setTextColor(...navy)
+      doc.setFont('helvetica', 'bold')
+      doc.text(formatCurrency(annualNOI.value / (cr / 100)), 190, y, { align: 'right' })
+      y += 11
+    })
+  }
+
+  // Assumptions
+  if (y < 252) {
+    y += 4
+    const assumptionLines = [
+      `Expense mode: ${expenseMode.value === 'simple' ? 'lump sum (simple)' : 'detailed breakdown'}`,
+      'This report is for informational purposes only. Not financial advice.',
+    ]
+    doc.setTextColor(...gray)
+    doc.setFontSize(7)
+    doc.setFont('helvetica', 'italic')
+    assumptionLines.forEach((line, i) => {
+      doc.text(line, 20, y + i * 5)
+    })
+  }
+
+  // Footer
+  doc.setFillColor(...navy)
+  doc.rect(0, 280, 210, 17, 'F')
+  doc.setTextColor(255, 255, 255)
+  doc.setFontSize(8)
+  doc.setFont('helvetica', 'normal')
+  doc.text('realcalc.io — For informational purposes only. Not financial advice.', 105, 290, { align: 'center' })
+
+  doc.save(`noi-analysis-${Date.now()}.pdf`)
 }
 </script>
 
