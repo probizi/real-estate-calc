@@ -1761,15 +1761,10 @@ async function exportPDF() {
 const triggerScenarioSave = ref(false)
 
 const currentScenarioResult = computed(() => {
-  const badgeLabel =
-    tier.value === 'Institutional Grade' || tier.value === 'Strong Performer' ? 'Good'
-    : tier.value === 'Solid' ? 'Average'
-    : 'Poor'
-
   return {
     primaryMetric: 'NOI',
     primaryValue:  formatCurrency(annualNOI.value),
-    badgeLabel,
+    badgeLabel:    tier.value,
     badgeColor:    tierColor.value,
     noi:           annualNOI.value,
     grossIncome:   Number(form.grossRent) || undefined,
