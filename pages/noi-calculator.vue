@@ -637,8 +637,18 @@
               </div>
             </div>
 
-            <!-- Share + PDF Export -->
+            <!-- Share + PDF Export + Save Scenario -->
             <div v-if="hasResult || requiredGRI || maxExpenses !== null" class="p-4 border-t border-gray-100 space-y-2">
+              <!-- 1. PRIMARY: Save Scenario -->
+              <button v-if="hasResult" @click="openSaveScenario"
+                class="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-sm transition hover:opacity-90"
+                style="background: #f59e0b; color: #1e3a5f;">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
+                </svg>
+                Save Scenario
+              </button>
+              <!-- 2. SECONDARY: Share + PDF -->
               <div class="grid grid-cols-2 gap-2">
                 <button @click="shareResult"
                   class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border"
@@ -1214,7 +1224,33 @@
       </div>
 
       </div><!-- /SEO content -->
+
+    <!-- ═══════════════════════════════════════════════
+         SCENARIO PANEL
+    ═══════════════════════════════════════════════ -->
+    <div class="max-w-6xl mx-auto px-4 pb-10">
+      <ScenarioPanel
+        calculator="noi"
+        :has-result="hasResult"
+        :result="currentScenarioResult"
+        :trigger-save="triggerScenarioSave"
+        @saved="onScenarioSaved"
+      />
+    </div>
+
     </main>
+
+    <!-- Email Capture Modal -->
+    <EmailCaptureModal
+      :show="showEmailModal"
+      :calculator-name="'NOI Calculator'"
+      :primary-result="hasResult ? `${formatCurrency(annualNOI)} NOI` : undefined"
+      title="Save Your NOI Analysis"
+      subtitle="Get market benchmarks, deal templates, and calculator updates."
+      cta-label="Save & Get Free Updates"
+      @close="showEmailModal = false"
+      @captured="onEmailCaptured"
+    />
 
     <!-- FAQ JSON-LD Schema -->
     <script type="application/ld+json">
@@ -1270,7 +1306,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed } from 'vue'
+import { ref, reactive, computed, nextTick } from 'vue'
 
 useHead({
   title: 'NOI Calculator — Free Net Operating Income Tool for US Real Estate | RealCalc',
@@ -1719,6 +1755,43 @@ async function exportPDF() {
   doc.text('realcalc.io — For informational purposes only. Not financial advice.', 105, 290, { align: 'center' })
 
   doc.save(`noi-analysis-${Date.now()}.pdf`)
+}
+
+// ─── SAVE SCENARIO ────────────────────────────────────────────────────────────
+const triggerScenarioSave = ref(false)
+
+const currentScenarioResult = computed(() => {
+  const badgeLabel =
+    tier.value === 'Institutional Grade' || tier.value === 'Strong Performer' ? 'Good'
+    : tier.value === 'Solid' ? 'Average'
+    : 'Poor'
+
+  return {
+    primaryMetric: 'NOI',
+    primaryValue:  formatCurrency(annualNOI.value),
+    badgeLabel,
+    badgeColor:    tierColor.value,
+    noi:           annualNOI.value,
+    grossIncome:   Number(form.grossRent) || undefined,
+    totalExpenses: totalExpensesCalc.value || undefined,
+    vacancyRate:   Number(form.vacancyRate) || undefined,
+  }
+})
+
+function openSaveScenario() {
+  triggerScenarioSave.value = true
+  nextTick(() => { triggerScenarioSave.value = false })
+  try {
+    if (!localStorage.getItem('realcalc_email_captured')) {
+      showEmailModal.value = true
+    }
+  } catch {}
+}
+
+function onScenarioSaved(_id) {}
+
+function onEmailCaptured(_email) {
+  showEmailModal.value = false
 }
 </script>
 
