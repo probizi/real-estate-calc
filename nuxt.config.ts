@@ -35,6 +35,9 @@ export default defineNuxtConfig({
     compressPublicAssets: true,
     prerender: {
       failOnError: false
+    },
+    routeRules: {
+      '/fix-flip-calculator': { redirect: { to: '/fix-and-flip-calculator', statusCode: 301 } }
     }
   }
 })
