@@ -226,7 +226,7 @@
           </NuxtLink>
 
           <!-- Fix & Flip -->
-          <NuxtLink to="/fix-flip-calculator"
+          <NuxtLink to="/fix-and-flip-calculator"
             class="group bg-white p-7 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-yellow-400 flex flex-col">
             <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-transform group-hover:scale-110" style="background: #1e3a5f;">
               <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -689,7 +689,7 @@
               <li><NuxtLink to="/cap-rate-calculator"        class="text-gray-400 hover:text-white text-sm transition">Cap Rate</NuxtLink></li>
               <li><NuxtLink to="/dscr-calculator"            class="text-gray-400 hover:text-white text-sm transition">DSCR</NuxtLink></li>
               <li><NuxtLink to="/noi-calculator"             class="text-gray-400 hover:text-white text-sm transition">NOI</NuxtLink></li>
-              <li><NuxtLink to="/fix-flip-calculator"        class="text-gray-400 hover:text-white text-sm transition">Fix &amp; Flip</NuxtLink></li>
+              <li><NuxtLink to="/fix-and-flip-calculator"    class="text-gray-400 hover:text-white text-sm transition">Fix &amp; Flip</NuxtLink></li>
               <li><NuxtLink to="/arv-calculator"             class="text-gray-400 hover:text-white text-sm transition">ARV</NuxtLink></li>
               <li><NuxtLink to="/brrrr-calculator"           class="text-gray-400 hover:text-white text-sm transition">BRRRR</NuxtLink></li>
               <li><NuxtLink to="/compare-deals"              class="text-gray-400 hover:text-white text-sm transition">Compare Deals</NuxtLink></li>

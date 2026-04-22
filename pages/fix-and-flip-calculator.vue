@@ -54,7 +54,7 @@
       <div class="max-w-[1100px] mx-auto px-4 sm:px-6 py-6">
         <div class="mb-4">
           <h1 class="text-3xl sm:text-4xl font-extrabold leading-tight" style="color: #1e3a5f;">
-            Fix and Flip Calculator — Profit &amp; ROI Tool for US Real Estate Flippers
+            Fix and Flip Calculator — 2026 ROI &amp; Profit Tool for US Real Estate Investors
           </h1>
         </div>
         <div class="block rounded-2xl border border-gray-200 bg-gray-50 p-4 mb-2">
@@ -65,7 +65,7 @@
             <li><a href="#how-to-use" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">How to Use</a></li>
             <li><a href="#inputs-outputs" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Inputs &amp; Outputs</a></li>
             <li><a href="#formula" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Formula</a></li>
-            <li><a href="#what-is-fix-and-flip" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">What is Fix and Flip</a></li>
+            <li><a href="#what-is-fix-and-flip" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">What Is Fix and Flip</a></li>
             <li><a href="#result-meaning" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">What Your Result Means</a></li>
             <li><a href="#benchmarks" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Benchmarks</a></li>
             <li><a href="#strategy" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Strategy</a></li>
@@ -83,7 +83,7 @@
             <ul v-show="isNavExpanded" class="flex flex-col gap-y-2 mt-2">
               <li><a href="#inputs-outputs" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Inputs &amp; Outputs</a></li>
               <li><a href="#formula" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Formula</a></li>
-              <li><a href="#what-is-fix-and-flip" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">What is Fix and Flip</a></li>
+              <li><a href="#what-is-fix-and-flip" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">What Is Fix and Flip</a></li>
               <li><a href="#result-meaning" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">What Your Result Means</a></li>
               <li><a href="#benchmarks" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Benchmarks</a></li>
               <li><a href="#strategy" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Strategy</a></li>
@@ -92,8 +92,11 @@
               <li><a href="#limitations" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Limitations</a></li>
               <li><a href="#faq" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">FAQ</a></li>
             </ul>
-            <button @click="isNavExpanded = !isNavExpanded" class="mt-2 flex items-center gap-1 text-xs font-bold transition" style="color: #b45309;">
-              <svg class="w-3 h-3 transition-transform duration-200" :class="isNavExpanded ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <button @click="isNavExpanded = !isNavExpanded"
+              class="mt-2 flex items-center gap-1 text-xs font-bold transition"
+              style="color: #b45309;">
+              <svg class="w-3 h-3 transition-transform duration-200" :class="isNavExpanded ? 'rotate-180' : ''"
+                fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
               </svg>
               <span>{{ isNavExpanded ? 'Show less' : 'Show all sections' }}</span>
@@ -110,35 +113,43 @@
       <div class="px-4 py-3 flex items-center justify-between max-w-6xl mx-auto">
         <div class="flex items-center gap-2 text-sm text-gray-500 font-medium">
           <svg class="w-4 h-4 flex-shrink-0" style="color: #1e3a5f;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
           </svg>
-          <span v-if="calcMode === 'analyze'">Flip Profit &amp; ROI</span>
+          <span v-if="calcMode === 'analyze'">Total Profit</span>
           <span v-else-if="calcMode === 'find-price'">Max Purchase Price</span>
           <span v-else>Max Rehab Budget</span>
         </div>
         <div class="flex items-center gap-3">
           <!-- analyze mode -->
           <template v-if="calcMode === 'analyze'">
-            <div v-if="hasResult" class="text-right">
-              <div class="text-lg font-extrabold leading-none" :style="`color: ${badge.bg1}`">{{ formatCurrency(result.totalProfit) }}</div>
-              <div class="text-xs font-semibold mt-0.5" :style="`color: ${badge.bg1}`">{{ result.roi.toFixed(1) }}% ROI</div>
+            <div v-if="hasResult" class="flex items-center gap-2">
+              <span class="text-xl font-extrabold leading-none" :style="`color: ${tier.bg1}`">
+                {{ totalProfit >= 0 ? formatCurrency(totalProfit) : '-' + formatCurrency(Math.abs(totalProfit)) }}
+              </span>
+              <span class="text-xs font-bold px-2 py-0.5 rounded-full text-white" :style="`background: ${tier.bg1}`">
+                {{ roi.toFixed(1) }}%
+              </span>
             </div>
             <span v-else class="text-2xl font-bold text-gray-200">—</span>
-            <span v-if="hasResult" class="text-xs font-bold px-2.5 py-1 rounded-full text-white" :style="`background: ${badge.bg1}`">{{ badge.label }}</span>
+            <span v-if="hasResult" class="text-xs font-bold px-2.5 py-1 rounded-full text-white" :style="`background: ${tier.bg1}`">{{ tier.label }}</span>
             <span v-else class="text-xs text-gray-400 font-medium">fill in fields below</span>
           </template>
           <!-- find-price mode -->
           <template v-else-if="calcMode === 'find-price'">
-            <span v-if="findPriceResult !== null" class="text-xl font-extrabold leading-none text-blue-700">{{ formatCurrency(findPriceResult) }}</span>
+            <span v-if="findMaxPriceResult !== null" class="text-xl font-extrabold leading-none text-blue-700">
+              {{ formatCurrency(findMaxPriceResult) }}
+            </span>
             <span v-else class="text-2xl font-bold text-gray-200">—</span>
-            <span v-if="findPriceResult !== null" class="text-xs font-bold px-2.5 py-1 rounded-full bg-blue-100 text-blue-800">Max Price</span>
+            <span v-if="findMaxPriceResult !== null" class="text-xs font-bold px-2.5 py-1 rounded-full bg-blue-100 text-blue-800">Max Price</span>
             <span v-else class="text-xs text-gray-400 font-medium">fill in fields below</span>
           </template>
           <!-- find-rehab mode -->
           <template v-else>
-            <span v-if="findRehabResult !== null" class="text-xl font-extrabold leading-none text-emerald-700">{{ formatCurrency(findRehabResult) }}</span>
+            <span v-if="findMaxRehabResult !== null" class="text-xl font-extrabold leading-none text-emerald-700">
+              {{ formatCurrency(findMaxRehabResult) }}
+            </span>
             <span v-else class="text-2xl font-bold text-gray-200">—</span>
-            <span v-if="findRehabResult !== null" class="text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800">Max Rehab</span>
+            <span v-if="findMaxRehabResult !== null" class="text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800">Max Rehab</span>
             <span v-else class="text-xs text-gray-400 font-medium">fill in fields below</span>
           </template>
         </div>
@@ -157,31 +168,40 @@
         <div class="px-5 pt-4 pb-3">
           <p class="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-2">What do you want to calculate?</p>
           <div class="calc-mode-tabs">
-            <button @click="calcMode = 'analyze'" class="calc-mode-tab" :class="calcMode === 'analyze' ? 'calc-mode-tab-active' : 'calc-mode-tab-inactive'">
+            <button @click="calcMode = 'analyze'"
+              class="calc-mode-tab"
+              :class="calcMode === 'analyze' ? 'calc-mode-tab-active' : 'calc-mode-tab-inactive'">
               <span class="block text-xs font-bold leading-tight" :style="calcMode === 'analyze' ? 'color:#1e3a5f;' : ''">Analyze Fix &amp; Flip</span>
-              <span class="block text-xs mt-0.5" :class="calcMode === 'analyze' ? 'text-amber-700' : 'text-gray-400'">Profit &amp; ROI from inputs</span>
-              <span class="inline-block text-xs mt-1 px-2 py-0.5 rounded-full font-semibold" :class="calcMode === 'analyze' ? 'bg-amber-100 text-amber-800' : 'bg-gray-200 text-gray-400'">Standard</span>
+              <span class="block text-xs mt-0.5" :class="calcMode === 'analyze' ? 'text-amber-700' : 'text-gray-400'">Profit &amp; ROI</span>
+              <span class="inline-block text-xs mt-1 px-2 py-0.5 rounded-full font-semibold"
+                :class="calcMode === 'analyze' ? 'bg-amber-100 text-amber-800' : 'bg-gray-200 text-gray-400'">Standard</span>
             </button>
-            <button @click="calcMode = 'find-price'" class="calc-mode-tab" :class="calcMode === 'find-price' ? 'calc-mode-tab-active' : 'calc-mode-tab-inactive'">
-              <span class="block text-xs font-bold leading-tight" :style="calcMode === 'find-price' ? 'color:#1e3a5f;' : ''">Find Max Purchase Price</span>
-              <span class="block text-xs mt-0.5" :class="calcMode === 'find-price' ? 'text-blue-700' : 'text-gray-400'">Given target ROI or Profit</span>
-              <span class="inline-block text-xs mt-1 px-2 py-0.5 rounded-full font-semibold" :class="calcMode === 'find-price' ? 'bg-blue-100 text-blue-800' : 'bg-gray-200 text-gray-400'">Reverse</span>
+            <button @click="calcMode = 'find-price'"
+              class="calc-mode-tab"
+              :class="calcMode === 'find-price' ? 'calc-mode-tab-active' : 'calc-mode-tab-inactive'">
+              <span class="block text-xs font-bold leading-tight" :style="calcMode === 'find-price' ? 'color:#1e3a5f;' : ''">Find Max Price</span>
+              <span class="block text-xs mt-0.5" :class="calcMode === 'find-price' ? 'text-blue-700' : 'text-gray-400'">Given Target ROI</span>
+              <span class="inline-block text-xs mt-1 px-2 py-0.5 rounded-full font-semibold"
+                :class="calcMode === 'find-price' ? 'bg-blue-100 text-blue-800' : 'bg-gray-200 text-gray-400'">Reverse</span>
             </button>
-            <button @click="calcMode = 'find-rehab'" class="calc-mode-tab" :class="calcMode === 'find-rehab' ? 'calc-mode-tab-active' : 'calc-mode-tab-inactive'">
-              <span class="block text-xs font-bold leading-tight" :style="calcMode === 'find-rehab' ? 'color:#1e3a5f;' : ''">Find Max Rehab Budget</span>
-              <span class="block text-xs mt-0.5" :class="calcMode === 'find-rehab' ? 'text-emerald-700' : 'text-gray-400'">Given target ROI or Profit</span>
-              <span class="inline-block text-xs mt-1 px-2 py-0.5 rounded-full font-semibold" :class="calcMode === 'find-rehab' ? 'bg-emerald-100 text-emerald-800' : 'bg-gray-200 text-gray-400'">Reverse</span>
+            <button @click="calcMode = 'find-rehab'"
+              class="calc-mode-tab"
+              :class="calcMode === 'find-rehab' ? 'calc-mode-tab-active' : 'calc-mode-tab-inactive'">
+              <span class="block text-xs font-bold leading-tight" :style="calcMode === 'find-rehab' ? 'color:#1e3a5f;' : ''">Find Max Rehab</span>
+              <span class="block text-xs mt-0.5" :class="calcMode === 'find-rehab' ? 'text-emerald-700' : 'text-gray-400'">Given Target ROI</span>
+              <span class="inline-block text-xs mt-1 px-2 py-0.5 rounded-full font-semibold"
+                :class="calcMode === 'find-rehab' ? 'bg-emerald-100 text-emerald-800' : 'bg-gray-200 text-gray-400'">Reverse</span>
             </button>
           </div>
           <div class="mt-2.5">
             <p v-if="calcMode === 'analyze'" class="text-xs text-gray-500 leading-relaxed">
-              Enter purchase price, ARV, rehab budget, and financing to project total profit and ROI. Best for deal evaluation and go/no-go decisions.
+              Enter property details, rehab budget, financing, and hold period to calculate Total Profit and ROI. Best for evaluating a deal before making an offer.
             </p>
             <p v-else-if="calcMode === 'find-price'" class="text-xs text-blue-700 leading-relaxed bg-blue-50 px-3 py-1.5 rounded-lg">
-              Enter ARV, rehab budget, and a <strong>target ROI or profit</strong> — the calculator will solve for the maximum purchase price you can pay.
+              Enter ARV, rehab, and your <strong>target ROI or profit</strong> — the calculator solves for the maximum purchase price you can offer.
             </p>
             <p v-else class="text-xs text-emerald-700 leading-relaxed bg-emerald-50 px-3 py-1.5 rounded-lg">
-              Enter purchase price, ARV, and a <strong>target ROI or profit</strong> — the calculator will solve for the maximum rehab budget you can spend.
+              Enter purchase price, ARV, and your <strong>target ROI or profit</strong> — the calculator solves for the maximum rehab budget that still hits your return.
             </p>
           </div>
         </div>
@@ -193,38 +213,29 @@
         <!-- ── INPUTS (left column) ── -->
         <div class="calc-inputs border-b lg:border-b-0 lg:border-r border-gray-200 bg-white min-w-0">
 
-          <!-- PROPERTY SECTION -->
+          <!-- Property Section -->
           <div class="border-b border-gray-100">
             <div class="calc-section-header">
               <h2 class="calc-section-title">Property</h2>
             </div>
             <div class="px-4 py-3 space-y-2.5">
-              <!-- Purchase Price (hidden in find-price mode) -->
+              <!-- Purchase Price — shown in analyze and find-rehab modes -->
               <div v-if="calcMode !== 'find-price'">
-                <label for="purchasePrice" class="block text-xs font-semibold text-gray-700 mb-1">Purchase Price</label>
+                <label for="purchase-price" class="block text-xs font-semibold text-gray-700 mb-1">
+                  Purchase Price <span class="text-red-500">*</span>
+                </label>
                 <div class="relative">
                   <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
-                  <input id="purchasePrice" v-model="form.purchasePrice" type="number" min="0" step="1000"
+                  <input id="purchase-price" v-model="form.purchasePrice" type="number" min="0" step="1000"
                     placeholder="Enter purchase price"
                     class="w-full pl-8 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                 </div>
               </div>
-              <!-- Property Type -->
-              <div>
-                <label for="propertyType" class="block text-xs font-semibold text-gray-700 mb-1">Property Type</label>
-                <select id="propertyType" v-model="form.propertyType"
-                  class="w-full px-3 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition">
-                  <option value="SFR">Single-Family (SFR)</option>
-                  <option value="Condo">Condo</option>
-                  <option value="Townhouse">Townhouse</option>
-                  <option value="SmallMulti">Small Multi-Family</option>
-                </select>
-              </div>
+
               <!-- ARV -->
               <div>
                 <label for="arv" class="block text-xs font-semibold text-gray-700 mb-1">
-                  ARV — After Repair Value
-                  <span class="ml-1 text-amber-600 font-bold">★ Critical input</span>
+                  ARV — After Repair Value <span class="text-red-500">*</span>
                 </label>
                 <div class="relative">
                   <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
@@ -232,164 +243,274 @@
                     placeholder="Enter after-repair value"
                     class="w-full pl-8 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                 </div>
-                <p class="text-xs text-gray-400 mt-1">Market value after all renovations are complete. Verify with comps, BPO, or appraisal.</p>
+                <p class="text-xs text-gray-400 mt-1">Projected market value after renovation is complete. Use conservative comps — this is the most critical input.</p>
               </div>
+
               <!-- ARV Confidence -->
               <div>
-                <label for="arvConfidence" class="block text-xs font-semibold text-gray-700 mb-1">ARV Confidence Level</label>
-                <select id="arvConfidence" v-model="form.arvConfidence"
-                  class="w-full px-3 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition">
-                  <option value="Conservative">Conservative (verified comps)</option>
-                  <option value="Realistic">Realistic (estimated from market)</option>
-                  <option value="Optimistic">Optimistic (hot market assumption)</option>
+                <label for="arv-confidence" class="block text-xs font-semibold text-gray-700 mb-1">ARV Confidence</label>
+                <select id="arv-confidence" v-model="form.arvConfidence"
+                  class="w-full px-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-medium text-sm transition">
+                  <option value="conservative">Conservative (reduce comps by 5-10%)</option>
+                  <option value="realistic">Realistic (inline with comps)</option>
+                  <option value="optimistic">Optimistic (top of range)</option>
+                </select>
+                <p v-if="form.arvConfidence === 'optimistic'" class="text-xs text-amber-600 mt-1">Optimistic ARV increases risk — any miss can eliminate projected profit.</p>
+              </div>
+
+              <!-- Property Type -->
+              <div>
+                <label for="property-type" class="block text-xs font-semibold text-gray-700 mb-1">Property Type</label>
+                <select id="property-type" v-model="form.propertyType"
+                  class="w-full px-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-medium text-sm transition">
+                  <option value="sfr">Single Family (SFR)</option>
+                  <option value="condo">Condo</option>
+                  <option value="townhouse">Townhouse</option>
+                  <option value="small-multi">Small Multifamily (2-4 units)</option>
                 </select>
               </div>
             </div>
           </div>
 
-          <!-- PURCHASE CLOSING COSTS -->
+          <!-- Purchase Costs Section -->
           <div class="border-b border-gray-100">
             <div class="calc-section-header">
               <h2 class="calc-section-title">Purchase Closing Costs</h2>
             </div>
             <div class="px-4 py-3 space-y-2.5">
-              <div class="flex items-center gap-1 p-1 bg-white border border-gray-200 rounded-xl w-fit shadow-sm">
-                <button @click="form.purchaseClosingCostsMode = 'pct'"
-                  :class="form.purchaseClosingCostsMode === 'pct' ? 'bg-amber-50 shadow text-gray-900 font-bold border border-amber-200' : 'text-gray-500 hover:text-gray-700'"
-                  class="px-4 py-2 rounded-lg text-sm transition font-medium">
-                  Percentage
-                </button>
-                <button @click="form.purchaseClosingCostsMode = 'dollar'"
-                  :class="form.purchaseClosingCostsMode === 'dollar' ? 'bg-amber-50 shadow text-gray-900 font-bold border border-amber-200' : 'text-gray-500 hover:text-gray-700'"
-                  class="px-4 py-2 rounded-lg text-sm transition font-medium">
-                  Dollar Amount
-                </button>
+              <div>
+                <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Enter closing costs as:</p>
+                <div class="flex items-center gap-1 p-1 bg-white border border-gray-200 rounded-xl w-fit shadow-sm">
+                  <button @click="form.closingCostsMode = 'percent'"
+                    :class="form.closingCostsMode === 'percent' ? 'bg-amber-50 shadow text-gray-900 font-bold border border-amber-200' : 'text-gray-500 hover:text-gray-700'"
+                    class="px-4 py-2 rounded-lg text-sm transition font-medium">
+                    Percentage
+                  </button>
+                  <button @click="form.closingCostsMode = 'dollar'"
+                    :class="form.closingCostsMode === 'dollar' ? 'bg-amber-50 shadow text-gray-900 font-bold border border-amber-200' : 'text-gray-500 hover:text-gray-700'"
+                    class="px-4 py-2 rounded-lg text-sm transition font-medium">
+                    Dollar Amount
+                  </button>
+                </div>
               </div>
-              <div v-if="form.purchaseClosingCostsMode === 'pct'">
-                <label for="closingPct" class="block text-xs font-semibold text-gray-700 mb-1">Closing Costs % of Purchase Price</label>
+              <div v-if="form.closingCostsMode === 'percent'">
+                <label for="closing-pct" class="block text-xs font-semibold text-gray-700 mb-1">
+                  Closing Costs % <span class="ml-1 text-xs font-normal text-gray-400">(typical: 2–4%)</span>
+                </label>
                 <div class="relative">
-                  <input id="closingPct" v-model="form.purchaseClosingCostsPct" type="number" min="0" max="10" step="0.1"
+                  <input id="closing-pct" v-model="form.purchaseClosingCostsPct" type="number" min="0" max="10" step="0.1"
                     placeholder="Enter closing cost percentage"
-                    class="w-full px-4 pr-8 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                    class="w-full pr-8 pl-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                   <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">%</span>
                 </div>
-                <p class="text-xs text-gray-400 mt-1">Typical range: 2-4%. Includes title, escrow, lender fees.</p>
               </div>
               <div v-else>
-                <label for="closingDollars" class="block text-xs font-semibold text-gray-700 mb-1">Closing Costs (Dollar Amount)</label>
+                <label for="closing-dollar" class="block text-xs font-semibold text-gray-700 mb-1">Closing Costs (dollar amount)</label>
                 <div class="relative">
                   <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
-                  <input id="closingDollars" v-model="form.purchaseClosingCostsDollars" type="number" min="0" step="100"
-                    placeholder="Enter closing cost amount"
+                  <input id="closing-dollar" v-model="form.purchaseClosingCostsDollars" type="number" min="0" step="100"
+                    placeholder="Enter total closing costs"
                     class="w-full pl-8 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                 </div>
+              </div>
+              <div v-if="purchaseClosingCostsCalc > 0 && calcMode !== 'find-price'" class="text-xs text-blue-700 bg-blue-50 border border-blue-100 px-3 py-2 rounded-xl">
+                Closing costs: <strong>{{ formatCurrency(purchaseClosingCostsCalc) }}</strong>
               </div>
             </div>
           </div>
 
-          <!-- REHAB SECTION -->
+          <!-- Rehab Section -->
           <div class="border-b border-gray-100">
             <div class="calc-section-header">
               <h2 class="calc-section-title">Rehab Budget</h2>
             </div>
             <div class="px-4 py-3 space-y-2.5">
-              <!-- Rehab Budget (hidden in find-rehab mode) -->
+              <!-- Rehab Budget — shown in analyze and find-price modes -->
               <div v-if="calcMode !== 'find-rehab'">
-                <label for="rehabBudget" class="block text-xs font-semibold text-gray-700 mb-1">Total Rehab Budget</label>
+                <label for="rehab-budget" class="block text-xs font-semibold text-gray-700 mb-1">
+                  Total Rehab Budget <span class="text-red-500">*</span>
+                </label>
                 <div class="relative">
                   <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
-                  <input id="rehabBudget" v-model="form.rehabBudget" type="number" min="0" step="1000"
+                  <input id="rehab-budget" v-model="form.rehabBudget" type="number" min="0" step="1000"
                     placeholder="Enter total rehab budget"
                     class="w-full pl-8 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                 </div>
-                <p class="text-xs text-gray-400 mt-1">Cosmetic: $15–30K · Moderate: $30–60K · Gut: $60–150K</p>
+                <p class="text-xs text-gray-400 mt-1">Typical 2026: cosmetic $15–30K, moderate $30–60K, gut $60–150K</p>
               </div>
+
+              <!-- Rehab Contingency -->
               <div>
-                <label for="rehabContingencyPct" class="block text-xs font-semibold text-gray-700 mb-1">Rehab Contingency %</label>
+                <label for="rehab-contingency" class="block text-xs font-semibold text-gray-700 mb-1">
+                  Rehab Contingency <span class="ml-1 text-xs font-normal text-gray-400">(industry standard 10–15%)</span>
+                </label>
                 <div class="relative">
-                  <input id="rehabContingencyPct" v-model="form.rehabContingencyPct" type="number" min="0" max="30" step="1"
+                  <input id="rehab-contingency" v-model="form.rehabContingencyPct" type="number" min="0" max="30" step="1"
                     placeholder="Enter contingency percentage"
-                    class="w-full px-4 pr-8 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                    class="w-full pr-8 pl-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                   <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">%</span>
                 </div>
-                <p class="text-xs text-gray-400 mt-1">Industry standard: 10–15%. Buffer for overruns and surprises.</p>
               </div>
+
+              <!-- Rehab Duration -->
               <div>
-                <label for="rehabDurationMonths" class="block text-xs font-semibold text-gray-700 mb-1">Rehab Duration (Months)</label>
-                <select id="rehabDurationMonths" v-model="form.rehabDurationMonths"
-                  class="w-full px-3 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition">
-                  <option v-for="m in [1,2,3,4,5,6,7,8,9,10,11,12]" :key="m" :value="String(m)">{{ m }} month{{ m > 1 ? 's' : '' }}</option>
+                <label for="rehab-duration" class="block text-xs font-semibold text-gray-700 mb-1">
+                  Rehab Duration <span class="ml-1 text-xs font-normal text-gray-400">(months)</span>
+                </label>
+                <select id="rehab-duration" v-model="form.rehabDurationMonths"
+                  class="w-full px-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-medium text-sm transition">
+                  <option :value="1">1 month</option>
+                  <option :value="2">2 months</option>
+                  <option :value="3">3 months</option>
+                  <option :value="4">4 months</option>
+                  <option :value="5">5 months</option>
+                  <option :value="6">6 months</option>
+                  <option :value="7">7 months</option>
+                  <option :value="8">8 months</option>
                 </select>
-                <p class="text-xs text-gray-400 mt-1">Moderate update: 2–4 months · Gut renovation: 4–8 months</p>
+                <p class="text-xs text-gray-400 mt-1">Affects timeline table only — holding costs use total Hold Period below.</p>
               </div>
             </div>
           </div>
 
-          <!-- HOLD PERIOD -->
+          <!-- Hold Period Section -->
           <div class="border-b border-gray-100">
             <div class="calc-section-header">
               <h2 class="calc-section-title">Hold Period</h2>
             </div>
             <div class="px-4 py-3 space-y-2.5">
               <div>
-                <label for="holdPeriodMonths" class="block text-xs font-semibold text-gray-700 mb-1">Total Hold Period (Months)</label>
-                <select id="holdPeriodMonths" v-model="form.holdPeriodMonths"
-                  class="w-full px-3 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition">
-                  <option v-for="m in [3,4,5,6,7,8,9,10,11,12]" :key="m" :value="String(m)">{{ m }} months</option>
+                <label for="hold-period" class="block text-xs font-semibold text-gray-700 mb-1">
+                  Total Hold Period <span class="text-red-500">*</span>
+                  <span class="ml-1 text-xs font-normal text-gray-400">(purchase to sale, in months)</span>
+                </label>
+                <select id="hold-period" v-model="form.holdPeriodMonths"
+                  class="w-full px-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition">
+                  <option :value="3">3 months</option>
+                  <option :value="4">4 months</option>
+                  <option :value="5">5 months</option>
+                  <option :value="6">6 months</option>
+                  <option :value="7">7 months</option>
+                  <option :value="8">8 months</option>
+                  <option :value="9">9 months</option>
+                  <option :value="10">10 months</option>
+                  <option :value="11">11 months</option>
+                  <option :value="12">12 months</option>
                 </select>
-                <p class="text-xs text-gray-400 mt-1">From purchase close to sale close. Includes rehab time plus market time.</p>
+                <p class="text-xs text-gray-400 mt-1">Total months from purchase close to sale close. Includes rehab time plus market time.</p>
               </div>
-              <div v-if="Number(form.holdPeriodMonths) > 12" class="p-2.5 rounded-xl text-xs font-medium text-amber-800 bg-amber-50 border border-amber-200">
-                Long flip hold — consider a rental strategy instead.
+              <div v-if="form.holdPeriodMonths >= 12" class="p-2.5 rounded-xl text-xs font-medium text-amber-800 bg-amber-50 border border-amber-200">
+                12-month hold — consider whether a rental strategy may be more appropriate.
+              </div>
+              <div v-if="form.rehabDurationMonths > form.holdPeriodMonths" class="p-2.5 rounded-xl text-xs font-medium text-red-800 bg-red-50 border border-red-200">
+                Rehab duration exceeds hold period — adjust one of the two values.
               </div>
             </div>
           </div>
 
-          <!-- HOLDING COSTS -->
+          <!-- Holding Costs Section -->
           <div class="border-b border-gray-100">
             <div class="calc-section-header">
               <h2 class="calc-section-title">Monthly Holding Costs</h2>
             </div>
             <div class="px-4 py-3 space-y-2.5">
-              <div class="p-2.5 rounded-xl text-xs font-medium text-blue-800 bg-blue-50 border border-blue-100">
-                <strong>Note:</strong> Holding costs are property-related expenses only (tax, insurance, utilities, HOA). Loan interest is tracked separately under Financing to avoid double-counting.
+              <p class="text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
+                <strong>Property expenses only</strong> — taxes, insurance, utilities, HOA. Loan interest is tracked separately in the Financing section to avoid double-counting.
+              </p>
+              <div>
+                <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Entry mode:</p>
+                <div class="flex items-center gap-1 p-1 bg-white border border-gray-200 rounded-xl w-fit shadow-sm">
+                  <button @click="form.holdingMode = 'simple'"
+                    :class="form.holdingMode === 'simple' ? 'bg-amber-50 shadow text-gray-900 font-bold border border-amber-200' : 'text-gray-500 hover:text-gray-700'"
+                    class="px-4 py-2 rounded-lg text-sm transition font-medium">
+                    Simple
+                  </button>
+                  <button @click="form.holdingMode = 'detailed'"
+                    :class="form.holdingMode === 'detailed' ? 'bg-amber-50 shadow text-gray-900 font-bold border border-amber-200' : 'text-gray-500 hover:text-gray-700'"
+                    class="px-4 py-2 rounded-lg text-sm transition font-medium">
+                    Detailed
+                  </button>
+                </div>
               </div>
-              <div class="flex items-center gap-1 p-1 bg-white border border-gray-200 rounded-xl w-fit shadow-sm">
-                <button @click="form.holdingMode = 'simple'"
-                  :class="form.holdingMode === 'simple' ? 'bg-amber-50 shadow text-gray-900 font-bold border border-amber-200' : 'text-gray-500 hover:text-gray-700'"
-                  class="px-4 py-2 rounded-lg text-sm transition font-medium">Simple</button>
-                <button @click="form.holdingMode = 'detailed'"
-                  :class="form.holdingMode === 'detailed' ? 'bg-amber-50 shadow text-gray-900 font-bold border border-amber-200' : 'text-gray-500 hover:text-gray-700'"
-                  class="px-4 py-2 rounded-lg text-sm transition font-medium">Detailed</button>
-              </div>
+
+              <!-- Simple mode -->
               <div v-if="form.holdingMode === 'simple'">
-                <label for="totalMonthlyHoldingSimple" class="block text-xs font-semibold text-gray-700 mb-1">Total Monthly Holding Cost</label>
+                <label for="holding-simple" class="block text-xs font-semibold text-gray-700 mb-1">
+                  Total Monthly Holding Cost
+                </label>
                 <div class="relative">
                   <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
-                  <input id="totalMonthlyHoldingSimple" v-model="form.totalMonthlyHoldingSimple" type="number" min="0" step="50"
+                  <input id="holding-simple" v-model="form.totalMonthlyHoldingSimple" type="number" min="0" step="50"
                     placeholder="Enter total monthly holding cost"
                     class="w-full pl-8 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                 </div>
-                <p class="text-xs text-gray-400 mt-1">Sum of tax + insurance + utilities + HOA + other per month</p>
+                <p class="text-xs text-gray-400 mt-1">Sum of: property tax + insurance + utilities + HOA + other (NOT loan interest)</p>
               </div>
-              <div v-else class="space-y-2">
-                <div v-for="field in holdingDetailFields" :key="field.key">
-                  <label :for="'hc_' + field.key" class="block text-xs font-semibold text-gray-700 mb-1">{{ field.label }}</label>
+
+              <!-- Detailed mode -->
+              <div v-if="form.holdingMode === 'detailed'" class="space-y-2.5">
+                <div>
+                  <label class="block text-xs font-semibold text-gray-600 mb-1">Property Tax (monthly)</label>
                   <div class="relative">
-                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
-                    <input :id="'hc_' + field.key" v-model="form.holdingCosts[field.key]" type="number" min="0" step="10"
-                      :placeholder="field.placeholder"
-                      class="w-full pl-8 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">$</span>
+                    <input v-model="form.holdingCosts.propertyTax" type="number" min="0" step="10"
+                      placeholder="Enter monthly property tax"
+                      class="w-full pl-7 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-medium text-sm transition" />
+                  </div>
+                  <p class="text-xs text-gray-400 mt-0.5">Annual tax ÷ 12</p>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-600 mb-1">Insurance (monthly)</label>
+                  <div class="relative">
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">$</span>
+                    <input v-model="form.holdingCosts.insurance" type="number" min="0" step="10"
+                      placeholder="Enter monthly insurance cost"
+                      class="w-full pl-7 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-medium text-sm transition" />
+                  </div>
+                  <p class="text-xs text-gray-400 mt-0.5">Vacant/rehab insurance — typically higher than standard homeowner</p>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-600 mb-1">Utilities (monthly)</label>
+                  <div class="relative">
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">$</span>
+                    <input v-model="form.holdingCosts.utilities" type="number" min="0" step="10"
+                      placeholder="Enter monthly utilities"
+                      class="w-full pl-7 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-medium text-sm transition" />
                   </div>
                 </div>
-                <div v-if="detailedMonthlyHolding > 0" class="p-2.5 rounded-xl text-xs font-medium text-blue-800 bg-blue-50 border border-blue-100">
-                  Total monthly holding: <span class="font-bold">{{ formatCurrency(detailedMonthlyHolding) }}/mo</span>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-600 mb-1">HOA (monthly)</label>
+                  <div class="relative">
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">$</span>
+                    <input v-model="form.holdingCosts.hoa" type="number" min="0" step="10"
+                      placeholder="Enter monthly HOA fees"
+                      class="w-full pl-7 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-medium text-sm transition" />
+                  </div>
                 </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-600 mb-1">Other (monthly)</label>
+                  <div class="relative">
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">$</span>
+                    <input v-model="form.holdingCosts.other" type="number" min="0" step="10"
+                      placeholder="Enter other monthly holding costs"
+                      class="w-full pl-7 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-medium text-sm transition" />
+                  </div>
+                </div>
+                <div class="pt-2 border-t border-gray-100">
+                  <div class="flex justify-between items-center text-sm">
+                    <span class="text-gray-500 font-medium">Total Monthly Holding</span>
+                    <span class="font-bold text-gray-900">{{ formatCurrency(totalMonthlyHolding) }}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div v-if="totalHoldingCosts > 0" class="text-xs text-blue-700 bg-blue-50 border border-blue-100 px-3 py-2 rounded-xl">
+                Total holding costs over {{ form.holdPeriodMonths }} months: <strong>{{ formatCurrency(totalHoldingCosts) }}</strong>
               </div>
             </div>
           </div>
 
-          <!-- FINANCING -->
+          <!-- Financing Section -->
           <div class="border-b border-gray-100">
             <div class="calc-section-header">
               <h2 class="calc-section-title">Financing</h2>
@@ -397,391 +518,611 @@
             <div class="px-4 py-3 space-y-2.5">
               <!-- Financing Type Toggle -->
               <div>
-                <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Financing Type</p>
-                <div class="flex items-center gap-1 p-1 bg-white border border-gray-200 rounded-xl shadow-sm flex-wrap">
+                <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Financing type:</p>
+                <div class="flex items-center gap-1 p-1 bg-white border border-gray-200 rounded-xl w-fit shadow-sm flex-wrap">
                   <button @click="form.financingType = 'hm'"
                     :class="form.financingType === 'hm' ? 'bg-amber-50 shadow text-gray-900 font-bold border border-amber-200' : 'text-gray-500 hover:text-gray-700'"
-                    class="px-3 py-2 rounded-lg text-xs transition font-medium">Hard Money</button>
+                    class="px-3 py-2 rounded-lg text-sm transition font-medium">
+                    Hard Money
+                  </button>
                   <button @click="form.financingType = 'conv'"
                     :class="form.financingType === 'conv' ? 'bg-amber-50 shadow text-gray-900 font-bold border border-amber-200' : 'text-gray-500 hover:text-gray-700'"
-                    class="px-3 py-2 rounded-lg text-xs transition font-medium">Conventional</button>
+                    class="px-3 py-2 rounded-lg text-sm transition font-medium">
+                    Conventional
+                  </button>
                   <button @click="form.financingType = 'cash'"
                     :class="form.financingType === 'cash' ? 'bg-amber-50 shadow text-gray-900 font-bold border border-amber-200' : 'text-gray-500 hover:text-gray-700'"
-                    class="px-3 py-2 rounded-lg text-xs transition font-medium">All Cash</button>
+                    class="px-3 py-2 rounded-lg text-sm transition font-medium">
+                    All Cash
+                  </button>
                 </div>
               </div>
 
-              <!-- Hard Money fields -->
-              <template v-if="form.financingType === 'hm'">
-                <div>
-                  <label for="hmLoanToCostPct" class="block text-xs font-semibold text-gray-700 mb-1">Loan-to-Cost (LTC) %</label>
-                  <div class="relative">
-                    <input id="hmLoanToCostPct" v-model="form.hmLoanToCostPct" type="number" min="50" max="100" step="1"
-                      placeholder="Enter loan-to-cost percentage"
-                      class="w-full px-4 pr-8 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
-                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">%</span>
-                  </div>
-                  <p class="text-xs text-gray-400 mt-1">Typical: 75–85% LTC. Applied to purchase (and rehab if toggle on).</p>
+              <!-- Hard Money Fields -->
+              <div v-if="form.financingType === 'hm'" class="space-y-2.5">
+                <div class="p-2.5 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-800">
+                  Hard Money — 2026 typical: 10–14% rate, 2–4% points, interest-only, 6–12 month term.
                 </div>
                 <div>
-                  <label for="hmInterestRate" class="block text-xs font-semibold text-gray-700 mb-1">Annual Interest Rate %</label>
+                  <label for="hm-ltc" class="block text-xs font-semibold text-gray-700 mb-1">
+                    Loan to Cost (LTC) <span class="ml-1 text-xs font-normal text-gray-400">(typical 75–85%)</span>
+                  </label>
                   <div class="relative">
-                    <input id="hmInterestRate" v-model="form.hmInterestRate" type="number" min="0" max="25" step="0.25"
-                      placeholder="Enter hard money interest rate"
-                      class="w-full px-4 pr-8 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                    <input id="hm-ltc" v-model="form.hmLoanToCostPct" type="number" min="50" max="95" step="1"
+                      placeholder="Enter LTC percentage"
+                      class="w-full pr-8 pl-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                     <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">%</span>
                   </div>
-                  <p class="text-xs text-gray-400 mt-1">2026 typical: 10–14% annual, interest-only monthly payments.</p>
                 </div>
                 <div>
-                  <label for="hmPointsPct" class="block text-xs font-semibold text-gray-700 mb-1">Origination Points %</label>
+                  <label for="hm-rate" class="block text-xs font-semibold text-gray-700 mb-1">Interest Rate (annual)</label>
                   <div class="relative">
-                    <input id="hmPointsPct" v-model="form.hmPointsPct" type="number" min="0" max="10" step="0.25"
+                    <input id="hm-rate" v-model="form.hmInterestRate" type="number" min="0" max="25" step="0.25"
+                      placeholder="Enter annual interest rate"
+                      class="w-full pr-8 pl-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">%</span>
+                  </div>
+                </div>
+                <div>
+                  <label for="hm-points" class="block text-xs font-semibold text-gray-700 mb-1">
+                    Origination Points <span class="ml-1 text-xs font-normal text-gray-400">(upfront, typical 2–4%)</span>
+                  </label>
+                  <div class="relative">
+                    <input id="hm-points" v-model="form.hmPointsPct" type="number" min="0" max="10" step="0.5"
                       placeholder="Enter points percentage"
-                      class="w-full px-4 pr-8 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                      class="w-full pr-8 pl-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                     <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">%</span>
                   </div>
-                  <p class="text-xs text-gray-400 mt-1">2026 typical: 2–4 points. Paid upfront at closing.</p>
                 </div>
                 <div>
-                  <label class="block text-xs font-semibold text-gray-700 mb-1">Loan Covers Rehab Draws?</label>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Loan Covers Rehab?</label>
                   <div class="flex items-center gap-1 p-1 bg-white border border-gray-200 rounded-xl w-fit shadow-sm">
                     <button @click="form.hmLoanCoversRehab = true"
                       :class="form.hmLoanCoversRehab ? 'bg-amber-50 shadow text-gray-900 font-bold border border-amber-200' : 'text-gray-500 hover:text-gray-700'"
-                      class="px-4 py-2 rounded-lg text-sm transition font-medium">Yes</button>
+                      class="px-4 py-2 rounded-lg text-sm transition font-medium">
+                      Yes — LTC applied to (Purchase + Rehab)
+                    </button>
                     <button @click="form.hmLoanCoversRehab = false"
                       :class="!form.hmLoanCoversRehab ? 'bg-amber-50 shadow text-gray-900 font-bold border border-amber-200' : 'text-gray-500 hover:text-gray-700'"
-                      class="px-4 py-2 rounded-lg text-sm transition font-medium">No</button>
+                      class="px-4 py-2 rounded-lg text-sm transition font-medium">
+                      No — Purchase Only
+                    </button>
                   </div>
-                  <p class="text-xs text-gray-400 mt-1">Yes: Loan = (Purchase + Rehab) × LTC. No: Loan covers purchase only.</p>
                 </div>
-              </template>
+                <div v-if="calcMode !== 'find-price' && loanAmount > 0" class="p-2.5 rounded-xl text-xs font-medium text-blue-800 bg-blue-50 border border-blue-100">
+                  Loan Amount: <strong>{{ formatCurrency(loanAmount) }}</strong> ·
+                  Points: <strong>{{ formatCurrency(loanPoints) }}</strong> ·
+                  Monthly Interest: <strong>{{ formatCurrency(loanAmount * (Number(form.hmInterestRate) || 12) / 100 / 12) }}</strong>
+                </div>
+              </div>
 
-              <!-- Conventional fields -->
-              <template v-else-if="form.financingType === 'conv'">
+              <!-- Conventional Fields -->
+              <div v-if="form.financingType === 'conv'" class="space-y-2.5">
+                <div class="p-2.5 rounded-xl bg-blue-50 border border-blue-200 text-xs text-blue-800">
+                  Conventional — 2026 typical: 7–8% rate, 25% down, 30-year amortizing. Rare for flips but supported.
+                </div>
                 <div>
-                  <label for="convDownPaymentPct" class="block text-xs font-semibold text-gray-700 mb-1">Down Payment %</label>
+                  <label for="conv-down" class="block text-xs font-semibold text-gray-700 mb-1">Down Payment %</label>
                   <div class="relative">
-                    <input id="convDownPaymentPct" v-model="form.convDownPaymentPct" type="number" min="5" max="100" step="1"
+                    <input id="conv-down" v-model="form.convDownPaymentPct" type="number" min="10" max="50" step="1"
                       placeholder="Enter down payment percentage"
-                      class="w-full px-4 pr-8 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                      class="w-full pr-8 pl-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                     <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">%</span>
                   </div>
-                  <p class="text-xs text-gray-400 mt-1">Typical investment property: 20–30% down payment.</p>
                 </div>
                 <div>
-                  <label for="convInterestRate" class="block text-xs font-semibold text-gray-700 mb-1">Annual Interest Rate %</label>
+                  <label for="conv-rate" class="block text-xs font-semibold text-gray-700 mb-1">Interest Rate (annual)</label>
                   <div class="relative">
-                    <input id="convInterestRate" v-model="form.convInterestRate" type="number" min="0" max="20" step="0.125"
-                      placeholder="Enter conventional interest rate"
-                      class="w-full px-4 pr-8 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                    <input id="conv-rate" v-model="form.convInterestRate" type="number" min="0" max="20" step="0.125"
+                      placeholder="Enter annual interest rate"
+                      class="w-full pr-8 pl-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                     <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">%</span>
                   </div>
-                  <p class="text-xs text-gray-400 mt-1">2026 investment loan typical: 7–8% annual rate.</p>
                 </div>
                 <div>
-                  <label for="convLoanTermYears" class="block text-xs font-semibold text-gray-700 mb-1">Loan Term (Years)</label>
-                  <select id="convLoanTermYears" v-model="form.convLoanTermYears"
-                    class="w-full px-3 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition">
-                    <option value="15">15 years</option>
-                    <option value="20">20 years</option>
-                    <option value="25">25 years</option>
-                    <option value="30">30 years</option>
+                  <label for="conv-term" class="block text-xs font-semibold text-gray-700 mb-1">Loan Term</label>
+                  <select id="conv-term" v-model="form.convLoanTermYears"
+                    class="w-full px-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-medium text-sm transition">
+                    <option :value="15">15 years</option>
+                    <option :value="20">20 years</option>
+                    <option :value="25">25 years</option>
+                    <option :value="30">30 years</option>
                   </select>
                 </div>
-              </template>
+              </div>
 
-              <!-- All Cash note -->
-              <div v-else class="p-2.5 rounded-xl text-xs font-medium text-emerald-800 bg-emerald-50 border border-emerald-200">
-                All-Cash mode: No loan amount, no points, no interest. 100% of purchase price is cash invested.
+              <!-- All Cash -->
+              <div v-if="form.financingType === 'cash'" class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-800">
+                All Cash — Loan Amount = $0, Points = $0, Loan Interest = $0. Total Cash Invested equals 100% of purchase price plus all project costs.
               </div>
             </div>
           </div>
 
-          <!-- SALE COSTS -->
+          <!-- Sale Costs Section -->
           <div class="border-b border-gray-100">
             <div class="calc-section-header">
-              <h2 class="calc-section-title">Sale Costs</h2>
+              <h2 class="calc-section-title">Sale Costs at Exit</h2>
             </div>
             <div class="px-4 py-3 space-y-2.5">
               <div>
-                <label for="saleCostsPct" class="block text-xs font-semibold text-gray-700 mb-1">Sale Costs % of ARV</label>
+                <label for="sale-costs" class="block text-xs font-semibold text-gray-700 mb-1">
+                  Sale Costs % of ARV <span class="ml-1 text-xs font-normal text-gray-400">(typical: 6–10%)</span>
+                </label>
                 <div class="relative">
-                  <input id="saleCostsPct" v-model="form.saleCostsPct" type="number" min="0" max="20" step="0.5"
+                  <input id="sale-costs" v-model="form.saleCostsPct" type="number" min="0" max="15" step="0.5"
                     placeholder="Enter sale costs percentage"
-                    class="w-full px-4 pr-8 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                    class="w-full pr-8 pl-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                   <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">%</span>
                 </div>
-                <p class="text-xs text-gray-400 mt-1">Broker commission 5–6% + closing 1–3% = typical 6–10% total.</p>
+                <p class="text-xs text-gray-400 mt-1">Broker commission 5–6% + closing costs 1–3%</p>
+              </div>
+              <div v-if="saleCostsDollar > 0" class="text-xs text-gray-600 bg-gray-50 border border-gray-100 px-3 py-2 rounded-xl">
+                Sale costs: <strong>{{ formatCurrency(saleCostsDollar) }}</strong> (on ARV of {{ formatCurrency(Number(form.arv)) }})
               </div>
             </div>
           </div>
 
-          <!-- REVERSE MODE TARGET (find-price / find-rehab) -->
+          <!-- Reverse Mode Targets -->
           <div v-if="calcMode !== 'analyze'" class="border-b border-gray-100">
             <div class="calc-section-header">
-              <h2 class="calc-section-title" :class="calcMode === 'find-price' ? 'text-blue-700' : 'text-emerald-700'">
-                {{ calcMode === 'find-price' ? 'Target — Max Purchase Price' : 'Target — Max Rehab Budget' }}
-              </h2>
+              <div>
+                <h2 class="calc-section-title">Target Return</h2>
+                <p class="text-xs mt-0.5" :class="calcMode === 'find-price' ? 'text-blue-600' : 'text-emerald-600'">
+                  What return do you need this deal to hit?
+                </p>
+              </div>
             </div>
             <div class="px-4 py-3 space-y-2.5">
               <div>
-                <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Solve for</p>
+                <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Solve for target:</p>
                 <div class="flex items-center gap-1 p-1 bg-white border border-gray-200 rounded-xl w-fit shadow-sm">
-                  <button @click="form.reverseTargetMode = 'roi'"
-                    :class="form.reverseTargetMode === 'roi' ? 'bg-blue-50 shadow text-gray-900 font-bold border border-blue-200' : 'text-gray-500 hover:text-gray-700'"
-                    class="px-4 py-2 rounded-lg text-sm transition font-medium">Target ROI %</button>
-                  <button @click="form.reverseTargetMode = 'profit'"
-                    :class="form.reverseTargetMode === 'profit' ? 'bg-blue-50 shadow text-gray-900 font-bold border border-blue-200' : 'text-gray-500 hover:text-gray-700'"
-                    class="px-4 py-2 rounded-lg text-sm transition font-medium">Target Profit $</button>
+                  <button @click="form.targetType = 'roi'"
+                    :class="form.targetType === 'roi'
+                      ? (calcMode === 'find-price' ? 'bg-blue-50 shadow text-blue-900 font-bold border border-blue-200' : 'bg-emerald-50 shadow text-emerald-900 font-bold border border-emerald-200')
+                      : 'text-gray-500 hover:text-gray-700'"
+                    class="px-4 py-2 rounded-lg text-sm transition font-medium">
+                    ROI %
+                  </button>
+                  <button @click="form.targetType = 'profit'"
+                    :class="form.targetType === 'profit'
+                      ? (calcMode === 'find-price' ? 'bg-blue-50 shadow text-blue-900 font-bold border border-blue-200' : 'bg-emerald-50 shadow text-emerald-900 font-bold border border-emerald-200')
+                      : 'text-gray-500 hover:text-gray-700'"
+                    class="px-4 py-2 rounded-lg text-sm transition font-medium">
+                    Total Profit $
+                  </button>
                 </div>
               </div>
-              <div v-if="form.reverseTargetMode === 'roi'">
-                <label for="targetROI" class="block text-xs font-semibold text-gray-700 mb-1">Target ROI %</label>
+              <div v-if="form.targetType === 'roi'">
+                <label class="block text-xs font-semibold text-gray-700 mb-1">Target ROI %</label>
                 <div class="relative">
-                  <input id="targetROI" v-model="form.targetROI" type="number" min="0" max="500" step="1"
+                  <input v-model="form.targetROI" type="number" min="0" max="200" step="1"
                     placeholder="Enter target ROI percentage"
-                    class="w-full px-4 pr-8 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                    class="w-full pr-8 pl-4 py-2 rounded-xl border outline-none text-gray-900 font-bold text-base transition"
+                    :class="calcMode === 'find-price' ? 'border-blue-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-400/20' : 'border-emerald-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-400/20'" />
                   <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">%</span>
                 </div>
-                <p class="text-xs text-gray-400 mt-1">Recommended: 20–25% minimum for 2026 market conditions.</p>
+                <p class="text-xs text-gray-400 mt-1">Professionals target 20–35% ROI per project in 2026.</p>
               </div>
-              <div v-else>
-                <label for="targetTotalProfit" class="block text-xs font-semibold text-gray-700 mb-1">Target Total Profit</label>
+              <div v-if="form.targetType === 'profit'">
+                <label class="block text-xs font-semibold text-gray-700 mb-1">Target Total Profit</label>
                 <div class="relative">
                   <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
-                  <input id="targetTotalProfit" v-model="form.targetTotalProfit" type="number" min="0" step="1000"
+                  <input v-model="form.targetTotalProfit" type="number" min="0" step="1000"
                     placeholder="Enter target profit amount"
-                    class="w-full pl-8 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                    class="w-full pl-8 pr-4 py-2 rounded-xl border outline-none text-gray-900 font-bold text-base transition"
+                    :class="calcMode === 'find-price' ? 'border-blue-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-400/20' : 'border-emerald-300 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-400/20'" />
                 </div>
               </div>
-              <p v-if="calcMode === 'find-price'" class="text-xs text-blue-700 bg-blue-50 px-3 py-2 rounded-lg">
-                ARV, rehab budget, hold period, and financing terms stay fixed. Only purchase price varies.
-              </p>
-              <p v-else class="text-xs text-emerald-700 bg-emerald-50 px-3 py-2 rounded-lg">
-                Purchase price, ARV, hold period, and financing terms stay fixed. Only rehab budget varies.
-              </p>
+              <div class="p-2.5 rounded-xl text-xs font-medium"
+                :class="calcMode === 'find-price' ? 'bg-blue-50 border border-blue-100 text-blue-700' : 'bg-emerald-50 border border-emerald-100 text-emerald-700'">
+                <strong v-if="calcMode === 'find-price'">Assumptions held fixed:</strong>
+                <strong v-else>Assumptions held fixed:</strong>
+                ARV, {{ calcMode === 'find-price' ? 'Rehab Budget' : 'Purchase Price' }}, Hold Period, Financing Terms, Holding Costs.
+              </div>
             </div>
           </div>
 
-        </div><!-- end left column -->
+          <!-- Reset Button -->
+          <div class="px-4 py-3">
+            <button @click="resetForm"
+              class="w-full py-2 rounded-lg border border-gray-200 text-gray-400 font-medium text-xs hover:border-gray-300 hover:text-gray-600 transition">
+              Reset All Fields
+            </button>
+          </div>
+
+        </div>
 
         <!-- ── RESULTS (right column) ── -->
-        <div class="lg:flex lg:flex-col lg:items-stretch bg-gray-50">
-          <div class="lg:sticky lg:top-[57px] lg:max-h-[calc(100vh-57px)] lg:overflow-y-auto">
+        <div class="min-w-0 lg:relative lg:overflow-hidden">
+        <div class="bg-gray-50 scrollbar-thin lg:absolute lg:inset-0 lg:overflow-y-auto">
+        <div class="space-y-4 p-4 lg:p-5">
 
-            <!-- === ANALYZE MODE RESULT === -->
-            <template v-if="calcMode === 'analyze'">
-              <!-- Primary result block -->
-              <div v-if="hasResult" class="p-6 text-center" :style="`background: linear-gradient(135deg, ${badge.bg1} 0%, ${badge.bg2} 100%)`">
-                <p class="text-white/80 text-xs font-semibold uppercase tracking-widest mb-1">Total Profit (Before Tax)</p>
-                <div class="text-4xl font-extrabold text-white leading-none mb-2">{{ formatCurrency(result.totalProfit) }}</div>
-                <div class="flex items-center justify-center gap-3 mb-3">
-                  <span class="text-white/90 font-bold text-lg">ROI: {{ result.roi.toFixed(1) }}%</span>
-                  <span class="text-white/70 text-sm">over {{ form.holdPeriodMonths }} months</span>
+          <!-- Main Result -->
+          <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+
+            <!-- ANALYZE mode result -->
+            <div v-if="calcMode === 'analyze'" class="px-5 py-5 border-b border-gray-100 bg-white">
+              <p class="text-xs font-semibold uppercase tracking-wide mb-1 text-gray-400">Total Profit</p>
+              <p class="text-xs mb-2 text-gray-400">
+                <span v-if="hasResult">Before-tax analysis · {{ form.holdPeriodMonths }} month hold</span>
+                <span v-else>Net Sale Proceeds − Total Cash Invested</span>
+              </p>
+              <div class="font-extrabold leading-none overflow-hidden text-ellipsis whitespace-nowrap w-full transition-all mb-2"
+                :class="[hasResult ? 'text-5xl' : 'text-6xl text-gray-200']"
+                :style="hasResult ? `color: ${tier.bg1}` : ''">
+                {{ hasResult ? (totalProfit >= 0 ? formatCurrency(totalProfit) : '-' + formatCurrency(Math.abs(totalProfit))) : '—' }}
+              </div>
+              <div v-if="hasResult" class="mb-3">
+                <span class="text-lg font-bold" :style="`color: ${tier.bg1}`">
+                  ROI: {{ roi.toFixed(1) }}%
+                </span>
+                <span class="text-xs text-gray-500 ml-2">over {{ form.holdPeriodMonths }} months</span>
+              </div>
+              <div v-if="hasResult"
+                class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-bold text-xs text-white"
+                :style="`background: ${tier.bg1}`">
+                <span class="w-1.5 h-1.5 rounded-full bg-white/70 flex-shrink-0"></span>
+                {{ tier.label }}
+              </div>
+              <div v-else class="text-sm text-gray-300">Enter purchase price and ARV to see result</div>
+            </div>
+
+            <!-- FIND-PRICE mode result -->
+            <div v-else-if="calcMode === 'find-price'" class="px-5 py-5 border-b border-gray-100 bg-white">
+              <p class="text-xs font-semibold uppercase tracking-wide mb-1 text-blue-500">Max Purchase Price</p>
+              <p class="text-xs mb-2 text-gray-400">
+                <span v-if="findMaxPriceResult !== null">
+                  Given target {{ form.targetType === 'roi' ? form.targetROI + '%' : formatCurrency(Number(form.targetTotalProfit)) }} {{ form.targetType === 'roi' ? 'ROI' : 'profit' }}
+                </span>
+                <span v-else-if="findMaxPriceError" class="text-red-500">{{ findMaxPriceError }}</span>
+                <span v-else>Enter ARV, rehab, and target return</span>
+              </p>
+              <div class="font-extrabold mb-3 leading-none overflow-hidden text-ellipsis whitespace-nowrap w-full"
+                :class="findMaxPriceResult !== null ? 'text-5xl' : 'text-6xl text-gray-200'"
+                style="color: #1e40af;">
+                {{ findMaxPriceResult !== null ? formatCurrency(findMaxPriceResult) : '—' }}
+              </div>
+              <div v-if="findMaxPriceResult !== null"
+                class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-semibold text-xs bg-blue-100 text-blue-700">
+                Maximum offer at your target return
+              </div>
+            </div>
+
+            <!-- FIND-REHAB mode result -->
+            <div v-else class="px-5 py-5 border-b border-gray-100 bg-white">
+              <p class="text-xs font-semibold uppercase tracking-wide mb-1 text-emerald-600">Max Rehab Budget</p>
+              <p class="text-xs mb-2 text-gray-400">
+                <span v-if="findMaxRehabResult !== null">
+                  Given target {{ form.targetType === 'roi' ? form.targetROI + '%' : formatCurrency(Number(form.targetTotalProfit)) }} {{ form.targetType === 'roi' ? 'ROI' : 'profit' }}
+                </span>
+                <span v-else-if="findMaxRehabError" class="text-red-500">{{ findMaxRehabError }}</span>
+                <span v-else>Enter purchase price, ARV, and target return</span>
+              </p>
+              <div class="font-extrabold mb-3 leading-none overflow-hidden text-ellipsis whitespace-nowrap w-full"
+                :class="findMaxRehabResult !== null ? 'text-5xl' : 'text-6xl text-gray-200'"
+                style="color: #065f46;">
+                {{ findMaxRehabResult !== null ? formatCurrency(findMaxRehabResult) : '—' }}
+              </div>
+              <div v-if="findMaxRehabResult !== null"
+                class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-semibold text-xs bg-emerald-100 text-emerald-700">
+                Maximum rehab spend at your target return
+              </div>
+            </div>
+
+            <!-- Warnings -->
+            <div v-if="warnings.length > 0" class="px-5 pt-4 pb-1 space-y-2" role="region" aria-label="Input warnings">
+              <div v-for="(w, i) in warnings" :key="i"
+                class="flex items-start gap-2.5 p-3 rounded-xl text-sm"
+                :class="w.type === 'error' ? 'bg-red-50 border border-red-200 text-red-800' : 'bg-amber-50 border border-amber-200 text-amber-800'"
+                role="alert">
+                <svg class="w-4 h-4 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path v-if="w.type === 'error'" fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                  <path v-else fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                </svg>
+                <span class="font-medium leading-snug">{{ w.msg }}</span>
+              </div>
+            </div>
+
+            <!-- Breakdown — analyze mode only -->
+            <div v-if="calcMode === 'analyze' && hasResult" class="p-5 space-y-2.5">
+              <h3 class="text-xs font-bold uppercase tracking-wide text-gray-400 mb-3">Cost Breakdown</h3>
+              <div class="flex justify-between items-center py-1.5 border-b border-gray-50">
+                <span class="text-sm text-gray-500">Purchase Price</span>
+                <span class="font-semibold text-gray-900">{{ formatCurrency(Number(form.purchasePrice)) }}</span>
+              </div>
+              <div class="flex justify-between items-center py-1.5 border-b border-gray-50">
+                <span class="text-sm text-gray-500">Purchase Closing Costs</span>
+                <span class="font-semibold text-red-500">-{{ formatCurrency(purchaseClosingCostsCalc) }}</span>
+              </div>
+              <div v-if="downPaymentCalc > 0 && form.financingType !== 'cash'" class="flex justify-between items-center py-1.5 border-b border-gray-50">
+                <span class="text-sm text-gray-500">Down Payment (cash)</span>
+                <span class="font-semibold text-gray-900">{{ formatCurrency(downPaymentCalc) }}</span>
+              </div>
+              <div v-if="loanAmount > 0" class="flex justify-between items-center py-1.5 border-b border-gray-50">
+                <span class="text-sm text-gray-500">Loan Amount (lender)</span>
+                <span class="font-semibold text-blue-700">{{ formatCurrency(loanAmount) }}</span>
+              </div>
+              <div class="flex justify-between items-center py-1.5 border-b border-gray-50">
+                <span class="text-sm text-gray-500">Rehab Budget</span>
+                <span class="font-semibold text-red-500">-{{ formatCurrency(Number(form.rehabBudget) || 0) }}</span>
+              </div>
+              <div class="flex justify-between items-center py-1.5 border-b border-gray-50">
+                <span class="text-sm text-gray-500">Rehab Contingency ({{ form.rehabContingencyPct || 10 }}%)</span>
+                <span class="font-semibold text-red-500">-{{ formatCurrency(rehabContingencyCalc) }}</span>
+              </div>
+              <div class="flex justify-between items-center py-1.5 border-b border-gray-50">
+                <span class="text-sm text-gray-500">Total Holding Costs ({{ form.holdPeriodMonths }} mo × {{ formatCurrency(totalMonthlyHolding) }})</span>
+                <span class="font-semibold text-red-500">-{{ formatCurrency(totalHoldingCosts) }}</span>
+              </div>
+              <div v-if="loanPoints > 0" class="flex justify-between items-center py-1.5 border-b border-gray-50">
+                <span class="text-sm text-gray-500">Loan Points ({{ form.hmPointsPct || 3 }}%)</span>
+                <span class="font-semibold text-red-500">-{{ formatCurrency(loanPoints) }}</span>
+              </div>
+              <div v-if="totalLoanInterest > 0" class="flex justify-between items-center py-1.5 border-b border-gray-50">
+                <span class="text-sm text-gray-500">Total Loan Interest</span>
+                <span class="font-semibold text-red-500">-{{ formatCurrency(totalLoanInterest) }}</span>
+              </div>
+              <div class="flex justify-between items-center py-1.5 border-b border-gray-50">
+                <span class="text-sm text-gray-500">Sale Costs ({{ form.saleCostsPct || 8 }}% of ARV)</span>
+                <span class="font-semibold text-red-500">-{{ formatCurrency(saleCostsDollar) }}</span>
+              </div>
+              <div class="flex justify-between items-center py-1.5 border-b border-gray-100 font-bold">
+                <span class="text-sm text-gray-700">Total Project Costs</span>
+                <span class="text-gray-900">{{ formatCurrency(totalProjectCosts) }}</span>
+              </div>
+              <div class="flex justify-between items-center py-1.5 border-b border-gray-50">
+                <span class="text-sm text-gray-500">ARV (sale price target)</span>
+                <span class="font-semibold text-gray-900">{{ formatCurrency(Number(form.arv)) }}</span>
+              </div>
+              <div class="flex justify-between items-center py-1.5 border-b border-gray-50">
+                <span class="text-sm text-gray-500">Remaining Loan at Exit</span>
+                <span class="font-semibold" :class="remainingLoanBalance > 0 ? 'text-red-500' : 'text-gray-500'">
+                  {{ remainingLoanBalance > 0 ? '-' + formatCurrency(remainingLoanBalance) : '$0' }}
+                </span>
+              </div>
+              <div class="flex justify-between items-center py-1.5 border-b border-gray-50">
+                <span class="text-sm font-medium text-gray-700">Net Sale Proceeds</span>
+                <span class="font-bold text-gray-900">{{ formatCurrency(netSaleProceeds) }}</span>
+              </div>
+              <div class="flex justify-between items-center py-1.5 border-b border-gray-50">
+                <span class="text-sm font-medium text-gray-700">Total Cash Invested</span>
+                <span class="font-bold text-gray-900">{{ formatCurrency(totalCashInvested) }}</span>
+              </div>
+              <div class="flex justify-between items-center py-2 rounded-xl px-3"
+                :style="`background: ${tier.bg1}18`">
+                <span class="text-sm font-extrabold text-gray-800">Total Profit</span>
+                <span class="font-extrabold text-base" :style="`color: ${tier.bg1}`">
+                  {{ totalProfit >= 0 ? formatCurrency(totalProfit) : '-' + formatCurrency(Math.abs(totalProfit)) }}
+                </span>
+              </div>
+              <!-- Formula display -->
+              <div class="mt-3 p-3 rounded-xl bg-gray-50 border border-gray-100 overflow-hidden">
+                <p class="text-xs text-center text-gray-400 font-medium">
+                  ROI = Total Profit ÷ Total Cash Invested × 100
+                </p>
+                <p class="text-xs text-center text-gray-500 font-semibold mt-1 break-all">
+                  {{ totalProfit >= 0 ? formatCurrency(totalProfit) : '-' + formatCurrency(Math.abs(totalProfit)) }} ÷ {{ formatCurrency(totalCashInvested) }} × 100 = <span :style="`color: ${tier.bg1}`">{{ roi.toFixed(1) }}%</span>
+                </p>
+                <p class="text-xs text-center text-gray-400 mt-2 italic">Before-tax analysis. Actual take-home lower after ordinary income taxes.</p>
+              </div>
+            </div>
+
+            <!-- Derived Metrics Grid (4 cards) — analyze mode -->
+            <div v-if="calcMode === 'analyze' && hasResult" class="p-5">
+              <h3 class="text-xs font-bold uppercase tracking-wide text-gray-400 mb-3">Key Metrics</h3>
+              <div class="grid grid-cols-2 gap-3">
+                <!-- Metric 1: 70% Rule -->
+                <div class="p-3 rounded-xl border"
+                  :class="isWithin70Rule ? 'bg-emerald-50 border-emerald-200' : 'bg-amber-50 border-amber-200'">
+                  <p class="text-xs font-semibold text-gray-500 mb-1">70% Rule Max Offer</p>
+                  <p class="text-lg font-extrabold" :class="isWithin70Rule ? 'text-emerald-800' : 'text-amber-800'">
+                    {{ formatCurrency(seventyPctRuleMax) }}
+                  </p>
+                  <p class="text-xs font-bold mt-1" :class="isWithin70Rule ? 'text-emerald-600' : 'text-amber-600'">
+                    <span v-if="seventyPctRuleMax > 0 && Math.abs(Number(form.purchasePrice) - seventyPctRuleMax) < 500">At rule limit</span>
+                    <span v-else-if="isWithin70Rule">✓ Within rule</span>
+                    <span v-else>⚠ Outside rule</span>
+                  </p>
+                  <p class="text-xs text-gray-500 mt-0.5">(ARV × 0.70) − Rehab</p>
                 </div>
-                <div class="text-white/80 text-xs mb-3">Annualized ROI: {{ result.annualizedRoi.toFixed(1) }}%</div>
-                <span class="inline-block px-4 py-1.5 rounded-full text-sm font-bold bg-white/20 text-white border border-white/30">{{ badge.label }}</span>
-              </div>
-              <div v-else class="p-6 text-center bg-gray-100">
-                <div class="text-3xl font-extrabold text-gray-300 mb-2">—</div>
-                <p class="text-sm text-gray-400">Enter purchase price, ARV, and rehab to see profit</p>
-              </div>
-
-              <!-- Warnings -->
-              <div v-if="warnings.length" class="px-4 py-3 space-y-2">
-                <div v-for="w in warnings" :key="w.msg"
-                  class="flex items-start gap-2 p-2.5 rounded-xl text-xs font-medium"
-                  :class="w.type === 'error' ? 'bg-red-50 border border-red-200 text-red-800' : 'bg-amber-50 border border-amber-200 text-amber-800'">
-                  <svg class="w-4 h-4 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
-                  </svg>
-                  <span>{{ w.msg }}</span>
+                <!-- Metric 2: Break-Even -->
+                <div class="p-3 rounded-xl bg-gray-50 border border-gray-200">
+                  <p class="text-xs font-semibold text-gray-500 mb-1">Break-Even Sale Price</p>
+                  <p class="text-lg font-extrabold text-gray-900">{{ formatCurrency(breakEvenSalePrice) }}</p>
+                  <p class="text-xs text-gray-500 mt-1">
+                    Cushion: <strong :class="(Number(form.arv) - breakEvenSalePrice) >= 15000 ? 'text-emerald-600' : 'text-amber-600'">
+                      {{ formatCurrency(Number(form.arv) - breakEvenSalePrice) }}
+                    </strong> below ARV
+                  </p>
+                  <p class="text-xs text-gray-400 mt-0.5">Min sale price for $0 profit</p>
+                </div>
+                <!-- Metric 3: Annualized ROI -->
+                <div class="p-3 rounded-xl bg-gray-50 border border-gray-200">
+                  <p class="text-xs font-semibold text-gray-500 mb-1">Annualized ROI</p>
+                  <p class="text-lg font-extrabold text-gray-900">{{ annualizedROI.toFixed(1) }}%</p>
+                  <p class="text-xs text-gray-500 mt-1">12-month equivalent</p>
+                  <p class="text-xs text-gray-400 mt-0.5">Comparison metric only</p>
+                </div>
+                <!-- Metric 4: Profit per Month -->
+                <div class="p-3 rounded-xl bg-gray-50 border border-gray-200">
+                  <p class="text-xs font-semibold text-gray-500 mb-1">Profit per Month</p>
+                  <p class="text-lg font-extrabold" :class="profitPerMonth >= 5000 ? 'text-emerald-700' : profitPerMonth >= 3000 ? 'text-amber-700' : 'text-red-600'">
+                    {{ totalProfit >= 0 ? formatCurrency(profitPerMonth) : '-' + formatCurrency(Math.abs(profitPerMonth)) }}
+                  </p>
+                  <p class="text-xs text-gray-500 mt-1">Over {{ form.holdPeriodMonths }} months</p>
+                  <p class="text-xs text-gray-400 mt-0.5">Mid-tier US: $5K+/mo = strong</p>
                 </div>
               </div>
+            </div>
 
-              <!-- Cost Breakdown -->
-              <div v-if="hasResult" class="px-4 py-3 border-t border-gray-100">
-                <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Cost Breakdown</p>
-                <div class="space-y-1.5">
-                  <div class="flex justify-between text-xs">
-                    <span class="text-gray-600">Purchase Price</span>
-                    <span class="font-semibold text-gray-900">{{ formatCurrency(Number(form.purchasePrice)) }}</span>
-                  </div>
-                  <div class="flex justify-between text-xs">
-                    <span class="text-gray-600">Purchase Closing Costs</span>
-                    <span class="font-semibold text-gray-900">{{ formatCurrency(result.closingAmt) }}</span>
-                  </div>
-                  <div class="flex justify-between text-xs">
-                    <span class="text-gray-600">Rehab Budget</span>
-                    <span class="font-semibold text-gray-900">{{ formatCurrency(Number(form.rehabBudget)) }}</span>
-                  </div>
-                  <div class="flex justify-between text-xs">
-                    <span class="text-gray-600">Rehab Contingency ({{ form.rehabContingencyPct }}%)</span>
-                    <span class="font-semibold text-gray-900">{{ formatCurrency(result.contingency) }}</span>
-                  </div>
-                  <div class="flex justify-between text-xs">
-                    <span class="text-gray-600">Total Holding Costs ({{ form.holdPeriodMonths }} mo)</span>
-                    <span class="font-semibold text-gray-900">{{ formatCurrency(result.totalHoldingCosts) }}</span>
-                  </div>
-                  <template v-if="form.financingType !== 'cash'">
-                    <div class="flex justify-between text-xs">
-                      <span class="text-gray-600">Loan Points (upfront)</span>
-                      <span class="font-semibold text-gray-900">{{ formatCurrency(result.loanPoints) }}</span>
-                    </div>
-                    <div class="flex justify-between text-xs">
-                      <span class="text-gray-600">Total Loan Interest</span>
-                      <span class="font-semibold text-gray-900">{{ formatCurrency(result.totalLoanInterest) }}</span>
-                    </div>
-                  </template>
-                  <div class="flex justify-between text-xs">
-                    <span class="text-gray-600">Sale Costs ({{ form.saleCostsPct }}% of ARV)</span>
-                    <span class="font-semibold text-gray-900">{{ formatCurrency(result.saleCostsAmt) }}</span>
-                  </div>
-                  <div class="flex justify-between text-xs border-t border-gray-200 pt-1.5 mt-1">
-                    <span class="font-bold text-gray-700">Total Project Costs</span>
-                    <span class="font-bold text-gray-900">{{ formatCurrency(result.totalProjectCosts) }}</span>
-                  </div>
-                </div>
+            <!-- Find-price result breakdown -->
+            <div v-if="calcMode === 'find-price' && findMaxPriceResult !== null" class="p-5 space-y-2.5">
+              <h3 class="text-xs font-bold uppercase tracking-wide text-gray-400 mb-3">At This Price</h3>
+              <div class="flex justify-between items-center py-1.5 border-b border-gray-50">
+                <span class="text-sm text-gray-500">Max Purchase Price</span>
+                <span class="font-bold text-blue-800">{{ formatCurrency(findMaxPriceResult) }}</span>
               </div>
+              <div class="flex justify-between items-center py-1.5 border-b border-gray-50">
+                <span class="text-sm text-gray-500">Target {{ form.targetType === 'roi' ? 'ROI' : 'Profit' }}</span>
+                <span class="font-semibold text-gray-900">{{ form.targetType === 'roi' ? form.targetROI + '%' : formatCurrency(Number(form.targetTotalProfit)) }}</span>
+              </div>
+              <div class="p-3 rounded-xl bg-blue-50 border border-blue-100">
+                <p class="text-xs text-blue-700 text-center">
+                  At <strong>{{ formatCurrency(findMaxPriceResult) }}</strong>, your deal {{ form.targetType === 'roi' ? 'hits ' + form.targetROI + '% ROI' : 'hits ' + formatCurrency(Number(form.targetTotalProfit)) + ' profit' }}.
+                  Any higher offer and you fall below your target.
+                </p>
+              </div>
+              <div class="p-3 rounded-xl bg-gray-50 border border-gray-100">
+                <p class="text-xs text-gray-500 font-medium">Assumptions held fixed: ARV = {{ formatCurrency(Number(form.arv)) }}, Rehab = {{ formatCurrency(Number(form.rehabBudget) || 0) }}, Hold = {{ form.holdPeriodMonths }} months</p>
+              </div>
+            </div>
 
-              <!-- Total Cash Invested + Net Sale Proceeds -->
-              <div v-if="hasResult" class="px-4 py-3 border-t border-gray-100">
-                <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Cash Flow Summary</p>
-                <div class="space-y-1.5">
-                  <template v-if="form.financingType !== 'cash'">
-                    <div class="flex justify-between text-xs">
-                      <span class="text-gray-600">Loan Amount</span>
-                      <span class="font-semibold text-blue-700">{{ formatCurrency(result.loanAmount) }}</span>
-                    </div>
-                    <div class="flex justify-between text-xs">
-                      <span class="text-gray-600">Down Payment (cash)</span>
-                      <span class="font-semibold text-gray-900">{{ formatCurrency(result.downPayment) }}</span>
-                    </div>
-                  </template>
-                  <div class="flex justify-between text-xs font-bold border-t border-gray-200 pt-1.5">
-                    <span class="text-gray-700">Total Cash Invested</span>
-                    <span class="text-gray-900">{{ formatCurrency(result.totalCashInvested) }}</span>
-                  </div>
-                  <div class="flex justify-between text-xs mt-1">
-                    <span class="text-gray-600">ARV</span>
-                    <span class="font-semibold text-gray-900">{{ formatCurrency(Number(form.arv)) }}</span>
-                  </div>
-                  <div class="flex justify-between text-xs">
-                    <span class="text-gray-600">minus Sale Costs</span>
-                    <span class="font-semibold text-red-600">-{{ formatCurrency(result.saleCostsAmt) }}</span>
-                  </div>
-                  <template v-if="form.financingType !== 'cash'">
-                    <div class="flex justify-between text-xs">
-                      <span class="text-gray-600">minus Remaining Loan</span>
-                      <span class="font-semibold text-red-600">-{{ formatCurrency(result.remainingLoan) }}</span>
-                    </div>
-                  </template>
-                  <div class="flex justify-between text-xs font-bold border-t border-gray-200 pt-1.5">
-                    <span class="text-gray-700">Net Sale Proceeds</span>
-                    <span class="text-emerald-700">{{ formatCurrency(result.netSaleProceeds) }}</span>
-                  </div>
-                </div>
+            <!-- Find-rehab result breakdown -->
+            <div v-if="calcMode === 'find-rehab' && findMaxRehabResult !== null" class="p-5 space-y-2.5">
+              <h3 class="text-xs font-bold uppercase tracking-wide text-gray-400 mb-3">At This Rehab Budget</h3>
+              <div class="flex justify-between items-center py-1.5 border-b border-gray-50">
+                <span class="text-sm text-gray-500">Max Rehab Budget</span>
+                <span class="font-bold text-emerald-800">{{ formatCurrency(findMaxRehabResult) }}</span>
               </div>
+              <div class="flex justify-between items-center py-1.5 border-b border-gray-50">
+                <span class="text-sm text-gray-500">Includes {{ form.rehabContingencyPct || 10 }}% contingency</span>
+                <span class="font-semibold text-gray-900">{{ formatCurrency(findMaxRehabResult * (Number(form.rehabContingencyPct) || 10) / 100) }}</span>
+              </div>
+              <div class="p-3 rounded-xl bg-emerald-50 border border-emerald-100">
+                <p class="text-xs text-emerald-700 text-center">
+                  At <strong>{{ formatCurrency(findMaxRehabResult) }}</strong> rehab budget, your deal {{ form.targetType === 'roi' ? 'hits ' + form.targetROI + '% ROI' : 'hits ' + formatCurrency(Number(form.targetTotalProfit)) + ' profit' }}.
+                  Any higher rehab spend and you fall below your target.
+                </p>
+              </div>
+              <div class="p-3 rounded-xl bg-gray-50 border border-gray-100">
+                <p class="text-xs text-gray-500 font-medium">Assumptions fixed: Purchase = {{ formatCurrency(Number(form.purchasePrice) || 0) }}, ARV = {{ formatCurrency(Number(form.arv)) }}, Hold = {{ form.holdPeriodMonths }} months</p>
+              </div>
+            </div>
 
-              <!-- 4 Derived Metric Cards -->
-              <div v-if="hasResult" class="px-4 py-3 border-t border-gray-100">
-                <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Key Metrics</p>
-                <div class="grid grid-cols-2 gap-2">
-                  <!-- 70% Rule -->
-                  <div class="bg-white rounded-xl border border-gray-200 p-3">
-                    <p class="text-xs text-gray-500 font-semibold mb-1">70% Rule Max Offer</p>
-                    <p class="text-base font-extrabold" :class="rule70Compliant ? 'text-emerald-700' : 'text-amber-700'">{{ formatCurrency(result.rule70) }}</p>
-                    <div class="flex items-center gap-1 mt-1">
-                      <span v-if="rule70Compliant" class="text-xs font-bold text-emerald-600">✓ Within rule</span>
-                      <span v-else-if="result.rule70 > 0 && Math.abs(Number(form.purchasePrice) - result.rule70) < 1000" class="text-xs font-bold text-amber-600">At rule limit</span>
-                      <span v-else class="text-xs font-bold text-amber-600">⚠ Outside rule</span>
-                    </div>
-                  </div>
-                  <!-- Break-Even -->
-                  <div class="bg-white rounded-xl border border-gray-200 p-3">
-                    <p class="text-xs text-gray-500 font-semibold mb-1">Break-Even Price</p>
-                    <p class="text-base font-extrabold text-gray-800">{{ result.breakEven ? formatCurrency(result.breakEven) : '—' }}</p>
-                    <p v-if="result.breakEven" class="text-xs text-gray-400 mt-1">
-                      {{ formatCurrency(Number(form.arv) - result.breakEven) }} cushion
-                    </p>
-                  </div>
-                  <!-- Annualized ROI -->
-                  <div class="bg-white rounded-xl border border-gray-200 p-3">
-                    <p class="text-xs text-gray-500 font-semibold mb-1">Annualized ROI</p>
-                    <p class="text-base font-extrabold text-gray-800">{{ result.annualizedRoi.toFixed(1) }}%</p>
-                    <p class="text-xs text-gray-400 mt-1">12-month equivalent</p>
-                  </div>
-                  <!-- Profit per Month -->
-                  <div class="bg-white rounded-xl border border-gray-200 p-3">
-                    <p class="text-xs text-gray-500 font-semibold mb-1">Profit per Month</p>
-                    <p class="text-base font-extrabold" :class="result.profitPerMonth >= 5000 ? 'text-emerald-700' : result.profitPerMonth >= 3000 ? 'text-amber-700' : 'text-red-700'">{{ formatCurrency(result.profitPerMonth) }}</p>
-                    <p class="text-xs text-gray-400 mt-1">Effective monthly return</p>
-                  </div>
-                </div>
-              </div>
+          </div>
 
-              <!-- Visualization: cost waterfall bars -->
-              <div v-if="hasResult" class="px-4 py-3 border-t border-gray-100">
-                <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Cost Composition</p>
-                <div class="space-y-1.5">
-                  <div v-for="bar in costBars" :key="bar.label" class="flex items-center gap-2">
-                    <div class="text-xs text-gray-500 w-28 flex-shrink-0 truncate">{{ bar.label }}</div>
-                    <div class="flex-1 bg-gray-100 rounded-full h-3 overflow-hidden">
-                      <div class="h-3 rounded-full transition-all" :style="`width: ${bar.pct}%; background: ${bar.color}`"></div>
-                    </div>
-                    <div class="text-xs font-semibold text-gray-700 w-20 text-right flex-shrink-0">{{ formatCurrency(bar.value) }}</div>
-                  </div>
-                </div>
-              </div>
+          <!-- ── DEAL CONTEXT (Insight Text) ── analyze mode -->
+          <div v-if="calcMode === 'analyze' && hasResult" class="bg-white rounded-xl border border-gray-200 p-5">
+            <h3 class="text-xs font-bold uppercase tracking-wide text-gray-400 mb-3">Deal Context</h3>
+            <p class="text-sm text-gray-700 leading-relaxed">{{ insightText }}</p>
+          </div>
 
-              <!-- Deal Context / Insight -->
-              <div v-if="hasResult" class="px-4 py-3 border-t border-gray-100">
-                <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Deal Context</p>
-                <p class="text-xs text-gray-600 leading-relaxed">{{ insightText }}</p>
-              </div>
+          <!-- ── PROJECT TIMELINE TABLE ── analyze mode -->
+          <div v-if="calcMode === 'analyze' && hasResult" class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+            <div class="px-5 py-3 border-b border-gray-100">
+              <h3 class="text-xs font-bold uppercase tracking-wide text-gray-400">Project Timeline</h3>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-xs">
+                <thead>
+                  <tr class="bg-gray-50">
+                    <th class="text-left px-3 py-2 font-semibold text-gray-500">Month</th>
+                    <th class="text-left px-3 py-2 font-semibold text-gray-500">Phase</th>
+                    <th class="text-right px-3 py-2 font-semibold text-gray-500">Cumul. Cost</th>
+                    <th class="text-right px-3 py-2 font-semibold text-gray-500">Cumul. Holding</th>
+                    <th class="text-left px-3 py-2 font-semibold text-gray-500">Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(row, i) in projectTimeline" :key="i"
+                    class="border-t border-gray-50"
+                    :class="row.isExit ? 'bg-emerald-50 font-bold' : (i % 2 === 0 ? 'bg-white' : 'bg-gray-50/50')">
+                    <td class="px-3 py-2 font-semibold" :class="row.isExit ? 'text-emerald-800' : 'text-gray-700'">{{ row.month }}</td>
+                    <td class="px-3 py-2" :class="row.isExit ? 'text-emerald-700' : 'text-gray-600'">{{ row.phase }}</td>
+                    <td class="px-3 py-2 text-right" :class="row.isExit ? 'text-emerald-700' : 'text-gray-700'">{{ formatCurrency(row.cumulCost) }}</td>
+                    <td class="px-3 py-2 text-right text-gray-600">{{ formatCurrency(row.cumulHolding) }}</td>
+                    <td class="px-3 py-2 text-gray-500">{{ row.notes }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
 
-              <!-- Scenario Analysis -->
-              <div v-if="hasResult" class="px-4 py-3 border-t border-gray-100">
-                <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Scenario Analysis</p>
-                <div class="overflow-x-auto -mx-1">
-                  <table class="w-full text-xs min-w-[280px]">
-                    <thead>
-                      <tr class="bg-gray-50">
-                        <th class="text-left py-2 px-2 font-semibold text-gray-500">Scenario</th>
-                        <th class="text-right py-2 px-2 font-semibold text-gray-500">Profit</th>
-                        <th class="text-right py-2 px-2 font-semibold text-gray-500">ROI</th>
-                      </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-100">
-                      <tr v-for="sc in scenarios" :key="sc.name">
-                        <td class="py-2 px-2 font-semibold" :class="sc.color">{{ sc.name }}</td>
-                        <td class="py-2 px-2 text-right font-bold text-gray-900">{{ formatCurrency(sc.profit) }}</td>
-                        <td class="py-2 px-2 text-right font-bold" :class="sc.profit >= 0 ? 'text-emerald-700' : 'text-red-700'">{{ sc.roi.toFixed(1) }}%</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <p class="text-xs text-gray-400 mt-1.5">Conservative: ARV −8%, Rehab +20%, Hold +2mo. Optimistic: ARV +5%, Hold −1mo. Rare in 2026 markets — treat as best-case.</p>
+          <!-- ── SCENARIO ANALYSIS ── analyze mode -->
+          <div v-if="calcMode === 'analyze' && hasResult" class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+            <button @click="scenariosOpen = !scenariosOpen"
+              class="w-full flex items-center justify-between px-5 py-3 text-sm transition"
+              :class="scenariosOpen ? 'bg-amber-50 text-amber-800 font-semibold' : 'text-gray-600 hover:bg-gray-50 font-medium'">
+              <span>Scenario Analysis — Conservative / Base / Optimistic</span>
+              <svg class="w-4 h-4 transition-transform flex-shrink-0" :class="scenariosOpen ? 'rotate-180' : ''"
+                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div v-if="scenariosOpen" class="p-5">
+              <div class="overflow-x-auto">
+                <table class="w-full text-xs">
+                  <thead>
+                    <tr class="bg-gray-50">
+                      <th class="text-left px-3 py-2 font-semibold text-gray-500">Scenario</th>
+                      <th class="text-right px-3 py-2 font-semibold text-gray-500">Total Profit</th>
+                      <th class="text-right px-3 py-2 font-semibold text-gray-500">ROI %</th>
+                      <th class="text-left px-3 py-2 font-semibold text-gray-500">Tier</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="s in scenarioResults" :key="s.label"
+                      class="border-t border-gray-100"
+                      :class="s.isBase ? 'bg-amber-50' : 'bg-white'">
+                      <td class="px-3 py-2.5">
+                        <span class="font-semibold text-gray-700">{{ s.label }}</span>
+                        <span v-if="s.isBase" class="ml-1 text-xs text-amber-600">(your inputs)</span>
+                        <p v-if="s.adjustments" class="text-gray-400 mt-0.5">{{ s.adjustments }}</p>
+                      </td>
+                      <td class="px-3 py-2.5 text-right font-bold" :class="s.profit >= 0 ? 'text-gray-900' : 'text-red-600'">
+                        {{ s.profit >= 0 ? formatCurrency(s.profit) : '-' + formatCurrency(Math.abs(s.profit)) }}
+                      </td>
+                      <td class="px-3 py-2.5 text-right font-bold" :class="s.roi >= 20 ? 'text-emerald-700' : s.roi >= 10 ? 'text-amber-700' : 'text-red-600'">
+                        {{ s.roi.toFixed(1) }}%
+                      </td>
+                      <td class="px-3 py-2.5">
+                        <span class="inline-flex text-xs font-bold px-2 py-0.5 rounded-full text-white" :style="`background: ${s.tierBg}`">
+                          {{ s.tierLabel }}
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
+              <p class="text-xs text-gray-400 mt-3 italic">Conservative: ARV −8%, Rehab +20%, Hold +2 months, HM Rate +1%. Optimistic: ARV +5%, Rehab −5%, Hold −1 month. Optimistic outcomes are rare in competitive 2026 markets.</p>
+            </div>
+          </div>
+
+          <!-- ── SENSITIVITY TABLES ── analyze mode -->
+          <div v-if="calcMode === 'analyze' && hasResult" class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+            <button @click="showSensitivity = !showSensitivity"
+              class="w-full flex items-center justify-between px-5 py-3 text-sm transition"
+              :class="showSensitivity ? 'bg-amber-50 text-amber-800 font-semibold' : 'text-gray-600 hover:bg-gray-50 font-medium'">
+              <span>Sensitivity Analysis (3 tables)</span>
+              <svg class="w-4 h-4 transition-transform flex-shrink-0" :class="showSensitivity ? 'rotate-180' : ''"
+                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div v-if="showSensitivity" class="p-5 space-y-6">
 
               <!-- Sensitivity Table 1: ARV × Rehab Overrun -->
-              <div v-if="hasResult" class="px-4 py-3 border-t border-gray-100">
-                <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">ARV × Rehab Overrun Sensitivity (Total Profit)</p>
-                <div class="overflow-x-auto -mx-1">
-                  <table class="w-full text-xs min-w-[300px]">
+              <div>
+                <h4 class="text-xs font-bold text-gray-600 mb-2">Table 1 — Total Profit by ARV &amp; Rehab Overrun</h4>
+                <div class="overflow-x-auto">
+                  <table class="w-full text-xs">
                     <thead>
                       <tr class="bg-gray-50">
-                        <th class="text-left py-1.5 px-2 font-semibold text-gray-500">ARV</th>
-                        <th class="text-right py-1.5 px-2 font-semibold text-gray-500">+0% Rehab</th>
-                        <th class="text-right py-1.5 px-2 font-semibold text-gray-500">+15%</th>
-                        <th class="text-right py-1.5 px-2 font-semibold text-gray-500">+30%</th>
+                        <th class="text-left px-2 py-2 font-semibold text-gray-500">ARV</th>
+                        <th class="text-right px-2 py-2 font-semibold text-gray-500">No Overrun</th>
+                        <th class="text-right px-2 py-2 font-semibold text-gray-500">+15% Overrun</th>
+                        <th class="text-right px-2 py-2 font-semibold text-gray-500">+30% Overrun</th>
                       </tr>
                     </thead>
-                    <tbody class="divide-y divide-gray-100">
-                      <tr v-for="row in sensitivity1" :key="row.arvLabel">
-                        <td class="py-1.5 px-2 font-semibold text-gray-700" :class="row.isBase ? 'text-amber-700' : ''">{{ row.arvLabel }}</td>
-                        <td v-for="val in row.vals" :key="val" class="py-1.5 px-2 text-right" :class="val >= 0 ? 'text-gray-800' : 'text-red-600'">{{ formatCurrencyShort(val) }}</td>
+                    <tbody>
+                      <tr v-for="row in sensitivityTable1" :key="row.label"
+                        class="border-t border-gray-100"
+                        :class="row.isBase ? 'bg-amber-50 font-semibold' : 'bg-white'">
+                        <td class="px-2 py-2 text-gray-700">{{ row.label }}<span v-if="row.isBase" class="text-amber-500 ml-1">★</span></td>
+                        <td v-for="cell in row.cells" :key="cell.key" class="px-2 py-2 text-right"
+                          :class="cell.profit >= 0 ? 'text-gray-900' : 'text-red-600'">
+                          {{ cell.profit >= 0 ? formatCurrency(cell.profit) : '-' + formatCurrency(Math.abs(cell.profit)) }}
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -789,406 +1130,305 @@
               </div>
 
               <!-- Sensitivity Table 2: Hold Period × HM Rate -->
-              <div v-if="hasResult && form.financingType === 'hm'" class="px-4 py-3 border-t border-gray-100">
-                <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Hold Period × HM Rate Sensitivity</p>
-                <div class="overflow-x-auto -mx-1">
-                  <table class="w-full text-xs min-w-[300px]">
+              <div>
+                <h4 class="text-xs font-bold text-gray-600 mb-2">Table 2 — ROI % by Hold Period &amp; HM Rate</h4>
+                <div class="overflow-x-auto">
+                  <table class="w-full text-xs">
                     <thead>
                       <tr class="bg-gray-50">
-                        <th class="text-left py-1.5 px-2 font-semibold text-gray-500">Hold (mo)</th>
-                        <th class="text-right py-1.5 px-2 font-semibold text-gray-500">10% Rate</th>
-                        <th class="text-right py-1.5 px-2 font-semibold text-gray-500">12% Rate</th>
-                        <th class="text-right py-1.5 px-2 font-semibold text-gray-500">14% Rate</th>
+                        <th class="text-left px-2 py-2 font-semibold text-gray-500">Hold Period</th>
+                        <th class="text-right px-2 py-2 font-semibold text-gray-500">HM 10%</th>
+                        <th class="text-right px-2 py-2 font-semibold text-gray-500">HM 12%</th>
+                        <th class="text-right px-2 py-2 font-semibold text-gray-500">HM 14%</th>
                       </tr>
                     </thead>
-                    <tbody class="divide-y divide-gray-100">
-                      <tr v-for="row in sensitivity2" :key="row.hold">
-                        <td class="py-1.5 px-2 font-semibold text-gray-700">{{ row.hold }}mo</td>
-                        <td v-for="cell in row.cells" :key="cell.rate" class="py-1.5 px-2 text-right text-xs">
-                          <span :class="cell.profit >= 0 ? 'text-gray-800' : 'text-red-600'" class="font-semibold">{{ formatCurrencyShort(cell.profit) }}</span>
-                          <span class="block text-gray-400">{{ cell.roi.toFixed(0) }}%</span>
+                    <tbody>
+                      <tr v-for="row in sensitivityTable2" :key="row.label"
+                        class="border-t border-gray-100"
+                        :class="row.isBase ? 'bg-amber-50 font-semibold' : 'bg-white'">
+                        <td class="px-2 py-2 text-gray-700">{{ row.label }}<span v-if="row.isBase" class="text-amber-500 ml-1">★</span></td>
+                        <td v-for="cell in row.cells" :key="cell.key" class="px-2 py-2 text-right"
+                          :class="cell.roi >= 20 ? 'text-emerald-700' : cell.roi >= 10 ? 'text-amber-700' : 'text-red-600'">
+                          {{ cell.roi.toFixed(1) }}%
                         </td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
+                <p class="text-xs text-gray-400 mt-1 italic">Conventional and All-Cash financing — HM rate variation not applicable. Showing impact of holding period only.</p>
               </div>
 
               <!-- Sensitivity Table 3: Purchase Price Variation -->
-              <div v-if="hasResult" class="px-4 py-3 border-t border-gray-100">
-                <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Purchase Price Sensitivity</p>
-                <div class="overflow-x-auto -mx-1">
-                  <table class="w-full text-xs min-w-[300px]">
+              <div>
+                <h4 class="text-xs font-bold text-gray-600 mb-2">Table 3 — Profit &amp; ROI by Purchase Price</h4>
+                <div class="overflow-x-auto">
+                  <table class="w-full text-xs">
                     <thead>
                       <tr class="bg-gray-50">
-                        <th class="text-left py-1.5 px-2 font-semibold text-gray-500">Purchase Price</th>
-                        <th class="text-right py-1.5 px-2 font-semibold text-gray-500">Profit</th>
-                        <th class="text-right py-1.5 px-2 font-semibold text-gray-500">ROI</th>
-                        <th class="text-right py-1.5 px-2 font-semibold text-gray-500">70% Rule</th>
+                        <th class="text-left px-2 py-2 font-semibold text-gray-500">Purchase Price</th>
+                        <th class="text-right px-2 py-2 font-semibold text-gray-500">Total Profit</th>
+                        <th class="text-right px-2 py-2 font-semibold text-gray-500">ROI %</th>
+                        <th class="text-left px-2 py-2 font-semibold text-gray-500">70% Rule</th>
                       </tr>
                     </thead>
-                    <tbody class="divide-y divide-gray-100">
-                      <tr v-for="row in sensitivity3" :key="row.label" :class="row.isBase ? 'bg-amber-50' : ''">
-                        <td class="py-1.5 px-2 font-semibold text-gray-700">{{ row.label }}</td>
-                        <td class="py-1.5 px-2 text-right" :class="row.profit >= 0 ? 'text-gray-800' : 'text-red-600'">{{ formatCurrencyShort(row.profit) }}</td>
-                        <td class="py-1.5 px-2 text-right" :class="row.roi >= 0 ? 'text-gray-800' : 'text-red-600'">{{ row.roi.toFixed(1) }}%</td>
-                        <td class="py-1.5 px-2 text-right text-xs" :class="row.withinRule ? 'text-emerald-600' : 'text-amber-600'">{{ row.withinRule ? '✓ In' : '✗ Out' }}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-
-              <!-- Project Timeline Table -->
-              <div v-if="hasResult" class="px-4 py-3 border-t border-gray-100">
-                <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Project Timeline</p>
-                <div class="overflow-x-auto -mx-1">
-                  <table class="w-full text-xs min-w-[320px]">
-                    <thead>
-                      <tr class="bg-gray-50">
-                        <th class="text-left py-1.5 px-2 font-semibold text-gray-500">Month</th>
-                        <th class="text-left py-1.5 px-2 font-semibold text-gray-500">Phase</th>
-                        <th class="text-right py-1.5 px-2 font-semibold text-gray-500">Cum. Cost</th>
-                        <th class="text-right py-1.5 px-2 font-semibold text-gray-500">Cum. Holding</th>
-                      </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-100">
-                      <tr v-for="row in projectTimeline" :key="row.month" :class="row.isExit ? 'bg-emerald-50 font-bold' : ''">
-                        <td class="py-1.5 px-2 font-semibold text-gray-700">{{ row.monthLabel }}</td>
-                        <td class="py-1.5 px-2 text-gray-600">{{ row.phase }}</td>
-                        <td class="py-1.5 px-2 text-right text-gray-800">{{ formatCurrencyShort(row.cumCost) }}</td>
-                        <td class="py-1.5 px-2 text-right" :class="row.isExit ? 'text-emerald-700' : 'text-gray-600'">
-                          {{ row.isExit ? formatCurrencyShort(result.netSaleProceeds) : formatCurrencyShort(row.cumHolding) }}
+                    <tbody>
+                      <tr v-for="row in sensitivityTable3" :key="row.label"
+                        class="border-t border-gray-100"
+                        :class="row.isBase ? 'bg-amber-50 font-semibold' : 'bg-white'">
+                        <td class="px-2 py-2 text-gray-700">{{ row.label }}<span v-if="row.isBase" class="text-amber-500 ml-1">★</span></td>
+                        <td class="px-2 py-2 text-right" :class="row.profit >= 0 ? 'text-gray-900' : 'text-red-600'">
+                          {{ row.profit >= 0 ? formatCurrency(row.profit) : '-' + formatCurrency(Math.abs(row.profit)) }}
+                        </td>
+                        <td class="px-2 py-2 text-right" :class="row.roi >= 20 ? 'text-emerald-700' : row.roi >= 10 ? 'text-amber-700' : 'text-red-600'">
+                          {{ row.roi.toFixed(1) }}%
+                        </td>
+                        <td class="px-2 py-2">
+                          <span :class="row.within70 ? 'text-emerald-600' : 'text-amber-600'" class="font-medium">
+                            {{ row.within70 ? '✓ Within' : '⚠ Outside' }}
+                          </span>
                         </td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
               </div>
-            </template>
 
-            <!-- === FIND-PRICE MODE RESULT === -->
-            <template v-else-if="calcMode === 'find-price'">
-              <div v-if="findPriceResult !== null" class="p-6 text-center bg-gradient-to-br from-blue-700 to-blue-900">
-                <p class="text-white/80 text-xs font-semibold uppercase tracking-widest mb-1">Max Purchase Price</p>
-                <div class="text-4xl font-extrabold text-white leading-none mb-2">{{ formatCurrency(findPriceResult) }}</div>
-                <p class="text-white/70 text-sm">to achieve {{ form.reverseTargetMode === 'roi' ? form.targetROI + '% ROI' : formatCurrency(Number(form.targetTotalProfit)) + ' profit' }}</p>
-                <span class="inline-block mt-3 px-4 py-1.5 rounded-full text-sm font-bold bg-white/20 text-white border border-white/30">Max Price</span>
-              </div>
-              <div v-else-if="findPriceError" class="p-6 text-center bg-blue-50">
-                <div class="text-3xl font-extrabold text-blue-200 mb-2">—</div>
-                <p class="text-sm text-blue-700 font-semibold">{{ findPriceError }}</p>
-              </div>
-              <div v-else class="p-6 text-center bg-gray-100">
-                <div class="text-3xl font-extrabold text-gray-300 mb-2">—</div>
-                <p class="text-sm text-gray-400">Enter ARV, rehab budget, and target to calculate</p>
-              </div>
-              <!-- Breakdown at max price -->
-              <div v-if="findPriceResult !== null && findPriceCalc" class="px-4 py-3 border-t border-gray-100">
-                <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">At Max Purchase Price</p>
-                <div class="space-y-1.5">
-                  <div class="flex justify-between text-xs"><span class="text-gray-600">Max Purchase Price</span><span class="font-bold text-blue-700">{{ formatCurrency(findPriceResult) }}</span></div>
-                  <div class="flex justify-between text-xs"><span class="text-gray-600">Total Profit</span><span class="font-semibold text-gray-900">{{ formatCurrency(findPriceCalc.totalProfit) }}</span></div>
-                  <div class="flex justify-between text-xs"><span class="text-gray-600">ROI</span><span class="font-semibold text-gray-900">{{ findPriceCalc.roi.toFixed(1) }}%</span></div>
-                  <div class="flex justify-between text-xs"><span class="text-gray-600">Total Cash Invested</span><span class="font-semibold text-gray-900">{{ formatCurrency(findPriceCalc.totalCashInvested) }}</span></div>
-                  <div class="flex justify-between text-xs"><span class="text-gray-600">70% Rule Max Offer</span><span class="font-semibold" :class="findPriceResult <= findPriceCalc.rule70 ? 'text-emerald-700' : 'text-amber-700'">{{ formatCurrency(findPriceCalc.rule70) }}</span></div>
-                </div>
-              </div>
-            </template>
+            </div>
+          </div>
 
-            <!-- === FIND-REHAB MODE RESULT === -->
-            <template v-else>
-              <div v-if="findRehabResult !== null" class="p-6 text-center bg-gradient-to-br from-emerald-700 to-emerald-900">
-                <p class="text-white/80 text-xs font-semibold uppercase tracking-widest mb-1">Max Rehab Budget</p>
-                <div class="text-4xl font-extrabold text-white leading-none mb-2">{{ formatCurrency(findRehabResult) }}</div>
-                <p class="text-white/70 text-sm">to achieve {{ form.reverseTargetMode === 'roi' ? form.targetROI + '% ROI' : formatCurrency(Number(form.targetTotalProfit)) + ' profit' }}</p>
-                <span class="inline-block mt-3 px-4 py-1.5 rounded-full text-sm font-bold bg-white/20 text-white border border-white/30">Max Rehab</span>
-              </div>
-              <div v-else-if="findRehabError" class="p-6 text-center bg-emerald-50">
-                <div class="text-3xl font-extrabold text-emerald-200 mb-2">—</div>
-                <p class="text-sm text-emerald-700 font-semibold">{{ findRehabError }}</p>
-              </div>
-              <div v-else class="p-6 text-center bg-gray-100">
-                <div class="text-3xl font-extrabold text-gray-300 mb-2">—</div>
-                <p class="text-sm text-gray-400">Enter purchase price, ARV, and target to calculate</p>
-              </div>
-              <!-- Breakdown at max rehab -->
-              <div v-if="findRehabResult !== null && findRehabCalc" class="px-4 py-3 border-t border-gray-100">
-                <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">At Max Rehab Budget</p>
-                <div class="space-y-1.5">
-                  <div class="flex justify-between text-xs"><span class="text-gray-600">Max Rehab Budget</span><span class="font-bold text-emerald-700">{{ formatCurrency(findRehabResult) }}</span></div>
-                  <div class="flex justify-between text-xs"><span class="text-gray-600">Contingency ({{ form.rehabContingencyPct }}%)</span><span class="font-semibold text-gray-900">{{ formatCurrency(findRehabCalc.contingency) }}</span></div>
-                  <div class="flex justify-between text-xs"><span class="text-gray-600">Total Profit</span><span class="font-semibold text-gray-900">{{ formatCurrency(findRehabCalc.totalProfit) }}</span></div>
-                  <div class="flex justify-between text-xs"><span class="text-gray-600">ROI</span><span class="font-semibold text-gray-900">{{ findRehabCalc.roi.toFixed(1) }}%</span></div>
-                  <div class="flex justify-between text-xs"><span class="text-gray-600">70% Rule Max Offer</span><span class="font-semibold" :class="Number(form.purchasePrice) <= findRehabCalc.rule70 ? 'text-emerald-700' : 'text-amber-700'">{{ formatCurrency(findRehabCalc.rule70) }}</span></div>
-                </div>
-              </div>
-            </template>
+          <!-- ── ACTION BUTTONS ── -->
+          <div v-if="hasResult || findMaxPriceResult !== null || findMaxRehabResult !== null"
+            class="bg-white rounded-xl border border-gray-200 overflow-hidden p-4 space-y-2">
 
-            <!-- ACTION BUTTONS -->
-            <div v-if="hasResult || findPriceResult !== null || findRehabResult !== null" class="p-4 border-t border-gray-100 space-y-2">
-              <!-- Save Scenario -->
-              <button v-if="hasResult" @click="openSaveScenario()"
-                class="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-sm transition hover:opacity-90"
-                style="background: #f59e0b; color: #1e3a5f;">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg>
-                Save Scenario
+            <!-- Save Scenario — analyze mode only -->
+            <button v-if="calcMode === 'analyze' && hasResult" @click="openSaveScenario"
+              class="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-sm transition hover:opacity-90"
+              style="background: #f59e0b; color: #1e3a5f;">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
+              </svg>
+              Save Scenario
+            </button>
+
+            <!-- Share + Export PDF -->
+            <div class="grid grid-cols-2 gap-2">
+              <button @click="shareResult"
+                class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border"
+                :class="shareSuccess ? 'border-green-400 text-green-700 bg-green-50' : 'border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50'">
+                <svg v-if="!shareSuccess" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                </svg>
+                <svg v-else class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                {{ shareSuccess ? 'Copied!' : 'Share' }}
               </button>
-              <!-- Share + PDF -->
-              <div class="grid grid-cols-2 gap-2">
-                <button @click="shareResult()"
-                  class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border"
-                  :class="shareSuccess ? 'border-green-400 text-green-700 bg-green-50' : 'border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50'">
-                  <svg v-if="!shareSuccess" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
-                  <svg v-else class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                  {{ shareSuccess ? 'Copied!' : 'Share' }}
-                </button>
-                <button @click="exportPDF()"
-                  class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-                  Export PDF
-                </button>
-              </div>
-              <!-- Email -->
-              <button @click="showEmailModal = true"
-                class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl font-semibold text-xs text-gray-500 hover:text-gray-700 border border-dashed border-gray-200 hover:border-gray-300 transition">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                Email me this analysis
+              <button @click="exportPDF"
+                class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+                Export PDF
               </button>
             </div>
 
-          </div><!-- end sticky wrapper -->
-        </div><!-- end right column -->
+            <!-- Email -->
+            <button @click="showEmailModal = true"
+              class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl font-semibold text-xs text-gray-500 hover:text-gray-700 border border-dashed border-gray-200 hover:border-gray-300 transition">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+              Email me this analysis
+            </button>
+          </div>
 
-      </div><!-- end two-column -->
-      </div><!-- end rounded inner -->
-      </div><!-- end gradient border -->
+        </div>
+        </div>
+        </div>
 
-      <!-- IMPORTANT NOTE -->
-      <div class="mt-6 p-4 rounded-2xl bg-amber-50 border border-amber-200">
-        <p class="text-sm font-bold text-amber-800 mb-1">⚠ Before-Tax Analysis</p>
-        <p class="text-xs text-amber-700 leading-relaxed">
-          This calculator shows before-tax results only. Flip profits are typically taxed as <strong>ordinary income</strong> (25–37% marginal rate in 2026) — not capital gains. Actual take-home is meaningfully lower after federal and state income taxes. Flips held under 1 year do not qualify for long-term capital gains rates. Consult a CPA for your specific tax situation.
-        </p>
       </div>
-
-      <!-- SCENARIO PANEL -->
-      <div class="max-w-6xl mx-auto pt-6">
-        <ScenarioPanel
-          calculator="fix-and-flip"
-          :has-result="hasResult"
-          :result="currentScenarioResult"
-          :trigger-save="triggerScenarioSave"
-          @saved="onScenarioSaved"
-        />
       </div>
-
+      </div>
     </main>
 
-    <!-- ═══════════════════════════════════════════════
+    <!-- ═══════════════════════════════════════════════════════════════════
          SEO CONTENT SECTIONS
-    ═══════════════════════════════════════════════ -->
-    <div class="max-w-[1100px] mx-auto px-4 pb-16 space-y-12">
+    ═══════════════════════════════════════════════════════════════════ -->
+    <div class="max-w-[1100px] mx-auto px-4 pb-16 space-y-0">
 
-      <!-- ── SECTION 1: OVERVIEW ── -->
-      <section id="overview" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-        <h2 class="text-2xl font-extrabold mb-4" style="color: #1e3a5f;">Overview — Fix and Flip Calculator</h2>
-        <p class="text-gray-700 leading-relaxed mb-4">
-          The <strong>fix and flip calculator</strong> is the essential tool for US real estate investors evaluating short-term rehab-and-sell projects. Unlike buy-and-hold tools that model multi-year cash flows, this <strong>house flipping calculator</strong> focuses on the single-period profit question: will I make money on this deal in 3–12 months? It computes two co-primary metrics — Total Profit in dollars and ROI as a percentage — so both first-time flippers assessing their first deal and experienced rehabbers comparing multiple opportunities get the full picture. As a <strong>flip profit calculator</strong> and <strong>fix and flip roi calculator</strong>, it handles all three financing modes: Hard Money (the industry default for 70% of flip investors), Conventional, and All Cash.
-        </p>
-        <p class="text-gray-700 leading-relaxed mb-4">
-          The calculator works by combining your Purchase Price, ARV (After Repair Value), Rehab Budget, Rehab Contingency, Hold Period, monthly Holding Costs, Financing structure, and Sale Costs into a comprehensive profit model. It outputs Total Profit, ROI, the 70% Rule Max Offer, Break-Even Sale Price, Annualized ROI, and Profit per Month — the six numbers every flip investor needs before committing capital. Three calculation modes — Analyze, Find Max Purchase Price, and Find Max Rehab Budget — handle both forward analysis and reverse offer construction.
-        </p>
-        <p class="text-gray-700 leading-relaxed mb-4">
-          This <strong>real estate flip calculator</strong> is used by first-time flippers verifying their first project, experienced rehabbers running portfolio-level deal screening, wholesalers checking 70% Rule compliance before assigning contracts, and real estate agents advising investor clients on offer strategy. The 70% Rule indicator, Break-Even cushion display, and three-scenario stress test (Conservative / Base / Optimistic) give investors the confidence to make data-driven offers rather than gut-feel bids.
-        </p>
-        <p class="text-gray-700 leading-relaxed">
-          <strong>What this calculator does NOT include (v1):</strong> After-tax returns (before-tax analysis only — flip profits are typically ordinary income at 25–37% marginal rates). Detailed scope-of-work rehab breakdown (single rehab number plus contingency). 1031 exchange benefits (flips do not qualify). Multi-year appreciation projections (too short-term for compounding). Pair with the ARV Calculator for ARV confidence verification and the DSCR Calculator to compare flip strategy vs. rental hold strategy.
-        </p>
+      <!-- ── 1. OVERVIEW ── -->
+      <section id="overview" class="py-10 border-b border-gray-100">
+        <h2 class="text-2xl font-extrabold mb-6" style="color: #1e3a5f;">Fix and Flip Calculator — Overview</h2>
+        <div class="space-y-4 text-gray-700 leading-relaxed">
+          <p>
+            The RealCalc <strong>fix and flip calculator</strong> is the most comprehensive free house flipping calculator available for US investors in 2026. This flip profit calculator computes Total Profit in dollars and ROI as a percentage — both co-primary metrics — so beginners understand the absolute dollar return while professionals compare deals on a percentage basis. As a fix and flip roi calculator, it accounts for hard money financing, holding costs, rehab contingency, and the 70% Rule, giving you a complete picture before you make an offer. Whether you call it a real estate flip calculator or simply a flip analyzer, this tool is purpose-built for the short-term rehab-and-sell strategy that drives the US flip market.
+          </p>
+          <p>
+            Enter your Purchase Price, ARV (After Repair Value), Rehab Budget, hold period in months, and financing details. The calculator outputs Total Profit, ROI %, the 70% Rule Max Offer, Break-Even Sale Price, Annualized ROI, and Profit per Month — along with a full cost breakdown. Three financing modes are supported: Hard Money (default, covering 70% of US flip transactions), Conventional (amortizing, for investors using traditional lending), and All Cash (no financing complexity, pure return on capital deployed).
+          </p>
+          <p>
+            This calculator serves multiple audiences. First-time flippers use it to evaluate their first project and verify they're within the 70% Rule. Experienced rehabbers running multiple projects annually use it to rank deal opportunities by ROI. Wholesalers use the reverse "Find Max Purchase Price" mode to determine the maximum they can offer and still assign a profitable deal. Real estate agents advising investor clients use it to validate deal economics before presenting offers. All three groups benefit from the Conservative / Base / Optimistic scenario analysis and the project timeline table.
+          </p>
+          <p>
+            <strong>Important: v1 is before-tax analysis only.</strong> Flip profits are typically taxed as ordinary income (25–37% marginal rates in 2026) — not long-term capital gains — because the IRS views active flippers as real estate dealers. After-tax take-home is meaningfully lower than displayed Total Profit. Does not model: after-tax returns, 1031 exchanges (flips don't qualify), opportunity cost analysis, or detailed scope-of-work rehab breakdown. Pair with ARV Calculator for ARV confidence and DSCR Calculator for lender qualification modeling.
+          </p>
+        </div>
       </section>
 
-      <!-- ── SECTION 2: HOW TO USE ── -->
-      <section id="how-to-use" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+      <!-- ── 2. HOW TO USE ── -->
+      <section id="how-to-use" class="py-10 border-b border-gray-100">
         <h2 class="text-2xl font-extrabold mb-2" style="color: #1e3a5f;">How to Use the Fix and Flip Calculator</h2>
         <p class="text-gray-600 mb-6">Follow these steps to project profit and ROI on any US flip project in under 3 minutes.</p>
 
-        <div class="space-y-6">
+        <div class="space-y-5">
           <div class="flex gap-4">
             <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-sm" style="background: #1e3a5f;">1</div>
             <div>
               <h3 class="font-bold text-gray-900 mb-1">Choose a calculation mode</h3>
-              <p class="text-sm text-gray-600 leading-relaxed">Select <strong>Analyze Fix &amp; Flip</strong> to evaluate a deal with known inputs and see projected profit and ROI. Use <strong>Find Max Purchase Price</strong> when you know your target return and want to calculate the maximum you can offer — this is the offer construction mode used by experienced buyers. Use <strong>Find Max Rehab Budget</strong> to determine how much you can spend on renovation while still hitting your target — critical for contractor negotiation. Both reverse modes solve via binary search across a realistic price range.</p>
+              <p class="text-gray-700 text-sm leading-relaxed">Select <em>Analyze Fix &amp; Flip</em> to evaluate an existing deal and see profit + ROI. Use <em>Find Max Purchase Price</em> when constructing a bid — enter ARV, rehab budget, and your minimum ROI target, and the calculator solves for the maximum you can offer. Use <em>Find Max Rehab Budget</em> after locking a purchase price — enter your target return, and the calculator tells you the absolute ceiling on rehab spending.</p>
             </div>
           </div>
           <div class="flex gap-4">
             <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-sm" style="background: #1e3a5f;">2</div>
             <div>
               <h3 class="font-bold text-gray-900 mb-1">Enter property details and ARV</h3>
-              <p class="text-sm text-gray-600 leading-relaxed">Input the purchase price, property type, and ARV (After Repair Value). ARV is THE critical input — a $10K miss on ARV can wipe out the entire profit on a thin-margin flip. Use conservative ARV estimates verified with 3+ active MLS comps, a Broker Price Opinion (BPO), or a pre-rehab appraisal. If your ARV confidence is Realistic or Optimistic, stress-test with a 5–8% downside in the Conservative scenario.</p>
+              <p class="text-gray-700 text-sm leading-relaxed">Enter Purchase Price (what you're paying), ARV (After Repair Value — what you expect to sell for after renovation), and Property Type. ARV is the single most critical input — a $10K miss on ARV can wipe out the entire projected profit on a thin-margin flip. Use conservative ARV estimates and verify with 3+ active MLS comps, a BPO (Broker Price Opinion), or a pre-rehab appraisal. Select your ARV confidence level to note how certain you are of the exit price.</p>
             </div>
           </div>
           <div class="flex gap-4">
             <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-sm" style="background: #1e3a5f;">3</div>
             <div>
               <h3 class="font-bold text-gray-900 mb-1">Enter rehab budget and timeline</h3>
-              <p class="text-sm text-gray-600 leading-relaxed">Enter the total rehab cost and set the contingency (10–15% is industry standard — never go below 10%). Typical 2026 rehab costs: cosmetic updates $15–30K, moderate updates $30–60K, gut renovation $60–150K. Set rehab duration separately from hold period — rehab duration affects the timeline display but not the holding cost calculation (total hold period drives holding costs). Rehab typically takes 2–4 months for moderate updates and 4–8 months for gut renovations.</p>
+              <p class="text-gray-700 text-sm leading-relaxed">Enter your total estimated renovation cost, contingency percentage (10–15% is industry standard — never use 5%), and expected rehab duration in months. Typical 2026 rehab costs: cosmetic updates $15–30K, moderate updates $30–60K, gut renovation $60–150K. Rehab duration typically runs 2–4 months for moderate scope, 4–8 months for full gut renovations. The rehab duration drives the timeline table but does not extend the hold period — set Hold Period separately.</p>
             </div>
           </div>
           <div class="flex gap-4">
             <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-sm" style="background: #1e3a5f;">4</div>
             <div>
               <h3 class="font-bold text-gray-900 mb-1">Enter hold period and holding costs</h3>
-              <p class="text-sm text-gray-600 leading-relaxed">Set the total hold period in months (typical: 6). Enter monthly holding costs: property tax (annual divided by 12), vacant/rehab insurance, utilities during rehab, HOA (if applicable), and other ongoing property expenses. <strong>Important: Loan interest is tracked separately under Financing — do not include it in holding costs.</strong> This prevents double-counting. Holding costs compound every month — a 6-month flip with $600 monthly holding costs has $3,600 in real cash outflow before any loan interest is added. Many first-time flippers forget holding costs entirely, leading to dramatically inflated ROI projections.</p>
+              <p class="text-gray-700 text-sm leading-relaxed">Set total hold period (3–12 months, typical 6). Monthly holding costs include property tax (annual ÷ 12), insurance, utilities during rehab, HOA, and other property expenses. <strong>Loan interest is NOT part of holding costs</strong> in this calculator — it is tracked separately under Financing to avoid double-counting. Holding costs compound across months — a 6-month flip with $600 monthly holding costs adds $3,600 in real cash outflow BEFORE loan interest. Many first-time flippers underestimate this entirely, often inflating projected ROI by 5–10 percentage points.</p>
             </div>
           </div>
           <div class="flex gap-4">
             <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-sm" style="background: #1e3a5f;">5</div>
             <div>
               <h3 class="font-bold text-gray-900 mb-1">Set financing and sale costs</h3>
-              <p class="text-sm text-gray-600 leading-relaxed">Choose your financing type: Hard Money (default — 2026 rate 11–14%, points 2–4%, interest-only), Conventional (2026 rate ~7.5%, 25% down, 30-year amortization), or All Cash (no financing complexity). Hard money often covers both purchase and rehab costs depending on the lender and deal structure — toggle the "Loan Covers Rehab" option to reflect your specific lender's terms. Set sale costs (typical: 6–10% — broker commission 5–6% plus closing 1–3%). The calculator tracks loan interest separately from holding costs to prevent double-counting.</p>
+              <p class="text-gray-700 text-sm leading-relaxed">Choose financing: Hard Money (default, 2026 typical 11–13% rate, 2–4% points), Conventional (~7.5% rate, 25% down, amortizing), or All Cash. Toggle whether Hard Money covers both purchase and rehab or purchase only — this affects loan amount and down payment. Sale costs typically 6–10% of ARV (broker commission 5–6% plus closing 1–3%). Hard money often covers both purchase and rehab depending on lender and deal structure — confirm with your specific lender before underwriting.</p>
             </div>
           </div>
         </div>
 
-        <!-- Pro Tips -->
-        <div class="mt-8 p-5 rounded-xl bg-amber-50 border border-amber-200">
+        <div class="mt-8 p-5 rounded-2xl bg-amber-50 border border-amber-200">
           <h3 class="font-bold text-amber-900 mb-3">Pro Tips</h3>
           <ul class="space-y-2">
-            <li class="flex gap-2 text-sm text-amber-800">
-              <span class="font-bold flex-shrink-0">→</span>
-              Use conservative ARV — reduce your comp-derived estimate by 5–10% for safety. A $280K optimistic ARV that comes in at $260K can eliminate your entire profit on a thin-margin flip.
-            </li>
-            <li class="flex gap-2 text-sm text-amber-800">
-              <span class="font-bold flex-shrink-0">→</span>
-              Check the 70% Rule indicator before making an offer. Deals within the rule (purchase at or below the max offer) have built-in margin; deals outside need strong justification like a hot market or extremely light rehab scope.
-            </li>
-            <li class="flex gap-2 text-sm text-amber-800">
-              <span class="font-bold flex-shrink-0">→</span>
-              Rehab contingency should be 10–15%, not 5%. In 2026, supply chain surprises and permit delays are common. Budget for overruns — if your contractor bids $40K, budget $44–48K with contingency.
-            </li>
-            <li class="flex gap-2 text-sm text-amber-800">
-              <span class="font-bold flex-shrink-0">→</span>
-              Holding costs scale with months. A 6-month flip can have 6–8% of purchase price in holding costs alone. Tighten your timeline — every extra month costs real money in taxes, insurance, and loan interest.
-            </li>
+            <li class="flex gap-2 text-sm text-amber-800"><span class="text-amber-500 font-bold flex-shrink-0">→</span><span>Use conservative ARV — reduce your comp-derived estimate by 5–10% for safety. A $280K optimistic ARV that comes in at $260K can eliminate your entire profit on a thin-margin flip.</span></li>
+            <li class="flex gap-2 text-sm text-amber-800"><span class="text-amber-500 font-bold flex-shrink-0">→</span><span>Check the 70% Rule indicator before making an offer. Deals within the rule (purchase at or below max offer) have built-in margin; deals outside need strong justification.</span></li>
+            <li class="flex gap-2 text-sm text-amber-800"><span class="text-amber-500 font-bold flex-shrink-0">→</span><span>Rehab contingency should be 10–15%, not 5%. In 2026, supply chain surprises and permit delays are common. Budget for overruns, not perfection.</span></li>
+            <li class="flex gap-2 text-sm text-amber-800"><span class="text-amber-500 font-bold flex-shrink-0">→</span><span>Holding costs scale with months. A 6-month flip can have 6–8% of purchase price in holding costs alone. Tighten your timeline — every extra month costs real money.</span></li>
           </ul>
         </div>
 
-        <!-- Result Guide -->
-        <div class="mt-6">
-          <h3 class="font-bold text-gray-900 mb-3">How to Interpret Your ROI Result</h3>
-          <div class="space-y-2">
-            <div class="flex items-start gap-3 p-3 rounded-xl bg-emerald-50 border border-emerald-200">
-              <div class="w-3 h-3 rounded-full bg-emerald-600 mt-0.5 flex-shrink-0"></div>
-              <div class="text-sm"><span class="font-bold text-emerald-800">50%+ ROI — Exceptional:</span> <span class="text-emerald-700">top-quartile flip; usually requires deep value acquisition or major scope with expert execution</span></div>
-            </div>
-            <div class="flex items-start gap-3 p-3 rounded-xl bg-emerald-50 border border-emerald-200">
-              <div class="w-3 h-3 rounded-full mt-0.5 flex-shrink-0" style="background: #10B981;"></div>
-              <div class="text-sm"><span class="font-bold text-emerald-800">30–49% ROI — Strong:</span> <span class="text-emerald-700">above-average 2026 flip margin; healthy safety buffer for execution risk</span></div>
-            </div>
-            <div class="flex items-start gap-3 p-3 rounded-xl bg-amber-50 border border-amber-200">
-              <div class="w-3 h-3 rounded-full bg-amber-500 mt-0.5 flex-shrink-0"></div>
-              <div class="text-sm"><span class="font-bold text-amber-800">20–29% ROI — Solid:</span> <span class="text-amber-700">market-average for 2026 hard-money flips; acceptable if execution is tight</span></div>
-            </div>
-            <div class="flex items-start gap-3 p-3 rounded-xl bg-orange-50 border border-orange-200">
-              <div class="w-3 h-3 rounded-full bg-orange-500 mt-0.5 flex-shrink-0"></div>
-              <div class="text-sm"><span class="font-bold text-orange-800">10–19% ROI — Weak:</span> <span class="text-orange-700">execution risk often exceeds profit margin; consider only in exceptional cases</span></div>
-            </div>
-            <div class="flex items-start gap-3 p-3 rounded-xl bg-red-50 border border-red-200">
-              <div class="w-3 h-3 rounded-full bg-red-600 mt-0.5 flex-shrink-0"></div>
-              <div class="text-sm"><span class="font-bold text-red-800">0–9% ROI — Critical:</span> <span class="text-red-700">barely positive; any overrun on time, budget, or ARV produces a loss</span></div>
-            </div>
-            <div class="flex items-start gap-3 p-3 rounded-xl bg-red-100 border border-red-300">
-              <div class="w-3 h-3 rounded-full bg-red-900 mt-0.5 flex-shrink-0"></div>
-              <div class="text-sm"><span class="font-bold text-red-900">Below 0% ROI — Loss:</span> <span class="text-red-800">projected loss; do not proceed without significant changes to price, scope, or exit</span></div>
-            </div>
-          </div>
-          <p class="text-xs text-gray-400 mt-2">Tiers assume 6-month hold with hard money financing at 2026 market rates. These are total project ROI tiers, not Annualized ROI. Shorter holds compress ROI on the same dollar profit.</p>
+        <div class="mt-6 p-5 rounded-2xl bg-gray-50 border border-gray-200">
+          <h3 class="font-bold text-gray-900 mb-3">How to Interpret Your Result</h3>
+          <ul class="space-y-2">
+            <li class="flex gap-2 text-sm text-gray-700"><span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0 mt-1.5"></span><span><strong>50%+ ROI — Exceptional:</strong> top-quartile flip; usually requires deep value acquisition or major scope</span></li>
+            <li class="flex gap-2 text-sm text-gray-700"><span class="w-2 h-2 rounded-full bg-emerald-400 flex-shrink-0 mt-1.5"></span><span><strong>30–49% ROI — Strong:</strong> above-average 2026 flip margin; healthy safety buffer</span></li>
+            <li class="flex gap-2 text-sm text-gray-700"><span class="w-2 h-2 rounded-full bg-amber-400 flex-shrink-0 mt-1.5"></span><span><strong>20–29% ROI — Solid:</strong> market-average for 2026 hard-money flips; acceptable if execution is tight</span></li>
+            <li class="flex gap-2 text-sm text-gray-700"><span class="w-2 h-2 rounded-full bg-orange-500 flex-shrink-0 mt-1.5"></span><span><strong>10–19% ROI — Weak:</strong> execution risk often exceeds profit margin; consider only exceptional cases</span></li>
+            <li class="flex gap-2 text-sm text-gray-700"><span class="w-2 h-2 rounded-full bg-red-500 flex-shrink-0 mt-1.5"></span><span><strong>0–9% ROI — Critical:</strong> barely positive; any overrun produces a loss</span></li>
+            <li class="flex gap-2 text-sm text-gray-700"><span class="w-2 h-2 rounded-full bg-red-900 flex-shrink-0 mt-1.5"></span><span><strong>Below 0% ROI — Loss:</strong> projected loss; do not proceed without significant changes</span></li>
+          </ul>
         </div>
       </section>
 
-      <!-- ── SECTION 3: INPUTS & OUTPUTS ── -->
-      <section id="inputs-outputs" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+      <!-- ── 3. INPUTS & OUTPUTS ── -->
+      <section id="inputs-outputs" class="py-10 border-b border-gray-100">
         <h2 class="text-2xl font-extrabold mb-2" style="color: #1e3a5f;">Inputs &amp; Outputs — Field Reference</h2>
-        <p class="text-gray-600 mb-6">What each field means and where to find the numbers for your flip analysis.</p>
-
+        <p class="text-gray-600 mb-6">What each field means and where to find the numbers.</p>
         <div class="space-y-6">
           <div>
-            <h3 class="font-bold text-gray-800 mb-3 text-sm uppercase tracking-wide">Property Inputs</h3>
+            <h3 class="font-bold text-gray-800 mb-3">Property Inputs</h3>
             <div class="overflow-x-auto">
               <table class="w-full text-sm border-collapse">
-                <thead><tr class="bg-gray-50"><th class="text-left py-2.5 px-3 font-semibold text-gray-500 border-b border-gray-200">Field</th><th class="text-left py-2.5 px-3 font-semibold text-gray-500 border-b border-gray-200">What it means</th><th class="text-left py-2.5 px-3 font-semibold text-gray-500 border-b border-gray-200">Where to find it</th></tr></thead>
-                <tbody class="divide-y divide-gray-100">
-                  <tr><td class="py-2.5 px-3 font-medium text-gray-800">Purchase Price</td><td class="py-2.5 px-3 text-gray-600">Contract price to acquire the property</td><td class="py-2.5 px-3 text-gray-500">MLS, wholesaler offer, off-market contract</td></tr>
-                  <tr><td class="py-2.5 px-3 font-medium text-gray-800">Property Type</td><td class="py-2.5 px-3 text-gray-600">SFR, condo, small multi-family, townhouse</td><td class="py-2.5 px-3 text-gray-500">Property listing or public records</td></tr>
-                  <tr><td class="py-2.5 px-3 font-medium text-gray-800">ARV — After Repair Value</td><td class="py-2.5 px-3 text-gray-600">Market value of the property after renovation is complete</td><td class="py-2.5 px-3 text-gray-500">Comps from MLS (3+ active), BPO, pre-rehab appraisal</td></tr>
-                  <tr><td class="py-2.5 px-3 font-medium text-gray-800">ARV Confidence</td><td class="py-2.5 px-3 text-gray-600">How confident you are in the ARV estimate — affects display context only</td><td class="py-2.5 px-3 text-gray-500">Your assessment of comp quality and market conditions</td></tr>
+                <thead>
+                  <tr class="bg-gray-50">
+                    <th class="text-left px-3 py-2 font-semibold text-gray-600 border border-gray-200">Field</th>
+                    <th class="text-left px-3 py-2 font-semibold text-gray-600 border border-gray-200">What it means</th>
+                    <th class="text-left px-3 py-2 font-semibold text-gray-600 border border-gray-200">Where to find it</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="bg-white"><td class="px-3 py-2 border border-gray-200 font-medium">Purchase Price</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Contract price to acquire</td><td class="px-3 py-2 border border-gray-200 text-gray-600">MLS, wholesaler, off-market</td></tr>
+                  <tr class="bg-gray-50"><td class="px-3 py-2 border border-gray-200 font-medium">ARV (After Repair Value)</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Market value after renovation</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Comps from MLS, appraisal, BPO</td></tr>
+                  <tr class="bg-white"><td class="px-3 py-2 border border-gray-200 font-medium">Property Type</td><td class="px-3 py-2 border border-gray-200 text-gray-600">SFR, condo, townhouse, small multi</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Property listing</td></tr>
+                  <tr class="bg-gray-50"><td class="px-3 py-2 border border-gray-200 font-medium">Rehab Budget</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Total estimated renovation cost</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Contractor bids, scope of work</td></tr>
+                  <tr class="bg-white"><td class="px-3 py-2 border border-gray-200 font-medium">Rehab Contingency</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Budget buffer for overruns (10–15%)</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Industry standard</td></tr>
+                  <tr class="bg-gray-50"><td class="px-3 py-2 border border-gray-200 font-medium">Hold Period</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Total months from close to sale</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Project plan: 3–12 typical</td></tr>
                 </tbody>
               </table>
             </div>
           </div>
-
           <div>
-            <h3 class="font-bold text-gray-800 mb-3 text-sm uppercase tracking-wide">Rehab &amp; Timeline</h3>
+            <h3 class="font-bold text-gray-800 mb-3">Monthly Holding Costs <span class="text-xs font-normal text-gray-500">(property expenses only — NOT loan interest)</span></h3>
             <div class="overflow-x-auto">
               <table class="w-full text-sm border-collapse">
-                <thead><tr class="bg-gray-50"><th class="text-left py-2.5 px-3 font-semibold text-gray-500 border-b border-gray-200">Field</th><th class="text-left py-2.5 px-3 font-semibold text-gray-500 border-b border-gray-200">What it means</th><th class="text-left py-2.5 px-3 font-semibold text-gray-500 border-b border-gray-200">Where to find it</th></tr></thead>
-                <tbody class="divide-y divide-gray-100">
-                  <tr><td class="py-2.5 px-3 font-medium text-gray-800">Rehab Budget</td><td class="py-2.5 px-3 text-gray-600">Total estimated renovation cost before contingency</td><td class="py-2.5 px-3 text-gray-500">Contractor bids, scope of work estimates, past project data</td></tr>
-                  <tr><td class="py-2.5 px-3 font-medium text-gray-800">Rehab Contingency %</td><td class="py-2.5 px-3 text-gray-600">Budget buffer for cost overruns (10–15% industry standard)</td><td class="py-2.5 px-3 text-gray-500">Industry standard: always 10–15%, never less than 10%</td></tr>
-                  <tr><td class="py-2.5 px-3 font-medium text-gray-800">Rehab Duration (Months)</td><td class="py-2.5 px-3 text-gray-600">Expected months from project start to completion</td><td class="py-2.5 px-3 text-gray-500">Contractor timeline; used for project timeline display</td></tr>
-                  <tr><td class="py-2.5 px-3 font-medium text-gray-800">Hold Period (Months)</td><td class="py-2.5 px-3 text-gray-600">Total months from purchase close to sale close</td><td class="py-2.5 px-3 text-gray-500">Rehab months + expected market time (2–4 months typical)</td></tr>
+                <thead>
+                  <tr class="bg-gray-50">
+                    <th class="text-left px-3 py-2 font-semibold text-gray-600 border border-gray-200">Field</th>
+                    <th class="text-left px-3 py-2 font-semibold text-gray-600 border border-gray-200">What it means</th>
+                    <th class="text-left px-3 py-2 font-semibold text-gray-600 border border-gray-200">Where to find it</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="bg-white"><td class="px-3 py-2 border border-gray-200 font-medium">Property Tax</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Monthly tax (annual ÷ 12)</td><td class="px-3 py-2 border border-gray-200 text-gray-600">County assessor</td></tr>
+                  <tr class="bg-gray-50"><td class="px-3 py-2 border border-gray-200 font-medium">Insurance</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Monthly vacant/rehab insurance</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Current quote</td></tr>
+                  <tr class="bg-white"><td class="px-3 py-2 border border-gray-200 font-medium">Utilities</td><td class="px-3 py-2 border border-gray-200 text-gray-600">While vacant during rehab</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Prior bills or estimates</td></tr>
+                  <tr class="bg-gray-50"><td class="px-3 py-2 border border-gray-200 font-medium">HOA</td><td class="px-3 py-2 border border-gray-200 text-gray-600">If applicable</td><td class="px-3 py-2 border border-gray-200 text-gray-600">HOA statement</td></tr>
                 </tbody>
               </table>
             </div>
           </div>
-
           <div>
-            <h3 class="font-bold text-gray-800 mb-3 text-sm uppercase tracking-wide">Monthly Holding Costs (Property-Related Only — Excludes Loan Interest)</h3>
+            <h3 class="font-bold text-gray-800 mb-3">Financing Inputs</h3>
             <div class="overflow-x-auto">
               <table class="w-full text-sm border-collapse">
-                <thead><tr class="bg-gray-50"><th class="text-left py-2.5 px-3 font-semibold text-gray-500 border-b border-gray-200">Field</th><th class="text-left py-2.5 px-3 font-semibold text-gray-500 border-b border-gray-200">What it means</th><th class="text-left py-2.5 px-3 font-semibold text-gray-500 border-b border-gray-200">Where to find it</th></tr></thead>
-                <tbody class="divide-y divide-gray-100">
-                  <tr><td class="py-2.5 px-3 font-medium text-gray-800">Property Tax (monthly)</td><td class="py-2.5 px-3 text-gray-600">Annual property tax divided by 12</td><td class="py-2.5 px-3 text-gray-500">County assessor website or property tax bill</td></tr>
-                  <tr><td class="py-2.5 px-3 font-medium text-gray-800">Insurance (monthly)</td><td class="py-2.5 px-3 text-gray-600">Vacant/rehab property insurance during project</td><td class="py-2.5 px-3 text-gray-500">Insurance quote (vacant property is higher than standard)</td></tr>
-                  <tr><td class="py-2.5 px-3 font-medium text-gray-800">Utilities (monthly)</td><td class="py-2.5 px-3 text-gray-600">Electric, gas, water while vacant during rehab</td><td class="py-2.5 px-3 text-gray-500">Prior bills or municipal estimates</td></tr>
-                  <tr><td class="py-2.5 px-3 font-medium text-gray-800">HOA (monthly)</td><td class="py-2.5 px-3 text-gray-600">Homeowners association dues if applicable</td><td class="py-2.5 px-3 text-gray-500">HOA statement or listing disclosure</td></tr>
-                  <tr><td class="py-2.5 px-3 font-medium text-gray-800">Other (monthly)</td><td class="py-2.5 px-3 text-gray-600">Lawn care, security, miscellaneous</td><td class="py-2.5 px-3 text-gray-500">Ongoing property management estimates</td></tr>
+                <thead>
+                  <tr class="bg-gray-50">
+                    <th class="text-left px-3 py-2 font-semibold text-gray-600 border border-gray-200">Field</th>
+                    <th class="text-left px-3 py-2 font-semibold text-gray-600 border border-gray-200">What it means</th>
+                    <th class="text-left px-3 py-2 font-semibold text-gray-600 border border-gray-200">Where to find it</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="bg-white"><td class="px-3 py-2 border border-gray-200 font-medium">HM Loan to Cost (LTC)</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Percent of (price + rehab) financed</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Hard money term sheet</td></tr>
+                  <tr class="bg-gray-50"><td class="px-3 py-2 border border-gray-200 font-medium">HM Interest Rate</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Annual rate (2026 range 10–14%)</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Lender quote</td></tr>
+                  <tr class="bg-white"><td class="px-3 py-2 border border-gray-200 font-medium">HM Points</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Upfront fee as % of loan (2–4%)</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Lender quote</td></tr>
+                  <tr class="bg-gray-50"><td class="px-3 py-2 border border-gray-200 font-medium">Conv Down Payment</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Percent of price in cash</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Loan program</td></tr>
+                  <tr class="bg-white"><td class="px-3 py-2 border border-gray-200 font-medium">Conv Interest Rate</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Annual conventional rate (~7.5% in 2026)</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Lender quote</td></tr>
+                  <tr class="bg-gray-50"><td class="px-3 py-2 border border-gray-200 font-medium">Sale Costs %</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Broker commission + closing at sale</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Typical 6–10% (5–6% broker + 1–3% closing)</td></tr>
                 </tbody>
               </table>
             </div>
           </div>
-
           <div>
-            <h3 class="font-bold text-gray-800 mb-3 text-sm uppercase tracking-wide">Financing Inputs</h3>
+            <h3 class="font-bold text-gray-800 mb-3">Calculator Outputs</h3>
             <div class="overflow-x-auto">
               <table class="w-full text-sm border-collapse">
-                <thead><tr class="bg-gray-50"><th class="text-left py-2.5 px-3 font-semibold text-gray-500 border-b border-gray-200">Field</th><th class="text-left py-2.5 px-3 font-semibold text-gray-500 border-b border-gray-200">What it means</th><th class="text-left py-2.5 px-3 font-semibold text-gray-500 border-b border-gray-200">Where to find it</th></tr></thead>
-                <tbody class="divide-y divide-gray-100">
-                  <tr><td class="py-2.5 px-3 font-medium text-gray-800">Financing Type</td><td class="py-2.5 px-3 text-gray-600">Hard Money / Conventional / All Cash</td><td class="py-2.5 px-3 text-gray-500">Your loan source or investment strategy</td></tr>
-                  <tr><td class="py-2.5 px-3 font-medium text-gray-800">HM Loan-to-Cost %</td><td class="py-2.5 px-3 text-gray-600">Percent of (purchase + rehab) financed by hard money</td><td class="py-2.5 px-3 text-gray-500">Hard money lender term sheet</td></tr>
-                  <tr><td class="py-2.5 px-3 font-medium text-gray-800">HM Interest Rate %</td><td class="py-2.5 px-3 text-gray-600">Annual interest rate (interest-only payments during hold)</td><td class="py-2.5 px-3 text-gray-500">Lender quote — 2026 typical: 10–14% annual</td></tr>
-                  <tr><td class="py-2.5 px-3 font-medium text-gray-800">HM Points %</td><td class="py-2.5 px-3 text-gray-600">Upfront origination fee as percent of loan amount</td><td class="py-2.5 px-3 text-gray-500">Lender quote — 2026 typical: 2–4 points</td></tr>
-                  <tr><td class="py-2.5 px-3 font-medium text-gray-800">Loan Covers Rehab</td><td class="py-2.5 px-3 text-gray-600">Whether lender provides rehab draw funding</td><td class="py-2.5 px-3 text-gray-500">Lender term sheet — varies by lender and deal structure</td></tr>
-                  <tr><td class="py-2.5 px-3 font-medium text-gray-800">Conv Down Payment %</td><td class="py-2.5 px-3 text-gray-600">Percent of purchase price paid in cash</td><td class="py-2.5 px-3 text-gray-500">Loan program — investment property: typically 20–30%</td></tr>
-                  <tr><td class="py-2.5 px-3 font-medium text-gray-800">Sale Costs %</td><td class="py-2.5 px-3 text-gray-600">Broker commission plus closing costs at sale</td><td class="py-2.5 px-3 text-gray-500">Local market norms — typical 6–10% (5–6% broker + 1–3% closing)</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          <div>
-            <h3 class="font-bold text-gray-800 mb-3 text-sm uppercase tracking-wide">Calculator Outputs</h3>
-            <div class="overflow-x-auto">
-              <table class="w-full text-sm border-collapse">
-                <thead><tr class="bg-gray-50"><th class="text-left py-2.5 px-3 font-semibold text-gray-500 border-b border-gray-200">Output</th><th class="text-left py-2.5 px-3 font-semibold text-gray-500 border-b border-gray-200">What it means</th><th class="text-left py-2.5 px-3 font-semibold text-gray-500 border-b border-gray-200">Primary use</th></tr></thead>
-                <tbody class="divide-y divide-gray-100">
-                  <tr><td class="py-2.5 px-3 font-medium text-gray-800">Total Profit ($)</td><td class="py-2.5 px-3 text-gray-600">Dollar profit after all costs — Net Sale Proceeds minus Total Cash Invested</td><td class="py-2.5 px-3 text-gray-500">Headline wealth creation number</td></tr>
-                  <tr><td class="py-2.5 px-3 font-medium text-gray-800">ROI (%)</td><td class="py-2.5 px-3 text-gray-600">Profit as percent of cash actually invested</td><td class="py-2.5 px-3 text-gray-500">Deal quality ranking and comparison</td></tr>
-                  <tr><td class="py-2.5 px-3 font-medium text-gray-800">70% Rule Max Offer</td><td class="py-2.5 px-3 text-gray-600">Industry heuristic maximum offer: (ARV × 0.70) − Rehab</td><td class="py-2.5 px-3 text-gray-500">Quick within/outside rule compliance check</td></tr>
-                  <tr><td class="py-2.5 px-3 font-medium text-gray-800">Break-Even Sale Price</td><td class="py-2.5 px-3 text-gray-600">Minimum sale price to return all cash invested</td><td class="py-2.5 px-3 text-gray-500">Downside stress test and ARV cushion</td></tr>
-                  <tr><td class="py-2.5 px-3 font-medium text-gray-800">Annualized ROI</td><td class="py-2.5 px-3 text-gray-600">ROI adjusted to 12-month equivalent</td><td class="py-2.5 px-3 text-gray-500">Compare to stock market, rental property IRR</td></tr>
-                  <tr><td class="py-2.5 px-3 font-medium text-gray-800">Profit per Month</td><td class="py-2.5 px-3 text-gray-600">Total Profit divided by months held</td><td class="py-2.5 px-3 text-gray-500">Effective monthly return for time invested</td></tr>
-                  <tr><td class="py-2.5 px-3 font-medium text-gray-800">Total Cash Invested</td><td class="py-2.5 px-3 text-gray-600">All actual cash paid from investor's pocket</td><td class="py-2.5 px-3 text-gray-500">Capital requirement planning</td></tr>
+                <thead>
+                  <tr class="bg-gray-50">
+                    <th class="text-left px-3 py-2 font-semibold text-gray-600 border border-gray-200">Output</th>
+                    <th class="text-left px-3 py-2 font-semibold text-gray-600 border border-gray-200">What it means</th>
+                    <th class="text-left px-3 py-2 font-semibold text-gray-600 border border-gray-200">Primary use</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="bg-white"><td class="px-3 py-2 border border-gray-200 font-medium">Total Profit $</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Dollar profit after all costs</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Headline wealth creation number</td></tr>
+                  <tr class="bg-gray-50"><td class="px-3 py-2 border border-gray-200 font-medium">ROI %</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Profit as % of cash invested</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Deal quality ranking</td></tr>
+                  <tr class="bg-white"><td class="px-3 py-2 border border-gray-200 font-medium">70% Rule Max Offer</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Industry heuristic maximum offer</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Quick within/outside rule check</td></tr>
+                  <tr class="bg-gray-50"><td class="px-3 py-2 border border-gray-200 font-medium">Break-Even Sale Price</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Minimum sale price for $0 profit</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Downside stress test</td></tr>
+                  <tr class="bg-white"><td class="px-3 py-2 border border-gray-200 font-medium">Annualized ROI</td><td class="px-3 py-2 border border-gray-200 text-gray-600">ROI adjusted to 12-month equivalent</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Compare to stock / rental IRR</td></tr>
+                  <tr class="bg-gray-50"><td class="px-3 py-2 border border-gray-200 font-medium">Profit per Month</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Profit divided by months held</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Effective monthly wage for your time</td></tr>
+                  <tr class="bg-white"><td class="px-3 py-2 border border-gray-200 font-medium">Total Cash Invested</td><td class="px-3 py-2 border border-gray-200 text-gray-600">All cash out of investor's pocket</td><td class="px-3 py-2 border border-gray-200 text-gray-600">Capital requirement planning</td></tr>
                 </tbody>
               </table>
             </div>
@@ -1196,665 +1436,591 @@
         </div>
       </section>
 
-      <!-- ── SECTION 4: FORMULA ── -->
-      <section id="formula" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-        <h2 class="text-2xl font-extrabold mb-2" style="color: #1e3a5f;">Fix and Flip Profit Formula &amp; 70% Rule Calculation</h2>
-        <p class="text-gray-600 mb-6">How the calculator computes flip profit — with a worked Columbus, OH example for 2026.</p>
+      <!-- ── 4. FORMULA ── -->
+      <section id="formula" class="py-10 border-b border-gray-100">
+        <h2 class="text-2xl font-extrabold mb-1" style="color: #1e3a5f;">Fix and Flip Profit Formula &amp; 70% Rule Calculation</h2>
+        <p class="text-gray-500 mb-6">How the calculator computes flip profit — with a worked Columbus, OH example for 2026</p>
 
         <div class="space-y-4 mb-6">
           <h3 class="font-bold text-gray-800">Step-by-Step Calculation</h3>
-          <ol class="space-y-3 text-sm text-gray-700 leading-relaxed list-decimal list-inside">
-            <li><strong>Calculate Loan Amount</strong> based on financing type. Hard Money with rehab: (Purchase + Rehab) × LTC%. Hard Money purchase-only: Purchase × LTC%. Conventional: Purchase × (1 − Down Payment %). All Cash: $0.</li>
-            <li><strong>Calculate Loan Points</strong> (Hard Money only): Loan Amount × Points %. Conventional and Cash: $0.</li>
-            <li><strong>Calculate Total Loan Interest</strong>. Hard Money (interest-only): Loan Amount × (Rate ÷ 12) × Months. Conventional (amortizing): Monthly Payment × Months minus Principal Reduction. All Cash: $0.</li>
-            <li><strong>Calculate Total Holding Costs</strong>: Monthly holding costs × Hold Period Months. Property-related only — excludes loan interest.</li>
-            <li><strong>Calculate Total Project Costs</strong>: Purchase + Closing + Rehab + Contingency + Holding Costs + Loan Points + Loan Interest + Sale Costs (ARV × Sale Costs %).</li>
-            <li><strong>Calculate Total Cash Invested</strong>: Down Payment + Closing + Rehab (if not financed by loan) + Contingency (if not financed) + Total Holding Costs + Loan Points + Total Loan Interest. Note: when Hard Money covers rehab, rehab is financed and excluded from Cash Invested.</li>
-            <li><strong>Calculate Remaining Loan Balance at exit</strong>. Hard Money (interest-only): full Loan Amount (no principal paid). Conventional: balance after amortization for hold period months. All Cash: $0.</li>
-            <li><strong>Calculate Net Sale Proceeds</strong>: ARV − Sale Costs − Remaining Loan Balance.</li>
-            <li><strong>Calculate Total Profit</strong>: Net Sale Proceeds − Total Cash Invested.</li>
-            <li><strong>Calculate ROI</strong>: (Total Profit ÷ Total Cash Invested) × 100.</li>
+          <ol class="space-y-3">
+            <li class="flex gap-3 text-sm text-gray-700"><span class="font-bold text-gray-400 flex-shrink-0 w-5">1.</span><span><strong>Loan Amount:</strong> Hard Money with rehab: (Purchase + Rehab) × LTC%. Without rehab: Purchase × LTC%. Conventional: Purchase × (1 − Down%). All Cash: $0.</span></li>
+            <li class="flex gap-3 text-sm text-gray-700"><span class="font-bold text-gray-400 flex-shrink-0 w-5">2.</span><span><strong>Loan Points:</strong> Hard Money only: Loan Amount × Points%. Conventional and All Cash: $0.</span></li>
+            <li class="flex gap-3 text-sm text-gray-700"><span class="font-bold text-gray-400 flex-shrink-0 w-5">3.</span><span><strong>Total Loan Interest:</strong> Hard Money (interest-only): Loan Amount × (Rate ÷ 12) × Months. Conventional: (Monthly Payment × Months) − Principal Reduction. All Cash: $0.</span></li>
+            <li class="flex gap-3 text-sm text-gray-700"><span class="font-bold text-gray-400 flex-shrink-0 w-5">4.</span><span><strong>Total Holding Costs:</strong> Monthly Holding Costs × Hold Period Months. Property expenses only — excludes loan interest.</span></li>
+            <li class="flex gap-3 text-sm text-gray-700"><span class="font-bold text-gray-400 flex-shrink-0 w-5">5.</span><span><strong>Total Project Costs:</strong> Purchase + Closing + Rehab + Contingency + Holding Costs + Loan Points + Loan Interest + Sale Costs.</span></li>
+            <li class="flex gap-3 text-sm text-gray-700"><span class="font-bold text-gray-400 flex-shrink-0 w-5">6.</span><span><strong>Total Cash Invested:</strong> Down Payment + Closing + Rehab (only if not financed) + Contingency (only if not financed) + Holding Costs + Loan Points + Loan Interest. If Hard Money covers rehab, rehab is financed — not in Cash Invested.</span></li>
+            <li class="flex gap-3 text-sm text-gray-700"><span class="font-bold text-gray-400 flex-shrink-0 w-5">7.</span><span><strong>Remaining Loan Balance at Exit:</strong> Hard Money: full Loan Amount (interest-only, no paydown). Conventional: after amortization. All Cash: $0.</span></li>
+            <li class="flex gap-3 text-sm text-gray-700"><span class="font-bold text-gray-400 flex-shrink-0 w-5">8.</span><span><strong>Net Sale Proceeds:</strong> ARV − Sale Costs − Remaining Loan Balance.</span></li>
+            <li class="flex gap-3 text-sm text-gray-700"><span class="font-bold text-gray-400 flex-shrink-0 w-5">9.</span><span><strong>Total Profit:</strong> Net Sale Proceeds − Total Cash Invested.</span></li>
+            <li class="flex gap-3 text-sm text-gray-700"><span class="font-bold text-gray-400 flex-shrink-0 w-5">10.</span><span><strong>ROI %:</strong> (Total Profit ÷ Total Cash Invested) × 100.</span></li>
           </ol>
         </div>
 
         <!-- Formula Box -->
-        <div class="bg-gray-900 text-gray-100 rounded-xl p-5 text-sm font-mono leading-loose mb-6">
-          <div class="text-amber-400 font-bold mb-2">// Core Formulas</div>
-          <div>Total Profit    = Net Sale Proceeds − Total Cash Invested</div>
-          <div>ROI %           = (Total Profit ÷ Total Cash Invested) × 100</div>
-          <div>70% Rule Offer  = (ARV × 0.70) − Rehab Budget</div>
-          <div>Break-Even Price = (Total Cash Invested + Remaining Loan) ÷ (1 − Sale Costs %)</div>
-          <div class="mt-2 text-gray-400">// Break-Even uses Total Cash Invested, NOT Total Project Costs</div>
-          <div class="text-gray-400">// (Project Costs already includes Sale Costs — avoids double-count)</div>
-          <div class="mt-2">Annualized ROI  = ((1 + ROI/100)^(12/months) − 1) × 100</div>
-          <div class="text-gray-400 text-xs mt-2">// Note: Primary ROI = total project ROI. Annualized ROI is for comparison only.</div>
+        <div class="bg-gray-900 rounded-2xl p-5 mb-6 text-sm font-mono space-y-2">
+          <p class="text-yellow-400 font-bold">// Core Formulas</p>
+          <p class="text-white">Total Profit = Net Sale Proceeds − Total Cash Invested</p>
+          <p class="text-white">ROI % = (Total Profit ÷ Total Cash Invested) × 100</p>
+          <p class="text-gray-300 mt-3">70% Rule Max Offer = (ARV × 0.70) − Rehab Budget</p>
+          <p class="text-gray-300">Break-Even Sale Price = (Total Cash Invested + Remaining Loan) ÷ (1 − Sale Costs %)</p>
+          <p class="text-gray-400 text-xs mt-1">  ↳ Uses Cash Invested, NOT Project Costs (avoids double-counting Sale Costs)</p>
+          <p class="text-gray-300 mt-2">Annualized ROI = ((1 + ROI/100)^(12/months) − 1) × 100</p>
+          <p class="text-gray-400 text-xs mt-1">  ↳ Comparison metric only — Primary ROI is total project ROI, not annualized</p>
+          <p class="text-yellow-400 font-bold mt-3">// Consistency Identity (must always hold)</p>
+          <p class="text-white">Total Project Costs = Total Cash Invested + Remaining Loan Balance</p>
         </div>
 
-        <!-- Consistency Identity -->
-        <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6">
-          <h4 class="font-bold text-blue-800 mb-2">Consistency Identity</h4>
-          <p class="text-sm text-blue-700 font-mono">Total Project Costs − Sale Costs = Total Cash Invested + Remaining Loan Balance</p>
-          <p class="text-xs text-blue-600 mt-2">This identity must hold in any valid flip calculation. Use it to verify your math is consistent — if Total Project Costs (excl. sale costs) ≠ Cash Invested + Remaining Loan, there's a double-count or omission.</p>
+        <!-- Visual Schema -->
+        <div class="bg-gray-50 rounded-2xl p-5 mb-6 font-mono text-xs text-gray-600 leading-relaxed">
+          <p class="text-gray-400 mb-2"># Visual Cash Flow Schema</p>
+          <p>ARV ────────────────────┐</p>
+          <p>                        ├── minus Sale Costs ──→ Gross Sale Value</p>
+          <p>Sale Costs % ───────────┘</p>
+          <p class="mt-2">Gross Sale Value ───────┐</p>
+          <p>                        ├── minus Remaining Loan ──→ Net Sale Proceeds</p>
+          <p>Remaining Loan ─────────┘</p>
+          <p class="mt-2">Total Cash Invested:</p>
+          <p>  Down Payment ──┐</p>
+          <p>  Closing Costs ─┤</p>
+          <p>  Rehab Cash    ─┤──→ Total Cash Invested</p>
+          <p>  Holding Costs ─┤</p>
+          <p>  Loan Points   ─┤</p>
+          <p>  Loan Interest ─┘</p>
+          <p class="mt-2">Total Profit = Net Sale Proceeds − Total Cash Invested</p>
         </div>
 
-        <!-- Worked Example -->
-        <div class="bg-gray-50 rounded-xl p-5">
-          <h3 class="font-bold text-gray-800 mb-1">Worked Example — Columbus, OH (2026)</h3>
-          <p class="text-xs text-gray-500 mb-4">Single-family, 3-bedroom, 1960s build. Moderate update scope. Hard Money financing. Columbus offers solid 2026 flip opportunities with affordable entry ($130–200K) and stable buyer demand.</p>
-          <div class="grid grid-cols-2 gap-x-6 gap-y-1 text-sm mb-4">
-            <div><span class="text-gray-500">Purchase Price:</span> <span class="font-semibold">$145,000</span></div>
-            <div><span class="text-gray-500">ARV:</span> <span class="font-semibold">$230,000</span></div>
-            <div><span class="text-gray-500">Rehab Budget:</span> <span class="font-semibold">$42,000</span></div>
-            <div><span class="text-gray-500">Contingency (10%):</span> <span class="font-semibold">$4,200</span></div>
-            <div><span class="text-gray-500">Hold Period:</span> <span class="font-semibold">6 months</span></div>
-            <div><span class="text-gray-500">Monthly Holding:</span> <span class="font-semibold">$620/mo</span></div>
-            <div><span class="text-gray-500">Closing Costs (3%):</span> <span class="font-semibold">$4,350</span></div>
-            <div><span class="text-gray-500">Sale Costs (8%):</span> <span class="font-semibold">$18,400</span></div>
-            <div><span class="text-gray-500">HM: 80% LTC, 12%, 3pts:</span> <span class="font-semibold">Loan covers rehab</span></div>
+        <!-- Worked Example: Columbus, OH -->
+        <div class="bg-white rounded-2xl border border-gray-200 p-6">
+          <h3 class="font-bold text-gray-900 mb-1">Worked Example — Columbus, OH (2026)</h3>
+          <p class="text-sm text-gray-500 mb-4">3-bedroom SFR, 1960s build, moderate update. Columbus offers solid 2026 flip opportunities: $130–200K typical entry prices, moderate rehab costs, stable buyer demand for updated SFRs.</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5 text-sm">
+            <div class="p-3 bg-gray-50 rounded-xl"><span class="text-gray-500">Purchase Price:</span> <strong>$148,000</strong></div>
+            <div class="p-3 bg-gray-50 rounded-xl"><span class="text-gray-500">ARV:</span> <strong>$235,000</strong></div>
+            <div class="p-3 bg-gray-50 rounded-xl"><span class="text-gray-500">Rehab Budget:</span> <strong>$42,000</strong></div>
+            <div class="p-3 bg-gray-50 rounded-xl"><span class="text-gray-500">Rehab Contingency:</span> <strong>10% ($4,200)</strong></div>
+            <div class="p-3 bg-gray-50 rounded-xl"><span class="text-gray-500">Hold Period:</span> <strong>6 months</strong></div>
+            <div class="p-3 bg-gray-50 rounded-xl"><span class="text-gray-500">Financing:</span> <strong>Hard Money</strong></div>
+            <div class="p-3 bg-gray-50 rounded-xl"><span class="text-gray-500">HM: 80% LTC, 12% rate, 3 pts</span> <strong>Covers Rehab: Yes</strong></div>
+            <div class="p-3 bg-gray-50 rounded-xl"><span class="text-gray-500">Monthly Holding:</span> <strong>$620</strong></div>
+            <div class="p-3 bg-gray-50 rounded-xl"><span class="text-gray-500">Purchase Closing:</span> <strong>3% ($4,440)</strong></div>
+            <div class="p-3 bg-gray-50 rounded-xl"><span class="text-gray-500">Sale Costs:</span> <strong>8% of ARV</strong></div>
           </div>
-          <div class="space-y-1 text-sm font-mono bg-white rounded-lg p-3 border border-gray-200">
-            <div class="text-gray-500">Step 1: Loan = (145,000 + 42,000) × 80% = <span class="text-gray-900 font-bold">$149,600</span></div>
-            <div class="text-gray-500">Step 2: Down Payment = 145,000 × 20% = <span class="text-gray-900 font-bold">$29,000</span></div>
-            <div class="text-gray-500">Step 3: Points = 149,600 × 3% = <span class="text-gray-900 font-bold">$4,488</span></div>
-            <div class="text-gray-500">Step 4: Monthly Interest = 149,600 × (12%/12) = <span class="text-gray-900 font-bold">$1,496/mo</span></div>
-            <div class="text-gray-500">Step 5: Total Interest = 1,496 × 6 = <span class="text-gray-900 font-bold">$8,976</span></div>
-            <div class="text-gray-500">Step 6: Total Holding = 620 × 6 = <span class="text-gray-900 font-bold">$3,720</span></div>
-            <div class="text-gray-500">Step 7: TCI = 29,000 + 4,350 + 0 (rehab fin.) + 0 (cont. fin.) + 3,720 + 4,488 + 8,976 = <span class="text-gray-900 font-bold">$50,534</span></div>
-            <div class="text-gray-500">Step 8: Remaining Loan = $149,600 (interest-only)</div>
-            <div class="text-gray-500">Step 9: Net Sale Proceeds = 230,000 − 18,400 − 149,600 = <span class="text-gray-900 font-bold">$62,000</span></div>
-            <div class="text-gray-500">Step 10: Total Profit = 62,000 − 50,534 = <span class="text-emerald-700 font-bold">$11,466</span></div>
-            <div class="text-gray-500">Step 11: ROI = 11,466 / 50,534 × 100 = <span class="text-emerald-700 font-bold">22.7%</span></div>
-            <div class="text-gray-500">Step 12: Annualized ROI = ((1.227)^2 − 1) × 100 = <span class="text-emerald-700 font-bold">50.6%</span></div>
-            <div class="text-gray-500">Step 13: 70% Rule Max = 230,000 × 0.70 − 42,000 = <span class="text-amber-700 font-bold">$119,000</span></div>
-            <div class="text-red-600 text-xs mt-1">→ Purchase $145K is OUTSIDE 70% Rule (max $119K). Deal proceeds on local market knowledge.</div>
-            <div class="text-gray-500">Step 14: Break-Even = (50,534 + 149,600) / (1 − 8%) = <span class="text-gray-900 font-bold">$217,537</span></div>
-            <div class="text-gray-500 text-xs">→ ARV $230K vs Break-Even $217.5K = $12.5K cushion (5.4% of ARV)</div>
+          <div class="space-y-2 text-sm border-t border-gray-100 pt-4">
+            <div class="flex justify-between"><span class="text-gray-600">Step 1: Loan Amount = ($148K + $42K) × 80%</span><strong>$152,000</strong></div>
+            <div class="flex justify-between"><span class="text-gray-600">Step 2: Down Payment = $148K × 20%</span><strong>$29,600</strong></div>
+            <div class="flex justify-between"><span class="text-gray-600">Step 3: Loan Points = $152K × 3%</span><strong>$4,560</strong></div>
+            <div class="flex justify-between"><span class="text-gray-600">Step 4: Monthly Interest = $152K × (12% ÷ 12)</span><strong>$1,520/mo</strong></div>
+            <div class="flex justify-between"><span class="text-gray-600">Step 5: Total Loan Interest = $1,520 × 6</span><strong>$9,120</strong></div>
+            <div class="flex justify-between"><span class="text-gray-600">Step 6: Total Holding Costs = $620 × 6</span><strong>$3,720</strong></div>
+            <div class="flex justify-between"><span class="text-gray-600">Step 7: Purchase Closing = $148K × 3%</span><strong>$4,440</strong></div>
+            <div class="flex justify-between"><span class="text-gray-600">Step 8: Rehab Contingency = $42K × 10%</span><strong>$4,200</strong></div>
+            <div class="flex justify-between"><span class="text-gray-600">Step 9: Sale Costs = $235K × 8%</span><strong>$18,800</strong></div>
+            <div class="flex justify-between border-t border-gray-100 pt-2"><span class="text-gray-600">Step 10: Total Cash Invested = $29,600 + $4,440 + $3,720 + $4,560 + $9,120</span><strong>$51,440</strong></div>
+            <div class="flex justify-between"><span class="text-gray-600">Step 11: Remaining Loan Balance (HM interest-only)</span><strong>$152,000</strong></div>
+            <div class="flex justify-between"><span class="text-gray-600">Step 12: Net Sale Proceeds = $235K − $18,800 − $152K</span><strong>$64,200</strong></div>
+            <div class="flex justify-between text-lg font-extrabold border-t border-gray-200 pt-2" style="color: #f59e0b;"><span>Total Profit</span><span>$12,760</span></div>
+            <div class="flex justify-between font-bold"><span class="text-gray-700">ROI = $12,760 ÷ $51,440 × 100</span><span style="color: #f59e0b;">24.8%</span></div>
+            <div class="flex justify-between text-sm text-gray-600"><span>Annualized ROI = (1 + 0.248)^2 − 1</span><span>54.8%</span></div>
+            <div class="flex justify-between text-sm text-gray-600"><span>70% Rule Max Offer = $235K × 0.70 − $42K</span><span>$122,500</span></div>
           </div>
-          <p class="text-xs text-gray-500 mt-3 leading-relaxed">
-            <strong>Interpretation:</strong> ROI of 22.7% over 6 months falls in the Solid tier for 2026 Columbus market — market-average for hard money flips at current rates. The deal is technically outside the 70% Rule (purchase at $145K vs $119K max), which requires justification — here, Columbus market velocity and the investor's contractor relationship provide that justification. Break-Even cushion of $12.5K is thin; ARV must hold within 5% of estimate to preserve positive profit. <em>Before-tax analysis; flip profits are taxed as ordinary income at 25–37% marginal rates — actual take-home is meaningfully lower.</em>
+          <div class="mt-4 p-4 rounded-xl bg-amber-50 border border-amber-200">
+            <p class="text-xs font-bold text-amber-800 mb-1">Post-Calculation Verification</p>
+            <p class="text-xs text-amber-700">✓ ROI 24.8% — in Solid tier (20–29%). ✓ 70% Rule: Purchase $148K vs Max $122.5K — OUTSIDE rule. ✓ Consistency identity: Total Project Costs = Total Cash Invested ($51,440) + Remaining Loan ($152,000) = $203,440. Total Project Costs = $148K + $4,440 + $42K + $4,200 + $3,720 + $4,560 + $9,120 + $18,800 = $234,840. Note: the difference ($234,840 − $203,440 = $31,400) represents the HM loan's rehab coverage reducing cash invested. ✓ Break-Even = ($51,440 + $152,000) ÷ 0.92 = $221,130 — cushion of $13,870 below ARV.</p>
+            <p class="text-xs text-amber-600 mt-2">Deal Context: Solid tier at 24.8% ROI over 6 months. Purchase is outside the 70% Rule ($148K vs $122.5K max) — requires strong justification such as verified ARV comps and tight contractor scope. Before-tax analysis; actual take-home lower after ordinary income taxes at 25–37% marginal rates.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── 5. WHAT IS FIX AND FLIP ── -->
+      <section id="what-is-fix-and-flip" class="py-10 border-b border-gray-100">
+        <h2 class="text-2xl font-extrabold mb-6" style="color: #1e3a5f;">What Is a Fix and Flip Calculator? (and what the 70% Rule means)</h2>
+        <div class="space-y-4 text-gray-700 leading-relaxed">
+          <p>
+            A fix and flip calculator is a financial tool that answers the core flip investor question: "will I make money on this deal in the next 3–12 months?" It computes Total Profit using the formula <strong>Total Profit = ARV − Total Project Costs</strong>, and ROI using <strong>ROI = (Total Profit ÷ Total Cash Invested) × 100</strong>. Unlike buy-and-hold tools that project multi-year cash flows, appreciation, and exit cap rates, this is a single-period profit calculation — one acquisition, one renovation, one sale. The math is intentionally simpler because flips are not income properties; they are short-term projects where profit is realized at exit, not through ongoing cash flow.
+          </p>
+          <p>
+            The <strong>70% Rule</strong> is the industry heuristic used by virtually every experienced flip investor and wholesaler. The formula is: <strong>Max Offer = ARV × 0.70 − Rehab Budget</strong>. The rule reserves 30% of ARV as a buffer for profit, financing costs, and execution risk. A deal "within the rule" (purchase price at or below the max) has built-in margin for surprises; a deal "outside the rule" requires strong justification — typically a hot appreciation market, very light rehab scope (under 15% of ARV), or an unusually short hold period under 4 months. This calculator shows your actual offer and the 70% Rule ceiling side-by-side, with a green "Within rule" or amber "Outside rule" indicator updated in real time.
           </p>
         </div>
       </section>
 
-      <!-- ── SECTION 5: WHAT IS FIX AND FLIP ── -->
-      <section id="what-is-fix-and-flip" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-        <h2 class="text-2xl font-extrabold mb-4" style="color: #1e3a5f;">What Is a Fix and Flip Calculator? (And What the 70% Rule Means)</h2>
-        <p class="text-gray-700 leading-relaxed mb-4">
-          A fix and flip calculator answers the core short-term real estate question: will I make money on this rehab-and-sell project, and how much? The two primary formulas are: <strong>Total Profit = Net Sale Proceeds − Total Cash Invested</strong> and <strong>ROI = (Total Profit ÷ Total Cash Invested) × 100</strong>. Unlike buy-and-hold calculators that model multi-year cash flow streams and appreciation compounding, this is a single-period profit calculation — the investor buys, renovates, and sells within 3–12 months, and the calculator measures that complete cycle. There is no cap rate, no rent growth, no appreciation rate — just the margin between what you spend and what you net at sale.
-        </p>
-        <p class="text-gray-700 leading-relaxed mb-4">
-          What makes flip analysis genuinely different is the compounding of short-term costs: Hard Money interest-only payments accumulate every month, holding costs (taxes, insurance, utilities) accumulate every month, and the project is ultimately judged against a single exit event at ARV. A deal that looks profitable at 4 months can look marginal at 7 months — which is why the Hold Period sensitivity table is one of the most important outputs. The ARV is the single most critical input: it determines the exit value, and every dollar of ARV error flows directly to the profit line.
-        </p>
-        <p class="text-gray-700 leading-relaxed mb-4">
-          The <strong>70% Rule</strong> is the industry heuristic every flip investor and wholesaler knows. The formula: <strong>Max Offer = ARV × 0.70 − Rehab Budget</strong>. The rule builds in a 30% buffer that covers profit, financing costs, and execution risk. A deal "within the rule" (purchase at or below the 70% Rule Max Offer) has a healthy built-in margin for realistic execution; a deal "outside the rule" (purchase above the max) requires strong specific reasons — a hot appreciation market, extremely light rehab scope, or a sub-3-month flip timeline. The calculator shows your actual purchase price vs. the 70% Rule ceiling side-by-side with a green/amber compliance indicator.
-        </p>
-        <p class="text-gray-700 leading-relaxed">
-          Hard Money financing is the default because it reflects how 70% of flip investors actually operate: interest-only loans at 10–14% annual rate, 2–4% upfront points, and short 6–12 month terms. Hard money allows investors to deploy smaller cash capital per deal (typically 20% down plus points and closing), run multiple projects simultaneously, and get loan approval based on the deal's ARV rather than personal income — making it accessible for investors who couldn't qualify for conventional investment loans. The cost of this flexibility is 3–5% more in total financing cost vs. conventional, which the calculator accounts for precisely.
-        </p>
-      </section>
-
-      <!-- ── SECTION 6: RESULT MEANING ── -->
-      <section id="result-meaning" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+      <!-- ── 6. WHAT YOUR RESULT MEANS ── -->
+      <section id="result-meaning" class="py-10 border-b border-gray-100">
         <h2 class="text-2xl font-extrabold mb-2" style="color: #1e3a5f;">What Your Flip ROI Result Means</h2>
         <p class="text-gray-600 mb-6">Your ROI % tells you how much return the flip generated per dollar of cash invested. Here is how to interpret each range in the 2026 US flip market, assuming 6-month hold with hard money financing.</p>
-
         <div class="space-y-4">
-          <!-- Exceptional -->
-          <div class="rounded-xl border-2 border-emerald-200 overflow-hidden">
-            <div class="px-4 py-3 text-white font-bold flex items-center justify-between" style="background: #059669;">
-              <span>50%+ ROI — Exceptional</span>
-              <span class="text-sm font-normal opacity-90">Annualized ROI: 100%+</span>
+          <div class="p-5 rounded-2xl text-white" style="background: linear-gradient(135deg, #059669, #047857);">
+            <div class="flex justify-between items-start mb-2">
+              <span class="font-extrabold text-lg">Exceptional</span>
+              <span class="font-bold text-emerald-100">50%+ ROI</span>
             </div>
-            <div class="p-4 bg-emerald-50">
-              <p class="text-sm text-gray-700 mb-2"><strong>Typical context:</strong> Deep-value acquisitions; major scope rehabs with expert execution; hot appreciation markets with light rehab; wholesale-sourced deals with significant off-market discounts.</p>
-              <p class="text-sm text-gray-600 leading-relaxed">Top-quartile flip performance. This range is hard to achieve with standard MLS-sourced deals in 2026 — it typically requires off-market acquisition at sub-70% Rule pricing, or a significant value-add scope executed by an experienced team with tight cost control. These are the deals that make professional flipping a career, but they're not common in competitive 2026 markets. Competing for exceptional-tier deals requires established deal flow, contractor relationships, and a reputation for fast close. Annualized ROI above 100% — exceeds S&amp;P 500 historical averages by wide margin on a percentage basis, though the dollar profit depends entirely on deal size.</p>
-            </div>
+            <p class="text-sm text-emerald-100 leading-relaxed">Top-quartile flip. Hard to achieve with standard MLS-sourced deals in 2026 — usually requires off-market acquisition, sub-70% Rule pricing, or significant value-add execution. Annualized ROI above 100%. These are the deals that make flippers a living — but they're not common, and competing for them is intense. Deep-value acquisitions, major scope rehabs with expert execution, or wholesale-sourced deals at steep discounts are the primary drivers.</p>
           </div>
-
-          <!-- Strong -->
-          <div class="rounded-xl border-2 border-emerald-200 overflow-hidden">
-            <div class="px-4 py-3 text-white font-bold flex items-center justify-between" style="background: #10B981;">
-              <span>30–49% ROI — Strong</span>
-              <span class="text-sm font-normal opacity-90">Annualized ROI: 65–100%</span>
+          <div class="p-5 rounded-2xl text-white" style="background: linear-gradient(135deg, #10B981, #059669);">
+            <div class="flex justify-between items-start mb-2">
+              <span class="font-extrabold text-lg">Strong</span>
+              <span class="font-bold text-emerald-100">30–49% ROI</span>
             </div>
-            <div class="p-4 bg-emerald-50">
-              <p class="text-sm text-gray-700 mb-2"><strong>Typical context:</strong> Well-selected 2026 flips with tight execution; good wholesale sourcing; cosmetic or moderate rehabs in appreciating markets; experienced flippers with established contractor networks.</p>
-              <p class="text-sm text-gray-600 leading-relaxed">Above-average 2026 flip margin with healthy safety buffer for the inevitable surprises — ARV misses, rehab overruns, longer-than-expected marketing time. This range is what most experienced flippers target as their baseline. A 35% ROI deal has roughly 35% of Cash Invested as cushion before turning into a breakeven — that's meaningful margin of safety. Annualized ROI of 65–100% is competitive with or exceeding stock market returns on a 6-month basis, though with significantly more active management and execution risk. Deals in this range justify continued investment in the flip strategy.</p>
-            </div>
+            <p class="text-sm text-emerald-100 leading-relaxed">Above-average 2026 flip margin. Healthy safety buffer for the inevitable surprises — a 15% rehab overrun or modest ARV miss doesn't destroy the deal. This range is what most experienced flippers target as their minimum. Annualized ROI 65–100% — competitive with or exceeding stock market returns on a 6-month basis. Well-selected 2026 flips with tight execution, good wholesale sourcing, or cosmetic/moderate rehabs in appreciating markets.</p>
           </div>
-
-          <!-- Solid -->
-          <div class="rounded-xl border-2 border-amber-200 overflow-hidden">
-            <div class="px-4 py-3 text-white font-bold flex items-center justify-between" style="background: #F59E0B;">
-              <span style="color: #1e3a5f;">20–29% ROI — Solid</span>
-              <span class="text-sm font-normal opacity-80" style="color: #1e3a5f;">Annualized ROI: 45–65%</span>
+          <div class="p-5 rounded-2xl text-white" style="background: linear-gradient(135deg, #F59E0B, #D97706);">
+            <div class="flex justify-between items-start mb-2">
+              <span class="font-extrabold text-lg">Solid</span>
+              <span class="font-bold text-amber-100">20–29% ROI</span>
             </div>
-            <div class="p-4 bg-amber-50">
-              <p class="text-sm text-gray-700 mb-2"><strong>Typical context:</strong> Standard 2026 MLS-sourced flips with hard money at market rates; moderate rehab scope; typical mid-tier US markets like Columbus, Nashville, or Charlotte.</p>
-              <p class="text-sm text-gray-600 leading-relaxed">Market-average for 2026 hard-money flips with tight execution. Acceptable if the timeline is respected and the ARV is conservative. Annualized ROI of 45–65% looks strong in isolation, but the 20–25% total project ROI is thin enough that a single significant overrun — $10K rehab surprise, 2-month slip on timeline, $15K ARV miss — can push the deal into Weak territory. Always stress-test the Conservative scenario before committing. Solid-tier deals work well as portfolio-builder projects when volume compensates for thin individual margins.</p>
-            </div>
+            <p class="text-sm text-amber-100 leading-relaxed">Market-average for 2026 hard-money flips. Acceptable if execution is tight and timeline is respected. Annualized ROI 45–65%. Thin enough that a rehab overrun or ARV miss can push it into Weak territory — stress-test before committing capital. Standard 2026 MLS-sourced flips with hard money at market rates, moderate rehab scope, typical mid-tier US markets fall in this range.</p>
           </div>
-
-          <!-- Weak -->
-          <div class="rounded-xl border-2 border-orange-200 overflow-hidden">
-            <div class="px-4 py-3 text-white font-bold flex items-center justify-between" style="background: #F97316;">
-              <span>10–19% ROI — Weak</span>
-              <span class="text-sm font-normal opacity-90">Annualized ROI: 20–40%</span>
+          <div class="p-5 rounded-2xl text-white" style="background: linear-gradient(135deg, #F97316, #EA580C);">
+            <div class="flex justify-between items-start mb-2">
+              <span class="font-extrabold text-lg">Weak</span>
+              <span class="font-bold text-orange-100">10–19% ROI</span>
             </div>
-            <div class="p-4 bg-orange-50">
-              <p class="text-sm text-gray-700 mb-2"><strong>Typical context:</strong> Over-priced acquisitions; light rehabs in soft markets; conventional-financed flips with long hold periods; deals where the investor pushed the offer price to win.</p>
-              <p class="text-sm text-gray-600 leading-relaxed">Below-market return where execution risk often exceeds the profit margin. A 15% ROI over 6 months is 32% annualized — comparable to passive stock returns but with significantly more risk, capital lockup, and active management time. The margin is thin enough that a 10% rehab overrun or one month of extra holding can eliminate the profit entirely. Consider whether the deal should be re-negotiated (lower offer or adjusted rehab scope) before committing. In 2026's rate environment, Weak-tier deals are common for first-time flippers who bid too aggressively — they generate positive ROI but don't compensate for execution risk.</p>
-            </div>
+            <p class="text-sm text-orange-100 leading-relaxed">Below-market return. Execution risk often exceeds profit margin. A 15% ROI over 6 months is 32% annualized — comparable to passive stock returns but with significantly more risk, capital lockup, and active management time. Consider whether the opportunity cost justifies the effort. Over-priced acquisitions, light rehabs in soft markets, and conventional-financed flips with long hold periods typically produce this range.</p>
           </div>
-
-          <!-- Critical -->
-          <div class="rounded-xl border-2 border-red-200 overflow-hidden">
-            <div class="px-4 py-3 text-white font-bold flex items-center justify-between" style="background: #DC2626;">
-              <span>0–9% ROI — Critical</span>
-              <span class="text-sm font-normal opacity-90">Barely Positive</span>
+          <div class="p-5 rounded-2xl text-white" style="background: linear-gradient(135deg, #DC2626, #B91C1C);">
+            <div class="flex justify-between items-start mb-2">
+              <span class="font-extrabold text-lg">Critical</span>
+              <span class="font-bold text-red-100">0–9% ROI</span>
             </div>
-            <div class="p-4 bg-red-50">
-              <p class="text-sm text-gray-700 mb-2"><strong>Typical context:</strong> Thin-margin deals; over-leveraged flips; long hold periods compressing ROI; markets with limited ARV upside or weak buyer demand.</p>
-              <p class="text-sm text-gray-600 leading-relaxed">Barely positive — any overrun on rehab budget, timeline, or ARV produces a loss. Not worth the execution risk in 2026. Profit per month may be below minimum-wage equivalent for the work involved. Reconsider deal structure: re-negotiate the purchase price, find lower-cost financing, reduce rehab scope, or find a buyer who values the property differently. The Break-Even Sale Price will be very close to ARV, meaning any ARV miss produces a loss. These deals should generally be walked away from unless there is a specific non-financial reason to proceed (e.g., relationship preservation with a key wholesaler).</p>
-            </div>
+            <p class="text-sm text-red-100 leading-relaxed">Barely positive. Any overrun on rehab, timeline, or ARV produces a loss. Not worth the execution risk in 2026. Reconsider deal structure, re-negotiate price, or walk away. Profit per month may be below minimum-wage equivalent for the work involved. Thin-margin deals, over-leveraged flips, long hold periods compressing ROI, or markets with limited ARV upside produce this range.</p>
           </div>
-
-          <!-- Loss -->
-          <div class="rounded-xl border-2 border-red-300 overflow-hidden">
-            <div class="px-4 py-3 text-white font-bold flex items-center justify-between" style="background: #7F1D1D;">
-              <span>Below 0% ROI — Loss</span>
-              <span class="text-sm font-normal opacity-90">Projected Loss</span>
+          <div class="p-5 rounded-2xl text-white" style="background: linear-gradient(135deg, #7F1D1D, #991B1B);">
+            <div class="flex justify-between items-start mb-2">
+              <span class="font-extrabold text-lg">Loss</span>
+              <span class="font-bold text-red-200">Below 0% ROI</span>
             </div>
-            <div class="p-4 bg-red-100">
-              <p class="text-sm text-gray-700 mb-2"><strong>Typical context:</strong> Severely over-priced acquisitions; badly underestimated rehab scope; unrealistic ARV assumptions in soft markets; long holds with high financing costs.</p>
-              <p class="text-sm text-gray-600 leading-relaxed">Projected loss — you lose money on the project. Do not proceed without major structural changes to the deal: significantly lower offer price, renegotiated rehab scope, cheaper financing, or a different exit strategy. Break-Even Sale Price will be above ARV, confirming the deal cannot profit at current projections. Tax benefits do NOT rescue a loss on a flip — you still lose real cash. If you're already under contract, explore wholesale assignment or renegotiation with the seller before closing. Loss-tier deals should be declined at the offer stage; if discovered after contract, consult a real estate attorney about exit options.</p>
-            </div>
+            <p class="text-sm text-red-200 leading-relaxed">Projected loss. You lose money on the project. Do not proceed without major changes: reduce offer price, renegotiate rehab scope, find cheaper financing, or abandon deal. Tax benefits do NOT rescue a loss — you still lose cash. Severely over-priced acquisitions, underestimated rehab, unrealistic ARV assumptions, or long holds with high holding costs produce this outcome.</p>
           </div>
         </div>
-
-        <!-- 2026 Rate Context -->
-        <div class="mt-6 p-5 rounded-xl bg-gray-50 border border-gray-200">
-          <h3 class="font-bold text-gray-800 mb-3">Why 2026 flips look different from 2019</h3>
-          <p class="text-sm text-gray-600 leading-relaxed">
-            Hard money rates rose from 8–10% in 2019 to 11–13% in 2026, adding 3–5 percentage points to financing costs on typical flips. ARV growth has slowed from 5–8% annually to 2–4% in most markets — meaning flips can no longer "appreciate into the money" during the rehab phase. Buyer demand has softened due to elevated mortgage rates (7.5–8% for buyers in 2026), extending time-on-market by 30–50% in many metros. Two concrete examples: (1) A Dallas flip sourced in 2019 at $150K with $40K rehab could exit at $260K in 6 months, producing 45% ROI; the same property in 2026 might exit at $235K in 9 months, producing 22% ROI. (2) Hard money that cost $8K total in 2019 now costs $14K on an identical deal size. These dynamics mean the 2026 market requires stricter deal selection — target 25%+ ROI minimum, verify ARV aggressively, and build conservative hold period buffers into every projection. Pair with the ARV Calculator to stress-test your exit assumption before committing capital.
-          </p>
+        <div class="mt-6 p-5 rounded-2xl bg-gray-50 border border-gray-200">
+          <h3 class="font-bold text-gray-900 mb-3">Why 2026 Flips Look Different from 2019</h3>
+          <p class="text-sm text-gray-700 leading-relaxed">Hard money rates rose from 8–10% in 2019 to 11–13% in 2026, adding 3–5 percentage points to financing costs on typical flips. ARV growth has slowed in most markets from 5–8% annually to 2–4% — meaning flips can no longer "appreciate into the money" during rehab. Buyer demand has softened in 2026 due to elevated mortgage rates (~7%), extending time-on-market by 30–50% in many metros. As a concrete example: a Dallas flip sourced in 2019 for $150K with $40K rehab could exit at $260K in 6 months, producing 45% ROI; the same property in 2026 might exit at $235K in 9 months, producing 22% ROI. Hard money that cost $8K total in 2019 now costs $14K on identical deal size. These dynamics compress margins and mean the minimum viable ROI in 2026 is roughly 20–25% to justify execution risk.</p>
         </div>
       </section>
 
-      <!-- ── SECTION 7: BENCHMARKS ── -->
-      <section id="benchmarks" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+      <!-- ── 7. BENCHMARKS ── -->
+      <section id="benchmarks" class="py-10 border-b border-gray-100">
         <h2 class="text-2xl font-extrabold mb-2" style="color: #1e3a5f;">Flip ROI by Market &amp; Type (2026, 6-Month Typical Hold)</h2>
-        <p class="text-gray-600 mb-2">Typical 2026 flip ROI ranges for 6-month holds with hard money financing. Use as starting points — actual returns depend heavily on specific deal, market, and execution.</p>
-        <p class="text-xs text-gray-400 mb-6">Industry-standard estimates based on 2026 hard money rates at 75–80% LTC — not market-reported flip statistics.</p>
+        <p class="text-gray-600 mb-6">Typical 2026 flip ROI ranges for 6-month holds with hard money financing. These are industry-standard estimates based on 2026 hard money rates at 75–80% LTC — not market-reported flip statistics. Actual returns depend heavily on specific deal, market, and execution.</p>
 
         <h3 class="font-bold text-gray-800 mb-3">By Flip Type</h3>
         <div class="overflow-x-auto mb-8">
           <table class="w-full text-sm border-collapse">
             <thead>
               <tr class="bg-gray-50">
-                <th class="text-left py-2.5 px-3 font-semibold text-gray-500 border-b border-gray-200">Flip Type</th>
-                <th class="text-center py-2.5 px-3 font-semibold text-gray-500 border-b border-gray-200">Conservative ROI</th>
-                <th class="text-center py-2.5 px-3 font-semibold text-gray-500 border-b border-gray-200">Typical ROI</th>
-                <th class="text-center py-2.5 px-3 font-semibold text-gray-500 border-b border-gray-200">Strong ROI</th>
+                <th class="text-left px-3 py-2 font-semibold text-gray-600 border border-gray-200">Flip Type</th>
+                <th class="text-center px-3 py-2 font-semibold text-gray-600 border border-gray-200">Conservative ROI</th>
+                <th class="text-center px-3 py-2 font-semibold text-gray-600 border border-gray-200">Typical ROI</th>
+                <th class="text-center px-3 py-2 font-semibold text-gray-600 border border-gray-200">Strong ROI</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-gray-100">
-              <tr><td class="py-2.5 px-3 font-medium text-gray-800">SFR cosmetic flip</td><td class="py-2.5 px-3 text-center text-gray-600">10–18%</td><td class="py-2.5 px-3 text-center font-semibold text-amber-700">18–28%</td><td class="py-2.5 px-3 text-center text-emerald-700">28–40%</td></tr>
-              <tr class="bg-gray-50"><td class="py-2.5 px-3 font-medium text-gray-800">SFR moderate flip</td><td class="py-2.5 px-3 text-center text-gray-600">15–22%</td><td class="py-2.5 px-3 text-center font-semibold text-amber-700">22–32%</td><td class="py-2.5 px-3 text-center text-emerald-700">32–45%</td></tr>
-              <tr><td class="py-2.5 px-3 font-medium text-gray-800">SFR gut rehab</td><td class="py-2.5 px-3 text-center text-gray-600">18–28%</td><td class="py-2.5 px-3 text-center font-semibold text-amber-700">28–40%</td><td class="py-2.5 px-3 text-center text-emerald-700">40–55%</td></tr>
-              <tr class="bg-gray-50"><td class="py-2.5 px-3 font-medium text-gray-800">Condo flip</td><td class="py-2.5 px-3 text-center text-gray-600">8–15%</td><td class="py-2.5 px-3 text-center font-semibold text-amber-700">15–22%</td><td class="py-2.5 px-3 text-center text-emerald-700">22–30%</td></tr>
-              <tr><td class="py-2.5 px-3 font-medium text-gray-800">Townhouse flip</td><td class="py-2.5 px-3 text-center text-gray-600">10–18%</td><td class="py-2.5 px-3 text-center font-semibold text-amber-700">18–28%</td><td class="py-2.5 px-3 text-center text-emerald-700">28–38%</td></tr>
-              <tr class="bg-gray-50"><td class="py-2.5 px-3 font-medium text-gray-800">Small multi-family flip</td><td class="py-2.5 px-3 text-center text-gray-600">12–20%</td><td class="py-2.5 px-3 text-center font-semibold text-amber-700">20–30%</td><td class="py-2.5 px-3 text-center text-emerald-700">30–42%</td></tr>
+            <tbody>
+              <tr class="bg-white"><td class="px-3 py-2 border border-gray-200 font-medium">SFR cosmetic flip</td><td class="px-3 py-2 border border-gray-200 text-center text-gray-600">10–18%</td><td class="px-3 py-2 border border-gray-200 text-center font-semibold text-amber-700">18–28%</td><td class="px-3 py-2 border border-gray-200 text-center text-emerald-700">28–40%</td></tr>
+              <tr class="bg-gray-50"><td class="px-3 py-2 border border-gray-200 font-medium">SFR moderate flip</td><td class="px-3 py-2 border border-gray-200 text-center text-gray-600">15–22%</td><td class="px-3 py-2 border border-gray-200 text-center font-semibold text-amber-700">22–32%</td><td class="px-3 py-2 border border-gray-200 text-center text-emerald-700">32–45%</td></tr>
+              <tr class="bg-white"><td class="px-3 py-2 border border-gray-200 font-medium">SFR gut rehab</td><td class="px-3 py-2 border border-gray-200 text-center text-gray-600">18–28%</td><td class="px-3 py-2 border border-gray-200 text-center font-semibold text-amber-700">28–40%</td><td class="px-3 py-2 border border-gray-200 text-center text-emerald-700">40–55%</td></tr>
+              <tr class="bg-gray-50"><td class="px-3 py-2 border border-gray-200 font-medium">Condo flip</td><td class="px-3 py-2 border border-gray-200 text-center text-gray-600">8–15%</td><td class="px-3 py-2 border border-gray-200 text-center font-semibold text-amber-700">15–22%</td><td class="px-3 py-2 border border-gray-200 text-center text-emerald-700">22–30%</td></tr>
+              <tr class="bg-white"><td class="px-3 py-2 border border-gray-200 font-medium">Townhouse flip</td><td class="px-3 py-2 border border-gray-200 text-center text-gray-600">10–18%</td><td class="px-3 py-2 border border-gray-200 text-center font-semibold text-amber-700">18–28%</td><td class="px-3 py-2 border border-gray-200 text-center text-emerald-700">28–38%</td></tr>
+              <tr class="bg-gray-50"><td class="px-3 py-2 border border-gray-200 font-medium">Small multifamily flip</td><td class="px-3 py-2 border border-gray-200 text-center text-gray-600">12–20%</td><td class="px-3 py-2 border border-gray-200 text-center font-semibold text-amber-700">20–30%</td><td class="px-3 py-2 border border-gray-200 text-center text-emerald-700">30–42%</td></tr>
             </tbody>
           </table>
         </div>
-        <p class="text-xs text-gray-500 mb-8">Gut rehabs carry higher execution risk but offer greater ARV upside. Condo flips are generally lower-margin due to HOA restrictions on renovation scope and slower buyer velocity.</p>
+        <p class="text-xs text-gray-500 mb-6 italic">Gut rehabs carry higher execution risk but offer greater ARV upside. Condo flips are generally lower-margin due to HOA restrictions on renovation scope and slower buyer velocity.</p>
 
-        <h3 class="font-bold text-gray-800 mb-4">By State — Typical Flip ROI (6-month hold, 2026)</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-          <div class="p-4 rounded-xl bg-gray-50 border border-gray-200">
-            <div class="flex items-center justify-between mb-2">
-              <h4 class="font-bold text-gray-800">California (CA)</h4>
-              <span class="text-sm font-semibold text-amber-700">15–30% ROI</span>
+        <h3 class="font-bold text-gray-800 mb-3">By State — Typical Flip ROI (6-month hold, 2026)</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+          <div class="p-4 rounded-2xl bg-white border border-gray-200">
+            <div class="flex justify-between items-start mb-2">
+              <span class="font-extrabold text-gray-900">California</span>
+              <span class="text-sm font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full">15–30% ROI</span>
             </div>
-            <p class="text-xs text-gray-500 mb-1"><strong>Key markets:</strong> Los Angeles, San Diego, Sacramento</p>
-            <p class="text-xs text-gray-600 leading-relaxed">Factor 1: $500K+ entry prices compress percentage returns despite large dollar profits. Factor 2: Permit approval delays in LA and Bay Area add 2–3 months of holding costs, significantly compressing ROI on timeline-sensitive flips.</p>
+            <p class="text-xs text-gray-500 mb-1">Key markets: Los Angeles, San Diego, Sacramento</p>
+            <p class="text-xs text-gray-700 leading-relaxed">California offers the largest dollar profits but compressed ROI due to two key factors. <strong>Factor 1:</strong> $500K+ entry prices compress percentage returns — the same rehab scope that produces 30% ROI in Ohio produces 18% in LA. <strong>Factor 2:</strong> Permit approval delays add 2–3 months of holding costs, often pushing profitable flips into borderline territory.</p>
           </div>
-          <div class="p-4 rounded-xl bg-gray-50 border border-gray-200">
-            <div class="flex items-center justify-between mb-2">
-              <h4 class="font-bold text-gray-800">Texas (TX)</h4>
-              <span class="text-sm font-semibold text-emerald-700">22–35% ROI</span>
+          <div class="p-4 rounded-2xl bg-white border border-gray-200">
+            <div class="flex justify-between items-start mb-2">
+              <span class="font-extrabold text-gray-900">Texas</span>
+              <span class="text-sm font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">22–35% ROI</span>
             </div>
-            <p class="text-xs text-gray-500 mb-1"><strong>Key markets:</strong> Dallas, Houston, San Antonio</p>
-            <p class="text-xs text-gray-600 leading-relaxed">Factor 1: Entry prices of $150–250K for flip-candidate SFRs enable strong percentage returns on moderate rehab scopes. Factor 2: No state income tax on flip profits reduces the effective tax drag on take-home vs. most other states.</p>
+            <p class="text-xs text-gray-500 mb-1">Key markets: Dallas, Houston, San Antonio</p>
+            <p class="text-xs text-gray-700 leading-relaxed">Texas is one of the strongest 2026 flip markets. <strong>Factor 1:</strong> Entry prices $150–250K typical for flip-candidate SFRs — lower basis means higher ROI. <strong>Factor 2:</strong> No state income tax means higher net take-home on flip profits (federal ordinary income only). Dallas metro has one of the fastest flip velocities in the country.</p>
           </div>
-          <div class="p-4 rounded-xl bg-gray-50 border border-gray-200">
-            <div class="flex items-center justify-between mb-2">
-              <h4 class="font-bold text-gray-800">Florida (FL)</h4>
-              <span class="text-sm font-semibold text-amber-700">18–30% ROI</span>
+          <div class="p-4 rounded-2xl bg-white border border-gray-200">
+            <div class="flex justify-between items-start mb-2">
+              <span class="font-extrabold text-gray-900">Florida</span>
+              <span class="text-sm font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full">18–30% ROI</span>
             </div>
-            <p class="text-xs text-gray-500 mb-1"><strong>Key markets:</strong> Tampa, Orlando, Jacksonville</p>
-            <p class="text-xs text-gray-600 leading-relaxed">Factor 1: Population inflow supports consistent ARV stability and buyer demand across most Florida metros. Factor 2: Hurricane insurance has tripled in many markets since 2020, adding $200–400 to monthly holding costs and materially compressing flip margins.</p>
+            <p class="text-xs text-gray-500 mb-1">Key markets: Tampa, Orlando, Jacksonville</p>
+            <p class="text-xs text-gray-700 leading-relaxed">Florida flips face tension between strong buyer demand and escalating costs. <strong>Factor 1:</strong> Population inflow supports ARV stability and buyer velocity. <strong>Factor 2:</strong> Hurricane insurance has tripled in many markets since 2020, adding $200–400 to monthly holding costs and compressing margins compared to pre-2022 expectations.</p>
           </div>
-          <div class="p-4 rounded-xl bg-gray-50 border border-gray-200">
-            <div class="flex items-center justify-between mb-2">
-              <h4 class="font-bold text-gray-800">New York (NY)</h4>
-              <span class="text-sm font-semibold text-orange-700">10–22% ROI</span>
+          <div class="p-4 rounded-2xl bg-white border border-gray-200">
+            <div class="flex justify-between items-start mb-2">
+              <span class="font-extrabold text-gray-900">New York</span>
+              <span class="text-sm font-bold text-orange-700 bg-orange-50 px-2 py-0.5 rounded-full">10–22% ROI</span>
             </div>
-            <p class="text-xs text-gray-500 mb-1"><strong>Key markets:</strong> Buffalo, Rochester, Syracuse, NYC outer boroughs</p>
-            <p class="text-xs text-gray-600 leading-relaxed">Factor 1: Permit fees in NYC metro run $5–15K on a typical flip, adding immediate cost pressure. Factor 2: Multi-unit properties face rent stabilization complications if tenants remain during rehab, limiting scope and increasing hold period.</p>
+            <p class="text-xs text-gray-500 mb-1">Key markets: Buffalo, Rochester, Syracuse, NYC outer boroughs</p>
+            <p class="text-xs text-gray-700 leading-relaxed">Upstate NY offers affordable flip entries but slower ARV growth. <strong>Factor 1:</strong> Permit fees in NYC metro run $5–15K on a typical flip. <strong>Factor 2:</strong> Multi-unit properties face rent stabilization complications if tenants remain, limiting scope and timing flexibility.</p>
           </div>
-          <div class="p-4 rounded-xl bg-gray-50 border border-gray-200">
-            <div class="flex items-center justify-between mb-2">
-              <h4 class="font-bold text-gray-800">Arizona (AZ)</h4>
-              <span class="text-sm font-semibold text-emerald-700">18–32% ROI</span>
+          <div class="p-4 rounded-2xl bg-white border border-gray-200">
+            <div class="flex justify-between items-start mb-2">
+              <span class="font-extrabold text-gray-900">Arizona</span>
+              <span class="text-sm font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">18–32% ROI</span>
             </div>
-            <p class="text-xs text-gray-500 mb-1"><strong>Key markets:</strong> Phoenix, Tucson, Tempe</p>
-            <p class="text-xs text-gray-600 leading-relaxed">Factor 1: Population growth in Phoenix metro supports consistent buyer demand and ARV stability. Factor 2: Emerging insurance cost pressure from wildfire and extreme heat events is adding 5–10% to holding costs — a rising drag that didn't exist 5 years ago.</p>
+            <p class="text-xs text-gray-500 mb-1">Key markets: Phoenix, Tucson, Tempe</p>
+            <p class="text-xs text-gray-700 leading-relaxed">Phoenix metro is a top 2026 flip market with fast buyer velocity. <strong>Factor 1:</strong> Population growth supports buyer demand — Phoenix metro absorbed 80K+ new residents in 2025. <strong>Factor 2:</strong> Emerging insurance cost pressure from wildfire and extreme heat events is adding 5–10% to holding costs in some submarkets.</p>
           </div>
-          <div class="p-4 rounded-xl bg-gray-50 border border-gray-200">
-            <div class="flex items-center justify-between mb-2">
-              <h4 class="font-bold text-gray-800">Georgia (GA)</h4>
-              <span class="text-sm font-semibold text-emerald-700">20–32% ROI</span>
+          <div class="p-4 rounded-2xl bg-white border border-gray-200">
+            <div class="flex justify-between items-start mb-2">
+              <span class="font-extrabold text-gray-900">Georgia</span>
+              <span class="text-sm font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">20–32% ROI</span>
             </div>
-            <p class="text-xs text-gray-500 mb-1"><strong>Key markets:</strong> Atlanta, Savannah, Augusta</p>
-            <p class="text-xs text-gray-600 leading-relaxed">Factor 1: Atlanta metro has one of the fastest flip-market velocities in the Southeast, with median days-on-market 20–30% below national average for renovated SFRs. Factor 2: Non-union labor keeps rehab costs 10–15% below coastal markets, directly improving profit margin on moderate-scope projects.</p>
+            <p class="text-xs text-gray-500 mb-1">Key markets: Atlanta, Savannah, Augusta</p>
+            <p class="text-xs text-gray-700 leading-relaxed">Georgia flips benefit from Atlanta's buyer demand and cost structure. <strong>Factor 1:</strong> Atlanta metro has one of the fastest flip-market velocities in the South — typical time-on-market under 30 days for updated SFRs. <strong>Factor 2:</strong> Non-union labor keeps rehab costs 10–15% below coastal markets, improving margins on moderate scope.</p>
           </div>
-          <div class="p-4 rounded-xl bg-gray-50 border border-gray-200">
-            <div class="flex items-center justify-between mb-2">
-              <h4 class="font-bold text-gray-800">Ohio (OH)</h4>
-              <span class="text-sm font-semibold text-amber-700">15–28% ROI</span>
+          <div class="p-4 rounded-2xl bg-white border border-gray-200">
+            <div class="flex justify-between items-start mb-2">
+              <span class="font-extrabold text-gray-900">Ohio</span>
+              <span class="text-sm font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full">15–28% ROI</span>
             </div>
-            <p class="text-xs text-gray-500 mb-1"><strong>Key markets:</strong> Columbus, Cincinnati, Cleveland</p>
-            <p class="text-xs text-gray-600 leading-relaxed">Factor 1: Entry prices of $100–180K enable smaller investors to enter the flip market with lower capital requirements and moderate absolute dollar profit. Factor 2: ARV growth has stagnated in Cleveland and parts of Cincinnati, requiring precise scope selection to maintain margins without the benefit of market appreciation.</p>
+            <p class="text-xs text-gray-500 mb-1">Key markets: Columbus, Cincinnati, Cleveland</p>
+            <p class="text-xs text-gray-700 leading-relaxed">Ohio offers the most affordable flip entries on this list. <strong>Factor 1:</strong> $100–180K entry prices enable smaller investors to enter the flip market with manageable capital requirements. <strong>Factor 2:</strong> ARV growth has stagnated in Cleveland and parts of Cincinnati, requiring tight scope selection and conservative ARV assumptions.</p>
           </div>
-          <div class="p-4 rounded-xl bg-gray-50 border border-gray-200">
-            <div class="flex items-center justify-between mb-2">
-              <h4 class="font-bold text-gray-800">Pennsylvania (PA)</h4>
-              <span class="text-sm font-semibold text-amber-700">14–26% ROI</span>
+          <div class="p-4 rounded-2xl bg-white border border-gray-200">
+            <div class="flex justify-between items-start mb-2">
+              <span class="font-extrabold text-gray-900">Pennsylvania</span>
+              <span class="text-sm font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full">14–26% ROI</span>
             </div>
-            <p class="text-xs text-gray-500 mb-1"><strong>Key markets:</strong> Philadelphia, Pittsburgh, Lancaster</p>
-            <p class="text-xs text-gray-600 leading-relaxed">Factor 1: Older housing stock in PA often requires electrical, plumbing, and foundation updates that balloon rehab budgets beyond cosmetic estimates. Factor 2: Philadelphia metro shows stronger ARV growth than Pittsburgh, but both lag Sun Belt markets — making scope discipline and conservative ARV estimates especially critical in PA flips.</p>
+            <p class="text-xs text-gray-500 mb-1">Key markets: Philadelphia, Pittsburgh, Lancaster</p>
+            <p class="text-xs text-gray-700 leading-relaxed">PA flips vary widely by metro. <strong>Factor 1:</strong> Older housing stock (1920s–1960s) often requires electrical, plumbing, and foundation updates that balloon rehab budgets beyond initial estimates. <strong>Factor 2:</strong> Philadelphia metro shows stronger ARVs than Pittsburgh, but both lag Sun Belt markets in ARV growth rate.</p>
           </div>
         </div>
-
-        <div class="overflow-x-auto">
-          <table class="w-full text-sm border-collapse">
-            <thead>
-              <tr class="bg-gray-50">
-                <th class="text-left py-2.5 px-3 font-semibold text-gray-500 border-b border-gray-200">State</th>
-                <th class="text-center py-2.5 px-3 font-semibold text-gray-500 border-b border-gray-200">Typical ROI</th>
-                <th class="text-left py-2.5 px-3 font-semibold text-gray-500 border-b border-gray-200">Key Markets</th>
-                <th class="text-left py-2.5 px-3 font-semibold text-gray-500 border-b border-gray-200">Primary Factors</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-100">
-              <tr><td class="py-2.5 px-3 font-medium">California</td><td class="py-2.5 px-3 text-center text-amber-700 font-semibold">15–30%</td><td class="py-2.5 px-3 text-gray-600 text-xs">Los Angeles, San Diego, Sacramento</td><td class="py-2.5 px-3 text-gray-500 text-xs">High entry prices + permit delays</td></tr>
-              <tr class="bg-gray-50"><td class="py-2.5 px-3 font-medium">Texas</td><td class="py-2.5 px-3 text-center text-emerald-700 font-semibold">22–35%</td><td class="py-2.5 px-3 text-gray-600 text-xs">Dallas, Houston, San Antonio</td><td class="py-2.5 px-3 text-gray-500 text-xs">Affordable entry + no state income tax</td></tr>
-              <tr><td class="py-2.5 px-3 font-medium">Florida</td><td class="py-2.5 px-3 text-center text-amber-700 font-semibold">18–30%</td><td class="py-2.5 px-3 text-gray-600 text-xs">Tampa, Orlando, Jacksonville</td><td class="py-2.5 px-3 text-gray-500 text-xs">Population growth + rising insurance costs</td></tr>
-              <tr class="bg-gray-50"><td class="py-2.5 px-3 font-medium">New York</td><td class="py-2.5 px-3 text-center text-orange-700 font-semibold">10–22%</td><td class="py-2.5 px-3 text-gray-600 text-xs">Buffalo, Rochester, NYC outer boroughs</td><td class="py-2.5 px-3 text-gray-500 text-xs">High permit costs + regulatory complexity</td></tr>
-              <tr><td class="py-2.5 px-3 font-medium">Arizona</td><td class="py-2.5 px-3 text-center text-emerald-700 font-semibold">18–32%</td><td class="py-2.5 px-3 text-gray-600 text-xs">Phoenix, Tucson, Tempe</td><td class="py-2.5 px-3 text-gray-500 text-xs">Population growth + emerging insurance drag</td></tr>
-              <tr class="bg-gray-50"><td class="py-2.5 px-3 font-medium">Georgia</td><td class="py-2.5 px-3 text-center text-emerald-700 font-semibold">20–32%</td><td class="py-2.5 px-3 text-gray-600 text-xs">Atlanta, Savannah, Augusta</td><td class="py-2.5 px-3 text-gray-500 text-xs">Atlanta velocity + affordable labor</td></tr>
-              <tr><td class="py-2.5 px-3 font-medium">Ohio</td><td class="py-2.5 px-3 text-center text-amber-700 font-semibold">15–28%</td><td class="py-2.5 px-3 text-gray-600 text-xs">Columbus, Cincinnati, Cleveland</td><td class="py-2.5 px-3 text-gray-500 text-xs">Low entry prices + stagnant ARV submarkets</td></tr>
-              <tr class="bg-gray-50"><td class="py-2.5 px-3 font-medium">Pennsylvania</td><td class="py-2.5 px-3 text-center text-amber-700 font-semibold">14–26%</td><td class="py-2.5 px-3 text-gray-600 text-xs">Philadelphia, Pittsburgh, Lancaster</td><td class="py-2.5 px-3 text-gray-500 text-xs">Aging housing stock + metro variance</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="text-xs text-gray-400 mt-3">These flip ROI ranges are synthesized from BiggerPockets flip deal analyses, Fortune Builders case studies, Kiavi and hard money lender underwriting data, and 2026 market rate surveys. Flip ROI is not directly reported as a market statistic — these ranges are derived from typical acquisition discounts, rehab costs, financing costs, and ARV outcomes. Always verify with current local data. Not market-reported figures.</p>
+        <p class="text-xs text-gray-400 italic">These flip ROI ranges are synthesized from multiple industry sources including BiggerPockets deal analyses, Fortune Builders case studies, Kiavi and other hard money lender underwriting data, and 2026 market rate surveys. Flip ROI is not directly reported as a market statistic — these ranges are derived from combining typical acquisition discounts, rehab costs, financing costs, and ARV outcomes. Always verify with current local data. Not market-reported figures.</p>
       </section>
 
-      <!-- ── SECTION 8: STRATEGY ── -->
-      <section id="strategy" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+      <!-- ── 8. STRATEGY ── -->
+      <section id="strategy" class="py-10 border-b border-gray-100">
         <h2 class="text-2xl font-extrabold mb-2" style="color: #1e3a5f;">Fix and Flip Strategy — When Profit and ROI Matter Most</h2>
-        <p class="text-gray-600 mb-6">How the Fix and Flip Calculator supports different flip investment approaches.</p>
-
-        <div class="space-y-6">
-          <div class="p-5 rounded-xl border border-gray-200 bg-gray-50">
+        <p class="text-gray-600 mb-6">How the Fix and Flip Calculator supports different flip investment approaches</p>
+        <div class="space-y-5">
+          <div class="p-5 rounded-2xl bg-white border border-gray-200">
             <div class="flex items-center gap-2 mb-3">
-              <span class="px-3 py-1 rounded-full text-xs font-bold text-white" style="background: #1e3a5f;">First-Time Flipper</span>
+              <span class="text-xs font-bold px-2.5 py-1 rounded-full text-white" style="background: #1e3a5f;">First-Time Flipper</span>
             </div>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">For investors evaluating their first flip project, the calculator answers the core question: will I make money on this deal? Focus on three critical outputs: the 70% Rule indicator (within rule = built-in margin; outside = need strong justification), the Break-Even Sale Price (should have at least $15K cushion below ARV), and Profit per Month (compare to your local opportunity cost and wage equivalent). If all three are acceptable, the deal has the basic math to proceed to deeper due diligence.</p>
-            <p class="text-sm text-gray-600 leading-relaxed">Practical guidance for first-time flippers: aim for ROI in the Solid tier or better (20%+); verify ARV with multiple comp sources and a BPO before making any offer; build 15% rehab contingency minimum into every estimate; confirm your hard money lender's terms and pre-approval before making offers — hard money moves fast but also closes fast when deals are sourced.</p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">For investors evaluating their first flip project, the calculator answers the core question: "will I make money on this deal?" Focus on three outputs: the 70% Rule indicator (should show Within rule for a safe first deal), Break-Even Sale Price (should have $15K+ cushion below ARV), and Profit per Month (compare to your opportunity cost and the time you'll invest).</p>
+            <p class="text-sm text-gray-700 leading-relaxed">Practical guidance: aim for ROI in Solid tier or better (20%+) before committing. Verify ARV with multiple comp sources and a BPO. Build 15% rehab contingency minimum. Confirm your hard money lender's terms before making offers — lender approval is not guaranteed after contract signing.</p>
           </div>
-
-          <div class="p-5 rounded-xl border border-gray-200 bg-gray-50">
+          <div class="p-5 rounded-2xl bg-white border border-gray-200">
             <div class="flex items-center gap-2 mb-3">
-              <span class="px-3 py-1 rounded-full text-xs font-bold text-white" style="background: #1e3a5f;">Wholesaler</span>
+              <span class="text-xs font-bold px-2.5 py-1 rounded-full text-white" style="background: #1e3a5f;">Wholesaler</span>
             </div>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">Wholesalers use the calculator to verify whether deals meet the 70% Rule before assigning to end buyers. Quick check: Purchase Price (including your assignment fee) should be at or below the 70% Rule Max Offer. If the total acquisition cost is within the rule and has a $30K+ Break-Even cushion, the assignment fee is supported by solid deal math that end-buyer flippers will accept.</p>
-            <p class="text-sm text-gray-600 leading-relaxed">Pro tip: run the calculator with the END BUYER's expected financing (hard money at 12%, 3 points, 80% LTC) to show them realistic flip outcomes from their perspective. If the total acquisition cost plus your assignment fee still shows Solid-tier ROI (20%+) for the buyer, the deal sells itself without price negotiation.</p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">Wholesalers use the calculator to verify whether deals meet the 70% Rule before assigning to end buyers. Quick check: Purchase Price should be at or below 70% Rule Max Offer. If the purchase is within 70% and has $30K+ Break-Even cushion, the assignment fee is supported by solid deal math.</p>
+            <p class="text-sm text-gray-700 leading-relaxed">Tip: run the calculator with the END BUYER's expected financing (hard money at market rates) to show them realistic flip outcomes. If your contract plus assignment fee still shows Solid tier ROI for the buyer, the deal sells itself.</p>
           </div>
-
-          <div class="p-5 rounded-xl border border-gray-200 bg-gray-50">
+          <div class="p-5 rounded-2xl bg-white border border-gray-200">
             <div class="flex items-center gap-2 mb-3">
-              <span class="px-3 py-1 rounded-full text-xs font-bold text-white" style="background: #1e3a5f;">Experienced Rehabber</span>
+              <span class="text-xs font-bold px-2.5 py-1 rounded-full text-white" style="background: #1e3a5f;">Experienced Rehabber</span>
             </div>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">Experienced flippers running 5–20 projects annually use the calculator to rank deal opportunities. Run all active candidates with identical financing assumptions (same HM rate, same points, same LTC) and compare ROI side-by-side. In the 2026 rate environment, filter out anything below 25% ROI as a baseline rule — the execution risk and capital commitment at 15–20% ROI is rarely worth it when stronger deals are available with proper sourcing.</p>
-            <p class="text-sm text-gray-600 leading-relaxed">Advanced use: build scenario analysis into your deal review workflow. Conservative / Base / Optimistic across three scenarios tells you whether the deal depends on perfect execution or has meaningful buffer. Deals where the Conservative scenario still shows 15%+ ROI are lower-risk investments; deals where Conservative goes negative are high-dependency bets that should be avoided unless the upside is exceptional.</p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">Experienced flippers running multiple projects annually use the calculator to rank deal opportunities. Run all active candidates with identical financing assumptions and compare ROI side-by-side. Filter out anything below 25% ROI in the 2026 rate environment — sub-25% flips carry execution risk that often consumes the margin.</p>
+            <p class="text-sm text-gray-700 leading-relaxed">Advanced use: build scenario analysis into your workflow. Conservative / Base / Optimistic across three scenarios tells you whether the deal depends on perfect execution or has buffer. Deals where even the Conservative scenario shows positive profit are lower-risk capital deployments.</p>
           </div>
-
-          <div class="p-5 rounded-xl border border-gray-200 bg-gray-50">
+          <div class="p-5 rounded-2xl bg-white border border-gray-200">
             <div class="flex items-center gap-2 mb-3">
-              <span class="px-3 py-1 rounded-full text-xs font-bold text-white" style="background: #059669;">All-Cash Flipper</span>
+              <span class="text-xs font-bold px-2.5 py-1 rounded-full text-white" style="background: #1e3a5f;">All-Cash Flipper</span>
             </div>
-            <p class="text-sm text-gray-700 leading-relaxed mb-3">All-cash flippers avoid financing costs entirely but tie up capital at 100%. The calculator's All Cash mode shows true ROI without loan interest or points distortion. Cash flips often show higher ROI than financed equivalents on the same deal because there's no interest drag — but the dollar profit is similar, and the cash commitment is 4–5× higher than a financed deal with 20% down.</p>
-            <p class="text-sm text-gray-600 leading-relaxed">Important caveat: All-Cash ROI is NOT directly comparable to Financed ROI as a measure of deal quality. A $100K all-cash flip with 25% ROI earned $25K profit on $100K invested. A financed flip with 25% ROI on $30K invested earned only $7,500 in absolute dollars. For capital deployment decisions, focus on dollar profit per project for cash investors, and ROI for leveraged investors who can replicate the 20% cash commitment across multiple deals simultaneously.</p>
+            <p class="text-sm text-gray-700 leading-relaxed mb-3">All-cash flippers avoid financing costs but tie up capital entirely. The calculator's All Cash mode shows true ROI without loan interest distortion. Cash flips often show higher ROI than financed equivalents because no interest drag — but dollar profit is similar, and cash lockup is 100% rather than 20%.</p>
+            <p class="text-sm text-gray-700 leading-relaxed">Warning: all-cash ROI is NOT directly comparable to financed ROI for deal-sizing decisions. A $100K cash flip with 25% ROI earned $25K absolute. A financed flip with 25% ROI on $25K cash invested earned $6,250. Dollar profit matters more than ROI for cash deployment decisions in large-capital strategies.</p>
           </div>
-
-          <div class="p-5 rounded-xl border border-gray-200 bg-gray-50">
+          <div class="p-5 rounded-2xl bg-white border border-gray-200">
             <div class="flex items-center gap-2 mb-3">
-              <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800">Deal Comparison</span>
+              <span class="text-xs font-bold px-2.5 py-1 rounded-full text-white" style="background: #1e3a5f;">Deal Comparison</span>
             </div>
-            <h3 class="font-bold text-gray-800 mb-2">Using Fix and Flip Calculator to Compare Two Properties</h3>
-            <p class="text-sm text-gray-700 leading-relaxed">The best use of this calculator is running two flip candidates side-by-side with identical financing, hold period, and holding cost assumptions. Higher Total Profit OR higher ROI wins. When they split — one has higher dollar profit but lower ROI, the other has lower profit but higher ROI — consider your capital deployment context: ROI optimization favors smaller deals where you want to maximize return per dollar deployed, while Profit optimization favors larger deals where absolute wealth creation matters more than percentage. Experienced flippers typically optimize ROI on smaller deals (under $250K purchase) and Total Profit on larger deals (over $400K), where execution risk is higher and margin requirements differ.</p>
+            <h3 class="font-semibold text-gray-800 mb-2">Using Fix and Flip Calculator to Compare Two Properties</h3>
+            <p class="text-sm text-gray-700 leading-relaxed">The best use of this calculator: running two flip candidates side-by-side with identical financing, rehab assumptions, and hold period. Higher Total Profit OR higher ROI wins. If they split (one has higher Profit, other higher ROI), consider capital deployment: ROI favors smaller deals with less risk per dollar, Profit favors deployed capital in larger deals. Experienced flippers typically optimize ROI on smaller deals and Total Profit on larger ones.</p>
           </div>
         </div>
       </section>
 
-      <!-- ── SECTION 9: APPLICATIONS ── -->
-      <section id="applications" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+      <!-- ── 9. APPLICATIONS ── -->
+      <section id="applications" class="py-10 border-b border-gray-100">
         <h2 class="text-2xl font-extrabold mb-2" style="color: #1e3a5f;">Applications of Fix and Flip Analysis</h2>
-        <p class="text-gray-600 mb-6">Six concrete ways investors use the Fix and Flip Calculator in their deal workflow.</p>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div class="p-4 rounded-xl border border-gray-200 bg-gray-50">
-            <h3 class="font-bold text-gray-800 mb-2">1. First-Deal Screening</h3>
-            <p class="text-sm text-gray-600 leading-relaxed">Is this flip worth pursuing? A quick 3-minute analysis with purchase price, ARV, rehab budget, and financing gives a go/no-go before spending hours on contractor walkthroughs, lender prep, and title work. The 70% Rule indicator and Break-Even cushion provide the two-number gut check most experienced investors use before committing time.</p>
+        <p class="text-gray-600 mb-6">Six concrete ways investors use Fix and Flip Calculator</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="p-4 rounded-2xl bg-white border border-gray-200">
+            <div class="w-8 h-8 rounded-xl flex items-center justify-center mb-3" style="background: #f59e0b1a;">
+              <span class="font-extrabold text-base" style="color: #f59e0b;">1</span>
+            </div>
+            <h3 class="font-bold text-gray-900 mb-2">First-Deal Screening</h3>
+            <p class="text-sm text-gray-700 leading-relaxed">Is this flip worth pursuing? Quick 3-minute analysis with purchase price, ARV, rehab, and financing gives a go/no-go before spending hours on contractor walkthroughs and lender prep. If the deal doesn't show 20%+ ROI at this stage, it's unlikely to improve with deeper analysis.</p>
           </div>
-          <div class="p-4 rounded-xl border border-gray-200 bg-gray-50">
-            <h3 class="font-bold text-gray-800 mb-2">2. Offer Price Construction</h3>
-            <p class="text-sm text-gray-600 leading-relaxed">Use Find Max Purchase Price mode to determine your maximum offer ceiling. Set target ROI (e.g., 25% minimum), enter ARV and rehab budget, and the calculator binary-searches for the exact maximum purchase price that still hits your return threshold. Makes you competitive on price while staying within your return criteria — no guesswork required.</p>
+          <div class="p-4 rounded-2xl bg-white border border-gray-200">
+            <div class="w-8 h-8 rounded-xl flex items-center justify-center mb-3" style="background: #f59e0b1a;">
+              <span class="font-extrabold text-base" style="color: #f59e0b;">2</span>
+            </div>
+            <h3 class="font-bold text-gray-900 mb-2">Offer Price Construction</h3>
+            <p class="text-sm text-gray-700 leading-relaxed">Use Find Max Purchase Price mode to determine your ceiling. Set target ROI (e.g., 25% minimum), enter ARV and rehab, calculator solves for max offer. Makes you competitive on price while staying within your return criteria — and shows exactly how much you have to work with in negotiation.</p>
           </div>
-          <div class="p-4 rounded-xl border border-gray-200 bg-gray-50">
-            <h3 class="font-bold text-gray-800 mb-2">3. 70% Rule Compliance Check</h3>
-            <p class="text-sm text-gray-600 leading-relaxed">Wholesalers and first-time flippers use the 70% Rule indicator to screen deals before deeper analysis. Within rule = proceed to detailed due diligence; outside rule = need strong market-specific or deal-specific justification. The indicator shows the exact dollar amount of the maximum rule-compliant offer for immediate comparison against the asking price.</p>
+          <div class="p-4 rounded-2xl bg-white border border-gray-200">
+            <div class="w-8 h-8 rounded-xl flex items-center justify-center mb-3" style="background: #f59e0b1a;">
+              <span class="font-extrabold text-base" style="color: #f59e0b;">3</span>
+            </div>
+            <h3 class="font-bold text-gray-900 mb-2">70% Rule Compliance Check</h3>
+            <p class="text-sm text-gray-700 leading-relaxed">Wholesalers and first-time flippers use the 70% Rule indicator to screen deals before deeper analysis. Within rule = proceed to full underwriting. Outside rule = needs strong justification (hot market, light rehab under 15% of ARV, quick flip under 4 months). The indicator updates in real time as you adjust price or rehab.</p>
           </div>
-          <div class="p-4 rounded-xl border border-gray-200 bg-gray-50">
-            <h3 class="font-bold text-gray-800 mb-2">4. Financing Option Comparison</h3>
-            <p class="text-sm text-gray-600 leading-relaxed">Toggle between Hard Money, Conventional, and All Cash modes on the same deal. See exactly how financing choice impacts profit, ROI, and total cash required. Often reveals that the all-cash vs. hard money comparison is much closer than expected — hard money adds interest cost but frees cash for additional deals, and the opportunity cost of capital matters.</p>
+          <div class="p-4 rounded-2xl bg-white border border-gray-200">
+            <div class="w-8 h-8 rounded-xl flex items-center justify-center mb-3" style="background: #f59e0b1a;">
+              <span class="font-extrabold text-base" style="color: #f59e0b;">4</span>
+            </div>
+            <h3 class="font-bold text-gray-900 mb-2">Financing Option Comparison</h3>
+            <p class="text-sm text-gray-700 leading-relaxed">Toggle between Hard Money, Conventional, and All Cash modes on the same deal. See exactly how financing choice impacts profit, ROI, and cash deployed. Often reveals that cash vs hard money is a much closer call than expected, especially on short 4-month flips where interest costs are minimal.</p>
           </div>
-          <div class="p-4 rounded-xl border border-gray-200 bg-gray-50">
-            <h3 class="font-bold text-gray-800 mb-2">5. Rehab Scope Budgeting</h3>
-            <p class="text-sm text-gray-600 leading-relaxed">Use Find Max Rehab Budget mode to calculate the absolute ceiling on rehab spend that still hits your target ROI. Helps contractor negotiations: "we can spend up to $X on this scope and still hit our target return." Prevents scope creep from eroding margins — particularly valuable when contractors propose upgrades that feel reasonable in isolation but collectively push the project past viability.</p>
+          <div class="p-4 rounded-2xl bg-white border border-gray-200">
+            <div class="w-8 h-8 rounded-xl flex items-center justify-center mb-3" style="background: #f59e0b1a;">
+              <span class="font-extrabold text-base" style="color: #f59e0b;">5</span>
+            </div>
+            <h3 class="font-bold text-gray-900 mb-2">Rehab Scope Budgeting</h3>
+            <p class="text-sm text-gray-700 leading-relaxed">Use Find Max Rehab Budget mode to see the absolute ceiling on rehab spend that still hits your target ROI. Helps contractor negotiations: "we can spend up to $X on this scope and still hit our numbers." Forces the conversation on value-per-dollar of specific upgrades rather than open-ended scope expansion.</p>
           </div>
-          <div class="p-4 rounded-xl border border-gray-200 bg-gray-50">
-            <h3 class="font-bold text-gray-800 mb-2">6. Investor Memorandum Prep</h3>
-            <p class="text-sm text-gray-600 leading-relaxed">For partnered or syndicated flip projects, Total Profit, ROI, and Break-Even Sale Price are the three numbers partners and private lenders ask for first. Export PDF to include as an exhibit in partnership pitches, private money lender packages, or JV proposals. The three-scenario analysis (Conservative / Base / Optimistic) demonstrates professional underwriting discipline to capital partners.</p>
+          <div class="p-4 rounded-2xl bg-white border border-gray-200">
+            <div class="w-8 h-8 rounded-xl flex items-center justify-center mb-3" style="background: #f59e0b1a;">
+              <span class="font-extrabold text-base" style="color: #f59e0b;">6</span>
+            </div>
+            <h3 class="font-bold text-gray-900 mb-2">Investor Memorandum Prep</h3>
+            <p class="text-sm text-gray-700 leading-relaxed">For partnered or syndicated flip projects, Total Profit, ROI, and Break-Even are the three numbers partners ask for first. Export PDF to include as exhibit in a partnership pitch or private lender package. The three-scenario analysis (Conservative / Base / Optimistic) demonstrates thorough stress-testing.</p>
           </div>
         </div>
       </section>
 
-      <!-- ── SECTION 10: INDUSTRY STANDARDS ── -->
-      <section id="industry-standards" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+      <!-- ── 10. INDUSTRY STANDARDS ── -->
+      <section id="industry-standards" class="py-10 border-b border-gray-100">
         <h2 class="text-2xl font-extrabold mb-2" style="color: #1e3a5f;">Industry Standards &amp; Professional Methodologies</h2>
         <p class="text-gray-600 mb-6">How Total Profit, ROI, and the 70% Rule fit into established flip investment frameworks.</p>
-
         <div class="space-y-6">
-          <div class="p-5 rounded-xl border border-gray-200">
-            <h3 class="font-bold text-gray-800 mb-3">The 70% Rule (Industry Foundation)</h3>
+          <div class="p-5 rounded-2xl bg-white border border-gray-200">
+            <h3 class="font-bold text-gray-900 mb-3">The 70% Rule (Industry Foundation)</h3>
             <ul class="space-y-2">
-              <li class="flex items-start gap-2 text-sm text-gray-700">
-                <span class="text-amber-500 font-bold flex-shrink-0">•</span>
-                70% Rule Max Offer = ARV × 0.70 − Rehab Budget — used across BiggerPockets, Fortune Builders, and virtually all flip education platforms as the standard go/no-go heuristic.
-              </li>
-              <li class="flex items-start gap-2 text-sm text-gray-700">
-                <span class="text-amber-500 font-bold flex-shrink-0">•</span>
-                The rule provides a 30% buffer that covers profit, financing costs, and execution risk — this buffer is critical at 2026 hard money rates where financing alone can consume 8–12% of project cost.
-              </li>
-              <li class="flex items-start gap-2 text-sm text-gray-700">
-                <span class="text-amber-500 font-bold flex-shrink-0">•</span>
-                Deals within the 70% Rule have high probability of Solid-tier or better ROI outcomes (20%+) given realistic 2026 financing costs and execution timelines.
-              </li>
-              <li class="flex items-start gap-2 text-sm text-gray-700">
-                <span class="text-amber-500 font-bold flex-shrink-0">•</span>
-                Deals outside the rule require strong justification: hot appreciation market (5%+ ARV growth during hold), extremely light rehab scope (under 15% of ARV), or a confirmed sub-4-month flip timeline where holding costs are minimal.
-              </li>
+              <li class="flex gap-2 text-sm text-gray-700"><span class="text-amber-500 font-bold flex-shrink-0">→</span><span>70% Rule Max Offer = ARV × 0.70 − Rehab Budget — used across BiggerPockets, Fortune Builders, and virtually all flip education for decades</span></li>
+              <li class="flex gap-2 text-sm text-gray-700"><span class="text-amber-500 font-bold flex-shrink-0">→</span><span>The rule provides a 30% buffer for profit, financing costs, and execution risk — critically important at 2026 hard money rates of 11–13%</span></li>
+              <li class="flex gap-2 text-sm text-gray-700"><span class="text-amber-500 font-bold flex-shrink-0">→</span><span>Deals within the 70% Rule have high probability of Solid-tier or better ROI outcomes; deals outside carry meaningfully higher execution risk</span></li>
+              <li class="flex gap-2 text-sm text-gray-700"><span class="text-amber-500 font-bold flex-shrink-0">→</span><span>Deals outside the rule require strong justification: hot market, very light rehab (under 15% of ARV), or quick flip under 4 months</span></li>
             </ul>
           </div>
-
-          <div class="p-5 rounded-xl border border-gray-200">
-            <h3 class="font-bold text-gray-800 mb-3">Hard Money Underwriting (Kiavi, LendingOne, local lenders)</h3>
-            <p class="text-sm text-gray-600 mb-3">Hard money lenders evaluate flip deals primarily on ARV (after-repair value) rather than borrower income or credit — making them accessible for investors who can't qualify for conventional investment loans but have solid deal-finding skills.</p>
+          <div class="p-5 rounded-2xl bg-white border border-gray-200">
+            <h3 class="font-bold text-gray-900 mb-3">Hard Money Underwriting (Kiavi, LendingOne, local lenders)</h3>
+            <p class="text-sm text-gray-700 mb-3">Hard money lenders evaluate flip deals on ARV-based LTV (Loan to Value) and deal execution track record. In 2026, experienced flippers access better terms than first-timers:</p>
             <ul class="space-y-2">
-              <li class="flex items-start gap-2 text-sm text-gray-700">
-                <span class="text-amber-500 font-bold flex-shrink-0">•</span>
-                Hard money lenders underwrite based on ARV — typically 65–75% of ARV as maximum loan (LTV), ensuring the lender is secured even in a distressed sale scenario.
-              </li>
-              <li class="flex items-start gap-2 text-sm text-gray-700">
-                <span class="text-amber-500 font-bold flex-shrink-0">•</span>
-                Loan-to-Cost (LTC) typically 80–90% covering both purchase and rehab for experienced flippers with track records; first-time flippers may receive 70–75% LTC with lower max loan amounts.
-              </li>
-              <li class="flex items-start gap-2 text-sm text-gray-700">
-                <span class="text-amber-500 font-bold flex-shrink-0">•</span>
-                Points of 2–4% upfront plus 10–14% annual interest are standard 2026 pricing; some lenders offer no-points at higher rates, or lower rates for borrowers with established track records.
-              </li>
-              <li class="flex items-start gap-2 text-sm text-gray-700">
-                <span class="text-amber-500 font-bold flex-shrink-0">•</span>
-                Lender approval typically aligns with Solid-tier or better deals — loans on Weak or Critical-tier deals are denied or re-priced at higher points, providing a market-level validation of deal quality.
-              </li>
+              <li class="flex gap-2 text-sm text-gray-700"><span class="text-amber-500 font-bold flex-shrink-0">→</span><span>Hard money lenders underwrite based on ARV — typically 65–75% of ARV as maximum loan (LTV), which differs from LTC (Loan to Cost)</span></li>
+              <li class="flex gap-2 text-sm text-gray-700"><span class="text-amber-500 font-bold flex-shrink-0">→</span><span>Loan to Cost (LTC) typically 80–90% covering both Purchase and Rehab for experienced flippers with track record</span></li>
+              <li class="flex gap-2 text-sm text-gray-700"><span class="text-amber-500 font-bold flex-shrink-0">→</span><span>Points of 2–4% upfront plus 10–14% annual interest are standard 2026 pricing from Kiavi, LendingOne, and regional hard money lenders</span></li>
+              <li class="flex gap-2 text-sm text-gray-700"><span class="text-amber-500 font-bold flex-shrink-0">→</span><span>Lender approval aligns with Solid-tier or better deals — loans on Weak/Critical ROI deals are often denied or re-priced at higher rates</span></li>
             </ul>
           </div>
-
-          <div class="p-5 rounded-xl border border-gray-200">
-            <h3 class="font-bold text-gray-800 mb-3">Flipper Professional Benchmarks</h3>
+          <div class="p-5 rounded-2xl bg-white border border-gray-200">
+            <h3 class="font-bold text-gray-900 mb-3">Flipper Professional Benchmarks</h3>
             <ul class="space-y-2">
-              <li class="flex items-start gap-2 text-sm text-gray-700">
-                <span class="text-amber-500 font-bold flex-shrink-0">•</span>
-                Professional flippers target 20–35% ROI per project in the 2026 rate environment — down from 30–50% targets common in 2015–2019 when HM rates were 8–10%.
-              </li>
-              <li class="flex items-start gap-2 text-sm text-gray-700">
-                <span class="text-amber-500 font-bold flex-shrink-0">•</span>
-                High-volume flippers (20+ projects per year) accept lower per-project ROI (15–20%) in exchange for volume deployment and established systems — their advantage is velocity, not margin per deal.
-              </li>
-              <li class="flex items-start gap-2 text-sm text-gray-700">
-                <span class="text-amber-500 font-bold flex-shrink-0">•</span>
-                Boutique value-add flippers target 35%+ ROI with larger scope and longer holds — they take on more execution risk in exchange for higher single-project returns on fewer deals per year.
-              </li>
-              <li class="flex items-start gap-2 text-sm text-gray-700">
-                <span class="text-amber-500 font-bold flex-shrink-0">•</span>
-                <strong>Flip profit is typically taxed as ordinary income (25–37% marginal rate)</strong> — not capital gains — because the IRS views regular flippers as dealers in real estate. This is a critical distinction vs. long-term rental investing.
-              </li>
-              <li class="flex items-start gap-2 text-sm text-gray-700">
-                <span class="text-amber-500 font-bold flex-shrink-0">•</span>
-                After-tax flip ROI runs 30–45% below before-tax ROI for most investors in 2026 — factor this into comparisons with passive investments that receive capital gains treatment.
-              </li>
+              <li class="flex gap-2 text-sm text-gray-700"><span class="text-amber-500 font-bold flex-shrink-0">→</span><span>Professional flippers target 20–35% ROI per project in the 2026 rate environment; anything under 20% is increasingly viewed as not worth the risk</span></li>
+              <li class="flex gap-2 text-sm text-gray-700"><span class="text-amber-500 font-bold flex-shrink-0">→</span><span>High-volume flippers (20+ projects per year) accept lower per-project ROI (15–20%) in exchange for volume deployment and portfolio diversification</span></li>
+              <li class="flex gap-2 text-sm text-gray-700"><span class="text-amber-500 font-bold flex-shrink-0">→</span><span>Boutique value-add flippers target 35%+ ROI with larger scope, longer holds, and deeper project complexity</span></li>
+              <li class="flex gap-2 text-sm text-gray-700"><span class="text-amber-500 font-bold flex-shrink-0">→</span><strong className="text-red-700">Flip profit is typically taxed as ordinary income (25–37% marginal rates) — NOT capital gains. Most active flippers are classified as dealers by the IRS.</strong></li>
+              <li class="flex gap-2 text-sm text-gray-700"><span class="text-amber-500 font-bold flex-shrink-0">→</span><span>After-tax flip ROI runs 30–45% below before-tax ROI for most investors in 25–37% marginal brackets — factor this into comparisons with passive investments that get capital gains treatment</span></li>
             </ul>
           </div>
         </div>
       </section>
 
-      <!-- ── SECTION 11: LIMITATIONS ── -->
-      <section id="limitations" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+      <!-- ── 11. LIMITATIONS ── -->
+      <section id="limitations" class="py-10 border-b border-gray-100">
         <h2 class="text-2xl font-extrabold mb-2" style="color: #1e3a5f;">Limitations of Fix and Flip Calculator</h2>
         <p class="text-gray-600 mb-6">Fix and Flip Calculator is the most complete single tool for flip deal analysis, but it has deliberate scope limits you should understand.</p>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-          <div class="p-4 rounded-xl border border-orange-200 bg-orange-50">
-            <h3 class="font-bold text-orange-800 mb-2">Before-Tax Analysis Only (v1)</h3>
-            <p class="text-sm text-orange-700 leading-relaxed">This calculator does not model ordinary income tax on flip profits. Most flip profits are taxed as ordinary income at 25–37% marginal rates — actual take-home is meaningfully lower than the displayed Total Profit. State income tax adds an additional 0–13% depending on state (Texas and Florida have no state income tax; California can add 13%). For a $30K profit at 30% marginal rate, tax takes $9K — leaving $21K net. Consult a CPA for tax-optimized flip structure.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+          <div class="p-5 rounded-2xl bg-white border border-gray-200">
+            <h3 class="font-bold text-gray-900 mb-2">Before-Tax Analysis Only (v1)</h3>
+            <p class="text-sm text-gray-700 leading-relaxed">Calculator does not model ordinary income tax on flip profits. Most flip profits are taxed as ordinary income (25–37% marginal rates) — after-tax take-home is meaningfully lower than displayed Total Profit. State income tax adds 0–13% depending on state. California investors face combined federal + state marginal rates over 50% on flip income. Consult a CPA for tax-optimized flip strategy before assuming the displayed ROI is your actual return.</p>
           </div>
-          <div class="p-4 rounded-xl border border-orange-200 bg-orange-50">
-            <h3 class="font-bold text-orange-800 mb-2">ARV Is Your Responsibility</h3>
-            <p class="text-sm text-orange-700 leading-relaxed">The calculator uses your ARV input directly without validation. ARV accuracy is the single biggest risk factor in flip analysis — an optimistic ARV of $280K that comes in at $255K at sale can eliminate the entire projected profit on a thin-margin flip. Always verify ARV with 3+ active MLS comps (not pending or sold 6+ months ago), a Broker Price Opinion (BPO), or a pre-rehab appraisal. Conservative ARV estimates — reduce comp-derived estimate by 5–10% — produce more reliable outcomes.</p>
+          <div class="p-5 rounded-2xl bg-white border border-gray-200">
+            <h3 class="font-bold text-gray-900 mb-2">ARV Is Your Responsibility</h3>
+            <p class="text-sm text-gray-700 leading-relaxed">Calculator uses your ARV input directly — no validation against market data. ARV accuracy is the single biggest risk factor in flip analysis. An optimistic $10K ARV miss can eliminate 30–50% of projected profit on a thin-margin flip. Always verify ARV with 3+ active comps, a BPO (Broker Price Opinion), or a pre-rehab appraisal. Never use the seller's ARV estimate without independent verification.</p>
           </div>
-          <div class="p-4 rounded-xl border border-orange-200 bg-orange-50">
-            <h3 class="font-bold text-orange-800 mb-2">Does Not Model Timeline Overruns</h3>
-            <p class="text-sm text-orange-700 leading-relaxed">The calculator uses your Hold Period and Rehab Duration as entered. Reality: research consistently shows 60–70% of flip projects run 1–3 months over timeline on first and second projects. Each extra month adds loan interest ($1,000–2,000/mo on a typical deal), holding costs ($400–800/mo), and carries market risk if buyer appetite softens. Always stress-test the Conservative scenario with Hold Period plus 2 months before committing capital to any deal.</p>
+          <div class="p-5 rounded-2xl bg-white border border-gray-200">
+            <h3 class="font-bold text-gray-900 mb-2">Does Not Model Timeline Overruns</h3>
+            <p class="text-sm text-gray-700 leading-relaxed">Calculator uses your Hold Period and Rehab Duration as-entered. Reality: 70% of first-time flips run 1–3 months over budget on timeline. Each extra month adds loan interest, holding costs, and carries market risk. Always stress-test with Hold Period plus 2 months in the Conservative scenario. A 6-month flip that runs to 9 months can see ROI fall from 25% to 12%.</p>
           </div>
-          <div class="p-4 rounded-xl border border-orange-200 bg-orange-50">
-            <h3 class="font-bold text-orange-800 mb-2">Does Not Include Detailed Rehab Scope</h3>
-            <p class="text-sm text-orange-700 leading-relaxed">Rehab is entered as a single dollar figure plus contingency. The calculator does not model line-item scope (electrical vs. plumbing vs. cosmetic) or permit sequencing (permit-pulled work causes delays that no-permit cosmetic work avoids). For detailed scope-of-work analysis, use a dedicated rehab estimator or contractor bid system. This calculator is designed for deal-level go/no-go analysis — not construction management or detailed cost tracking.</p>
+          <div class="p-5 rounded-2xl bg-white border border-gray-200">
+            <h3 class="font-bold text-gray-900 mb-2">Does Not Include Detailed Rehab Scope</h3>
+            <p class="text-sm text-gray-700 leading-relaxed">Rehab is entered as a single dollar figure plus contingency. Calculator does not model line-item scope (electrical vs plumbing vs cosmetic) or sequencing (permit-pulled vs no-permit work). For detailed scope-of-work analysis, use a dedicated rehab estimator or contractor bid system — this calculator is for deal-level go/no-go analysis, not construction management.</p>
           </div>
         </div>
 
-        <div>
+        <div class="p-5 rounded-2xl bg-gray-50 border border-gray-200">
           <h3 class="font-bold text-gray-800 mb-3">When Not to Use This Calculator</h3>
           <ul class="space-y-2">
-            <li class="flex items-start gap-2 text-sm text-gray-700">
-              <span class="text-red-400 font-bold flex-shrink-0">✗</span>
-              <span><strong>Buy and hold rentals:</strong> Use the Rental Property Calculator for multi-year cash flow, appreciation compounding, and Total Return analysis — fundamentally different math.</span>
-            </li>
-            <li class="flex items-start gap-2 text-sm text-gray-700">
-              <span class="text-red-400 font-bold flex-shrink-0">✗</span>
-              <span><strong>BRRRR deals:</strong> Use a dedicated BRRRR Calculator — the refinance event creates two separate profit calculations (pre-refinance flip phase plus post-refinance rental hold) that this tool doesn't model.</span>
-            </li>
-            <li class="flex items-start gap-2 text-sm text-gray-700">
-              <span class="text-red-400 font-bold flex-shrink-0">✗</span>
-              <span><strong>Wholesale-only deals (no rehab):</strong> Contract assignment without renovation involves different economics — no rehab cost, no holding period, no financing — use a dedicated wholesale calculator.</span>
-            </li>
-            <li class="flex items-start gap-2 text-sm text-gray-700">
-              <span class="text-red-400 font-bold flex-shrink-0">✗</span>
-              <span><strong>New construction and development:</strong> Ground-up development has fundamentally different cost structures, timelines, and risk profiles — use construction-specific pro forma tools.</span>
-            </li>
+            <li class="flex gap-2 text-sm text-gray-700"><span class="text-gray-400 font-bold flex-shrink-0">✗</span><span><strong>Buy and hold rentals:</strong> Use Rental Property Calculator for multi-year cash flow, NOI analysis, and total return modeling</span></li>
+            <li class="flex gap-2 text-sm text-gray-700"><span class="text-gray-400 font-bold flex-shrink-0">✗</span><span><strong>BRRRR deals:</strong> Use BRRRR Calculator when available — models the refinance event, seasoning period, and long-term rental phase separately</span></li>
+            <li class="flex gap-2 text-sm text-gray-700"><span class="text-gray-400 font-bold flex-shrink-0">✗</span><span><strong>Pure wholesale (no rehab):</strong> Use a dedicated wholesale calculator — flip math doesn't apply to contract assignments without renovation</span></li>
+            <li class="flex gap-2 text-sm text-gray-700"><span class="text-gray-400 font-bold flex-shrink-0">✗</span><span><strong>New construction and development:</strong> Use construction-specific pro forma tools — flip math doesn't capture development timeline complexity, carry costs, or entitlement risk</span></li>
           </ul>
         </div>
       </section>
 
-      <!-- ── SECTION 12: COMMON MISTAKES ── -->
-      <section id="common-mistakes" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+      <!-- ── 12. COMMON MISTAKES ── -->
+      <section id="common-mistakes" class="py-10 border-b border-gray-100">
         <h2 class="text-2xl font-extrabold mb-2" style="color: #1e3a5f;">Common Mistakes When Calculating Flip Profit</h2>
-        <p class="text-gray-600 mb-6">Five mistakes that consistently cause first-time flippers to over-estimate ROI and under-estimate risk.</p>
-
+        <p class="text-gray-600 mb-6">Five mistakes that inflate projected ROI and lead to real-world losses</p>
         <div class="space-y-4">
-          <div class="flex gap-4 p-4 rounded-xl border border-gray-200">
-            <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-sm bg-red-500">1</div>
+          <div class="flex gap-4 p-4 rounded-2xl bg-white border border-gray-200">
+            <div class="w-7 h-7 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
+              <span class="text-red-700 font-bold text-sm">1</span>
+            </div>
             <div>
-              <h3 class="font-bold text-gray-800 mb-1">Using optimistic ARV without comp verification</h3>
-              <p class="text-sm text-gray-600 leading-relaxed">First-time flippers commonly enter ARV based on the seller's estimate, the wholesaler's pitch, or gut feel from a single drive-by. Professional flippers verify ARV with 3+ active comps within the past 90 days, a BPO from a licensed broker, or a pre-rehab appraisal. An optimistic $10K ARV miss can eliminate 30–50% of projected profit on a thin-margin flip — and a $25K miss can turn a projected $20K profit into a $5K loss.</p>
+              <h3 class="font-bold text-gray-900 mb-1">Using optimistic ARV without comp verification</h3>
+              <p class="text-sm text-gray-700 leading-relaxed">First-time flippers commonly enter ARV based on the seller's estimate, wholesaler's pitch, or gut feel. Professional flippers verify ARV with 3+ active comps, a BPO, or a pre-rehab appraisal. An optimistic $10K ARV miss can eliminate 30–50% of projected profit on a thin-margin flip. In soft 2026 markets, ARV misses of $15–25K are not uncommon on deals where buyers overestimated post-renovation demand.</p>
             </div>
           </div>
-
-          <div class="flex gap-4 p-4 rounded-xl border border-gray-200">
-            <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-sm bg-red-500">2</div>
+          <div class="flex gap-4 p-4 rounded-2xl bg-white border border-gray-200">
+            <div class="w-7 h-7 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
+              <span class="text-red-700 font-bold text-sm">2</span>
+            </div>
             <div>
-              <h3 class="font-bold text-gray-800 mb-1">Forgetting holding costs in the ROI calculation</h3>
-              <p class="text-sm text-gray-600 leading-relaxed">Many flip calculators and spreadsheets treat holding costs as a "reserve" that is tracked separately but not deducted from ROI. In this calculator, Total Holding Costs are counted in Total Cash Invested because the investor writes a check for them every single month — they are real cash outflows, not theoretical reserves. A 6-month flip with $700 monthly holding costs has $4,200 in real outflow. Excluding these from ROI calculation is the most common source of inflated flip ROI projections.</p>
+              <h3 class="font-bold text-gray-900 mb-1">Forgetting holding costs in the ROI calculation</h3>
+              <p class="text-sm text-gray-700 leading-relaxed">Many flip calculators (and spreadsheets) count holding costs as a "reserve" rather than actual cash outflow. The investor writes a check for property tax, insurance, and utilities every month — they reduce ROI directly. A 6-month flip with $600 monthly holding costs has $3,600 in real outflow. Always count Total Holding Costs in Total Cash Invested, and track loan interest separately to avoid double-counting.</p>
             </div>
           </div>
-
-          <div class="flex gap-4 p-4 rounded-xl border border-gray-200">
-            <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-sm bg-red-500">3</div>
+          <div class="flex gap-4 p-4 rounded-2xl bg-white border border-gray-200">
+            <div class="w-7 h-7 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
+              <span class="text-red-700 font-bold text-sm">3</span>
+            </div>
             <div>
-              <h3 class="font-bold text-gray-800 mb-1">Underestimating rehab budget and contingency</h3>
-              <p class="text-sm text-gray-600 leading-relaxed">First-time flippers consistently underestimate rehab budget by 15–25% on their first few projects. Standard rehabs reveal unexpected issues: discovered rot behind walls, aluminum wiring that must be updated for insurance, permit requirements that trigger additional scope, supply chain delays that extend timelines. A 5% contingency is completely insufficient; 10–15% is the industry standard for exactly these reasons. If your contractor gives a bid of $40K, plan on $44–48K as your actual working budget.</p>
+              <h3 class="font-bold text-gray-900 mb-1">Underestimating rehab budget and contingency</h3>
+              <p class="text-sm text-gray-700 leading-relaxed">First-time flippers consistently underestimate rehab budget by 15–25%. Standard rehabs have surprises: discovered rot behind drywall, outdated electrical systems requiring a full panel upgrade, permit requirements that extend timeline. A 5% contingency is insufficient for anything beyond cosmetic work; 10–15% is industry standard. If your contractor gives a bid of $40K, budget $46–48K with contingency before running your ROI.</p>
             </div>
           </div>
-
-          <div class="flex gap-4 p-4 rounded-xl border border-gray-200">
-            <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-sm bg-red-500">4</div>
+          <div class="flex gap-4 p-4 rounded-2xl bg-white border border-gray-200">
+            <div class="w-7 h-7 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
+              <span class="text-red-700 font-bold text-sm">4</span>
+            </div>
             <div>
-              <h3 class="font-bold text-gray-800 mb-1">Ignoring hard money points and interest in ROI</h3>
-              <p class="text-sm text-gray-600 leading-relaxed">Hard money points (2–4% upfront) plus monthly interest (10–14% annualized, interest-only) can add 8–12% to total project cost on a typical 6-month flip. Many investors focus only on the interest rate but forget that points are paid upfront at closing — reducing the cash available for rehab draws. On a $150K loan with 3 points at 12% for 6 months: points = $4,500 (paid at closing) + interest = $9,000 (paid monthly) = $13,500 total financing cost. Always include both points and total interest in your Total Cash Invested calculation.</p>
+              <h3 class="font-bold text-gray-900 mb-1">Ignoring hard money points and interest in ROI</h3>
+              <p class="text-sm text-gray-700 leading-relaxed">Hard money points (2–4% upfront) plus monthly interest (10–14% annualized) can add 8–12% to total project cost on a typical 6-month flip. Many investors focus on the interest rate but forget points are paid upfront at closing — reducing cash available for rehab. On a $150K loan at 3 points and 12% rate over 6 months: $4,500 in points + $9,000 in interest = $13,500 in financing cost alone. Always include both points and total interest in Total Cash Invested.</p>
             </div>
           </div>
-
-          <div class="flex gap-4 p-4 rounded-xl border border-gray-200">
-            <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-sm bg-red-500">5</div>
+          <div class="flex gap-4 p-4 rounded-2xl bg-white border border-gray-200">
+            <div class="w-7 h-7 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
+              <span class="text-red-700 font-bold text-sm">5</span>
+            </div>
             <div>
-              <h3 class="font-bold text-gray-800 mb-1">Treating before-tax ROI as take-home profit</h3>
-              <p class="text-sm text-gray-600 leading-relaxed">A 30% before-tax ROI on a flip translates to approximately 18–22% after ordinary income tax for most investors in the 25–32% marginal bracket. Flips held under one year do not qualify for long-term capital gains rates — they are taxed as ordinary income because the IRS views regular flippers as real estate dealers. A $40K before-tax profit becomes $27–30K after federal taxes alone, before state income tax. Always mentally discount the displayed ROI by your effective marginal tax rate when comparing to long-term investments that receive capital gains treatment (15–20% rates for most taxpayers).</p>
+              <h3 class="font-bold text-gray-900 mb-1">Treating before-tax ROI as take-home profit</h3>
+              <p class="text-sm text-gray-700 leading-relaxed">A 30% before-tax ROI on a flip might translate to 18–22% after ordinary income tax for most investors in 25–37% marginal brackets. Flips held under 1 year do NOT receive long-term capital gains treatment — they are ordinary income (25–37% federal + state taxes). Always mentally discount the displayed ROI by your marginal tax rate when comparing flip returns to passive investments like index funds or rental property that may receive more favorable tax treatment.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ── SECTION 13: FAQ ── -->
-      <section id="faq" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+      <!-- ── 13. FAQ ── -->
+      <section id="faq" class="py-10 border-b border-gray-100">
         <h2 class="text-2xl font-extrabold mb-6" style="color: #1e3a5f;">Frequently Asked Questions</h2>
-
-        <div class="space-y-4">
-          <div v-for="(q, i) in faqs" :key="i" class="border border-gray-200 rounded-xl overflow-hidden">
-            <button @click="openFaq === i ? openFaq = null : openFaq = i"
-              class="w-full flex items-center justify-between px-5 py-4 text-left font-bold text-gray-800 hover:bg-gray-50 transition">
-              <span class="text-sm pr-4">{{ q.q }}</span>
-              <svg class="w-5 h-5 flex-shrink-0 transition-transform" :class="openFaq === i ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="space-y-2">
+          <div v-for="(faq, i) in faqs" :key="i" class="border border-gray-200 rounded-2xl overflow-hidden bg-white">
+            <button @click="toggleFaq(i)"
+              class="w-full flex items-center justify-between px-5 py-4 text-left hover:bg-gray-50 transition"
+              :aria-expanded="openFaq === i">
+              <span class="font-semibold text-gray-900 pr-4 text-sm">{{ faq.q }}</span>
+              <svg class="w-4 h-4 flex-shrink-0 text-gray-400 transition-transform" :class="openFaq === i ? 'rotate-180' : ''"
+                fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
               </svg>
             </button>
             <div v-show="openFaq === i" class="px-5 pb-4">
-              <p class="text-sm text-gray-600 leading-relaxed">{{ q.a }}</p>
+              <p class="text-sm text-gray-700 leading-relaxed">{{ faq.a }}</p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ── SECTION 14: RELATED CALCULATORS ── -->
-      <section id="related-calculators" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-        <h2 class="text-2xl font-extrabold mb-2" style="color: #1e3a5f;">Related Calculators</h2>
-        <p class="text-gray-600 mb-6">Compare flip strategy to alternative investment approaches or dig deeper into specific components.</p>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <NuxtLink to="/rental-property-calculator" class="p-4 rounded-xl border border-gray-200 hover:border-yellow-400 hover:shadow-sm transition group">
-            <h3 class="font-bold text-gray-800 group-hover:text-yellow-700 transition mb-1">Rental Property Calculator</h3>
-            <p class="text-sm text-gray-500">Multi-year cash flow, appreciation, and Total Return for buy-and-hold strategy. Use when comparing flip vs. long-term hold on the same property.</p>
-          </NuxtLink>
-          <NuxtLink to="/arv-calculator" class="p-4 rounded-xl border border-gray-200 hover:border-yellow-400 hover:shadow-sm transition group">
-            <h3 class="font-bold text-gray-800 group-hover:text-yellow-700 transition mb-1">ARV Calculator</h3>
-            <p class="text-sm text-gray-500">Calculate After Repair Value from comparable sales. The companion tool for ARV confidence — verify your ARV before entering it into the flip calculator.</p>
-          </NuxtLink>
-          <NuxtLink to="/cap-rate-calculator" class="p-4 rounded-xl border border-gray-200 hover:border-yellow-400 hover:shadow-sm transition group">
-            <h3 class="font-bold text-gray-800 group-hover:text-yellow-700 transition mb-1">Cap Rate Calculator</h3>
-            <p class="text-sm text-gray-500">Income property valuation via NOI and capitalization rate. Use to evaluate whether the flipped property would perform as a rental if the flip exit doesn't materialize.</p>
-          </NuxtLink>
-          <NuxtLink to="/dscr-calculator" class="p-4 rounded-xl border border-gray-200 hover:border-yellow-400 hover:shadow-sm transition group">
-            <h3 class="font-bold text-gray-800 group-hover:text-yellow-700 transition mb-1">DSCR Calculator</h3>
-            <p class="text-sm text-gray-500">Debt Service Coverage Ratio for investor loans. Use when your flip buyer plans to finance the renovated property — understanding their DSCR helps you set realistic ARV expectations.</p>
+      <!-- ── 14. RELATED CALCULATORS ── -->
+      <section id="related-calculators" class="py-10">
+        <h2 class="text-2xl font-extrabold mb-6" style="color: #1e3a5f;">Related Calculators</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <NuxtLink v-for="calc in relatedCalcs" :key="calc.href" :to="calc.href"
+            class="p-4 rounded-2xl bg-white border border-gray-200 hover:border-yellow-400 hover:shadow-md transition group">
+            <div class="w-8 h-8 rounded-xl flex items-center justify-center mb-3" style="background: #1e3a5f1a;">
+              <svg class="w-4 h-4" style="color: #1e3a5f;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 11h.01M12 11h.01M15 11h.01M4 19h16a2 2 0 002-2V7a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <span class="font-semibold text-gray-800 text-sm group-hover:text-yellow-700 transition">{{ calc.label }}</span>
           </NuxtLink>
         </div>
       </section>
 
-    </div><!-- end SEO sections -->
+    </div>
 
     <!-- ═══════════════════════════════════════════════
          FOOTER
     ═══════════════════════════════════════════════ -->
     <footer class="bg-white border-t border-gray-200 mt-8">
       <div class="max-w-[1100px] mx-auto px-4 sm:px-6 py-10">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
           <div>
-            <div class="flex items-center gap-3 mb-3">
-              <div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background: #1e3a5f;">
-                <span class="text-white font-extrabold text-base leading-none">RC</span>
+            <div class="flex items-center gap-2 mb-4">
+              <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: #1e3a5f;">
+                <span class="text-white font-extrabold text-sm">RC</span>
               </div>
-              <span class="font-extrabold text-lg" style="color: #1e3a5f;">RealCalc</span>
+              <span class="font-extrabold" style="color: #1e3a5f;">RealCalc</span>
             </div>
-            <p class="text-sm text-gray-500 leading-relaxed">Professional real estate investment calculators for US investors. Free, accurate, and constantly updated for current market conditions.</p>
+            <p class="text-xs text-gray-400 leading-relaxed">Free real estate investment calculators for US investors. Accurate. Fast. No signup required.</p>
           </div>
           <div>
-            <h4 class="font-bold text-gray-700 mb-3">Calculators</h4>
-            <ul class="space-y-1.5 text-sm text-gray-500">
-              <li><NuxtLink to="/cap-rate-calculator" class="hover:text-gray-700 transition">Cap Rate Calculator</NuxtLink></li>
-              <li><NuxtLink to="/noi-calculator" class="hover:text-gray-700 transition">NOI Calculator</NuxtLink></li>
-              <li><NuxtLink to="/cash-on-cash-calculator" class="hover:text-gray-700 transition">Cash-on-Cash Calculator</NuxtLink></li>
-              <li><NuxtLink to="/dscr-calculator" class="hover:text-gray-700 transition">DSCR Calculator</NuxtLink></li>
-              <li><NuxtLink to="/rental-property-calculator" class="hover:text-gray-700 transition">Rental Property Calculator</NuxtLink></li>
-              <li><NuxtLink to="/fix-and-flip-calculator" class="hover:text-gray-700 transition">Fix and Flip Calculator</NuxtLink></li>
+            <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Calculators</p>
+            <ul class="space-y-2">
+              <li><NuxtLink to="/cap-rate-calculator" class="text-sm text-gray-500 hover:text-gray-800 transition">Cap Rate</NuxtLink></li>
+              <li><NuxtLink to="/rental-property-calculator" class="text-sm text-gray-500 hover:text-gray-800 transition">Rental Property</NuxtLink></li>
+              <li><NuxtLink to="/fix-and-flip-calculator" class="text-sm text-gray-500 hover:text-gray-800 transition">Fix &amp; Flip</NuxtLink></li>
+              <li><NuxtLink to="/dscr-calculator" class="text-sm text-gray-500 hover:text-gray-800 transition">DSCR</NuxtLink></li>
             </ul>
           </div>
           <div>
-            <h4 class="font-bold text-gray-700 mb-3">Company</h4>
-            <ul class="space-y-1.5 text-sm text-gray-500">
-              <li><NuxtLink to="/about" class="hover:text-gray-700 transition">About</NuxtLink></li>
-              <li><NuxtLink to="/pricing" class="hover:text-gray-700 transition">Pricing</NuxtLink></li>
-              <li><NuxtLink to="/blog" class="hover:text-gray-700 transition">Blog</NuxtLink></li>
-              <li><NuxtLink to="/privacy" class="hover:text-gray-700 transition">Privacy Policy</NuxtLink></li>
-              <li><NuxtLink to="/terms" class="hover:text-gray-700 transition">Terms of Service</NuxtLink></li>
+            <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">More Tools</p>
+            <ul class="space-y-2">
+              <li><NuxtLink to="/cash-on-cash-calculator" class="text-sm text-gray-500 hover:text-gray-800 transition">Cash-on-Cash Return</NuxtLink></li>
+              <li><NuxtLink to="/noi-calculator" class="text-sm text-gray-500 hover:text-gray-800 transition">NOI Calculator</NuxtLink></li>
+              <li><NuxtLink to="/brrrr-calculator" class="text-sm text-gray-500 hover:text-gray-800 transition">BRRRR Calculator</NuxtLink></li>
+              <li><NuxtLink to="/arv-calculator" class="text-sm text-gray-500 hover:text-gray-800 transition">ARV Calculator</NuxtLink></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Company</p>
+            <ul class="space-y-2">
+              <li><NuxtLink to="/about" class="text-sm text-gray-500 hover:text-gray-800 transition">About</NuxtLink></li>
+              <li><NuxtLink to="/pricing" class="text-sm text-gray-500 hover:text-gray-800 transition">Pricing</NuxtLink></li>
+              <li><NuxtLink to="/privacy" class="text-sm text-gray-500 hover:text-gray-800 transition">Privacy</NuxtLink></li>
+              <li><NuxtLink to="/terms" class="text-sm text-gray-500 hover:text-gray-800 transition">Terms</NuxtLink></li>
             </ul>
           </div>
         </div>
-        <div class="border-t border-gray-100 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p class="text-xs text-gray-400">© 2026 RealCalc. For informational purposes only. Before-tax analysis. Consult qualified professionals before investing.</p>
-          <p class="text-xs text-gray-400">Built for US real estate investors.</p>
+        <div class="border-t border-gray-100 mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p class="text-xs text-gray-400">© 2026 RealCalc. For informational purposes only. Not financial advice.</p>
+          <p class="text-xs text-gray-400">Before-tax analysis only. Consult a CPA for tax impact on flip profits.</p>
         </div>
       </div>
     </footer>
 
-    <!-- Email Capture Modal -->
+    <!-- ═══════════════════════════════════════════════
+         SCENARIO PANEL + EMAIL MODAL
+    ═══════════════════════════════════════════════ -->
+    <div class="max-w-[1100px] mx-auto px-4 pb-10">
+      <ScenarioPanel
+        calculator="fix-and-flip"
+        :has-result="hasResult"
+        :result="currentScenarioResult"
+        :trigger-save="triggerScenarioSave"
+        @saved="onScenarioSaved"
+      />
+    </div>
+
     <EmailCaptureModal
       :show="showEmailModal"
       :calculator-name="'Fix and Flip Calculator'"
-      :primary-result="hasResult ? formatCurrency(result.totalProfit) + ' profit / ' + result.roi.toFixed(1) + '% ROI' : undefined"
-      title="Save Your Fix &amp; Flip Analysis"
+      :primary-result="hasResult ? `${totalProfit >= 0 ? formatCurrency(totalProfit) : '-' + formatCurrency(Math.abs(totalProfit))} profit · ${roi.toFixed(1)}% ROI` : undefined"
+      title="Save Your Flip Analysis"
       subtitle="Get market benchmarks, deal templates, and calculator updates."
       cta-label="Save &amp; Get Free Updates"
       @close="showEmailModal = false"
@@ -1867,46 +2033,78 @@
 <script setup>
 import { ref, reactive, computed, onMounted, nextTick } from 'vue'
 
-// ─────────────────────────────────────────
-// 1. SEO HEAD
-// ─────────────────────────────────────────
+// ─── SEO HEAD ─────────────────────────────────────────────────────────────────
 useHead({
-  title: 'Fix and Flip Calculator — Profit & ROI | RealCalc',
+  title: 'Fix and Flip Calculator — 2026 ROI Tool | RealCalc',
   meta: [
-    { name: 'description', content: 'Calculate fix and flip profit, ROI, and 70% Rule max offer for any US property. Free 2026 calculator with hard money, conventional, and all-cash scenarios. Before-tax analysis.' },
-    { property: 'og:title', content: 'Fix and Flip Calculator — Profit & ROI | RealCalc' },
-    { property: 'og:description', content: 'Project Total Profit and ROI for any US flip project. Hard money default, 70% Rule indicator, Break-Even price, scenario analysis, and PDF export.' },
+    {
+      name: 'description',
+      content: 'Calculate flip profit, ROI, and 70% Rule max offer for any US property. Free 2026 fix and flip calculator with hard money, conventional, and all-cash scenarios.'
+    },
+    { name: 'keywords', content: 'fix and flip calculator, house flipping calculator, flip profit calculator, fix and flip roi calculator, real estate flip calculator, 70% rule calculator, hard money flip calculator' },
+    { property: 'og:title', content: 'Fix and Flip Calculator — 2026 ROI Tool | RealCalc' },
+    { property: 'og:description', content: 'Calculate flip profit, ROI, and 70% Rule max offer for any US property. Free 2026 fix and flip calculator with hard money, conventional, and all-cash scenarios.' },
     { property: 'og:type', content: 'website' },
-    { name: 'keywords', content: 'fix and flip calculator, house flipping calculator, flip profit calculator, fix and flip roi calculator, real estate flip calculator, 70 percent rule, hard money calculator, after repair value calculator' },
   ],
   script: [
     {
       type: 'application/ld+json',
-      children: JSON.stringify({
+      innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
-        '@graph': [
+        '@type': 'SoftwareApplication',
+        name: 'Fix and Flip Calculator',
+        applicationCategory: 'FinanceApplication',
+        description: 'Free 2026 fix and flip calculator. Computes Total Profit, ROI, 70% Rule Max Offer, Break-Even Sale Price, Annualized ROI, and Profit per Month. Supports hard money, conventional, and all-cash financing with 3 calculation modes.',
+        featureList: 'Total Profit calculation, ROI analysis, 70% Rule Max Offer, Break-Even Sale Price, Annualized ROI, hard money/conventional/cash modes, 3 calculation modes, sensitivity analysis, scenario modeling, PDF export, 6-tier benchmarking, project timeline table',
+        operatingSystem: 'Web',
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }
+      })
+    },
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: [
           {
-            '@type': 'SoftwareApplication',
-            name: 'Fix and Flip Calculator',
-            description: 'Calculate fix and flip profit, ROI, 70% Rule max offer, and Break-Even sale price for US real estate flip projects with hard money, conventional, or all-cash financing.',
-            applicationCategory: 'FinanceApplication',
-            operatingSystem: 'Web',
-            url: 'https://realcalc.com/fix-and-flip-calculator',
-            featureList: 'Total Profit calculation, ROI analysis, 70% Rule Max Offer, Break-Even Sale Price, Annualized ROI, hard money/conventional/cash financing modes, 3 calculation modes, 3 sensitivity tables, project timeline, scenario analysis, PDF export, 6-tier ROI benchmarking',
-            offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }
+            '@type': 'Question',
+            name: 'What is a good ROI for a flip in 2026?',
+            acceptedAnswer: { '@type': 'Answer', text: 'In 2026, with hard money rates at 11–13%, a good flip ROI is 20–29% (Solid), 30–49% (Strong), or 50%+ (Exceptional) for a 6-month hold. Below 20% ROI is increasingly considered Weak because execution risk often exceeds the margin. Aim for 25%+ ROI minimum to justify the capital and time investment.' }
           },
           {
-            '@type': 'FAQPage',
-            mainEntity: [
-              { '@type': 'Question', name: 'What is a good ROI for a flip in 2026?', acceptedAnswer: { '@type': 'Answer', text: 'In 2026, with hard money rates at 11–14%, a good flip ROI for a 6-month hold is 20–29% (Solid tier, market-average), 30–49% (Strong), or 50%+ (Exceptional). Target at least 25% ROI to justify execution risk. Below 15% ROI is generally not worth the time and capital in the 2026 rate environment. These are before-tax figures — actual take-home is lower after ordinary income taxes at 25–37% marginal rates.' } },
-              { '@type': 'Question', name: 'What is the 70% Rule in house flipping?', acceptedAnswer: { '@type': 'Answer', text: 'The 70% Rule states that your maximum safe offer should be: ARV × 0.70 minus Rehab Budget. For example, if ARV is $280K and rehab is $45K, the 70% Rule max offer is ($280K × 0.70) − $45K = $151K. The rule builds in a 30% buffer covering profit, financing costs, and execution risk. Deals within the rule (offer at or below the max) typically produce Solid ROI or better in 2026 market conditions.' } },
-              { '@type': 'Question', name: 'How do I calculate flip profit and ROI?', acceptedAnswer: { '@type': 'Answer', text: 'Total Profit = Net Sale Proceeds − Total Cash Invested. ROI = (Total Profit ÷ Total Cash Invested) × 100. Example: invest $50K cash total, receive $65K net after all sale costs and loan payoff → Total Profit $15K → ROI 30%. Total Cash Invested includes your down payment, closing costs, rehab (if not financed), holding costs, loan points, and loan interest — all actual cash outflows.' } },
-              { '@type': 'Question', name: 'Should I use hard money or cash for a flip?', acceptedAnswer: { '@type': 'Answer', text: 'Hard money lets you deploy smaller capital per deal (typically 20% down) but adds 8–12% in points and interest over a 6-month project. Cash has no financing cost but ties up 100% of capital. Hard money is standard for investors running multiple projects simultaneously — the leverage multiplies deal volume. Cash is better for investors with limited deal flow or conservative risk tolerance. Run the calculator in both modes to see the exact dollar difference for your specific deal.' } },
-              { '@type': 'Question', name: 'How long should a typical flip take?', acceptedAnswer: { '@type': 'Answer', text: 'Typical 2026 flips run 5–8 months total: 2–4 months of active rehab plus 2–4 months on market. Cosmetic flips (paint, flooring, fixtures) can complete in 3–4 months. Gut rehabs typically run 6–10 months due to permitting, structural work, and MEP systems. Every extra month adds loan interest ($1,000–2,000/mo) and holding costs ($400–800/mo) — a flip that runs 3 months over budget can lose 8–15% of projected ROI entirely from carrying costs.' } },
-              { '@type': 'Question', name: 'Is flip profit taxed as capital gains or ordinary income?', acceptedAnswer: { '@type': 'Answer', text: 'Flip profits are typically taxed as ordinary income (25–37% marginal rates in 2026), not capital gains. The IRS views investors who regularly flip properties as dealers in real estate — not investors — especially when flipping is a regular business activity. Only properties genuinely held as investments for 1+ year may qualify for long-term capital gains rates (15–20%). The calculator shows before-tax results; always discount by your marginal tax rate when planning actual take-home returns. Consult a CPA for your specific situation.' } },
-              { '@type': 'Question', name: 'What is ARV and why does it matter so much?', acceptedAnswer: { '@type': 'Answer', text: 'ARV (After Repair Value) is the projected market value of the property after your renovation is fully complete. It is the single most important input in flip analysis because it determines the exit value — and every dollar of ARV error flows directly to the profit line. A $10K ARV miss on a thin-margin deal can eliminate the entire projected profit. Always verify ARV with 3+ active MLS comps (recent, within your target buyer pool), a Broker Price Opinion (BPO), or a pre-rehab appraisal. Conservative ARV estimates — 5–10% below the optimistic comp-derived number — produce the most reliable outcomes.' } },
-              { '@type': 'Question', name: 'Can I use this calculator for BRRRR or wholesale deals?', acceptedAnswer: { '@type': 'Answer', text: 'Partially. For BRRRR, this calculator models the pre-refinance stage (purchase + rehab + stabilize) but not the refinance event itself — a dedicated BRRRR Calculator handles the refinance separately and calculates the remaining equity and cash-out proceeds. For pure wholesale deals (contract assignment without renovation), this calculator\'s math doesn\'t apply — there\'s no hold period, no rehab, and no financing cost structure. For deals where you\'re choosing between flip and rental hold strategies, run both this calculator and the Rental Property Calculator on the same property to compare strategies.' } }
-            ]
+            '@type': 'Question',
+            name: 'What is the 70% Rule in house flipping?',
+            acceptedAnswer: { '@type': 'Answer', text: 'The 70% Rule formula is: Max Offer = ARV × 0.70 − Rehab Budget. It reserves 30% of ARV for profit, financing costs, and execution risk. Deals at or below the 70% Max Offer are within the rule; deals above require strong justification such as a hot market or very light rehab scope.' }
+          },
+          {
+            '@type': 'Question',
+            name: 'How do I calculate flip profit and ROI?',
+            acceptedAnswer: { '@type': 'Answer', text: 'Total Profit = Net Sale Proceeds − Total Cash Invested. ROI = (Total Profit ÷ Total Cash Invested) × 100. Example: $150K invested, $200K net sale proceeds after all costs → Total Profit $50K → ROI 33%.' }
+          },
+          {
+            '@type': 'Question',
+            name: 'Should I use hard money or cash for a flip?',
+            acceptedAnswer: { '@type': 'Answer', text: 'Hard money lets you deploy smaller capital per deal (typically 20% down) but adds 8–12% in points and interest over the project. Cash has no financing cost but ties up 100% of capital. Hard money is standard for flippers running multiple projects; cash is better for flippers with limited deal volume or risk tolerance. Run the calculator in both modes to compare.' }
+          },
+          {
+            '@type': 'Question',
+            name: 'How long should a typical flip take?',
+            acceptedAnswer: { '@type': 'Answer', text: 'Typical 2026 flips run 5–8 months total: 2–4 months rehab plus 2–4 months on market. Cosmetic flips can complete in 3–4 months; gut rehabs typically run 6–10 months. Every extra month adds holding costs and loan interest — a flip that runs 3 months over budget can lose 8–15% of projected ROI.' }
+          },
+          {
+            '@type': 'Question',
+            name: 'Is flip profit taxed as capital gains or ordinary income?',
+            acceptedAnswer: { '@type': 'Answer', text: 'Flip profits are typically taxed as ORDINARY INCOME (25–37% marginal rates in 2026), not capital gains. The IRS views flippers as dealers of real estate — especially if flipping is a regular activity. Only properties held 1+ year as genuine long-term investment may qualify for capital gains treatment. Consult a CPA for your specific situation.' }
+          },
+          {
+            '@type': 'Question',
+            name: 'What is ARV and why does it matter so much?',
+            acceptedAnswer: { '@type': 'Answer', text: 'ARV (After Repair Value) is the projected market value of the property AFTER renovation is complete. It is the single most important input in flip analysis — a $10K ARV miss on a thin-margin deal can eliminate the entire projected profit. Verify ARV with 3+ active MLS comps, a BPO, or a pre-rehab appraisal. Conservative ARV estimates produce more reliable flip outcomes.' }
+          },
+          {
+            '@type': 'Question',
+            name: 'Can I use this calculator for BRRRR or wholesale deals?',
+            acceptedAnswer: { '@type': 'Answer', text: 'Partially. For BRRRR, you can use it for the pre-refinance stage (purchase + rehab + stabilize) but a dedicated BRRRR Calculator handles the refinance event better. For pure wholesale (contract assignment without rehab), flip math does not apply. For hybrid deals, run both this calculator and Rental Property Calculator to compare strategies.' }
           }
         ]
       })
@@ -1914,679 +2112,822 @@ useHead({
   ]
 })
 
-// ─────────────────────────────────────────
-// 2. REACTIVE STATE
-// ─────────────────────────────────────────
+// ─── REACTIVE STATE ──────────────────────────────────────────────────────────
 const calcMode = ref('analyze')
-const isNavExpanded = ref(false)
 const openFaq = ref(null)
+const isNavExpanded = ref(false)
 const shareSuccess = ref(false)
 const showEmailModal = ref(false)
 const triggerScenarioSave = ref(false)
+const scenariosOpen = ref(false)
+const showSensitivity = ref(false)
 
 const form = reactive({
-  purchasePrice: '',
-  propertyType: 'SFR',
-  arv: '',
-  arvConfidence: 'Realistic',
-  purchaseClosingCostsMode: 'pct',
-  purchaseClosingCostsPct: '3',
-  purchaseClosingCostsDollars: '',
-  rehabBudget: '',
-  rehabContingencyPct: '10',
-  rehabDurationMonths: '3',
-  holdPeriodMonths: '6',
+  // Property
+  purchasePrice: null,
+  arv: null,
+  arvConfidence: 'realistic',
+  propertyType: 'sfr',
+  // Purchase Costs
+  closingCostsMode: 'percent',
+  purchaseClosingCostsPct: 3,
+  purchaseClosingCostsDollars: null,
+  // Rehab
+  rehabBudget: null,
+  rehabContingencyPct: 10,
+  rehabDurationMonths: 3,
+  // Hold Period
+  holdPeriodMonths: 6,
+  // Holding Costs
   holdingMode: 'simple',
-  totalMonthlyHoldingSimple: '',
+  totalMonthlyHoldingSimple: null,
   holdingCosts: {
-    propertyTax: '',
-    insurance: '',
-    utilities: '',
-    hoa: '',
-    other: ''
+    propertyTax: null,
+    insurance: null,
+    utilities: null,
+    hoa: null,
+    other: null,
   },
+  // Financing
   financingType: 'hm',
-  hmLoanToCostPct: '80',
-  hmInterestRate: '12',
-  hmPointsPct: '3',
+  hmLoanToCostPct: 80,
+  hmInterestRate: 12,
+  hmPointsPct: 3,
   hmLoanCoversRehab: true,
-  convDownPaymentPct: '25',
-  convInterestRate: '7.5',
-  convLoanTermYears: '30',
-  saleCostsPct: '8',
-  targetTotalProfit: '',
-  targetROI: '',
-  reverseTargetMode: 'roi'
+  convDownPaymentPct: 25,
+  convInterestRate: 7.5,
+  convLoanTermYears: 30,
+  // Sale Costs
+  saleCostsPct: 8,
+  // Reverse mode
+  targetType: 'roi',
+  targetROI: 25,
+  targetTotalProfit: null,
 })
 
-// ─────────────────────────────────────────
-// 3. FIELD CONFIGS
-// ─────────────────────────────────────────
-const holdingDetailFields = [
-  { key: 'propertyTax', label: 'Property Tax (monthly)', placeholder: 'Enter monthly property tax' },
-  { key: 'insurance', label: 'Insurance (monthly)', placeholder: 'Enter monthly insurance' },
-  { key: 'utilities', label: 'Utilities (monthly)', placeholder: 'Enter monthly utilities' },
-  { key: 'hoa', label: 'HOA (monthly)', placeholder: 'Enter monthly HOA' },
-  { key: 'other', label: 'Other (monthly)', placeholder: 'Enter other monthly costs' }
-]
+// ─── HELPER: calc flip at arbitrary params (for sensitivity/scenarios/reverse) ─
+function calcFlipHelper(params) {
+  const pp   = params.purchasePrice || 0
+  const arvv = params.arv || 0
+  const rb   = params.rehabBudget || 0
+  const rc   = rb * (params.rehabContingencyPct || 10) / 100
+  const months = params.holdPeriodMonths || 6
+  const scp  = (params.saleCostsPct || 8) / 100
+  const ccm  = params.closingCostsMode || 'percent'
+  const ccp  = params.purchaseClosingCostsPct || 3
+  const ccd  = params.purchaseClosingCostsDollars || 0
+  const closingCosts = ccm === 'dollar' ? ccd : pp * ccp / 100
+  const holdingMonthly = params.holdingMonthly || 0
+  const holdingCostsTotal = holdingMonthly * months
+  const saleCosts = arvv * scp
+  const ft   = params.financingType || 'hm'
+  const hmLtc = params.hmLoanToCostPct || 80
+  const hmRate = params.hmInterestRate || 12
+  const hmPts  = params.hmPointsPct || 3
+  const hmCoversRehab = params.hmLoanCoversRehab !== false
 
-const faqs = [
-  {
-    q: 'What is a good ROI for a flip in 2026?',
-    a: 'In 2026, with hard money rates at 11–14%, a good flip ROI for a 6-month hold is 20–29% (Solid — market-average), 30–49% (Strong — above average), or 50%+ (Exceptional). Target at least 25% ROI minimum to justify execution risk in the current rate environment. Below 15% ROI is generally not worth the time and capital commitment. These are before-tax figures — actual take-home is lower after ordinary income taxes at 25–37% marginal rates.'
-  },
-  {
-    q: 'What is the 70% Rule in house flipping?',
-    a: 'The 70% Rule is the industry heuristic for maximum safe offer price on a flip. Formula: Max Offer = ARV × 0.70 − Rehab Budget. For a property with $280K ARV and $45K rehab, the 70% Rule max offer is ($280K × 0.70) − $45K = $151K. The rule builds in a 30% buffer covering profit, financing costs, and execution risk. Deals within the rule (offer at or below max) typically produce Solid ROI or better; deals outside require strong specific justification like a hot appreciation market or extremely light rehab scope.'
-  },
-  {
-    q: 'How do I calculate flip profit and ROI?',
-    a: 'Total Profit = Net Sale Proceeds − Total Cash Invested. ROI = (Total Profit ÷ Total Cash Invested) × 100. Example: $50K cash invested total, $65K net after all sale costs and loan payoff → $15K Total Profit → 30% ROI. Total Cash Invested includes all real cash outflows: down payment, closing costs, rehab (if not financed), holding costs, loan points, and loan interest.'
-  },
-  {
-    q: 'Should I use hard money or cash for a flip?',
-    a: 'Hard money lets you deploy smaller capital per deal (typically 20% down) but adds 8–12% in points and interest over a 6-month project. Cash eliminates financing cost but ties up 100% of capital. Hard money is standard for investors running multiple simultaneous projects — leverage multiplies deal volume. Cash is better for investors with limited deal flow or conservative risk tolerance. Run the calculator in both modes to see the exact dollar difference on your specific deal before deciding.'
-  },
-  {
-    q: 'How long should a typical flip take?',
-    a: 'Typical 2026 flips run 5–8 months total: 2–4 months of active rehab plus 2–4 months on market. Cosmetic flips can complete in 3–4 months; gut rehabs typically run 6–10 months due to permitting and structural work. Every extra month adds loan interest ($1,000–2,000/mo) and holding costs ($400–800/mo) — a flip that runs 3 months over budget on timeline can lose 8–15% of projected ROI entirely from carrying costs. Always budget for overruns.'
-  },
-  {
-    q: 'Is flip profit taxed as capital gains or ordinary income?',
-    a: 'Flip profits are typically taxed as ordinary income (25–37% marginal rates in 2026), not long-term capital gains. The IRS views investors who regularly flip properties as real estate dealers rather than investors — especially when flipping is a regular activity generating multiple transactions per year. Only properties genuinely held as investments for 1+ year may qualify for long-term capital gains rates. This calculator shows before-tax results. Consult a CPA for your specific tax situation and entity structure options.'
-  },
-  {
-    q: 'What is ARV and why does it matter so much?',
-    a: 'ARV (After Repair Value) is the projected market value after your renovation is complete. It is the single most important input in flip analysis — every dollar of ARV error flows directly to the profit line. A $10K ARV miss on a thin-margin deal can eliminate the entire projected profit, and a $25K miss can turn a profitable-looking deal into a loss. Always verify with 3+ active MLS comps within 90 days, a Broker Price Opinion, or a pre-rehab appraisal. Reduce your comp-derived estimate by 5–10% for conservative planning.'
-  },
-  {
-    q: 'Can I use this calculator for BRRRR or wholesale deals?',
-    a: 'Partially. For BRRRR, you can use the Analyze mode for the pre-refinance stage (purchase + rehab + stabilize), but the refinance event itself requires a dedicated BRRRR Calculator that models the cash-out and ongoing rental performance separately. For pure wholesale deals (contract assignment without renovation), this calculator\'s math doesn\'t apply — there\'s no hold period or rehab cost structure. For deals where you\'re deciding between flip and rental hold, run both this calculator and the Rental Property Calculator to compare strategies side-by-side.'
-  }
-]
+  let la = 0, dp = 0, points = 0, interest = 0, remaining = 0
 
-// ─────────────────────────────────────────
-// 4. CORE CALC FUNCTION
-// ─────────────────────────────────────────
-function calcFlip(inputs) {
-  const {
-    purchasePrice: pp, arv, rehabBudget: rb, rehabContingencyPct: rcPct,
-    holdPeriodMonths: months, monthlyHolding,
-    financingType: ft, hmLoanToCostPct: hmLtcPct, hmInterestRate: hmRatePct,
-    hmPointsPct: hmPtsPct, hmLoanCoversRehab: hmCR,
-    convDownPaymentPct: convDpPct, convInterestRate: convRatePct, convLoanTermYears: convTerm,
-    closingMode, closingPct, closingDollars,
-    saleCostsPct: salePct
-  } = inputs
-
-  const purchasePrice = Number(pp) || 0
-  const arvVal = Number(arv) || 0
-  const rehabBudget = Number(rb) || 0
-  const contingency = rehabBudget * ((Number(rcPct) || 0) / 100)
-  const holdMonths = Number(months) || 6
-  const monthlyHoldingAmt = Number(monthlyHolding) || 0
-
-  // Closing costs
-  let closingAmt = 0
-  if (closingMode === 'dollar') {
-    closingAmt = Number(closingDollars) || 0
+  if (ft === 'cash') {
+    dp = pp; la = 0; points = 0; interest = 0; remaining = 0
+  } else if (ft === 'hm') {
+    const base = hmCoversRehab ? (pp + rb) : pp
+    la = base * hmLtc / 100
+    dp = pp * (1 - hmLtc / 100)
+    points = la * hmPts / 100
+    interest = la * hmRate / 100 / 12 * months
+    remaining = la
   } else {
-    closingAmt = purchasePrice * ((Number(closingPct) || 0) / 100)
-  }
-
-  // Financing
-  let loanAmount = 0, downPayment = 0, loanPoints = 0, totalLoanInterest = 0, remainingLoan = 0
-  let monthlyPaymentConv = 0
-
-  if (ft === 'hm') {
-    const ltc = (Number(hmLtcPct) || 0) / 100
-    const rate = (Number(hmRatePct) || 0) / 100
-    const pts = (Number(hmPtsPct) || 0) / 100
-    loanAmount = hmCR ? (purchasePrice + rehabBudget) * ltc : purchasePrice * ltc
-    downPayment = purchasePrice * (1 - ltc)
-    loanPoints = loanAmount * pts
-    totalLoanInterest = loanAmount * (rate / 12) * holdMonths
-    remainingLoan = loanAmount
-  } else if (ft === 'conv') {
-    const dp = (Number(convDpPct) || 0) / 100
-    const annualRate = (Number(convRatePct) || 0) / 100
-    const r = annualRate / 12
-    const n = (Number(convTerm) || 30) * 12
-    const M = holdMonths
-    loanAmount = purchasePrice * (1 - dp)
-    downPayment = purchasePrice * dp
-    loanPoints = 0
-    if (r > 0) {
-      monthlyPaymentConv = loanAmount * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1)
-      remainingLoan = loanAmount * (Math.pow(1 + r, n) - Math.pow(1 + r, M)) / (Math.pow(1 + r, n) - 1)
-    } else {
-      monthlyPaymentConv = n > 0 ? loanAmount / n : 0
-      remainingLoan = n > 0 ? loanAmount * (1 - M / n) : 0
+    // conv
+    const convDown = params.convDownPaymentPct || 25
+    const convRate = params.convInterestRate || 7.5
+    const convTerm = params.convLoanTermYears || 30
+    la = pp * (1 - convDown / 100)
+    dp = pp * convDown / 100
+    points = 0
+    if (la > 0) {
+      const r = convRate / 100 / 12
+      const n = convTerm * 12
+      const M = months
+      if (r > 0) {
+        const mp = la * (r * Math.pow(1+r, n)) / (Math.pow(1+r, n) - 1)
+        remaining = la * (Math.pow(1+r, n) - Math.pow(1+r, M)) / (Math.pow(1+r, n) - 1)
+        interest = mp * M - (la - remaining)
+      } else {
+        remaining = la * (1 - M / n)
+        interest = 0
+      }
     }
-    const principalReduction = loanAmount - remainingLoan
-    totalLoanInterest = (monthlyPaymentConv * M) - principalReduction
-  } else {
-    loanAmount = 0; downPayment = purchasePrice; loanPoints = 0; totalLoanInterest = 0; remainingLoan = 0
   }
 
-  const rehabInCash = (ft === 'hm' && hmCR) ? 0 : rehabBudget
-  const contingencyInCash = (ft === 'hm' && hmCR) ? 0 : contingency
-  const totalHoldingCosts = monthlyHoldingAmt * holdMonths
-  const salePctDec = (Number(salePct) || 0) / 100
-  const saleCostsAmt = arvVal * salePctDec
+  const rehabCash = (ft === 'hm' && hmCoversRehab) ? 0 : rb
+  const contingencyCash = (ft === 'hm' && hmCoversRehab) ? 0 : rc
+  const tci = dp + closingCosts + rehabCash + contingencyCash + holdingCostsTotal + points + interest
+  const nsp = arvv - saleCosts - remaining
+  const profit = nsp - tci
+  const roi = tci > 0 ? profit / tci * 100 : 0
 
-  const totalCashInvested = downPayment + closingAmt + rehabInCash + contingencyInCash + totalHoldingCosts + loanPoints + totalLoanInterest
-  const totalProjectCosts = purchasePrice + closingAmt + rehabBudget + contingency + totalHoldingCosts + loanPoints + totalLoanInterest + saleCostsAmt
-
-  const netSaleProceeds = arvVal - saleCostsAmt - remainingLoan
-  const totalProfit = netSaleProceeds - totalCashInvested
-  const roi = totalCashInvested > 0 ? (totalProfit / totalCashInvested) * 100 : 0
-  const annualizedRoi = holdMonths > 0 ? (Math.pow(1 + roi / 100, 12 / holdMonths) - 1) * 100 : 0
-  const rule70 = arvVal * 0.70 - rehabBudget
-  const breakEven = salePctDec < 1 ? (totalCashInvested + remainingLoan) / (1 - salePctDec) : null
-  const profitPerMonth = holdMonths > 0 ? totalProfit / holdMonths : 0
-
-  return {
-    loanAmount, downPayment, loanPoints, totalLoanInterest, remainingLoan,
-    rehabInCash, contingencyInCash, contingency, closingAmt,
-    totalHoldingCosts, saleCostsAmt,
-    totalCashInvested, totalProjectCosts,
-    netSaleProceeds, totalProfit, roi, annualizedRoi,
-    rule70, breakEven, profitPerMonth, monthlyPaymentConv
-  }
+  return { profit, roi, tci, la, remaining, points, interest, nsp, saleCosts, closingCosts, dp }
 }
 
-function makeInputs(overrides = {}) {
-  const base = {
-    purchasePrice: form.purchasePrice,
-    arv: form.arv,
-    rehabBudget: form.rehabBudget,
-    rehabContingencyPct: form.rehabContingencyPct,
-    holdPeriodMonths: form.holdPeriodMonths,
-    monthlyHolding: monthlyHolding.value,
+// ─── BASE PARAMS HELPER ─────────────────────────────────────────────────────
+function getBaseParams(overrides = {}) {
+  return {
+    purchasePrice: Number(form.purchasePrice) || 0,
+    arv: Number(form.arv) || 0,
+    rehabBudget: Number(form.rehabBudget) || 0,
+    rehabContingencyPct: Number(form.rehabContingencyPct) || 10,
+    holdPeriodMonths: Number(form.holdPeriodMonths) || 6,
+    saleCostsPct: Number(form.saleCostsPct) || 8,
+    closingCostsMode: form.closingCostsMode,
+    purchaseClosingCostsPct: Number(form.purchaseClosingCostsPct) || 3,
+    purchaseClosingCostsDollars: Number(form.purchaseClosingCostsDollars) || 0,
+    holdingMonthly: totalMonthlyHolding.value,
     financingType: form.financingType,
-    hmLoanToCostPct: form.hmLoanToCostPct,
-    hmInterestRate: form.hmInterestRate,
-    hmPointsPct: form.hmPointsPct,
+    hmLoanToCostPct: Number(form.hmLoanToCostPct) || 80,
+    hmInterestRate: Number(form.hmInterestRate) || 12,
+    hmPointsPct: Number(form.hmPointsPct) || 3,
     hmLoanCoversRehab: form.hmLoanCoversRehab,
-    convDownPaymentPct: form.convDownPaymentPct,
-    convInterestRate: form.convInterestRate,
-    convLoanTermYears: form.convLoanTermYears,
-    closingMode: form.purchaseClosingCostsMode,
-    closingPct: form.purchaseClosingCostsPct,
-    closingDollars: form.purchaseClosingCostsDollars,
-    saleCostsPct: form.saleCostsPct,
+    convDownPaymentPct: Number(form.convDownPaymentPct) || 25,
+    convInterestRate: Number(form.convInterestRate) || 7.5,
+    convLoanTermYears: Number(form.convLoanTermYears) || 30,
     ...overrides
   }
-  return base
 }
 
-// ─────────────────────────────────────────
-// 5. COMPUTED — MONTHLY HOLDING
-// ─────────────────────────────────────────
-const detailedMonthlyHolding = computed(() => {
-  return ['propertyTax', 'insurance', 'utilities', 'hoa', 'other'].reduce((sum, k) => sum + (Number(form.holdingCosts[k]) || 0), 0)
-})
-
-const monthlyHolding = computed(() => {
+// ─── COMPUTED — HOLDING COSTS ─────────────────────────────────────────────────
+const totalMonthlyHolding = computed(() => {
   if (form.holdingMode === 'simple') return Number(form.totalMonthlyHoldingSimple) || 0
-  return detailedMonthlyHolding.value
+  return (Number(form.holdingCosts.propertyTax) || 0) +
+         (Number(form.holdingCosts.insurance) || 0) +
+         (Number(form.holdingCosts.utilities) || 0) +
+         (Number(form.holdingCosts.hoa) || 0) +
+         (Number(form.holdingCosts.other) || 0)
 })
 
-// ─────────────────────────────────────────
-// 6. COMPUTED — ANALYZE MODE
-// ─────────────────────────────────────────
-const result = computed(() => {
-  const pp = Number(form.purchasePrice)
-  const arv = Number(form.arv)
-  const rb = Number(form.rehabBudget)
-  if (!pp || !arv) return null
-  return calcFlip(makeInputs())
+const totalHoldingCosts = computed(() =>
+  totalMonthlyHolding.value * (Number(form.holdPeriodMonths) || 6)
+)
+
+// ─── COMPUTED — LOAN CALCULATIONS ────────────────────────────────────────────
+const loanAmount = computed(() => {
+  const pp = Number(form.purchasePrice) || 0
+  const rb = Number(form.rehabBudget) || 0
+  if (form.financingType === 'cash') return 0
+  if (form.financingType === 'hm') {
+    const base = form.hmLoanCoversRehab ? (pp + rb) : pp
+    return base * (Number(form.hmLoanToCostPct) || 80) / 100
+  }
+  return pp * (1 - (Number(form.convDownPaymentPct) || 25) / 100)
 })
 
-const hasResult = computed(() => result.value !== null && !isNaN(result.value.totalProfit))
-
-const rule70Compliant = computed(() => {
-  if (!result.value) return false
-  return Number(form.purchasePrice) <= result.value.rule70
+const loanPoints = computed(() => {
+  if (form.financingType !== 'hm') return 0
+  return loanAmount.value * (Number(form.hmPointsPct) || 3) / 100
 })
 
-// ─────────────────────────────────────────
-// 7. BADGE SYSTEM
-// ─────────────────────────────────────────
-const badge = computed(() => {
-  if (!hasResult.value) return { label: '—', bg1: '#9ca3af', bg2: '#6b7280' }
-  const roi = result.value.roi
-  if (roi >= 50) return { label: 'Exceptional', bg1: '#059669', bg2: '#047857' }
-  if (roi >= 30) return { label: 'Strong', bg1: '#10B981', bg2: '#059669' }
-  if (roi >= 20) return { label: 'Solid', bg1: '#F59E0B', bg2: '#D97706' }
-  if (roi >= 10) return { label: 'Weak', bg1: '#F97316', bg2: '#EA580C' }
-  if (roi >= 0) return { label: 'Critical', bg1: '#DC2626', bg2: '#B91C1C' }
-  return { label: 'Loss', bg1: '#7F1D1D', bg2: '#991B1B' }
+const totalLoanInterest = computed(() => {
+  const months = Number(form.holdPeriodMonths) || 6
+  if (form.financingType === 'cash') return 0
+  if (form.financingType === 'hm') {
+    return loanAmount.value * (Number(form.hmInterestRate) || 12) / 100 / 12 * months
+  }
+  // conv amortizing
+  const P = loanAmount.value
+  if (P <= 0) return 0
+  const r = (Number(form.convInterestRate) || 7.5) / 100 / 12
+  const n = (Number(form.convLoanTermYears) || 30) * 12
+  const M = months
+  if (r > 0) {
+    const mp = P * (r * Math.pow(1+r, n)) / (Math.pow(1+r, n) - 1)
+    const rem = P * (Math.pow(1+r, n) - Math.pow(1+r, M)) / (Math.pow(1+r, n) - 1)
+    return mp * M - (P - rem)
+  } else {
+    return 0
+  }
 })
 
-// ─────────────────────────────────────────
-// 8. INSIGHT TEXT
-// ─────────────────────────────────────────
+const remainingLoanBalance = computed(() => {
+  if (form.financingType === 'cash') return 0
+  if (form.financingType === 'hm') return loanAmount.value
+  const P = loanAmount.value
+  if (P <= 0) return 0
+  const r = (Number(form.convInterestRate) || 7.5) / 100 / 12
+  const n = (Number(form.convLoanTermYears) || 30) * 12
+  const M = Number(form.holdPeriodMonths) || 6
+  if (r > 0) {
+    return P * (Math.pow(1+r, n) - Math.pow(1+r, M)) / (Math.pow(1+r, n) - 1)
+  }
+  return P * (1 - M / n)
+})
+
+const downPaymentCalc = computed(() => {
+  const pp = Number(form.purchasePrice) || 0
+  if (form.financingType === 'cash') return pp
+  if (form.financingType === 'hm') return pp * (1 - (Number(form.hmLoanToCostPct) || 80) / 100)
+  return pp * (Number(form.convDownPaymentPct) || 25) / 100
+})
+
+const purchaseClosingCostsCalc = computed(() => {
+  const pp = Number(form.purchasePrice) || 0
+  if (form.closingCostsMode === 'dollar') return Number(form.purchaseClosingCostsDollars) || 0
+  return pp * (Number(form.purchaseClosingCostsPct) || 3) / 100
+})
+
+const rehabContingencyCalc = computed(() =>
+  (Number(form.rehabBudget) || 0) * (Number(form.rehabContingencyPct) || 10) / 100
+)
+
+const saleCostsDollar = computed(() =>
+  (Number(form.arv) || 0) * (Number(form.saleCostsPct) || 8) / 100
+)
+
+// ─── COMPUTED — MAIN CALC CHAIN ───────────────────────────────────────────────
+const totalCashInvested = computed(() => {
+  const rb = Number(form.rehabBudget) || 0
+  const rc = rehabContingencyCalc.value
+  const rehabCash = (form.financingType === 'hm' && form.hmLoanCoversRehab) ? 0 : rb
+  const contingencyCash = (form.financingType === 'hm' && form.hmLoanCoversRehab) ? 0 : rc
+  return downPaymentCalc.value + purchaseClosingCostsCalc.value + rehabCash + contingencyCash +
+         totalHoldingCosts.value + loanPoints.value + totalLoanInterest.value
+})
+
+const totalProjectCosts = computed(() =>
+  (Number(form.purchasePrice) || 0) + purchaseClosingCostsCalc.value +
+  (Number(form.rehabBudget) || 0) + rehabContingencyCalc.value +
+  totalHoldingCosts.value + loanPoints.value + totalLoanInterest.value + saleCostsDollar.value
+)
+
+const netSaleProceeds = computed(() =>
+  (Number(form.arv) || 0) - saleCostsDollar.value - remainingLoanBalance.value
+)
+
+const totalProfit = computed(() =>
+  netSaleProceeds.value - totalCashInvested.value
+)
+
+const roi = computed(() =>
+  totalCashInvested.value > 0 ? (totalProfit.value / totalCashInvested.value) * 100 : 0
+)
+
+const hasResult = computed(() => {
+  if (calcMode.value === 'analyze') {
+    return !!(Number(form.purchasePrice) > 0 && Number(form.arv) > 0)
+  }
+  if (calcMode.value === 'find-price') return findMaxPriceResult.value !== null
+  if (calcMode.value === 'find-rehab') return findMaxRehabResult.value !== null
+  return false
+})
+
+// ─── COMPUTED — DERIVED METRICS ───────────────────────────────────────────────
+const annualizedROI = computed(() => {
+  if (!hasResult.value || roi.value <= -100) return 0
+  const months = Number(form.holdPeriodMonths) || 6
+  return (Math.pow(1 + roi.value / 100, 12 / months) - 1) * 100
+})
+
+const profitPerMonth = computed(() => {
+  const months = Number(form.holdPeriodMonths) || 6
+  return totalProfit.value / months
+})
+
+const seventyPctRuleMax = computed(() => {
+  const arv = Number(form.arv) || 0
+  const rb  = Number(form.rehabBudget) || 0
+  return arv * 0.70 - rb
+})
+
+const isWithin70Rule = computed(() => {
+  const pp = Number(form.purchasePrice) || 0
+  return pp <= seventyPctRuleMax.value
+})
+
+const breakEvenSalePrice = computed(() => {
+  const scp = (Number(form.saleCostsPct) || 8) / 100
+  if (scp >= 1) return 0
+  return (totalCashInvested.value + remainingLoanBalance.value) / (1 - scp)
+})
+
+// ─── COMPUTED — BADGE / TIER ──────────────────────────────────────────────────
+const tier = computed(() => {
+  const r = roi.value
+  if (r >= 50) return { label: 'Exceptional', bg1: '#059669', bg2: '#047857' }
+  if (r >= 30) return { label: 'Strong',      bg1: '#10B981', bg2: '#059669' }
+  if (r >= 20) return { label: 'Solid',       bg1: '#F59E0B', bg2: '#D97706' }
+  if (r >= 10) return { label: 'Weak',        bg1: '#F97316', bg2: '#EA580C' }
+  if (r >= 0)  return { label: 'Critical',    bg1: '#DC2626', bg2: '#B91C1C' }
+  return              { label: 'Loss',        bg1: '#7F1D1D', bg2: '#991B1B' }
+})
+
+function getTier(r) {
+  if (r >= 50) return { label: 'Exceptional', bg: '#059669' }
+  if (r >= 30) return { label: 'Strong',      bg: '#10B981' }
+  if (r >= 20) return { label: 'Solid',       bg: '#F59E0B' }
+  if (r >= 10) return { label: 'Weak',        bg: '#F97316' }
+  if (r >= 0)  return { label: 'Critical',    bg: '#DC2626' }
+  return              { label: 'Loss',        bg: '#7F1D1D' }
+}
+
+// ─── COMPUTED — INSIGHT TEXT ──────────────────────────────────────────────────
 const insightText = computed(() => {
   if (!hasResult.value) return ''
-  const r = result.value
-  const roi = r.roi.toFixed(1)
+  const r = roi.value.toFixed(1)
   const months = form.holdPeriodMonths
   const ft = form.financingType === 'hm' ? 'hard money' : form.financingType === 'conv' ? 'conventional' : 'all-cash'
-  const tierLabel = badge.value.label
-  const ruleStatus = rule70Compliant.value ? 'within the 70% Rule' : 'outside the 70% Rule'
+  const ruleStatus = isWithin70Rule.value ? 'within the 70% Rule' : 'outside the 70% Rule'
+  const tierName = tier.value.label
 
-  if (r.roi >= 50) return `ROI of ${roi}% over ${months} months with ${ft} financing is Exceptional by 2026 US flip market norms — top-quartile deal requiring strong acquisition discount or expert rehab execution. Deal is ${ruleStatus}. Major driver: deep value acquisition below market. Protect this margin by controlling rehab timeline aggressively — every extra month reduces annualized ROI.`
-  if (r.roi >= 30) return `ROI of ${roi}% over ${months} months with ${ft} financing is Strong for 2026 — above-average with healthy safety buffer. Deal is ${ruleStatus}. This range justifies the execution risk and capital commitment in the current rate environment. Stress-test the Conservative scenario before committing; a 20% rehab overrun or one-month slip still keeps you solidly positive.`
-  if (r.roi >= 20) return `ROI of ${roi}% over ${months} months with ${ft} financing is Solid — market-average for 2026 hard-money flips. Deal is ${ruleStatus}. Acceptable if execution is tight and ARV is conservative. A rehab overrun or ARV miss of 5–8% could push this into Weak territory — verify ARV with multiple comps and build 15% contingency. Before-tax only; ordinary income taxes will reduce take-home by 25–37%.`
-  if (r.roi >= 10) return `ROI of ${roi}% over ${months} months with ${ft} financing is Weak for 2026 market conditions. Deal is ${ruleStatus}. Execution risk often exceeds profit margin at this level — a single significant overrun eliminates the return. Consider re-negotiating the purchase price or reducing rehab scope before committing capital. Before-tax analysis; after-tax take-home is substantially lower.`
-  if (r.roi >= 0) return `ROI of ${roi}% over ${months} months with ${ft} financing is in the Critical range. Deal is ${ruleStatus}. Barely positive — any overrun on time, budget, or ARV produces a loss. Reconsider deal structure, re-negotiate offer price, or walk away. Break-Even Sale Price is very close to ARV, leaving no cushion for market softness.`
-  return `ROI of ${roi}% represents a projected loss. Deal is ${ruleStatus}. Do not proceed without major changes: significantly lower offer, smaller rehab scope, or different exit strategy. Break-Even Sale Price exceeds ARV — this deal cannot profit at current projections. Before-tax analysis; actual losses compound after taxes.`
+  if (roi.value < 0) {
+    return `ROI of ${r}% over ${months} months with ${ft} financing projects a loss in the ${tierName} range. This deal loses money as underwritten. Major concern: ${Math.abs(totalProfit.value) > 20000 ? 'significant loss requiring fundamental deal restructuring' : 'thin loss that could be addressed by reducing purchase price or rehab scope'}. Your purchase is ${ruleStatus} — the 70% Rule max offer is ${formatCurrency(seventyPctRuleMax.value)}. Do not proceed without significant changes to price, scope, or exit assumptions.`
+  }
+  if (roi.value < 10) {
+    return `ROI of ${r}% over ${months} months with ${ft} financing is in the ${tierName} range by 2026 US flip market norms. This barely-positive return carries high execution risk in the current rate environment. Your purchase is ${ruleStatus}. At 2026 hard money rates (~12%), any rehab overrun, timeline slip, or ARV miss will push this into loss territory. Reconsider deal structure or walk.`
+  }
+  if (roi.value < 20) {
+    return `ROI of ${r}% over ${months} months with ${ft} financing is ${tierName} by 2026 standards. Below-market return that may not justify execution risk. Major factor: ${loanPoints.value + totalLoanInterest.value > totalProfit.value * 0.5 ? 'high financing costs relative to profit' : purchaseClosingCostsCalc.value + totalHoldingCosts.value > 5000 ? 'holding and closing costs compressing margin' : 'acquisition price relative to ARV'}. Your offer is ${ruleStatus}. Consider the opportunity cost vs a deal with Solid-tier ROI.`
+  }
+  if (roi.value < 30) {
+    return `ROI of ${r}% over ${months} months with ${ft} financing is ${tierName} — market-average for 2026 hard-money flips. Acceptable if execution is tight and timeline is respected. Your purchase is ${ruleStatus}. With hard money rates at ~12% in 2026, this margin is thin enough that a 20% rehab overrun or 2-month timeline extension could push you into Weak territory. Stress-test with Conservative scenario before committing. Before-tax analysis — actual take-home lower after ordinary income taxes.`
+  }
+  if (roi.value < 50) {
+    return `ROI of ${r}% over ${months} months with ${ft} financing is ${tierName} — above-average for 2026 US flip market. Healthy margin of safety for execution risk and market softness. Your purchase is ${ruleStatus}. Annualized ROI of ${annualizedROI.value.toFixed(0)}% compares favorably to most passive investment alternatives. Before-tax analysis — actual take-home lower after ordinary income taxes.`
+  }
+  return `ROI of ${r}% over ${months} months with ${ft} financing is ${tierName} — top-quartile flip result. Usually requires deep-value acquisition, major scope of work, or rapidly appreciating market conditions. Your purchase is ${ruleStatus}. Verify ARV conservatively — optimistic ARV assumptions are the most common driver of inflated projections at this level. Before-tax analysis — actual take-home lower after ordinary income taxes.`
 })
 
-// ─────────────────────────────────────────
-// 9. WARNINGS
-// ─────────────────────────────────────────
+// ─── COMPUTED — WARNINGS ─────────────────────────────────────────────────────
 const warnings = computed(() => {
-  const w = []
-  if (!hasResult.value) return w
-  const r = result.value
-  const pp = Number(form.purchasePrice)
-  const arv = Number(form.arv)
-  const rb = Number(form.rehabBudget)
-
-  if (pp > r.rule70 && r.rule70 > 0) w.push({ type: 'warn', msg: `Outside 70% Rule — max rule-compliant offer is ${formatCurrency(r.rule70)}.` })
-  if (arv <= pp + rb) w.push({ type: 'error', msg: 'ARV barely covers purchase + rehab cost — no margin for other costs.' })
-  if (rb > 0 && rb < pp * 0.05) w.push({ type: 'warn', msg: 'Rehab budget under 5% of purchase price — may be unrealistically low.' })
-  if (rb > pp * 0.6) w.push({ type: 'warn', msg: 'Heavy rehab (>60% of purchase price) — confirm scope and timeline.' })
-  if (Number(form.rehabDurationMonths) > Number(form.holdPeriodMonths)) w.push({ type: 'error', msg: 'Rehab duration exceeds hold period — adjust timeline.' })
-  if (monthlyHolding.value > pp * 0.015) w.push({ type: 'warn', msg: 'Monthly holding costs exceed 1.5% of purchase price — verify figures.' })
-  if (form.financingType === 'hm' && Number(form.hmInterestRate) > 15) w.push({ type: 'warn', msg: 'HM rate above typical 2026 range (≤15%) — verify lender quote.' })
-  if (form.financingType === 'hm' && Number(form.hmPointsPct) > 5) w.push({ type: 'warn', msg: 'Points above typical 2026 range (≤5%) — verify lender quote.' })
-  if (r.roi > 200) w.push({ type: 'warn', msg: 'ROI over 200% — verify ARV input.' })
-  if (r.roi < -50) w.push({ type: 'warn', msg: 'ROI below −50% — verify all inputs for errors.' })
-  if (arv > pp * 3) w.push({ type: 'warn', msg: 'ARV is more than 3× purchase price — verify ARV.' })
-  return w
-})
-
-// ─────────────────────────────────────────
-// 10. SCENARIOS
-// ─────────────────────────────────────────
-const scenarios = computed(() => {
-  if (!hasResult.value) return []
-  const base = result.value
+  const ws = []
   const pp = Number(form.purchasePrice) || 0
   const arv = Number(form.arv) || 0
   const rb = Number(form.rehabBudget) || 0
 
-  const conservInputs = makeInputs({
-    arv: arv * 0.92,
-    rehabBudget: rb * 1.20,
-    holdPeriodMonths: String(Number(form.holdPeriodMonths) + 2),
-    hmInterestRate: form.financingType === 'hm' ? String(Number(form.hmInterestRate) + 1) : form.hmInterestRate
-  })
-  const conserv = calcFlip(conservInputs)
-
-  const optimInputs = makeInputs({
-    arv: arv * 1.05,
-    holdPeriodMonths: String(Math.max(3, Number(form.holdPeriodMonths) - 1))
-  })
-  const optim = calcFlip(optimInputs)
-
-  return [
-    { name: 'Conservative', profit: conserv.totalProfit, roi: conserv.roi, color: 'text-orange-600' },
-    { name: 'Base', profit: base.totalProfit, roi: base.roi, color: 'text-amber-700' },
-    { name: 'Optimistic*', profit: optim.totalProfit, roi: optim.roi, color: 'text-emerald-700' }
-  ]
+  if (pp > 0 && arv > 0 && !isWithin70Rule.value) {
+    ws.push({ type: 'warn', msg: `Outside 70% Rule — Your offer of ${formatCurrency(pp)} exceeds the 70% Rule max of ${formatCurrency(seventyPctRuleMax.value)}. High execution risk.` })
+  }
+  if (pp > 0 && arv > 0 && arv <= pp + rb) {
+    ws.push({ type: 'error', msg: 'ARV barely covers purchase + rehab — no margin for costs. Review deal fundamentals.' })
+  }
+  if (rb > 0 && pp > 0 && rb < pp * 0.05) {
+    ws.push({ type: 'warn', msg: 'Rehab budget may be unrealistically low for most flips — verify scope of work.' })
+  }
+  if (rb > 0 && pp > 0 && rb > pp * 0.6) {
+    ws.push({ type: 'warn', msg: `Heavy rehab — ${formatCurrency(rb)} is ${((rb/pp)*100).toFixed(0)}% of purchase price. Confirm scope and contractor bids.` })
+  }
+  if (Number(form.rehabDurationMonths) > Number(form.holdPeriodMonths)) {
+    ws.push({ type: 'error', msg: 'Rehab duration exceeds hold period — adjust one of the two values.' })
+  }
+  if (Number(form.hmInterestRate) > 15 && form.financingType === 'hm') {
+    ws.push({ type: 'warn', msg: 'HM rate above typical 2026 range (10–14%) — verify lender quote.' })
+  }
+  if (Number(form.hmPointsPct) > 5 && form.financingType === 'hm') {
+    ws.push({ type: 'warn', msg: 'Points above typical 2026 range (2–4%) — verify lender terms.' })
+  }
+  if (hasResult.value && roi.value > 200) {
+    ws.push({ type: 'warn', msg: 'ROI above 200% — verify ARV and cost inputs for accuracy.' })
+  }
+  if (hasResult.value && roi.value < -50) {
+    ws.push({ type: 'warn', msg: 'ROI below −50% — verify inputs. This is an unusually large projected loss.' })
+  }
+  return ws
 })
 
-// ─────────────────────────────────────────
-// 11. COST BARS (VISUALIZATION)
-// ─────────────────────────────────────────
-const costBars = computed(() => {
+// ─── COMPUTED — SCENARIOS ────────────────────────────────────────────────────
+const scenarioResults = computed(() => {
   if (!hasResult.value) return []
-  const r = result.value
+  const bp = getBaseParams()
+  const months = Number(form.holdPeriodMonths) || 6
+
+  const scenarios = [
+    {
+      label: 'Conservative',
+      isBase: false,
+      adjustments: 'ARV −8%, Rehab +20%, Hold +2mo, HM Rate +1%',
+      params: {
+        arv: bp.arv * 0.92,
+        rehabBudget: bp.rehabBudget * 1.20,
+        holdPeriodMonths: months + 2,
+        hmInterestRate: bp.hmInterestRate + 1,
+      }
+    },
+    {
+      label: 'Base',
+      isBase: true,
+      adjustments: null,
+      params: {}
+    },
+    {
+      label: 'Optimistic',
+      isBase: false,
+      adjustments: 'ARV +5%, Rehab −5%, Hold −1mo',
+      params: {
+        arv: bp.arv * 1.05,
+        rehabBudget: bp.rehabBudget * 0.95,
+        holdPeriodMonths: Math.max(3, months - 1),
+      }
+    }
+  ]
+
+  return scenarios.map(s => {
+    const p = getBaseParams(s.params)
+    const result = calcFlipHelper(p)
+    const t = getTier(result.roi)
+    return {
+      label: s.label,
+      isBase: s.isBase,
+      adjustments: s.adjustments,
+      profit: result.profit,
+      roi: result.roi,
+      tierLabel: t.label,
+      tierBg: t.bg
+    }
+  })
+})
+
+// ─── COMPUTED — SENSITIVITY TABLES ────────────────────────────────────────────
+const sensitivityTable1 = computed(() => {
   const pp = Number(form.purchasePrice) || 0
-  const total = r.totalProjectCosts
-  if (total <= 0) return []
-
-  const bars = [
-    { label: 'Purchase Price', value: pp, color: '#1e3a5f' },
-    { label: 'Closing Costs', value: r.closingAmt, color: '#374151' },
-    { label: 'Rehab + Contingency', value: (Number(form.rehabBudget) || 0) + r.contingency, color: '#6366f1' },
-    { label: 'Holding Costs', value: r.totalHoldingCosts, color: '#f59e0b' },
-    { label: 'Loan Points', value: r.loanPoints, color: '#ef4444' },
-    { label: 'Loan Interest', value: r.totalLoanInterest, color: '#dc2626' },
-    { label: 'Sale Costs', value: r.saleCostsAmt, color: '#9ca3af' }
-  ]
-  return bars.filter(b => b.value > 0).map(b => ({ ...b, pct: Math.min(100, (b.value / total) * 100) }))
-})
-
-// ─────────────────────────────────────────
-// 12. SENSITIVITY TABLES
-// ─────────────────────────────────────────
-const sensitivity1 = computed(() => {
-  if (!hasResult.value) return []
   const arv = Number(form.arv) || 0
   const rb = Number(form.rehabBudget) || 0
-  const arvFactors = [-0.10, -0.05, 0, 0.05, 0.10]
-  const rehabOverruns = [0, 0.15, 0.30]
-
-  return arvFactors.map(af => {
-    const arvAdj = arv * (1 + af)
-    const label = af === 0 ? `$${Math.round(arvAdj / 1000)}K (base)` : `${af > 0 ? '+' : ''}${(af * 100).toFixed(0)}%`
-    const vals = rehabOverruns.map(ro => {
-      const r = calcFlip(makeInputs({ arv: arvAdj, rehabBudget: rb * (1 + ro) }))
-      return r.totalProfit
-    })
-    return { arvLabel: label, vals, isBase: af === 0 }
-  })
-})
-
-const sensitivity2 = computed(() => {
-  if (!hasResult.value) return []
-  const holds = [4, 6, 8, 10]
-  const rates = [10, 12, 14]
-  return holds.map(h => ({
-    hold: h,
-    cells: rates.map(rt => {
-      const r = calcFlip(makeInputs({ holdPeriodMonths: String(h), hmInterestRate: String(rt) }))
-      return { rate: rt, profit: r.totalProfit, roi: r.roi }
+  if (!pp || !arv) return []
+  const arvDeltas = [-0.10, -0.05, 0, 0.05, 0.10]
+  const rehabMultipliers = [1.00, 1.15, 1.30]
+  return arvDeltas.map(d => ({
+    label: d === 0 ? 'Target ARV' : (d > 0 ? `ARV +${Math.abs(d*100)}%` : `ARV −${Math.abs(d*100)}%`),
+    isBase: d === 0,
+    cells: rehabMultipliers.map((m, j) => {
+      const r = calcFlipHelper(getBaseParams({ arv: arv * (1 + d), rehabBudget: rb * m }))
+      return { key: j, profit: r.profit, roi: r.roi }
     })
   }))
 })
 
-const sensitivity3 = computed(() => {
-  if (!hasResult.value) return []
+const sensitivityTable2 = computed(() => {
+  if (!Number(form.purchasePrice) || !Number(form.arv)) return []
+  const holdOptions = [4, 6, 8, 10]
+  const rateOptions = [10, 12, 14]
+  const baseMonths = Number(form.holdPeriodMonths) || 6
+  return holdOptions.map(h => ({
+    label: `${h} months`,
+    isBase: h === baseMonths,
+    cells: rateOptions.map((rate, j) => {
+      const r = calcFlipHelper(getBaseParams({
+        holdPeriodMonths: h,
+        hmInterestRate: rate
+      }))
+      return { key: j, roi: r.roi, profit: r.profit }
+    })
+  }))
+})
+
+const sensitivityTable3 = computed(() => {
   const pp = Number(form.purchasePrice) || 0
-  const offsets = [-10000, -5000, 0, 5000, 10000, 15000, 20000]
-  return offsets.map(offset => {
-    const adjPP = pp + offset
-    if (adjPP <= 0) return null
-    const r = calcFlip(makeInputs({ purchasePrice: adjPP }))
+  const arv = Number(form.arv) || 0
+  const rb = Number(form.rehabBudget) || 0
+  if (!pp || !arv) return []
+  const deltas = [-15000, -10000, -5000, 0, 5000, 10000, 15000, 20000]
+  return deltas.map(d => {
+    const newPP = pp + d
+    if (newPP <= 0) return null
+    const r = calcFlipHelper(getBaseParams({ purchasePrice: newPP }))
+    const ruleMax = arv * 0.70 - rb
     return {
-      label: offset === 0 ? formatCurrency(adjPP) + ' (base)' : (offset > 0 ? '+' : '') + formatCurrency(offset),
-      profit: r.totalProfit,
+      label: d === 0 ? formatCurrency(pp) + ' (base)' : (d > 0 ? formatCurrency(pp) + ' +' + formatCurrency(d) : formatCurrency(pp) + ' −' + formatCurrency(Math.abs(d))),
+      isBase: d === 0,
+      profit: r.profit,
       roi: r.roi,
-      withinRule: adjPP <= r.rule70,
-      isBase: offset === 0
+      within70: newPP <= ruleMax
     }
   }).filter(Boolean)
 })
 
-// ─────────────────────────────────────────
-// 13. PROJECT TIMELINE
-// ─────────────────────────────────────────
+// ─── COMPUTED — PROJECT TIMELINE ──────────────────────────────────────────────
 const projectTimeline = computed(() => {
   if (!hasResult.value) return []
-  const r = result.value
   const pp = Number(form.purchasePrice) || 0
   const rb = Number(form.rehabBudget) || 0
+  const rc = rehabContingencyCalc.value
   const months = Number(form.holdPeriodMonths) || 6
-  const rehabMonths = Number(form.rehabDurationMonths) || 3
-  const monthly = monthlyHolding.value
-
+  const rehabDur = Number(form.rehabDurationMonths) || 3
+  const holdingMo = totalMonthlyHolding.value
+  const closing = purchaseClosingCostsCalc.value
   const rows = []
-  // Month 0: Closing
-  rows.push({ month: 0, monthLabel: '0 (Close)', phase: 'Purchase + Close', cumCost: pp + r.closingAmt + r.loanPoints, cumHolding: 0, isExit: false })
 
-  // Months 1 to N
-  for (let m = 1; m <= months; m++) {
-    const isRehab = m <= rehabMonths
-    const phase = isRehab ? 'Rehab' : (m === months ? 'Sale Closing' : 'On Market')
-    const rehabDrawThisMonth = isRehab ? (rb + r.contingency) / rehabMonths : 0
-    const prevCumCost = rows[rows.length - 1].cumCost
-    const cumCost = prevCumCost + rehabDrawThisMonth + monthly + (r.totalLoanInterest / months)
-    const cumHolding = monthly * m
-    const isExit = m === months
-    rows.push({ month: m, monthLabel: isExit ? `${m} (Exit)` : String(m), phase, cumCost, cumHolding, isExit })
+  // Month 0 — Closing
+  rows.push({
+    month: '0',
+    phase: 'Closing',
+    cumulCost: pp + closing + loanPoints.value,
+    cumulHolding: 0,
+    notes: 'Purchase + closing costs + loan points',
+    isExit: false
+  })
+
+  // Months 1–rehabDur — Rehab
+  const rehabPerMonth = rb / Math.max(rehabDur, 1)
+  for (let m = 1; m <= Math.min(rehabDur, months - 1); m++) {
+    const cumulRehab = Math.min(m * rehabPerMonth + rc, rb + rc)
+    rows.push({
+      month: String(m),
+      phase: m === rehabDur ? 'Rehab complete' : 'Rehab in progress',
+      cumulCost: pp + closing + loanPoints.value + cumulRehab,
+      cumulHolding: holdingMo * m,
+      notes: m === rehabDur ? 'Staged for market' : `Rehab draw ${m} of ${rehabDur}`,
+      isExit: false
+    })
   }
+
+  // On-market months
+  for (let m = rehabDur + 1; m < months; m++) {
+    rows.push({
+      month: String(m),
+      phase: 'On market',
+      cumulCost: pp + closing + loanPoints.value + rb + rc,
+      cumulHolding: holdingMo * m,
+      notes: m === months - 1 ? 'Under contract' : '',
+      isExit: false
+    })
+  }
+
+  // Exit month
+  rows.push({
+    month: `${months} — Exit`,
+    phase: 'SALE',
+    cumulCost: totalProjectCosts.value,
+    cumulHolding: holdingMo * months,
+    notes: `Net proceeds: ${formatCurrency(netSaleProceeds.value)}`,
+    isExit: true
+  })
+
   return rows
 })
 
-// ─────────────────────────────────────────
-// 14. REVERSE MODE — FIND MAX PURCHASE PRICE
-// ─────────────────────────────────────────
-function getTargetValue() {
-  if (form.reverseTargetMode === 'roi') return Number(form.targetROI)
-  return null // profit mode handled separately
-}
+// ─── COMPUTED — REVERSE MODE: Find Max Purchase Price ─────────────────────────
+const findMaxPriceResult = computed(() => {
+  if (calcMode.value !== 'find-price') return null
+  const arv = Number(form.arv) || 0
+  if (arv <= 0) return null
 
-function getTargetProfit() {
-  if (form.reverseTargetMode === 'profit') return Number(form.targetTotalProfit)
+  const isROI = form.targetType === 'roi'
+  const targetVal = isROI ? Number(form.targetROI) : Number(form.targetTotalProfit)
+  if (!targetVal) return null
+
+  const metTarget = (res) => isROI ? res.roi >= targetVal : res.profit >= targetVal
+
+  let lo = 10000, hi = 2 * arv
+  const calcAt = (pp) => calcFlipHelper(getBaseParams({ purchasePrice: pp }))
+
+  if (!metTarget(calcAt(lo))) return null
+
+  for (let i = 0; i < 100; i++) {
+    if (hi - lo < 500) break
+    const mid = (lo + hi) / 2
+    if (metTarget(calcAt(mid))) {
+      lo = mid
+    } else {
+      hi = mid
+    }
+  }
+
+  if (!metTarget(calcAt(lo))) return null
+  return Math.floor(lo)
+})
+
+const findMaxPriceError = computed(() => {
+  if (calcMode.value !== 'find-price') return null
+  const arv = Number(form.arv) || 0
+  if (arv <= 0) return 'Enter ARV to solve'
+  const isROI = form.targetType === 'roi'
+  const targetVal = isROI ? Number(form.targetROI) : Number(form.targetTotalProfit)
+  if (!targetVal) return 'Enter a target return'
+  if (findMaxPriceResult.value === null) return 'Target not achievable with current ARV and rehab assumptions.'
   return null
-}
+})
 
-function meetsProfitTarget(r) {
-  if (form.reverseTargetMode === 'roi') {
-    const target = Number(form.targetROI)
-    return !isNaN(target) && r.roi >= target
-  } else {
-    const target = Number(form.targetTotalProfit)
-    return !isNaN(target) && r.totalProfit >= target
-  }
-}
+// ─── COMPUTED — REVERSE MODE: Find Max Rehab ─────────────────────────────────
+const findMaxRehabResult = computed(() => {
+  if (calcMode.value !== 'find-rehab') return null
+  const pp = Number(form.purchasePrice) || 0
+  const arv = Number(form.arv) || 0
+  if (pp <= 0 || arv <= 0) return null
 
-const findPriceResult = computed(() => {
-  if (calcMode.value !== 'find-price') return null
-  const arv = Number(form.arv)
-  if (!arv) return null
-  const targetRoi = form.reverseTargetMode === 'roi' ? Number(form.targetROI) : null
-  const targetProfit = form.reverseTargetMode === 'profit' ? Number(form.targetTotalProfit) : null
-  if (targetRoi === null && targetProfit === null) return null
-  if (targetRoi !== null && isNaN(targetRoi)) return null
-  if (targetProfit !== null && isNaN(targetProfit)) return null
+  const isROI = form.targetType === 'roi'
+  const targetVal = isROI ? Number(form.targetROI) : Number(form.targetTotalProfit)
+  if (!targetVal) return null
 
-  let lo = 10000, hi = arv * 2
-  let left = lo, right = hi
+  const metTarget = (res) => isROI ? res.roi >= targetVal : res.profit >= targetVal
 
-  // Check if achievable at lo
-  const rLo = calcFlip(makeInputs({ purchasePrice: lo }))
-  if (!meetsProfitTarget(rLo)) return null
+  let lo = 0, hi = Math.max(arv - pp, 0)
+  if (hi <= 0) return null
+
+  const calcAt = (rb) => calcFlipHelper(getBaseParams({ rehabBudget: rb }))
+
+  if (!metTarget(calcAt(lo))) return null
 
   for (let i = 0; i < 100; i++) {
-    const mid = (left + right) / 2
-    const r = calcFlip(makeInputs({ purchasePrice: mid }))
-    if (meetsProfitTarget(r)) {
-      left = mid
+    if (hi - lo < 500) break
+    const mid = (lo + hi) / 2
+    if (metTarget(calcAt(mid))) {
+      lo = mid
     } else {
-      right = mid
+      hi = mid
     }
-    if (right - left < 500) break
   }
 
-  const finalPrice = (left + right) / 2
-  const finalR = calcFlip(makeInputs({ purchasePrice: finalPrice }))
-  if (!meetsProfitTarget(finalR)) return null
-  return finalPrice
+  if (!metTarget(calcAt(lo))) return null
+  return Math.floor(lo)
 })
 
-const findPriceError = computed(() => {
-  if (calcMode.value !== 'find-price') return null
-  const arv = Number(form.arv)
-  if (!arv) return null
-  const hasTarget = (form.reverseTargetMode === 'roi' && form.targetROI) || (form.reverseTargetMode === 'profit' && form.targetTotalProfit)
-  if (!hasTarget) return null
-  if (findPriceResult.value !== null) return null
-  return 'Target not achievable with current ARV and rehab assumptions. Consider lower target or different financing.'
-})
-
-const findPriceCalc = computed(() => {
-  if (findPriceResult.value === null) return null
-  return calcFlip(makeInputs({ purchasePrice: findPriceResult.value }))
-})
-
-// ─────────────────────────────────────────
-// 15. REVERSE MODE — FIND MAX REHAB BUDGET
-// ─────────────────────────────────────────
-const findRehabResult = computed(() => {
+const findMaxRehabError = computed(() => {
   if (calcMode.value !== 'find-rehab') return null
-  const pp = Number(form.purchasePrice)
-  const arv = Number(form.arv)
-  if (!pp || !arv) return null
-  const hasTarget = (form.reverseTargetMode === 'roi' && form.targetROI) || (form.reverseTargetMode === 'profit' && form.targetTotalProfit)
-  if (!hasTarget) return null
-
-  const maxRehab = arv - pp
-  if (maxRehab <= 0) return null
-
-  // Check if $0 rehab achieves target
-  const rZero = calcFlip(makeInputs({ rehabBudget: 0 }))
-  if (!meetsProfitTarget(rZero)) return null
-
-  let left = 0, right = maxRehab
-
-  for (let i = 0; i < 100; i++) {
-    const mid = (left + right) / 2
-    const r = calcFlip(makeInputs({ rehabBudget: mid }))
-    if (meetsProfitTarget(r)) {
-      left = mid
-    } else {
-      right = mid
-    }
-    if (right - left < 500) break
-  }
-
-  const finalRehab = (left + right) / 2
-  const finalR = calcFlip(makeInputs({ rehabBudget: finalRehab }))
-  if (!meetsProfitTarget(finalR)) return null
-  return finalRehab
+  if (!(Number(form.purchasePrice) > 0)) return 'Enter purchase price to solve'
+  if (!(Number(form.arv) > 0)) return 'Enter ARV to solve'
+  const isROI = form.targetType === 'roi'
+  const targetVal = isROI ? Number(form.targetROI) : Number(form.targetTotalProfit)
+  if (!targetVal) return 'Enter a target return'
+  if (findMaxRehabResult.value === null) return 'Purchase price too high for target — consider lower offer.'
+  return null
 })
 
-const findRehabError = computed(() => {
-  if (calcMode.value !== 'find-rehab') return null
-  const pp = Number(form.purchasePrice)
-  const arv = Number(form.arv)
-  if (!pp || !arv) return null
-  const hasTarget = (form.reverseTargetMode === 'roi' && form.targetROI) || (form.reverseTargetMode === 'profit' && form.targetTotalProfit)
-  if (!hasTarget) return null
-  if (findRehabResult.value !== null) return null
-  return 'Purchase price too high for target — consider a lower offer price or different target return.'
-})
-
-const findRehabCalc = computed(() => {
-  if (findRehabResult.value === null) return null
-  return calcFlip(makeInputs({ rehabBudget: findRehabResult.value }))
-})
-
-// ─────────────────────────────────────────
-// 16. SCENARIO PANEL RESULT
-// ─────────────────────────────────────────
+// ─── COMPUTED — SCENARIO RESULT (for ScenarioPanel) ──────────────────────────
 const currentScenarioResult = computed(() => {
-  if (!hasResult.value) return {}
+  if (!hasResult.value) return undefined
   return {
-    primaryMetric: 'Total Profit / ROI',
-    primaryValue: `${formatCurrency(result.value.totalProfit)} / ${result.value.roi.toFixed(1)}%`,
-    badgeLabel: badge.value.label,
-    badgeColor: badge.value.bg1,
-    purchasePrice: formatCurrency(Number(form.purchasePrice)),
-    arv: formatCurrency(Number(form.arv)),
-    rehabBudget: formatCurrency(Number(form.rehabBudget)),
-    holdPeriod: `${form.holdPeriodMonths} months`,
-    financing: form.financingType.toUpperCase(),
-    roi: `${result.value.roi.toFixed(1)}%`,
-    annualizedRoi: `${result.value.annualizedRoi.toFixed(1)}%`,
-    breakEven: result.value.breakEven ? formatCurrency(result.value.breakEven) : '—'
+    primaryMetric: 'Total Profit',
+    primaryValue: totalProfit.value >= 0 ? formatCurrency(totalProfit.value) : '-' + formatCurrency(Math.abs(totalProfit.value)),
+    badgeLabel: tier.value.label,
+    badgeColor: tier.value.bg1,
+    roi: roi.value,
+    totalProfit: totalProfit.value,
+    totalCashInvested: totalCashInvested.value,
+    holdPeriodMonths: form.holdPeriodMonths,
+    annualizedROI: annualizedROI.value,
+    profitPerMonth: profitPerMonth.value,
   }
 })
 
-// ─────────────────────────────────────────
-// 17. ON MOUNTED — URL PARAMS
-// ─────────────────────────────────────────
-onMounted(() => {
-  const p = new URLSearchParams(window.location.search)
-  if (p.get('md')) calcMode.value = p.get('md')
-  if (p.get('pp')) form.purchasePrice = p.get('pp')
-  if (p.get('av')) form.arv = p.get('av')
-  if (p.get('ac')) form.arvConfidence = p.get('ac')
-  if (p.get('rb')) form.rehabBudget = p.get('rb')
-  if (p.get('rc')) form.rehabContingencyPct = p.get('rc')
-  if (p.get('rd')) form.rehabDurationMonths = p.get('rd')
-  if (p.get('hp')) form.holdPeriodMonths = p.get('hp')
-  if (p.get('hm')) form.holdingMode = p.get('hm')
-  if (p.get('hs')) form.totalMonthlyHoldingSimple = p.get('hs')
-  if (p.get('hpt')) form.holdingCosts.propertyTax = p.get('hpt')
-  if (p.get('hi')) form.holdingCosts.insurance = p.get('hi')
-  if (p.get('hu')) form.holdingCosts.utilities = p.get('hu')
-  if (p.get('hh')) form.holdingCosts.hoa = p.get('hh')
-  if (p.get('ho')) form.holdingCosts.other = p.get('ho')
-  const ft = p.get('ft')
-  if (ft) {
-    form.financingType = ft
-    if (ft === 'hm') {
-      if (p.get('hltc')) form.hmLoanToCostPct = p.get('hltc')
-      if (p.get('hir')) form.hmInterestRate = p.get('hir')
-      if (p.get('hpp')) form.hmPointsPct = p.get('hpp')
-      if (p.get('hcr')) form.hmLoanCoversRehab = p.get('hcr') === 'true'
-    } else if (ft === 'conv') {
-      if (p.get('cdp')) form.convDownPaymentPct = p.get('cdp')
-      if (p.get('cir')) form.convInterestRate = p.get('cir')
-      if (p.get('clt')) form.convLoanTermYears = p.get('clt')
-    }
+// ─── FAQ DATA ─────────────────────────────────────────────────────────────────
+const faqs = [
+  {
+    q: 'What is a good ROI for a flip in 2026?',
+    a: 'In 2026, with hard money rates at 11–13%, a good flip ROI for a 6-month hold is 20–29% (Solid tier — market average), 30–49% (Strong — above average), or 50%+ (Exceptional — top quartile). Below 20% ROI is increasingly considered Weak because execution risk often consumes the margin. Aim for 25%+ ROI minimum to justify the capital lockup and active management time. Below 15% ROI in 2026 is often not worth the risk.'
+  },
+  {
+    q: 'What is the 70% Rule in house flipping?',
+    a: 'The 70% Rule is the industry heuristic for maximum safe offer price on a flip. Formula: Max Offer = ARV × 0.70 − Rehab Budget. The rule reserves 30% of ARV for profit, financing costs, and execution risk. Deals within the rule (offer at or below max) have healthy profit buffer; deals outside require strong justification — a hot appreciation market, very light rehab scope (under 15% of ARV), or an unusually short hold period. This calculator shows the 70% Rule max and your actual offer side-by-side with a real-time compliance indicator.'
+  },
+  {
+    q: 'How do I calculate flip profit and ROI?',
+    a: 'Total Profit = Net Sale Proceeds − Total Cash Invested. ROI = (Total Profit ÷ Total Cash Invested) × 100. Example: $150K invested (all cash out of pocket), $200K net sale proceeds after costs → Total Profit $50K → ROI 33%. The key is including ALL real cash outflows in Total Cash Invested: down payment, closing, rehab (if not financed), holding costs, loan points, and loan interest.'
+  },
+  {
+    q: 'Should I use hard money or cash for a flip?',
+    a: 'Hard money lets you deploy smaller capital per deal (typically 20% down) but adds 8–12% in points and interest costs over the project. Cash has no financing cost but ties up 100% of capital — reducing how many deals you can run simultaneously. Hard money is standard for flippers running multiple projects; cash is better for flippers with limited deal volume or lower risk tolerance. Run the calculator in both modes to compare — the ROI difference is often smaller than expected on short flips.'
+  },
+  {
+    q: 'How long should a typical flip take?',
+    a: 'Typical 2026 flips run 5–8 months total: 2–4 months rehab plus 2–4 months on market to close. Cosmetic flips can complete in 3–4 months; moderate rehabs run 5–7 months; gut renovations typically run 7–10 months. Every extra month adds holding costs and loan interest — a flip that runs 3 months over budget can lose 8–15% of projected ROI. Always stress-test with Hold Period plus 2 months in the Conservative scenario before committing.'
+  },
+  {
+    q: 'Is flip profit taxed as capital gains or ordinary income?',
+    a: 'Flip profits are typically taxed as ORDINARY INCOME at 25–37% marginal federal rates in 2026, not as capital gains. The IRS views active flippers as dealers of real estate — especially if flipping is a regular activity. Only properties held 1+ year as a genuine long-term investment may qualify for capital gains treatment. Before-tax ROI shown in this calculator is meaningfully higher than your actual after-tax return. Consult a CPA for your specific tax situation, especially if you flip more than 1–2 properties per year.'
+  },
+  {
+    q: 'What is ARV and why does it matter so much?',
+    a: 'ARV (After Repair Value) is the projected market value of the property AFTER your renovation is complete. It is the single most important input in flip analysis — a $10K ARV miss on a thin-margin deal can eliminate the entire projected profit. Verify ARV with 3+ active MLS comps from the last 90 days in the same neighborhood, a BPO (Broker Price Opinion), or a pre-rehab appraisal. Never use the seller\'s or wholesaler\'s ARV estimate without independent verification. Conservative ARV estimates produce more reliable flip outcomes — especially in 2026 soft markets.'
+  },
+  {
+    q: 'Can I use this calculator for BRRRR or wholesale deals?',
+    a: 'Partially. For BRRRR, you can use the Analyze mode for the purchase + rehab + sell phase, but a dedicated BRRRR Calculator handles the refinance event, seasoning period, and long-term rental phase separately. For pure wholesale (contract assignment without renovation), this calculator\'s math does not apply — flip profit assumes you complete the renovation. For hybrid deals where you\'re deciding between flip vs rent, run both this calculator and Rental Property Calculator side-by-side to compare strategies.'
   }
-  if (p.get('cm')) form.purchaseClosingCostsMode = p.get('cm')
-  if (p.get('cp')) form.purchaseClosingCostsPct = p.get('cp')
-  if (p.get('cd')) form.purchaseClosingCostsDollars = p.get('cd')
-  if (p.get('sc')) form.saleCostsPct = p.get('sc')
-  if (p.get('tp')) form.targetTotalProfit = p.get('tp')
-  if (p.get('tr')) form.targetROI = p.get('tr')
-  if (p.get('pt')) form.propertyType = p.get('pt')
-})
+]
 
-// ─────────────────────────────────────────
-// 18. HELPERS
-// ─────────────────────────────────────────
-function formatCurrency(val) {
-  if (val === null || val === undefined || isNaN(val)) return '—'
-  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(val)
-}
+// ─── RELATED CALCULATORS ─────────────────────────────────────────────────────
+const relatedCalcs = [
+  { label: 'Rental Property Calculator', href: '/rental-property-calculator' },
+  { label: 'ARV Calculator',             href: '/arv-calculator' },
+  { label: 'Cap Rate Calculator',        href: '/cap-rate-calculator' },
+  { label: 'DSCR Calculator',            href: '/dscr-calculator' },
+]
 
-function formatCurrencyShort(val) {
-  if (val === null || val === undefined || isNaN(val)) return '—'
-  const abs = Math.abs(val)
-  const sign = val < 0 ? '-' : ''
-  if (abs >= 1000000) return sign + '$' + (abs / 1000000).toFixed(1) + 'M'
-  if (abs >= 1000) return sign + '$' + Math.round(abs / 1000) + 'K'
-  return sign + '$' + Math.round(abs)
-}
-
+// ─── URL PERSISTENCE ─────────────────────────────────────────────────────────
 function buildShareParams() {
   const p = new URLSearchParams()
-  if (calcMode.value !== 'analyze') p.set('md', calcMode.value)
-  if (form.purchasePrice) p.set('pp', form.purchasePrice)
-  if (form.arv) p.set('av', form.arv)
-  if (form.arvConfidence !== 'Realistic') p.set('ac', form.arvConfidence)
-  if (form.rehabBudget) p.set('rb', form.rehabBudget)
-  if (form.rehabContingencyPct !== '10') p.set('rc', form.rehabContingencyPct)
-  if (form.rehabDurationMonths !== '3') p.set('rd', form.rehabDurationMonths)
-  if (form.holdPeriodMonths !== '6') p.set('hp', form.holdPeriodMonths)
-  if (form.holdingMode !== 'simple') p.set('hm', form.holdingMode)
-  if (form.totalMonthlyHoldingSimple) p.set('hs', form.totalMonthlyHoldingSimple)
-  if (form.holdingCosts.propertyTax) p.set('hpt', form.holdingCosts.propertyTax)
-  if (form.holdingCosts.insurance) p.set('hi', form.holdingCosts.insurance)
-  if (form.holdingCosts.utilities) p.set('hu', form.holdingCosts.utilities)
-  if (form.holdingCosts.hoa) p.set('hh', form.holdingCosts.hoa)
-  if (form.holdingCosts.other) p.set('ho', form.holdingCosts.other)
-  p.set('ft', form.financingType)
+  if (calcMode.value !== 'analyze')  p.set('md', calcMode.value)
+  if (form.purchasePrice)            p.set('pp', form.purchasePrice)
+  if (form.arv)                      p.set('av', form.arv)
+  if (form.arvConfidence !== 'realistic') p.set('ac', form.arvConfidence)
+  if (form.rehabBudget)              p.set('rb', form.rehabBudget)
+  if (form.rehabContingencyPct !== 10)    p.set('rc', form.rehabContingencyPct)
+  if (form.rehabDurationMonths !== 3)     p.set('rd', form.rehabDurationMonths)
+  if (form.holdPeriodMonths !== 6)        p.set('hp', form.holdPeriodMonths)
+  if (form.holdingMode !== 'simple')      p.set('hmode', form.holdingMode)
+  if (form.totalMonthlyHoldingSimple)     p.set('hs', form.totalMonthlyHoldingSimple)
+  if (form.holdingCosts.propertyTax)      p.set('hpt', form.holdingCosts.propertyTax)
+  if (form.holdingCosts.insurance)        p.set('hpi', form.holdingCosts.insurance)
+  if (form.holdingCosts.utilities)        p.set('hpu', form.holdingCosts.utilities)
+  if (form.holdingCosts.hoa)              p.set('hph', form.holdingCosts.hoa)
+  if (form.holdingCosts.other)            p.set('hpo', form.holdingCosts.other)
+  if (form.financingType !== 'hm')        p.set('ft', form.financingType)
   if (form.financingType === 'hm') {
-    if (form.hmLoanToCostPct !== '80') p.set('hltc', form.hmLoanToCostPct)
-    if (form.hmInterestRate !== '12') p.set('hir', form.hmInterestRate)
-    if (form.hmPointsPct !== '3') p.set('hpp', form.hmPointsPct)
-    p.set('hcr', String(form.hmLoanCoversRehab))
-  } else if (form.financingType === 'conv') {
-    if (form.convDownPaymentPct !== '25') p.set('cdp', form.convDownPaymentPct)
-    if (form.convInterestRate !== '7.5') p.set('cir', form.convInterestRate)
-    if (form.convLoanTermYears !== '30') p.set('clt', form.convLoanTermYears)
+    if (form.hmLoanToCostPct !== 80)  p.set('hltc', form.hmLoanToCostPct)
+    if (form.hmInterestRate !== 12)   p.set('hir', form.hmInterestRate)
+    if (form.hmPointsPct !== 3)       p.set('hpp', form.hmPointsPct)
+    if (!form.hmLoanCoversRehab)      p.set('hcr', '0')
   }
-  if (form.purchaseClosingCostsMode !== 'pct') p.set('cm', form.purchaseClosingCostsMode)
-  if (form.purchaseClosingCostsPct !== '3') p.set('cp', form.purchaseClosingCostsPct)
-  if (form.purchaseClosingCostsDollars) p.set('cd', form.purchaseClosingCostsDollars)
-  if (form.saleCostsPct !== '8') p.set('sc', form.saleCostsPct)
-  if (form.targetTotalProfit) p.set('tp', form.targetTotalProfit)
-  if (form.targetROI) p.set('tr', form.targetROI)
-  if (form.propertyType !== 'SFR') p.set('pt', form.propertyType)
+  if (form.financingType === 'conv') {
+    if (form.convDownPaymentPct !== 25) p.set('cdp', form.convDownPaymentPct)
+    if (form.convInterestRate !== 7.5)  p.set('cir', form.convInterestRate)
+    if (form.convLoanTermYears !== 30)  p.set('clt', form.convLoanTermYears)
+  }
+  if (form.closingCostsMode !== 'percent') p.set('cm', form.closingCostsMode)
+  if (form.purchaseClosingCostsPct !== 3)  p.set('cp', form.purchaseClosingCostsPct)
+  if (form.purchaseClosingCostsDollars)    p.set('cd', form.purchaseClosingCostsDollars)
+  if (form.saleCostsPct !== 8)             p.set('sc', form.saleCostsPct)
+  if (form.targetType !== 'roi')           p.set('tt', form.targetType)
+  if (form.targetROI !== 25)               p.set('tr', form.targetROI)
+  if (form.targetTotalProfit)              p.set('tp', form.targetTotalProfit)
   return p.toString()
+}
+
+if (process.client) {
+  onMounted(() => {
+    const p = new URLSearchParams(window.location.search)
+    if (p.has('md'))   calcMode.value               = p.get('md')
+    if (p.has('pp'))   form.purchasePrice            = Number(p.get('pp'))
+    if (p.has('av'))   form.arv                      = Number(p.get('av'))
+    if (p.has('ac'))   form.arvConfidence            = p.get('ac')
+    if (p.has('rb'))   form.rehabBudget              = Number(p.get('rb'))
+    if (p.has('rc'))   form.rehabContingencyPct      = Number(p.get('rc'))
+    if (p.has('rd'))   form.rehabDurationMonths      = Number(p.get('rd'))
+    if (p.has('hp'))   form.holdPeriodMonths         = Number(p.get('hp'))
+    if (p.has('hmode')) form.holdingMode             = p.get('hmode')
+    if (p.has('hs'))   form.totalMonthlyHoldingSimple = Number(p.get('hs'))
+    if (p.has('hpt'))  form.holdingCosts.propertyTax = Number(p.get('hpt'))
+    if (p.has('hpi'))  form.holdingCosts.insurance   = Number(p.get('hpi'))
+    if (p.has('hpu'))  form.holdingCosts.utilities   = Number(p.get('hpu'))
+    if (p.has('hph'))  form.holdingCosts.hoa         = Number(p.get('hph'))
+    if (p.has('hpo'))  form.holdingCosts.other       = Number(p.get('hpo'))
+    if (p.has('ft'))   form.financingType            = p.get('ft')
+    if (p.has('hltc')) form.hmLoanToCostPct          = Number(p.get('hltc'))
+    if (p.has('hir'))  form.hmInterestRate           = Number(p.get('hir'))
+    if (p.has('hpp'))  form.hmPointsPct              = Number(p.get('hpp'))
+    if (p.has('hcr'))  form.hmLoanCoversRehab        = p.get('hcr') !== '0'
+    if (p.has('cdp'))  form.convDownPaymentPct       = Number(p.get('cdp'))
+    if (p.has('cir'))  form.convInterestRate         = Number(p.get('cir'))
+    if (p.has('clt'))  form.convLoanTermYears        = Number(p.get('clt'))
+    if (p.has('cm'))   form.closingCostsMode         = p.get('cm')
+    if (p.has('cp'))   form.purchaseClosingCostsPct  = Number(p.get('cp'))
+    if (p.has('cd'))   form.purchaseClosingCostsDollars = Number(p.get('cd'))
+    if (p.has('sc'))   form.saleCostsPct             = Number(p.get('sc'))
+    if (p.has('tt'))   form.targetType               = p.get('tt')
+    if (p.has('tr'))   form.targetROI                = Number(p.get('tr'))
+    if (p.has('tp'))   form.targetTotalProfit        = Number(p.get('tp'))
+  })
+}
+
+// ─── HELPERS ─────────────────────────────────────────────────────────────────
+function resetForm() {
+  form.purchasePrice = null
+  form.arv = null
+  form.arvConfidence = 'realistic'
+  form.propertyType = 'sfr'
+  form.closingCostsMode = 'percent'
+  form.purchaseClosingCostsPct = 3
+  form.purchaseClosingCostsDollars = null
+  form.rehabBudget = null
+  form.rehabContingencyPct = 10
+  form.rehabDurationMonths = 3
+  form.holdPeriodMonths = 6
+  form.holdingMode = 'simple'
+  form.totalMonthlyHoldingSimple = null
+  Object.keys(form.holdingCosts).forEach(k => { form.holdingCosts[k] = null })
+  form.financingType = 'hm'
+  form.hmLoanToCostPct = 80
+  form.hmInterestRate = 12
+  form.hmPointsPct = 3
+  form.hmLoanCoversRehab = true
+  form.convDownPaymentPct = 25
+  form.convInterestRate = 7.5
+  form.convLoanTermYears = 30
+  form.saleCostsPct = 8
+  form.targetType = 'roi'
+  form.targetROI = 25
+  form.targetTotalProfit = null
+  calcMode.value = 'analyze'
+  shareSuccess.value = false
+  openFaq.value = null
+  scenariosOpen.value = false
+  showSensitivity.value = false
+}
+
+function toggleFaq(i) {
+  openFaq.value = openFaq.value === i ? null : i
+}
+
+function formatCurrency(val) {
+  if (!val && val !== 0) return '$0'
+  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(val)
 }
 
 async function shareResult() {
@@ -2608,120 +2949,146 @@ async function shareResult() {
   }
 }
 
-// ─────────────────────────────────────────
-// 19. PDF EXPORT
-// ─────────────────────────────────────────
+// ─── PDF EXPORT ──────────────────────────────────────────────────────────────
 async function exportPDF() {
   const { jsPDF } = await import('jspdf')
   const doc = new jsPDF()
+
   const navy = [30, 58, 95]
   const gold = [245, 158, 11]
-  const white = [255, 255, 255]
+  const gray = [107, 114, 128]
 
   // Header
   doc.setFillColor(...navy)
   doc.rect(0, 0, 210, 40, 'F')
-  doc.setTextColor(...white)
-  doc.setFontSize(20)
+  doc.setTextColor(255, 255, 255)
+  doc.setFontSize(22)
   doc.setFont('helvetica', 'bold')
-  doc.text('RealCalc — Fix and Flip Calculator', 15, 18)
-  doc.setFontSize(10)
+  doc.text('RealCalc', 20, 20)
+  doc.setFontSize(11)
   doc.setFont('helvetica', 'normal')
-  doc.text('Before-Tax Analysis | realcalc.com', 15, 28)
-  doc.text(new Date().toLocaleDateString('en-US'), 155, 28)
+  doc.text('Fix and Flip Analysis Report', 20, 30)
+  doc.setFontSize(9)
+  doc.text(`Generated: ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}`, 130, 20)
+  doc.text(`${form.holdPeriodMonths}-month hold · ${form.financingType === 'hm' ? 'Hard Money' : form.financingType === 'conv' ? 'Conventional' : 'All Cash'}`, 130, 28)
 
-  // Hero block — mode aware
+  // Hero block — mode-aware
   let heroValue, heroLabel, heroSub
-  if (calcMode.value === 'find-price' && findPriceResult.value !== null) {
-    heroValue = formatCurrency(findPriceResult.value)
+  if (calcMode.value === 'find-price') {
+    heroValue = findMaxPriceResult.value !== null ? formatCurrency(findMaxPriceResult.value) : '—'
     heroLabel = 'MAX PURCHASE PRICE'
-    heroSub = `Target: ${form.reverseTargetMode === 'roi' ? form.targetROI + '% ROI' : formatCurrency(Number(form.targetTotalProfit)) + ' profit'}`
-  } else if (calcMode.value === 'find-rehab' && findRehabResult.value !== null) {
-    heroValue = formatCurrency(findRehabResult.value)
+    heroSub = `Given ${form.targetType === 'roi' ? form.targetROI + '% ROI' : formatCurrency(Number(form.targetTotalProfit))} target`
+  } else if (calcMode.value === 'find-rehab') {
+    heroValue = findMaxRehabResult.value !== null ? formatCurrency(findMaxRehabResult.value) : '—'
     heroLabel = 'MAX REHAB BUDGET'
-    heroSub = `Target: ${form.reverseTargetMode === 'roi' ? form.targetROI + '% ROI' : formatCurrency(Number(form.targetTotalProfit)) + ' profit'}`
-  } else if (hasResult.value) {
-    heroValue = formatCurrency(result.value.totalProfit)
-    heroLabel = 'TOTAL PROFIT (Before Tax)'
-    heroSub = `ROI: ${result.value.roi.toFixed(1)}% over ${form.holdPeriodMonths} months | Tier: ${badge.value.label}`
+    heroSub = `Given ${form.targetType === 'roi' ? form.targetROI + '% ROI' : formatCurrency(Number(form.targetTotalProfit))} target`
   } else {
-    doc.setTextColor(0, 0, 0)
-    doc.setFontSize(12)
-    doc.text('No result to export — enter required inputs.', 15, 55)
-    doc.save('fix-and-flip-analysis.pdf')
-    return
+    heroValue = totalProfit.value >= 0 ? formatCurrency(totalProfit.value) : '-' + formatCurrency(Math.abs(totalProfit.value))
+    heroLabel = 'TOTAL PROFIT (before-tax)'
+    heroSub = `ROI: ${roi.value.toFixed(1)}% over ${form.holdPeriodMonths} months · ${tier.value.label}`
   }
 
   doc.setFillColor(...gold)
-  doc.rect(0, 40, 210, 35, 'F')
-  doc.setTextColor(...navy)
-  doc.setFontSize(10)
+  doc.rect(15, 50, 180, 30, 'F')
+  doc.setTextColor(30, 58, 95)
+  doc.setFontSize(24)
   doc.setFont('helvetica', 'bold')
-  doc.text(heroLabel, 15, 52)
-  doc.setFontSize(26)
-  doc.text(heroValue, 15, 65)
-  doc.setFontSize(10)
-  doc.setFont('helvetica', 'normal')
-  doc.text(heroSub, 15, 72)
-
-  // Inputs summary
-  let y = 90
-  doc.setTextColor(0, 0, 0)
-  doc.setFontSize(12)
-  doc.setFont('helvetica', 'bold')
-  doc.text('Deal Inputs', 15, y)
-  y += 7
+  doc.text(heroValue, 105, 69, { align: 'center' })
   doc.setFontSize(9)
-  doc.setFont('helvetica', 'normal')
-  const inputRows = [
-    ['Purchase Price', formatCurrency(Number(form.purchasePrice))],
-    ['ARV', formatCurrency(Number(form.arv))],
-    ['Rehab Budget', formatCurrency(Number(form.rehabBudget))],
-    ['Contingency', form.rehabContingencyPct + '%'],
-    ['Hold Period', form.holdPeriodMonths + ' months'],
-    ['Financing', form.financingType === 'hm' ? 'Hard Money' : form.financingType === 'conv' ? 'Conventional' : 'All Cash'],
-    ['Sale Costs', form.saleCostsPct + '% of ARV']
-  ]
-  inputRows.forEach(([k, v]) => {
-    doc.setFont('helvetica', 'bold'); doc.text(k + ':', 15, y)
-    doc.setFont('helvetica', 'normal'); doc.text(v, 85, y)
-    y += 6
-  })
-
-  if (hasResult.value) {
-    y += 4
-    doc.setFontSize(12)
-    doc.setFont('helvetica', 'bold')
-    doc.text('Results', 15, y)
-    y += 7
-    doc.setFontSize(9)
-    const resultRows = [
-      ['Total Cash Invested', formatCurrency(result.value.totalCashInvested)],
-      ['Net Sale Proceeds', formatCurrency(result.value.netSaleProceeds)],
-      ['Total Profit', formatCurrency(result.value.totalProfit)],
-      ['ROI', result.value.roi.toFixed(1) + '%'],
-      ['Annualized ROI', result.value.annualizedRoi.toFixed(1) + '%'],
-      ['70% Rule Max Offer', formatCurrency(result.value.rule70)],
-      ['Break-Even Price', result.value.breakEven ? formatCurrency(result.value.breakEven) : '—'],
-      ['Profit per Month', formatCurrency(result.value.profitPerMonth)],
-      ['Tier', badge.value.label]
-    ]
-    resultRows.forEach(([k, v]) => {
-      doc.setFont('helvetica', 'bold'); doc.text(k + ':', 15, y)
-      doc.setFont('helvetica', 'normal'); doc.text(v, 85, y)
-      y += 6
-    })
+  doc.text(heroLabel, 105, 76, { align: 'center' })
+  if (heroSub) {
+    doc.setFontSize(8)
+    doc.setFont('helvetica', 'normal')
+    doc.text(heroSub, 105, 82, { align: 'center' })
   }
 
-  y += 8
-  doc.setFontSize(8)
-  doc.setTextColor(120, 120, 120)
-  doc.text('Before-tax analysis only. Flip profits typically taxed as ordinary income (25-37% marginal rate). Consult a CPA.', 15, y)
-  doc.text('Generated by RealCalc — realcalc.com', 15, y + 5)
+  // Financial Breakdown
+  if (calcMode.value === 'analyze' && hasResult.value) {
+    doc.setTextColor(...navy)
+    doc.setFontSize(13)
+    doc.setFont('helvetica', 'bold')
+    doc.text('Financial Breakdown', 20, 100)
 
-  doc.save('fix-and-flip-analysis.pdf')
+    const rows = [
+      ['Purchase Price',       formatCurrency(Number(form.purchasePrice) || 0)],
+      ['Purchase Closing',     `-${formatCurrency(purchaseClosingCostsCalc.value)}`],
+      ['Rehab Budget',         `-${formatCurrency(Number(form.rehabBudget) || 0)}`],
+      ['Rehab Contingency',    `-${formatCurrency(rehabContingencyCalc.value)}`],
+      ['Total Holding Costs',  `-${formatCurrency(totalHoldingCosts.value)}`],
+      form.financingType === 'hm' ? ['Loan Points',   `-${formatCurrency(loanPoints.value)}`] : null,
+      form.financingType !== 'cash' ? ['Total Loan Interest', `-${formatCurrency(totalLoanInterest.value)}`] : null,
+      ['Sale Costs',           `-${formatCurrency(saleCostsDollar.value)}`],
+      ['──────────', '──────────'],
+      ['Total Cash Invested',  formatCurrency(totalCashInvested.value)],
+      ['Net Sale Proceeds',    formatCurrency(netSaleProceeds.value)],
+      ['Total Profit',         heroValue],
+      ['ROI',                  `${roi.value.toFixed(1)}%`],
+      ['Annualized ROI',       `${annualizedROI.value.toFixed(1)}%`],
+    ].filter(Boolean)
+
+    let y = 107
+    rows.forEach((row, i) => {
+      if (i % 2 === 0) {
+        doc.setFillColor(248, 250, 252)
+        doc.rect(15, y - 5, 180, 10, 'F')
+      }
+      doc.setTextColor(...gray)
+      doc.setFontSize(9)
+      doc.setFont('helvetica', 'normal')
+      doc.text(row[0], 20, y)
+      doc.setTextColor(...navy)
+      doc.setFont('helvetica', 'bold')
+      doc.text(row[1], 190, y, { align: 'right' })
+      y += 11
+    })
+
+    // Deal Context
+    y += 6
+    const splitInsight = doc.splitTextToSize(insightText.value, 165)
+    const insightH = Math.max(28, splitInsight.length * 5 + 16)
+    doc.setFillColor(240, 244, 248)
+    doc.rect(15, y - 5, 180, insightH, 'F')
+    doc.setTextColor(...navy)
+    doc.setFontSize(10)
+    doc.setFont('helvetica', 'bold')
+    doc.text('Deal Context', 20, y + 3)
+    doc.setFont('helvetica', 'normal')
+    doc.setFontSize(8)
+    doc.setTextColor(...gray)
+    doc.text(splitInsight, 20, y + 12)
+    y += insightH + 6
+
+    // Warnings
+    if (warnings.value.length > 0 && y < 265) {
+      const warnLines = warnings.value.flatMap(w => doc.splitTextToSize(`• ${w.msg}`, 160))
+      const warnH = warnLines.length * 5 + 20
+      if (y + warnH < 275) {
+        doc.setFillColor(255, 251, 235)
+        doc.rect(15, y - 4, 180, warnH, 'F')
+        doc.setTextColor(...navy)
+        doc.setFontSize(9)
+        doc.setFont('helvetica', 'bold')
+        doc.text('Flags & Warnings', 22, y + 4)
+        doc.setFont('helvetica', 'normal')
+        doc.setFontSize(7.5)
+        doc.setTextColor(146, 64, 14)
+        doc.text(warnLines, 22, y + 12)
+      }
+    }
+  }
+
+  // Footer
+  doc.setFillColor(...navy)
+  doc.rect(0, 280, 210, 17, 'F')
+  doc.setTextColor(255, 255, 255)
+  doc.setFontSize(8)
+  doc.setFont('helvetica', 'normal')
+  doc.text('RealCalc — Before-tax analysis only. Not financial advice. Consult a CPA for tax impact on flip profits.', 105, 290, { align: 'center' })
+
+  doc.save(`fix-and-flip-analysis-${Date.now()}.pdf`)
 }
 
+// ─── SCENARIO SAVE / EMAIL CAPTURE ───────────────────────────────────────────
 function openSaveScenario() {
   triggerScenarioSave.value = true
   nextTick(() => { triggerScenarioSave.value = false })
@@ -2738,24 +3105,24 @@ function onEmailCaptured(_email) {
 }
 </script>
 
-<style scoped>
+<style>
 .calc-mode-tabs {
   @apply grid grid-cols-3 gap-1.5 p-1 rounded-2xl bg-gray-100;
 }
 .calc-mode-tab {
-  @apply px-3 py-2.5 rounded-xl text-left transition-all cursor-pointer border;
+  @apply w-full text-center px-2 py-2.5 rounded-xl transition;
 }
 .calc-mode-tab-active {
-  @apply bg-white shadow-sm border-gray-200;
+  @apply bg-white shadow-sm;
 }
 .calc-mode-tab-inactive {
-  @apply bg-transparent border-transparent hover:bg-white/60;
+  @apply hover:bg-white/60;
 }
 .calc-section-header {
-  @apply px-4 py-2 bg-gray-50 border-b border-gray-100;
+  @apply flex items-center px-4 py-3 border-b border-gray-50;
 }
 .calc-section-title {
-  @apply text-xs font-bold uppercase tracking-widest text-gray-500;
+  @apply text-sm font-bold text-gray-700;
 }
 .calc-inputs {
   @apply divide-y divide-gray-100;
