@@ -62,10 +62,10 @@
           <ul class="hidden md:flex flex-wrap gap-x-5 gap-y-1.5">
             <li><a href="#calculator" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Calculator</a></li>
             <li><a href="#overview" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Overview</a></li>
-            <li><a href="#what-is-dscr" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">What Is DSCR</a></li>
             <li><a href="#how-to-use" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">How to Use</a></li>
             <li><a href="#inputs-outputs" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Inputs &amp; Outputs</a></li>
             <li><a href="#formula" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Formula</a></li>
+            <li><a href="#what-is-dscr" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">What Is DSCR</a></li>
             <li><a href="#result-meaning" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">What Your Result Means</a></li>
             <li><a href="#benchmarks" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Benchmarks</a></li>
             <li><a href="#strategy" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Strategy</a></li>
@@ -79,11 +79,12 @@
             <ul class="flex flex-col gap-y-2">
               <li><a href="#calculator" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Calculator</a></li>
               <li><a href="#overview" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Overview</a></li>
-              <li><a href="#what-is-dscr" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">What Is DSCR</a></li>
+              <li><a href="#how-to-use" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">How to Use</a></li>
             </ul>
             <ul v-show="isNavExpanded" class="flex flex-col gap-y-2 mt-2">
-              <li><a href="#how-to-use" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">How to Use</a></li>
+              <li><a href="#inputs-outputs" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Inputs &amp; Outputs</a></li>
               <li><a href="#formula" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Formula</a></li>
+              <li><a href="#what-is-dscr" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">What Is DSCR</a></li>
               <li><a href="#result-meaning" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">What Your Result Means</a></li>
               <li><a href="#benchmarks" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Benchmarks</a></li>
               <li><a href="#strategy" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Strategy</a></li>
@@ -231,7 +232,7 @@
                 <div class="relative">
                   <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
                   <input id="gross-rental-income" v-model="form.grossRentalIncome" type="number" min="0" step="100"
-                    placeholder="e.g. 120,000"
+                    placeholder="Enter total yearly rental income"
                     class="w-full pl-8 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                 </div>
                 <p class="text-xs text-gray-400 mt-1">Total annual rent from all units (pre-vacancy, pre-expense)</p>
@@ -242,7 +243,7 @@
                 </label>
                 <div class="relative">
                   <input id="vacancy-rate" v-model="form.vacancyRate" type="number" min="0" max="100" step="0.5"
-                    placeholder="e.g. 7"
+                    placeholder="Enter expected vacancy percentage"
                     class="w-full pr-8 pl-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                   <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">%</span>
                 </div>
@@ -255,7 +256,7 @@
                 <div class="relative">
                   <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
                   <input id="other-income" v-model="form.otherIncome" type="number" min="0" step="100"
-                    placeholder="e.g. 5,000 (laundry, parking)"
+                    placeholder="Enter annual other income"
                     class="w-full pl-8 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                 </div>
               </div>
@@ -291,7 +292,7 @@
                 <div class="relative">
                   <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
                   <input id="operating-expenses" v-model="form.operatingExpenses" type="number" min="0" step="100"
-                    placeholder="e.g. 42,000 (taxes, insurance, mgmt, maintenance)"
+                    placeholder="Enter total yearly operating expenses"
                     class="w-full pl-8 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                 </div>
                 <p class="text-xs text-gray-400 mt-1">Excludes mortgage payments. Rule of thumb: 35–50% of EGI.
@@ -336,7 +337,7 @@
                 <div class="relative">
                   <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
                   <input id="monthly-rent" v-model="form.monthlyRent" type="number" min="0" step="50"
-                    placeholder="e.g. 3,500"
+                    placeholder="Enter monthly rent"
                     class="w-full pl-8 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-sm transition" />
                 </div>
                 <p class="text-xs text-gray-400 mt-1">Current monthly rent from lease or market rent estimate</p>
@@ -358,7 +359,7 @@
                 <div class="relative">
                   <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
                   <input id="monthly-tax" v-model="form.monthlyPropertyTax" type="number" min="0" step="25"
-                    placeholder="e.g. 350"
+                    placeholder="Enter monthly property tax"
                     class="w-full pl-8 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                 </div>
                 <p class="text-xs text-gray-400 mt-1">Annual tax bill ÷ 12, or county records</p>
@@ -368,7 +369,7 @@
                 <div class="relative">
                   <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
                   <input id="monthly-insurance" v-model="form.monthlyInsurance" type="number" min="0" step="25"
-                    placeholder="e.g. 150"
+                    placeholder="Enter monthly insurance"
                     class="w-full pl-8 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                 </div>
               </div>
@@ -379,7 +380,7 @@
                 <div class="relative">
                   <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
                   <input id="monthly-hoa" v-model="form.monthlyHOA" type="number" min="0" step="25"
-                    placeholder="e.g. 0"
+                    placeholder="Enter monthly HOA"
                     class="w-full pl-8 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                 </div>
               </div>
@@ -390,7 +391,7 @@
                 <div class="relative">
                   <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
                   <input id="monthly-assoc" v-model="form.monthlyAssociation" type="number" min="0" step="25"
-                    placeholder="e.g. 0"
+                    placeholder="Enter monthly association fee"
                     class="w-full pl-8 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                 </div>
               </div>
@@ -422,7 +423,7 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
                     <input v-model="form.loanAmount" type="number" min="0" step="5000"
-                      placeholder="e.g. 750,000"
+                      placeholder="Enter loan amount"
                       class="w-full pl-8 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                   </div>
                 </div>
@@ -430,12 +431,12 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
                     <input v-model="form.purchasePrice" type="number" min="0" step="5000"
-                      placeholder="Purchase price, e.g. 1,000,000"
+                      placeholder="Enter property purchase price"
                       class="w-full pl-8 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                   </div>
                   <div class="relative">
                     <input v-model="form.downPaymentPct" type="number" min="0" max="100" step="1"
-                      placeholder="Down payment %, e.g. 25"
+                      placeholder="Enter down payment percentage"
                       class="w-full pr-8 pl-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                     <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">%</span>
                   </div>
@@ -454,7 +455,7 @@
                 </label>
                 <div class="relative">
                   <input id="interest-rate" v-model="form.interestRate" type="number" min="0" max="30" step="0.125"
-                    placeholder="e.g. 7.5"
+                    placeholder="Enter annual loan interest rate"
                     class="w-full pr-8 pl-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                   <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">%</span>
                 </div>
@@ -496,7 +497,7 @@
             <div class="px-4 py-3">
               <div class="relative">
                 <input v-model="form.targetDSCR" type="number" min="0.5" max="3" step="0.05"
-                  placeholder="1.25"
+                  placeholder="Enter target DSCR coverage ratio"
                   class="w-full pr-8 pl-4 py-2 rounded-xl border outline-none text-gray-900 font-bold text-base transition bg-white"
                   :class="calcMode === 'find-loan'
                     ? 'border-blue-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-400/20'
@@ -1039,6 +1040,28 @@
         </div>
       </div>
 
+      <!-- IMPORTANT NOTE -->
+      <div class="border-b border-gray-100 px-8 py-6">
+        <div class="rounded-2xl border border-amber-200 bg-amber-50/70 px-6 py-5">
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5" style="background: #f59e0b;">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="font-bold text-amber-900 mb-2 text-sm">Important: DSCR Is a Lender Metric, Not an Approval Guarantee</p>
+              <p class="text-sm text-amber-800 leading-relaxed">
+                DSCR is the first qualification screen — it is necessary but not sufficient for loan approval. Lenders also evaluate sponsor credit score, real estate experience and track record, liquidity and post-closing reserves (typically 6–12 months PITIA), property condition and age, occupancy history, market dynamics and rent trends, and minimum loan size requirements. Meeting the DSCR threshold means you can proceed to formal underwriting — it does not guarantee approval or specific terms.
+              </p>
+              <p class="text-sm text-amber-800 leading-relaxed mt-2">
+                This calculator produces estimates for educational and pre-screening purposes only. Always verify your DSCR analysis with the specific lender's underwriting guidelines — agency (Fannie/Freddie), CMBS, portfolio, and non-QM lenders each apply different NOI adjustments, expense load factors, and stress-test requirements.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- OVERVIEW -->
       <div id="overview" class="border-b border-gray-100 px-8 py-8">
         <h2 class="text-xl font-extrabold mb-4" style="color: #1e3a5f;">Overview</h2>
@@ -1053,30 +1076,27 @@
             The primary users of this tool are investors preparing loan applications, commercial real estate investors underwriting deals before submitting to Fannie Mae or Freddie Mac lenders, mortgage brokers evaluating client deals, and loan officers pre-screening investment property applications. DSCR is the first metric that determines loan feasibility — get it right before spending time on full underwriting.
           </p>
           <p class="text-gray-600 leading-relaxed">
-            DSCR does not measure investor returns. It does not include appreciation, principal paydown benefit, tax benefits, or the down payment amount. For complete investment analysis, pair this calculator with the <NuxtLink to="/cap-rate-calculator" class="text-amber-700 underline hover:text-amber-900 transition">Cap Rate Calculator</NuxtLink> (unlevered yield), <NuxtLink to="/cash-on-cash-calculator" class="text-amber-700 underline hover:text-amber-900 transition">Cash-on-Cash Return</NuxtLink> (levered return on equity), and <NuxtLink to="/noi-calculator" class="text-amber-700 underline hover:text-amber-900 transition">NOI Calculator</NuxtLink>.
-          </p>
-        </div>
-      </div>
-
-      <!-- WHAT IS DSCR -->
-      <div id="what-is-dscr" class="border-b border-gray-100 px-8 py-8">
-        <h2 class="text-xl font-extrabold mb-4" style="color: #1e3a5f;">What Is Debt Service Coverage Ratio? (DSCR Explained)</h2>
-        <div class="space-y-4">
-          <p class="text-gray-600 leading-relaxed">
-            The <strong>Debt Service Coverage Ratio (DSCR)</strong> is a coefficient — not a percentage — that measures how many times a property's operating income covers its debt obligation. The formula is: DSCR = Net Operating Income ÷ Annual Debt Service. A DSCR of 1.25x means the property generates $1.25 of income for every $1.00 of debt service. The extra $0.25 is the cushion that protects the lender against vacancy spikes, expense surprises, or rate increases. Lenders built their entire investment property underwriting around this ratio because it directly answers the question: can this property service its own debt?
+            In 2026, the investment property lending environment is shaped by sustained high rates — 7.5–8% for conventional loans, 8–9% for non-QM DSCR products. At these levels, achieving 1.25x DSCR requires significantly stronger income or lower leverage than was needed in 2019–2021 at 4.5–5% rates. The DSCR compression effect means many deals that penciled out at 75% LTV three years ago now require 60–65% LTV to maintain the same coverage. This calculator accounts for the current rate environment in all benchmark comparisons.
           </p>
           <p class="text-gray-600 leading-relaxed">
-            DSCR was institutionalized by Fannie Mae and Freddie Mac as their primary multifamily underwriting metric in the 1980s and remains unchanged today — the 1.25x minimum for conventional multifamily is the most durable threshold in US real estate lending. A 1.25x DSCR provides a meaningful 20% margin between NOI and debt service; if NOI drops 20% (from vacancy or expenses), the property still exactly covers debt. For DSCR Loan products (non-QM), lenders use a simplified formula — Monthly Rent ÷ Monthly PITIA — that replaces the full NOI calculation with gross rent as a proxy.
+            DSCR does not measure investor returns. It does not include appreciation, principal paydown benefit, tax benefits, or the down payment amount. For complete investment analysis, pair this calculator with the <NuxtLink to="/cap-rate-calculator" class="text-amber-700 underline hover:text-amber-900 transition">Cap Rate Calculator</NuxtLink> (unlevered yield), <NuxtLink to="/cash-on-cash-calculator" class="text-amber-700 underline hover:text-amber-900 transition">Cash-on-Cash Return</NuxtLink> (levered return on equity), and <NuxtLink to="/noi-calculator" class="text-amber-700 underline hover:text-amber-900 transition">NOI Calculator</NuxtLink>. These four metrics together — DSCR, Cap Rate, Cash-on-Cash, and NOI — give a complete picture of both lender qualification and investor return.
           </p>
-          <!-- DSCR vs other metrics -->
-          <div class="grid sm:grid-cols-2 gap-4 mt-4">
-            <div class="p-4 rounded-xl border border-gray-100 bg-gray-50">
-              <p class="font-bold text-sm text-gray-800 mb-2">DSCR vs Cap Rate</p>
-              <p class="text-sm text-gray-600">Cap Rate = NOI ÷ Property Value (unlevered yield %). DSCR = NOI ÷ Annual Debt Service (income coverage ratio). Same NOI, completely different questions: cap rate asks "what return on the asset?", DSCR asks "can the property pay the debt?"</p>
+          <!-- Key metrics overview -->
+          <div class="grid sm:grid-cols-3 gap-4 mt-4">
+            <div class="p-4 rounded-xl border border-amber-100 bg-amber-50/60 text-center">
+              <p class="text-2xl font-extrabold text-amber-700 mb-1">1.25x</p>
+              <p class="text-xs font-semibold text-gray-700">Fannie/Freddie minimum</p>
+              <p class="text-xs text-gray-500 mt-1">The most common qualifying threshold for agency multifamily</p>
             </div>
-            <div class="p-4 rounded-xl border border-gray-100 bg-gray-50">
-              <p class="font-bold text-sm text-gray-800 mb-2">DSCR vs Cash-on-Cash</p>
-              <p class="text-sm text-gray-600">Cash-on-Cash = Annual Cash Flow ÷ Cash Invested (investor's return %). DSCR is the lender's metric; Cash-on-Cash is the investor's metric. DSCR doesn't care about down payment size — Cash-on-Cash does.</p>
+            <div class="p-4 rounded-xl border border-teal-100 bg-teal-50/60 text-center">
+              <p class="text-2xl font-extrabold text-teal-700 mb-1">1.00x</p>
+              <p class="text-xs font-semibold text-gray-700">Non-QM minimum</p>
+              <p class="text-xs text-gray-500 mt-1">DSCR loan floor — break-even coverage with no cushion</p>
+            </div>
+            <div class="p-4 rounded-xl border border-blue-100 bg-blue-50/60 text-center">
+              <p class="text-2xl font-extrabold text-blue-700 mb-1">1.50x+</p>
+              <p class="text-xs font-semibold text-gray-700">Excellent tier</p>
+              <p class="text-xs text-gray-500 mt-1">Best pricing across all lender types — rare at 75% LTV in 2026</p>
             </div>
           </div>
         </div>
@@ -1254,13 +1274,48 @@
             <div>
               <p class="font-bold text-gray-700 mb-2 text-sm">Interpretation</p>
               <p class="text-sm text-gray-600 leading-relaxed mb-3">
-                DSCR of 1.30x lands solidly in the <strong>Strong tier</strong> — above the Fannie Mae and Freddie Mac conventional minimum of 1.25x. This deal qualifies for standard agency multifamily financing. The stressed DSCR at +1% rate (8.5%) falls to 1.19x — Moderate tier — which means the deal is resilient but the cushion narrows meaningfully under rate stress. A conservative underwriter would still approve at these stressed levels.
+                DSCR of 1.30x lands solidly in the <strong>Strong tier</strong> — above the Fannie Mae and Freddie Mac conventional minimum of 1.25x. This deal meets the typical DSCR threshold for standard agency multifamily financing. The stressed DSCR at +1% rate (8.5%) falls to 1.19x — Moderate tier — which means the deal is resilient but the cushion narrows meaningfully under rate stress. A conservative underwriter would still approve at these stressed levels.
               </p>
               <div class="p-3 rounded-xl text-center" style="background:#05966920; border: 1px solid #05966940;">
                 <p class="text-3xl font-extrabold" style="color:#059669;">1.30x</p>
                 <p class="text-xs text-gray-500 mt-1">Property DSCR — Strong tier</p>
                 <p class="text-xs text-gray-400">Stressed +1%: 1.19x (Moderate)</p>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WHAT IS DSCR -->
+      <div id="what-is-dscr" class="border-b border-gray-100 px-8 py-8">
+        <h2 class="text-xl font-extrabold mb-4" style="color: #1e3a5f;">What Is Debt Service Coverage Ratio? (DSCR Explained)</h2>
+        <div class="space-y-4">
+          <p class="text-gray-600 leading-relaxed">
+            The <strong>Debt Service Coverage Ratio (DSCR)</strong> is a coefficient — not a percentage — that measures how many times a property's operating income covers its debt obligation. The formula is: DSCR = Net Operating Income ÷ Annual Debt Service. A DSCR of 1.25x means the property generates $1.25 of income for every $1.00 of debt service. The extra $0.25 is the cushion that protects the lender against vacancy spikes, expense surprises, or rate increases. Lenders built their entire investment property underwriting around this ratio because it directly answers the question: can this property service its own debt?
+          </p>
+          <p class="text-gray-600 leading-relaxed">
+            DSCR was institutionalized by Fannie Mae and Freddie Mac as their primary multifamily underwriting metric in the 1980s and remains unchanged today — the 1.25x minimum for conventional multifamily is the most durable threshold in US real estate lending. A 1.25x DSCR provides a meaningful 20% margin between NOI and debt service; if NOI drops 20% (from vacancy or expenses), the property still exactly covers debt. For DSCR Loan products (non-QM), lenders use a simplified formula — Monthly Rent ÷ Monthly PITIA — that replaces the full NOI calculation with gross rent as a proxy.
+          </p>
+          <p class="text-gray-600 leading-relaxed">
+            The ratio was designed around a simple, verifiable fact: a lender cannot rely on an investor's personal guarantee for commercial-scale debt. If the property cannot generate enough income to cover its own debt obligations, the loan is fundamentally unsound — regardless of the borrower's personal financial situation. This is why DSCR is the first filter every commercial and agency lender applies, before underwriting property condition, sponsor experience, or market analysis. It is both a qualification gate and a risk pricing tool — the higher the DSCR, the less risk the lender is absorbing, and the better the pricing and terms offered.
+          </p>
+          <!-- DSCR vs other metrics -->
+          <div class="grid sm:grid-cols-2 gap-4 mt-4">
+            <div class="p-4 rounded-xl border border-gray-100 bg-gray-50">
+              <p class="font-bold text-sm text-gray-800 mb-2">DSCR vs Cap Rate</p>
+              <p class="text-sm text-gray-600">Cap Rate = NOI ÷ Property Value (unlevered yield %). DSCR = NOI ÷ Annual Debt Service (income coverage ratio). Same NOI, completely different questions: cap rate asks "what return on the asset?", DSCR asks "can the property pay the debt?" A property with a 6% cap rate can have a wildly different DSCR depending on how much leverage is applied — high LTV compresses DSCR, low LTV expands it.</p>
+            </div>
+            <div class="p-4 rounded-xl border border-gray-100 bg-gray-50">
+              <p class="font-bold text-sm text-gray-800 mb-2">DSCR vs Cash-on-Cash</p>
+              <p class="text-sm text-gray-600">Cash-on-Cash = Annual Cash Flow ÷ Cash Invested (investor's return %). DSCR is the lender's metric; Cash-on-Cash is the investor's metric. DSCR doesn't care about down payment size — Cash-on-Cash does. A deal can show 1.30x DSCR but negative Cash-on-Cash if property taxes and management fees push post-debt cash flow negative after all personal costs are counted.</p>
+            </div>
+            <div class="p-4 rounded-xl border border-gray-100 bg-gray-50">
+              <p class="font-bold text-sm text-gray-800 mb-2">DSCR vs LTV</p>
+              <p class="text-sm text-gray-600">Loan-to-Value measures the loan as a percentage of property value — a collateral metric. DSCR measures income relative to debt service — a cash flow metric. Lenders apply both simultaneously. A deal can pass LTV at 75% but fail DSCR at 1.15x if rents are low relative to price. In 2026, DSCR is the binding constraint for most investment properties — not LTV.</p>
+            </div>
+            <div class="p-4 rounded-xl border border-gray-100 bg-gray-50">
+              <p class="font-bold text-sm text-gray-800 mb-2">DSCR vs NOI</p>
+              <p class="text-sm text-gray-600">Net Operating Income is the numerator in the DSCR formula — DSCR puts NOI in context by dividing it against debt service. A $100,000 NOI might be excellent coverage for a $500,000 loan but terrible for a $2,000,000 loan. NOI tells you the absolute income; DSCR tells you whether that income is enough for a specific debt load.</p>
             </div>
           </div>
         </div>
@@ -1331,6 +1386,55 @@
         <p class="text-xs text-gray-400 italic mt-2">
           Sources: Underwriting estimates derived from 2026 rate environment, standard LTV assumptions, and state-level property tax and insurance data. DSCR is not publicly reported at the state level — these are calculated benchmarks for reference only.
         </p>
+
+        <!-- 2026 Rate Environment Impact -->
+        <div class="mt-8 p-6 rounded-2xl border border-gray-200 bg-gray-50">
+          <h3 class="font-bold text-gray-800 mb-3 text-sm">How the 2026 Rate Environment Affects These Benchmarks</h3>
+          <p class="text-sm text-gray-600 leading-relaxed mb-4">
+            All benchmarks above are calibrated to 2026 conditions: 7.5% loan rate, 30-year amortization, 75% LTV. The same property analyzed at different historical rate environments shows dramatically different DSCR outcomes. Understanding this compression is essential for interpreting your results accurately.
+          </p>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="border-b border-gray-200">
+                  <th class="py-2 pr-4 text-left font-semibold text-gray-600">Rate Environment</th>
+                  <th class="py-2 pr-4 text-center font-semibold text-gray-600">Rate</th>
+                  <th class="py-2 pr-4 text-center font-semibold text-gray-600">Monthly P&amp;I<br><span class="font-normal text-gray-400">$1M loan, 30yr</span></th>
+                  <th class="py-2 text-center font-semibold text-gray-600">DSCR<br><span class="font-normal text-gray-400">$100K NOI</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-gray-50">
+                  <td class="py-2 pr-4 font-medium text-gray-700">Pre-2022 (low rate era)</td>
+                  <td class="py-2 pr-4 text-center text-gray-500">4.5%</td>
+                  <td class="py-2 pr-4 text-center text-gray-500">$5,067/mo</td>
+                  <td class="py-2 text-center font-bold text-green-700">1.64x</td>
+                </tr>
+                <tr class="border-b border-gray-50">
+                  <td class="py-2 pr-4 font-medium text-gray-700">Mid-cycle 2023</td>
+                  <td class="py-2 pr-4 text-center text-gray-500">6.5%</td>
+                  <td class="py-2 pr-4 text-center text-gray-500">$6,321/mo</td>
+                  <td class="py-2 text-center font-bold text-amber-700">1.32x</td>
+                </tr>
+                <tr class="border-b border-gray-50 bg-amber-50/60">
+                  <td class="py-2 pr-4 font-medium text-amber-800">2026 Current ← <span class="text-xs font-normal">(this calculator)</span></td>
+                  <td class="py-2 pr-4 text-center text-amber-700 font-bold">7.5%</td>
+                  <td class="py-2 pr-4 text-center text-amber-700 font-bold">$6,992/mo</td>
+                  <td class="py-2 text-center font-bold text-amber-700">1.19x</td>
+                </tr>
+                <tr class="border-b border-gray-50">
+                  <td class="py-2 pr-4 font-medium text-gray-700">Stress scenario</td>
+                  <td class="py-2 pr-4 text-center text-gray-500">8.5%</td>
+                  <td class="py-2 pr-4 text-center text-gray-500">$7,689/mo</td>
+                  <td class="py-2 text-center font-bold text-red-600">1.08x</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-gray-400 italic mt-3">
+            Same $1M loan, $100K NOI — different DSCR outcomes purely based on rate. This illustrates why benchmark comparisons must be rate-calibrated to current market, not historical norms.
+          </p>
+        </div>
       </div>
 
       <!-- STRATEGY -->
@@ -1381,12 +1485,72 @@
             </ul>
           </div>
         </div>
+
+        <!-- DSCR Threshold Quick Reference -->
+        <div class="mt-6 p-5 rounded-2xl border border-gray-200 bg-white">
+          <h3 class="font-bold text-gray-800 mb-3 text-sm">Quick Reference: DSCR Thresholds by Lender Type (2026)</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="border-b border-gray-200">
+                  <th class="py-2 pr-4 text-left font-semibold text-gray-600">Lender Type</th>
+                  <th class="py-2 pr-4 text-center font-semibold text-gray-600">Min DSCR</th>
+                  <th class="py-2 pr-4 text-center font-semibold text-gray-600">Max LTV</th>
+                  <th class="py-2 text-left font-semibold text-gray-600">Formula Used</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-gray-50">
+                  <td class="py-2 pr-4 font-medium text-gray-700">Fannie Mae Conventional</td>
+                  <td class="py-2 pr-4 text-center font-bold text-green-700">1.25x</td>
+                  <td class="py-2 pr-4 text-center text-gray-500">80%</td>
+                  <td class="py-2 text-gray-500">Annual NOI ÷ Annual Debt Service</td>
+                </tr>
+                <tr class="border-b border-gray-50">
+                  <td class="py-2 pr-4 font-medium text-gray-700">Freddie Mac Multifamily</td>
+                  <td class="py-2 pr-4 text-center font-bold text-green-700">1.25x</td>
+                  <td class="py-2 pr-4 text-center text-gray-500">80%</td>
+                  <td class="py-2 text-gray-500">Annual NOI ÷ Annual Debt Service</td>
+                </tr>
+                <tr class="border-b border-gray-50">
+                  <td class="py-2 pr-4 font-medium text-gray-700">Fannie MAH Affordable</td>
+                  <td class="py-2 pr-4 text-center font-bold text-amber-700">1.15x</td>
+                  <td class="py-2 pr-4 text-center text-gray-500">80%</td>
+                  <td class="py-2 text-gray-500">Annual NOI ÷ Annual Debt Service</td>
+                </tr>
+                <tr class="border-b border-gray-50">
+                  <td class="py-2 pr-4 font-medium text-gray-700">DSCR Loan (standard)</td>
+                  <td class="py-2 pr-4 text-center font-bold text-amber-700">1.10x</td>
+                  <td class="py-2 pr-4 text-center text-gray-500">75–80%</td>
+                  <td class="py-2 text-gray-500">Monthly Rent ÷ Monthly PITIA</td>
+                </tr>
+                <tr class="border-b border-gray-50">
+                  <td class="py-2 pr-4 font-medium text-gray-700">DSCR Loan (minimum)</td>
+                  <td class="py-2 pr-4 text-center font-bold text-orange-600">1.00x</td>
+                  <td class="py-2 pr-4 text-center text-gray-500">70–75%</td>
+                  <td class="py-2 text-gray-500">Monthly Rent ÷ Monthly PITIA</td>
+                </tr>
+                <tr class="border-b border-gray-50">
+                  <td class="py-2 pr-4 font-medium text-gray-700">CMBS Multifamily</td>
+                  <td class="py-2 pr-4 text-center font-bold text-green-700">1.25–1.30x</td>
+                  <td class="py-2 pr-4 text-center text-gray-500">75–80%</td>
+                  <td class="py-2 text-gray-500">Annual NOI ÷ Annual Debt Service</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
 
       <!-- LIMITATIONS -->
       <div id="limitations" class="border-b border-gray-100 px-8 py-8">
         <h2 class="text-xl font-extrabold mb-2" style="color: #1e3a5f;">Limitations of DSCR</h2>
-        <p class="text-gray-500 text-sm mb-5">DSCR is the primary underwriting metric, but it has real blind spots every investor should understand.</p>
+        <p class="text-gray-500 text-sm mb-4">DSCR is the primary underwriting metric, but it has real blind spots every investor should understand.</p>
+        <div class="p-4 rounded-xl border border-gray-200 bg-gray-50 mb-5">
+          <p class="text-sm text-gray-600 leading-relaxed">
+            <strong class="text-gray-800">The fundamental limitation of DSCR:</strong> it answers the lender's question ("can this property pay the debt?") but not the investor's question ("is this a good investment?"). A 1.40x DSCR in a declining market with rising vacancies can be worse than a 1.10x DSCR in a high-growth market with strong rent momentum. Understanding what DSCR does and does not tell you is as important as knowing how to calculate it.
+          </p>
+        </div>
         <div class="space-y-4 mb-6">
           <div v-for="lim in limitations" :key="lim.title" class="flex gap-4 p-4 rounded-xl border border-amber-100 bg-amber-50/50">
             <span class="text-amber-500 font-extrabold text-lg flex-shrink-0">{{ lim.n }}</span>
@@ -1415,6 +1579,46 @@
             <div>
               <p class="font-bold text-sm text-gray-800">{{ mistake.title }}</p>
               <p class="text-sm text-gray-600 mt-0.5 leading-relaxed">{{ mistake.body }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lender Preparation Checklist -->
+        <div class="mt-8 p-6 rounded-2xl border border-blue-100 bg-blue-50/60">
+          <h3 class="font-bold text-blue-900 mb-4 text-sm">Lender-Ready DSCR Checklist — Before You Apply</h3>
+          <p class="text-sm text-blue-800 mb-4 leading-relaxed">Use this checklist to make sure your DSCR analysis will match what the lender calculates — not just what your spreadsheet shows.</p>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <div class="flex gap-2 text-sm">
+              <span class="text-blue-500 font-bold flex-shrink-0 mt-0.5">✓</span>
+              <span class="text-blue-800"><strong>Use T-12 actuals for NOI</strong> — not pro forma projections. Lenders will ask for trailing 12-month operating statements.</span>
+            </div>
+            <div class="flex gap-2 text-sm">
+              <span class="text-blue-500 font-bold flex-shrink-0 mt-0.5">✓</span>
+              <span class="text-blue-800"><strong>Confirm which formula applies</strong> — Property DSCR (NOI ÷ Debt Service) for agency/CMBS; Rent ÷ PITIA for non-QM DSCR loans.</span>
+            </div>
+            <div class="flex gap-2 text-sm">
+              <span class="text-blue-500 font-bold flex-shrink-0 mt-0.5">✓</span>
+              <span class="text-blue-800"><strong>Run the stress test</strong> — calculate DSCR at your rate, +1%, and +2%. Bring this table to the lender meeting.</span>
+            </div>
+            <div class="flex gap-2 text-sm">
+              <span class="text-blue-500 font-bold flex-shrink-0 mt-0.5">✓</span>
+              <span class="text-blue-800"><strong>Check the right threshold</strong> — 1.25x (Fannie/Freddie conventional), 1.15x (Fannie MAH), 1.10x–1.20x (DSCR loan), 1.25x–1.35x (CMBS).</span>
+            </div>
+            <div class="flex gap-2 text-sm">
+              <span class="text-blue-500 font-bold flex-shrink-0 mt-0.5">✓</span>
+              <span class="text-blue-800"><strong>Exclude mortgage from expenses</strong> — operating expenses in the Property DSCR formula never include debt service. Common error in first-time underwriting.</span>
+            </div>
+            <div class="flex gap-2 text-sm">
+              <span class="text-blue-500 font-bold flex-shrink-0 mt-0.5">✓</span>
+              <span class="text-blue-800"><strong>Ask about replacement reserves</strong> — CMBS and some agency lenders deduct replacement reserve ($250–$400/unit/yr) from NOI before calculating DSCR.</span>
+            </div>
+            <div class="flex gap-2 text-sm">
+              <span class="text-blue-500 font-bold flex-shrink-0 mt-0.5">✓</span>
+              <span class="text-blue-800"><strong>Use 30-year amortization</strong> — even if you're getting a 10-year balloon, agency lenders size debt service on the full 30-year schedule.</span>
+            </div>
+            <div class="flex gap-2 text-sm">
+              <span class="text-blue-500 font-bold flex-shrink-0 mt-0.5">✓</span>
+              <span class="text-blue-800"><strong>Verify occupancy requirements</strong> — Fannie/Freddie typically require 90%+ occupancy for T-12 NOI to be underwritten. Recent lease-up may not qualify.</span>
             </div>
           </div>
         </div>
@@ -1591,13 +1795,13 @@ const form = reactive({
 
 // ─── EXPENSE FIELDS CONFIG ────────────────────────────────────────────────────
 const expenseFields = [
-  { key: 'propertyTax',  label: 'Property Taxes (annual)',       placeholder: 'e.g. 8,000' },
-  { key: 'insurance',    label: 'Insurance (annual)',            placeholder: 'e.g. 3,600' },
-  { key: 'management',   label: 'Property Management (annual)',  placeholder: 'e.g. 12,000 (8–10% of gross)' },
-  { key: 'maintenance',  label: 'Maintenance & Repairs (annual)',placeholder: 'e.g. 6,000' },
-  { key: 'utilities',    label: 'Utilities — if landlord paid',  placeholder: 'e.g. 2,400' },
-  { key: 'hoa',          label: 'HOA Fees (annual)',             placeholder: 'e.g. 0' },
-  { key: 'other',        label: 'Other Expenses (annual)',       placeholder: 'e.g. 2,000' },
+  { key: 'propertyTax',  label: 'Property Taxes (annual)',       placeholder: 'Enter annual property taxes' },
+  { key: 'insurance',    label: 'Insurance (annual)',            placeholder: 'Enter annual insurance cost' },
+  { key: 'management',   label: 'Property Management (annual)',  placeholder: 'Enter annual property management cost' },
+  { key: 'maintenance',  label: 'Maintenance & Repairs (annual)',placeholder: 'Enter annual maintenance and repairs' },
+  { key: 'utilities',    label: 'Utilities — if landlord paid',  placeholder: 'Enter annual utility cost' },
+  { key: 'hoa',          label: 'HOA Fees (annual)',             placeholder: 'Enter annual HOA fees' },
+  { key: 'other',        label: 'Other Expenses (annual)',       placeholder: 'Enter other annual operating expenses' },
 ]
 
 // ─── HELPERS ─────────────────────────────────────────────────────────────────
@@ -1839,7 +2043,7 @@ const insightText = computed(() => {
   if (d === null) return ''
   const fmt = d.toFixed(2) + 'x'
   const mode = calcMode.value === 'dscr-loan' ? 'DSCR Loan' : 'Property DSCR'
-  if (d >= 1.50) return `DSCR of ${fmt} is in the Excellent range. This ${mode} qualifies for best pricing across agency and portfolio loan programs — strong cushion absorbs rate shocks and operating surprises. Rarely achieved at 75% LTV in 2026; often requires lower leverage or above-market rents.`
+  if (d >= 1.50) return `DSCR of ${fmt} is in the Excellent range. This ${mode} meets the threshold for best pricing across agency and portfolio loan programs — strong cushion absorbs rate shocks and operating surprises. Rarely achieved at 75% LTV in 2026; often requires lower leverage or above-market rents.`
   if (d >= 1.25) return `DSCR of ${fmt} is in the Strong range — meets the Fannie Mae and Freddie Mac conventional multifamily minimum of 1.25x. This is the target band for most investment property underwriting. Check stressed DSCR at +1% rate to confirm resilience before proceeding to formal application.`
   if (d >= 1.15) return `DSCR of ${fmt} is in the Moderate range — meets the Fannie Mae MAH affordable program threshold (1.15x) but falls below the conventional 1.25x minimum. Lender options narrow at this level. Verify the stressed DSCR at +1% carefully — if it falls below 1.00x, expect denial or significant equity requirements.`
   if (d >= 1.00) return `DSCR of ${fmt} is in the Marginal range. Most DSCR loan lenders accept 1.00x–1.10x minimum but pricing worsens and LTV caps tighten. This property barely covers debt with no cushion — any rate increase will push DSCR below 1.00x. Check the stress test results carefully before proceeding.`
@@ -2256,6 +2460,9 @@ const proTips = [
   'A 1.25x DSCR at 7.5% rate that falls to 1.05x at 8.5% is what underwriters call "fragile" — expect tighter LTV or pricing bumps from conservative lenders.',
   'DSCR loans (non-QM) use Monthly Rent ÷ PITIA — expenses don\'t reduce DSCR in that product, which is why DSCR loans often show higher nominal DSCR than Property DSCR on the same property.',
   'Don\'t confuse DSCR with Cap Rate — Cap Rate is unlevered yield on property value. DSCR is the lender\'s income coverage ratio. Same property, two completely different metrics for different audiences.',
+  'Run the Find Max Loan Amount mode before negotiating price — knowing your lender-implied loan ceiling prevents structuring deals that look good on LTV but fail on income coverage.',
+  'CMBS lenders often deduct replacement reserves ($250–$400/unit/yr) from NOI before calculating DSCR — always ask about reserve treatment, especially on older vintage assets.',
+  'For DSCR loan deals, get a rent survey (from Rentometer or a local appraiser) before closing — lenders often use the lower of lease rent or appraiser market rent in DSCR calculation.',
 ]
 
 const tierGuide = [
@@ -2307,6 +2514,10 @@ const stateBenchmarks = [
   { state: 'Georgia', range: '1.20x–1.35x', note: 'Atlanta offers one of the stronger DSCR environments for 2026 investors — moderate property taxes, growing rents, and accessible Fannie/Freddie execution. Savannah and suburban Atlanta markets show slightly tighter numbers.' },
   { state: 'Colorado', range: '1.10x–1.25x', note: 'Denver\'s high purchase prices and growing insurance costs (hail, wildfire) compress DSCR toward the 1.15–1.20x range. Colorado Springs and secondary CO markets show stronger coverage.' },
   { state: 'Washington', range: '1.10x–1.25x', note: 'Seattle\'s high prices drive tight DSCR similar to California coastal markets. Eastern WA (Spokane, Tri-Cities) offers materially better DSCR for cash flow investors. Strong rent growth in tech corridors helps offset high prices.' },
+  { state: 'Ohio', range: '1.30x–1.50x', note: 'Columbus, Cleveland, and Cincinnati rank among the strongest DSCR markets in the US — affordable prices relative to rents, moderate taxes, and low insurance costs. Midwest value markets routinely clear 1.30x+ at standard 75% LTV.' },
+  { state: 'Tennessee', range: '1.20x–1.35x', note: 'Nashville rent growth has been strong but 2023–2025 new supply is moderating gains. Memphis and Knoxville offer better DSCR for cash flow investors. No state income tax provides a slight operating margin benefit.' },
+  { state: 'North Carolina', range: '1.15x–1.30x', note: 'Charlotte and Raleigh have absorbed strong in-migration and rent growth. Property taxes are moderate and insurance is manageable outside coastal flood zones. DSCR ranges are competitive with Texas markets.' },
+  { state: 'Indiana', range: '1.35x–1.55x', note: 'Indianapolis is one of the top DSCR markets for US investors — low property taxes, reasonable insurance, and strong rent-to-price ratios. Secondary IN markets (Fort Wayne, South Bend) are increasingly attracting cash flow investors priced out of Columbus.' },
 ]
 
 const strategies = [
@@ -2317,7 +2528,7 @@ const strategies = [
   },
   {
     badge: 'DSCR Loan (Non-QM)', color: '#0f766e',
-    p1: 'DSCR loans have grown to represent 15–20% of investor loan volume in 2026 because they don\'t require personal income documentation, W-2 history, or traditional DTI underwriting. Non-QM lenders accept 1.00x–1.20x DSCR minimum depending on LTV and reserves. The Rent ÷ PITIA formula makes these loans simpler to underwrite but more rate-sensitive — because P&I rises directly with rate, any rate move immediately impacts DSCR. Example: $400K property, $3,500/mo rent, $2,800 PITIA = 1.25x — qualifies for standard DSCR loan programs.',
+    p1: 'DSCR loans have grown to represent 15–20% of investor loan volume in 2026 because they don\'t require personal income documentation, W-2 history, or traditional DTI underwriting. Non-QM lenders accept 1.00x–1.20x DSCR minimum depending on LTV and reserves. The Rent ÷ PITIA formula makes these loans simpler to underwrite but more rate-sensitive — because P&I rises directly with rate, any rate move immediately impacts DSCR. Example: $400K property, $3,500/mo rent, $2,800 PITIA = 1.25x — meets the common DSCR threshold for standard DSCR loan programs.',
     p2: 'Trade-offs vs conventional: DSCR loans carry a 0.5–1.5% rate premium, tighter LTV caps (typically 75–80% max), and often include prepayment penalties (3-2-1 or step-down structures). Best for investors who can\'t document W-2 income or want to scale portfolios without personal debt-to-income constraints. Typical borrower: real estate professional with 3–10 existing rental properties seeking portfolio expansion without personal income verification.',
   },
   {
@@ -2378,17 +2589,17 @@ const industryStandards = [
 ]
 
 const limitations = [
-  { n: 1, title: 'Operating Metric Only — No Equity Returns', body: 'DSCR measures debt coverage, not investor returns. A 1.30x DSCR deal could still be a poor investment if it ties up too much equity for thin cash-on-cash return. A DSCR of 1.10x with strong appreciation can outperform a 1.40x DSCR deal in a flat market over 10 years. Always pair DSCR with Cash-on-Cash Return and Cap Rate.' },
-  { n: 2, title: 'Point-in-Time Snapshot', body: 'DSCR uses current or Year 1 NOI. Value-add and lease-up deals show weak DSCR during the renovation period, then strong stabilized DSCR once occupied. Lenders size on stabilized NOI — always present T-12 actuals AND projected stabilized NOI separately to show the full picture.' },
-  { n: 3, title: 'Sensitive to Rate Assumption', body: 'DSCR moves materially with interest rate. A 0.5% rate change can shift DSCR by 0.08–0.12x on a typical 75% LTV deal. In 2026\'s rate environment, always check the stress test — and recognize that a rate drop of 1–2% in a refinance could unlock materially better loan terms or higher loan proceeds.' },
-  { n: 4, title: 'Ignores Principal Paydown and Appreciation', body: 'DSCR says nothing about long-term wealth creation. The debt paydown benefit (equity built through amortization) and appreciation are completely outside the DSCR framework. A deal with 1.10x DSCR in a high-growth market can create more wealth than a 1.40x DSCR deal in a stagnant market — DSCR doesn\'t capture this.' },
+  { n: 1, title: 'Operating Metric Only — No Equity Returns', body: 'DSCR measures debt coverage, not investor returns. A 1.30x DSCR deal could still be a poor investment if it ties up too much equity for thin cash-on-cash return. A DSCR of 1.10x with strong appreciation can outperform a 1.40x DSCR deal in a flat market over 10 years. For every DSCR calculation, pair it with Cash-on-Cash Return (levered equity yield) and Cap Rate (unlevered asset yield) to understand whether the deal makes financial sense beyond simply clearing the lender threshold. DSCR tells the lender whether to lend — it does not tell the investor whether to buy.' },
+  { n: 2, title: 'Point-in-Time Snapshot', body: 'DSCR uses current or Year 1 NOI. Value-add and lease-up deals show weak DSCR during the renovation period, then strong stabilized DSCR once occupied. Lenders size on stabilized NOI — always present T-12 actuals AND projected stabilized NOI separately to show the full picture. Bridge lenders and construction lenders handle transitional DSCR differently than permanent agency lenders — make sure you\'re using the right formula for the right loan product and property stage.' },
+  { n: 3, title: 'Sensitive to Rate Assumption', body: 'DSCR moves materially with interest rate. A 0.5% rate change can shift DSCR by 0.08–0.12x on a typical 75% LTV deal. In 2026\'s rate environment, always check the stress test — and recognize that a rate drop of 1–2% in a refinance could unlock materially better loan terms or higher loan proceeds. Many acquisition analyses done in 2024–2025 used optimistic rate assumptions — if your deal only works at 6.5% and current rates are 7.5%, that\'s a gap you need to explicitly underwrite.' },
+  { n: 4, title: 'Ignores Principal Paydown and Appreciation', body: 'DSCR says nothing about long-term wealth creation. The debt paydown benefit (equity built through amortization) and appreciation are completely outside the DSCR framework. A deal with 1.10x DSCR in a high-growth market can create more wealth than a 1.40x DSCR deal in a stagnant market — DSCR doesn\'t capture this. For full investment analysis, model the 5–10 year hold, include expected appreciation, amortization paydown, and the after-tax IRR. DSCR is Year 1 income coverage — complete investment analysis is much richer than a single ratio.' },
 ]
 
 const whenNotToUse = [
-  { case: 'All-cash purchases', reason: 'No debt → DSCR is mathematically infinite (or undefined). Use Cap Rate for unlevered analysis.' },
-  { case: 'Short hold (under 3 years)', reason: 'IRR, exit cap rate, and appreciation drive returns more than Year 1 DSCR.' },
-  { case: 'Heavy value-add / reposition', reason: 'Current DSCR during renovation is meaningless — use pro forma stabilized DSCR instead.' },
-  { case: 'Land / development', reason: 'No operating income → DSCR does not apply. Use construction loan underwriting metrics.' },
+  { case: 'All-cash purchases', reason: 'No debt → DSCR is mathematically infinite (or undefined). Use Cap Rate for unlevered analysis and Cash-on-Cash for return on equity measurement.' },
+  { case: 'Short hold (under 3 years)', reason: 'IRR, exit cap rate, and appreciation drive returns more than Year 1 DSCR. A flip or quick-turn deal is better evaluated on gross margin and ARV, not debt coverage.' },
+  { case: 'Heavy value-add / reposition', reason: 'Current DSCR during renovation is meaningless — use pro forma stabilized DSCR instead. Better still, use a bridge lender who underwrites stabilized value and NOI, not current operating results.' },
+  { case: 'Land / development', reason: 'No operating income → DSCR does not apply. Use construction loan underwriting metrics: construction budget, LTC (loan-to-cost), and post-completion permanent loan feasibility.' },
 ]
 
 const commonMistakes = [
@@ -2482,5 +2693,8 @@ const outputTable = [
   { output: 'Max Loan at 1.25x (Property)', meaning: 'Largest loan amount that achieves exactly 1.25x DSCR given current NOI', use: 'Know your borrowing ceiling before approaching lenders' },
   { output: 'Rent Cushion (DSCR Loan)', meaning: 'Monthly dollar difference between rent and total PITIA', use: 'Margin of safety in dollar terms for DSCR loan deals' },
   { output: 'Annual Debt Service', meaning: 'Total annual principal and interest payments on the loan', use: 'DSCR denominator; appears in sensitivity tables' },
+  { output: 'Monthly Payment (P&I)', meaning: 'Auto-calculated principal and interest payment from loan amount, rate, and term', use: 'Cross-check lender quote; feeds PITIA in DSCR Loan mode' },
+  { output: 'EGI (Effective Gross Income)', meaning: 'Gross rental income minus vacancy loss plus other income', use: 'NOI numerator starting point; used by agency underwriters' },
+  { output: 'LTV %', meaning: 'Loan-to-value ratio derived from loan amount and purchase price', use: 'Verify deal is within program LTV limits (70–80% for most products)' },
 ]
 </script>
