@@ -62,7 +62,13 @@
           <ul class="hidden md:flex flex-wrap gap-x-5 gap-y-1.5">
             <li><a href="#calculator" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Calculator</a></li>
             <li><a href="#how-to-analyze" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">How to Analyze</a></li>
+            <li><a href="#expense-rules" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Expense Rules</a></li>
+            <li><a href="#one-percent-rule" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">1% Rule</a></li>
+            <li><a href="#financing" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Financing</a></li>
+            <li><a href="#cash-flow-vs-appreciation" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Cash Flow vs Appreciation</a></li>
+            <li><a href="#tax-benefits" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Tax Benefits</a></li>
             <li><a href="#market-returns" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">US Market Returns</a></li>
+            <li><a href="#common-mistakes" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Common Mistakes</a></li>
             <li><a href="#faq" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">FAQ</a></li>
           </ul>
 
@@ -71,10 +77,12 @@
             <ul class="flex flex-wrap gap-x-4 gap-y-1.5">
               <li><a href="#calculator" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Calculator</a></li>
               <li><a href="#how-to-analyze" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">How to Analyze</a></li>
+              <li><a href="#expense-rules" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Expense Rules</a></li>
+              <li><a href="#one-percent-rule" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">1% Rule</a></li>
+              <li><a href="#financing" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Financing</a></li>
               <li><a href="#market-returns" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">US Market Returns</a></li>
               <li><a href="#faq" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">FAQ</a></li>
             </ul>
-
           </div>
         </div>
 
@@ -439,7 +447,7 @@
           <!-- ══════════ SEO CONTENT SECTION ══════════ -->
           <div class="mt-12 space-y-8">
 
-            <!-- What is rental property analysis -->
+            <!-- How to Analyze -->
             <div id="how-to-analyze" class="bg-white rounded-2xl border border-gray-200 p-8">
               <h2 class="text-xl font-extrabold mb-4" style="color: #1e3a5f;">How to Analyze a Rental Property Investment</h2>
               <p class="text-gray-600 leading-relaxed mb-4">
@@ -449,30 +457,207 @@
                 <div class="p-4 rounded-xl bg-gray-50 border border-gray-100">
                   <p class="font-bold text-sm mb-1" style="color: #1e3a5f;">Net Operating Income (NOI)</p>
                   <p class="text-xs text-gray-500 mb-2">What the property earns before debt service</p>
-                  <code class="text-xs bg-white px-2 py-1 rounded border border-gray-400 hover:border-gray-500 block">NOI = EGI − Operating Expenses</code>
+                  <code class="text-xs bg-white px-2 py-1 rounded border border-gray-200 block">NOI = Effective Gross Income − Operating Expenses</code>
                 </div>
                 <div class="p-4 rounded-xl bg-gray-50 border border-gray-100">
                   <p class="font-bold text-sm mb-1" style="color: #1e3a5f;">Capitalization Rate</p>
                   <p class="text-xs text-gray-500 mb-2">Unlevered yield — compare properties regardless of financing</p>
-                  <code class="text-xs bg-white px-2 py-1 rounded border border-gray-400 hover:border-gray-500 block">Cap Rate = NOI ÷ Purchase Price × 100</code>
+                  <code class="text-xs bg-white px-2 py-1 rounded border border-gray-200 block">Cap Rate = NOI ÷ Purchase Price × 100</code>
                 </div>
                 <div class="p-4 rounded-xl bg-gray-50 border border-gray-100">
                   <p class="font-bold text-sm mb-1" style="color: #1e3a5f;">Cash-on-Cash Return</p>
                   <p class="text-xs text-gray-500 mb-2">Annual cash flow as % of cash invested — measures your real yield</p>
-                  <code class="text-xs bg-white px-2 py-1 rounded border border-gray-400 hover:border-gray-500 block">CoC = Annual Cash Flow ÷ Total Cash Invested × 100</code>
+                  <code class="text-xs bg-white px-2 py-1 rounded border border-gray-200 block">CoC = Annual Cash Flow ÷ Total Cash Invested × 100</code>
                 </div>
                 <div class="p-4 rounded-xl bg-gray-50 border border-gray-100">
                   <p class="font-bold text-sm mb-1" style="color: #1e3a5f;">Monthly Cash Flow</p>
-                  <p class="text-xs text-gray-500 mb-2">What you actually pocket each month after all costs</p>
-                  <code class="text-xs bg-white px-2 py-1 rounded border border-gray-400 hover:border-gray-500 block">Cash Flow = NOI/12 − Monthly Mortgage</code>
+                  <p class="text-xs text-gray-500 mb-2">What you pocket each month after all costs</p>
+                  <code class="text-xs bg-white px-2 py-1 rounded border border-gray-200 block">Cash Flow = NOI/12 − Monthly Mortgage (P&amp;I)</code>
                 </div>
               </div>
               <p class="text-gray-600 leading-relaxed text-sm">
-                A strong rental property typically achieves: cash-on-cash ≥ 8%, cap rate ≥ 5% (market dependent), and positive monthly cash flow after all expenses including a vacancy allowance and management fee.
+                A strong rental property typically achieves: cash-on-cash ≥ 8%, cap rate ≥ 5% (market dependent), and positive monthly cash flow after all expenses including vacancy allowance and property management.
               </p>
             </div>
 
-            <!-- Benchmarks by Market -->
+            <!-- Expense Rules -->
+            <div id="expense-rules" class="bg-white rounded-2xl border border-gray-200 p-8">
+              <h2 class="text-xl font-extrabold mb-4" style="color: #1e3a5f;">Rental Property Expense Rules of Thumb</h2>
+              <p class="text-gray-600 leading-relaxed mb-6">
+                Two widely-used rules help investors quickly estimate whether a property's expense load is reasonable before running detailed numbers. Use them for screening — not for your final underwriting.
+              </p>
+              <div class="grid md:grid-cols-2 gap-6 mb-6">
+                <div class="p-5 rounded-xl border-2 border-amber-200 bg-amber-50">
+                  <p class="font-extrabold text-base mb-1" style="color: #1e3a5f;">The 50% Rule</p>
+                  <p class="text-sm text-gray-600 leading-relaxed mb-3">Budget 50% of gross rent for operating expenses (excluding mortgage). This includes taxes, insurance, management, maintenance, vacancy, and reserves. If gross rent is $2,000/mo, expect ~$1,000/mo in expenses before debt service.</p>
+                  <div class="text-xs text-amber-800 bg-amber-100 rounded-lg p-3 font-medium">Best for: older properties, self-managed, landlord pays utilities. Conservative — can over-estimate for newer properties in low-tax states.</div>
+                </div>
+                <div class="p-5 rounded-xl border-2 border-blue-200 bg-blue-50">
+                  <p class="font-extrabold text-base mb-1" style="color: #1e3a5f;">The 40% Rule</p>
+                  <p class="text-sm text-gray-600 leading-relaxed mb-3">A slightly more optimistic estimate for newer construction, professionally managed single-family rentals in low-tax markets. Assumes tenant pays utilities, modest tax burden, and a competent management team keeping vacancy low.</p>
+                  <div class="text-xs text-blue-800 bg-blue-100 rounded-lg p-3 font-medium">Best for: SFR built after 2010, tenant-paid utilities, property management in place, tax-friendly states (FL, TX, AZ).</div>
+                </div>
+              </div>
+              <div class="overflow-x-auto">
+                <table class="w-full text-sm border-collapse">
+                  <thead>
+                    <tr class="border-b-2 border-gray-200">
+                      <th class="text-left py-2 pr-4 font-bold text-gray-700">Expense Category</th>
+                      <th class="text-right py-2 px-3 font-bold text-gray-700">% of Gross Rent</th>
+                      <th class="text-right py-2 pl-3 font-bold text-gray-700">On $2,000/mo</th>
+                    </tr>
+                  </thead>
+                  <tbody class="text-gray-600">
+                    <tr class="border-b border-gray-100"><td class="py-2 pr-4">Property Taxes</td><td class="text-right px-3">8–15%</td><td class="text-right pl-3">$160–$300</td></tr>
+                    <tr class="border-b border-gray-100"><td class="py-2 pr-4">Insurance</td><td class="text-right px-3">4–8%</td><td class="text-right pl-3">$80–$160</td></tr>
+                    <tr class="border-b border-gray-100"><td class="py-2 pr-4">Property Management</td><td class="text-right px-3">8–12%</td><td class="text-right pl-3">$160–$240</td></tr>
+                    <tr class="border-b border-gray-100"><td class="py-2 pr-4">Maintenance &amp; Repairs</td><td class="text-right px-3">5–10%</td><td class="text-right pl-3">$100–$200</td></tr>
+                    <tr class="border-b border-gray-100"><td class="py-2 pr-4">Vacancy Allowance</td><td class="text-right px-3">5–8%</td><td class="text-right pl-3">$100–$160</td></tr>
+                    <tr class="border-b border-gray-100"><td class="py-2 pr-4">CapEx Reserve</td><td class="text-right px-3">3–6%</td><td class="text-right pl-3">$60–$120</td></tr>
+                    <tr class="font-bold text-gray-800"><td class="py-2 pr-4">Total (typical)</td><td class="text-right px-3">35–55%</td><td class="text-right pl-3">$700–$1,100</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- The 1% Rule -->
+            <div id="one-percent-rule" class="bg-white rounded-2xl border border-gray-200 p-8">
+              <h2 class="text-xl font-extrabold mb-4" style="color: #1e3a5f;">The 1% Rule — Quick Screen for Cash Flow Potential</h2>
+              <p class="text-gray-600 leading-relaxed mb-4">
+                The <strong>1% rule</strong> states that a rental property's monthly gross rent should equal at least 1% of its total acquisition cost (purchase price + repairs). A $250,000 property should produce $2,500/month in rent. Properties that meet the 1% rule generally have enough income to cover expenses and a mortgage at current rates and still generate positive cash flow.
+              </p>
+              <div class="grid md:grid-cols-3 gap-4 mb-5">
+                <div class="p-4 rounded-xl bg-green-50 border border-green-100 text-center">
+                  <p class="text-xs font-bold text-green-700 uppercase tracking-wide mb-1">Meets 1% Rule</p>
+                  <p class="text-lg font-extrabold text-green-700">$300K → $3,000+/mo</p>
+                  <p class="text-xs text-green-600 mt-1">Good cash flow candidate — proceed to full analysis</p>
+                </div>
+                <div class="p-4 rounded-xl bg-amber-50 border border-amber-100 text-center">
+                  <p class="text-xs font-bold text-amber-700 uppercase tracking-wide mb-1">Near 1% Rule</p>
+                  <p class="text-lg font-extrabold text-amber-700">$300K → $2,500–$3,000/mo</p>
+                  <p class="text-xs text-amber-600 mt-1">Run full numbers — may still work in low-expense markets</p>
+                </div>
+                <div class="p-4 rounded-xl bg-red-50 border border-red-100 text-center">
+                  <p class="text-xs font-bold text-red-600 uppercase tracking-wide mb-1">Fails 1% Rule</p>
+                  <p class="text-lg font-extrabold text-red-600">$300K → &lt;$2,000/mo</p>
+                  <p class="text-xs text-red-500 mt-1">Likely cash-flow negative — appreciation play only</p>
+                </div>
+              </div>
+              <div class="bg-gray-50 border border-gray-200 rounded-xl p-4 text-sm text-gray-600">
+                <strong class="text-gray-800">Important caveat:</strong> The 1% rule is nearly impossible to meet in high-cost metros (NYC, LA, SF, Seattle, Boston). In those markets, investors rely on appreciation and equity build-up. Conversely, in the Midwest and Southeast, 1–1.5% ratios are common. Don't reject a market because properties fail the 1% rule — adjust your return expectations and strategy instead.
+              </div>
+            </div>
+
+            <!-- Financing -->
+            <div id="financing" class="bg-white rounded-2xl border border-gray-200 p-8">
+              <h2 class="text-xl font-extrabold mb-4" style="color: #1e3a5f;">Financing a Rental Property — Loan Types &amp; Down Payment Requirements</h2>
+              <p class="text-gray-600 leading-relaxed mb-6">Your financing choice dramatically impacts cash flow. A higher down payment lowers your monthly payment but reduces your cash-on-cash return by tying up more capital. A smaller down payment maximizes CoC return but leaves less margin for error.</p>
+              <div class="grid md:grid-cols-2 gap-4 mb-6">
+                <div class="p-5 rounded-xl bg-gray-50 border border-gray-100">
+                  <p class="font-bold text-sm mb-2" style="color: #1e3a5f;">Conventional Investment Loan</p>
+                  <ul class="text-sm text-gray-600 space-y-1">
+                    <li>• Down payment: <strong>15–25%</strong> (SFR vs. multi-unit)</li>
+                    <li>• Rate: typically 0.5–0.75% above primary residence</li>
+                    <li>• Qualifies on your personal income and credit score</li>
+                    <li>• Best for: W-2 earners with strong DTI and credit ≥ 680</li>
+                  </ul>
+                </div>
+                <div class="p-5 rounded-xl bg-gray-50 border border-gray-100">
+                  <p class="font-bold text-sm mb-2" style="color: #1e3a5f;">DSCR Loan (Debt-Service Coverage Ratio)</p>
+                  <ul class="text-sm text-gray-600 space-y-1">
+                    <li>• Down payment: <strong>20–25%</strong></li>
+                    <li>• No personal income verification — property qualifies itself</li>
+                    <li>• DSCR ≥ 1.25× typically required (rent ÷ P&amp;I)</li>
+                    <li>• Best for: self-employed investors or those with multiple properties</li>
+                  </ul>
+                </div>
+                <div class="p-5 rounded-xl bg-gray-50 border border-gray-100">
+                  <p class="font-bold text-sm mb-2" style="color: #1e3a5f;">Portfolio Loan</p>
+                  <ul class="text-sm text-gray-600 space-y-1">
+                    <li>• Held by lender — not sold to Fannie/Freddie</li>
+                    <li>• More flexible terms, higher rates (1–2% above conventional)</li>
+                    <li>• Can bundle multiple properties in a single loan (blanket)</li>
+                    <li>• Best for: experienced investors building a portfolio quickly</li>
+                  </ul>
+                </div>
+                <div class="p-5 rounded-xl bg-gray-50 border border-gray-100">
+                  <p class="font-bold text-sm mb-2" style="color: #1e3a5f;">House Hacking (FHA / Conventional)</p>
+                  <ul class="text-sm text-gray-600 space-y-1">
+                    <li>• FHA: 3.5% down — owner-occupied 2–4 unit only</li>
+                    <li>• Conventional: 5% down for owner-occupied duplex</li>
+                    <li>• Live in one unit, rent the others to offset mortgage</li>
+                    <li>• Best for: first-time investors building equity with minimal cash</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 text-sm text-blue-800">
+                <strong>Down payment leverage tip:</strong> 25% down vs. 20% down on a $300K property means an extra $15,000 tied up. At an 8% CoC return, that $15K would have generated $1,200/year in additional cash flow if deployed elsewhere. Always model multiple down payment scenarios before committing.
+              </div>
+            </div>
+
+            <!-- Cash Flow vs Appreciation -->
+            <div id="cash-flow-vs-appreciation" class="bg-white rounded-2xl border border-gray-200 p-8">
+              <h2 class="text-xl font-extrabold mb-4" style="color: #1e3a5f;">Cash Flow vs. Appreciation — Which Strategy Is Right for You?</h2>
+              <p class="text-gray-600 leading-relaxed mb-5">
+                Real estate investors broadly fall into two camps: <strong>cash flow investors</strong> who prioritize monthly income, and <strong>appreciation investors</strong> who accept thin or negative cash flow in exchange for long-term price growth. Neither is universally superior — the right strategy depends on your income, timeline, and local market.
+              </p>
+              <div class="grid md:grid-cols-2 gap-6 mb-5">
+                <div class="p-5 rounded-xl border-l-4 bg-green-50 border-green-400">
+                  <p class="font-extrabold text-green-800 mb-2">Cash Flow Strategy</p>
+                  <ul class="text-sm text-gray-600 space-y-2">
+                    <li><strong>Target markets:</strong> Midwest, Southeast, Sun Belt secondary cities</li>
+                    <li><strong>Typical returns:</strong> 6–12% CoC, cap rates 6–9%</li>
+                    <li><strong>Pros:</strong> Income in Year 1, portfolio compounds faster, less reliance on appreciation timing</li>
+                    <li><strong>Cons:</strong> Lower price appreciation, may require more active management in lower-income areas</li>
+                    <li><strong>Best for:</strong> Investors seeking passive income replacement or early retirement</li>
+                  </ul>
+                </div>
+                <div class="p-5 rounded-xl border-l-4 bg-blue-50 border-blue-400">
+                  <p class="font-extrabold text-blue-800 mb-2">Appreciation Strategy</p>
+                  <ul class="text-sm text-gray-600 space-y-2">
+                    <li><strong>Target markets:</strong> CA, NY, WA, CO, major coastal metros</li>
+                    <li><strong>Typical returns:</strong> 1–4% CoC, cap rates 3–5%, but 5–7% annual appreciation</li>
+                    <li><strong>Pros:</strong> Massive equity build-up, strong rent growth, liquid resale market</li>
+                    <li><strong>Cons:</strong> Negative cash flow common, must subsidize the property monthly, vulnerable to rate spikes</li>
+                    <li><strong>Best for:</strong> High-income earners who can absorb short-term losses for long-term wealth</li>
+                  </ul>
+                </div>
+              </div>
+              <p class="text-gray-600 text-sm leading-relaxed">
+                The most resilient investors combine both: they buy cash-flowing properties in growth markets — cities like Atlanta, Austin, Tampa, and Nashville — where you don't have to choose between monthly income and long-term appreciation.
+              </p>
+            </div>
+
+            <!-- Tax Benefits -->
+            <div id="tax-benefits" class="bg-white rounded-2xl border border-gray-200 p-8">
+              <h2 class="text-xl font-extrabold mb-4" style="color: #1e3a5f;">Tax Benefits of Rental Property Ownership</h2>
+              <p class="text-gray-600 leading-relaxed mb-5">
+                The US tax code offers rental property owners substantial deductions that improve after-tax returns significantly. A property showing modest cash flow on paper often produces much better after-tax results due to depreciation — a non-cash deduction that shelters income.
+              </p>
+              <div class="grid md:grid-cols-2 gap-4 mb-5">
+                <div class="p-4 rounded-xl bg-gray-50 border border-gray-100">
+                  <p class="font-bold text-sm mb-2" style="color: #1e3a5f;">Depreciation (Section 168)</p>
+                  <p class="text-xs text-gray-600 leading-relaxed">Residential rental property is depreciated over 27.5 years. On a $300,000 property (excluding land), you can deduct ~$9,090/year — sheltering that much rental income from federal tax. This is a non-cash deduction: the property continues appreciating while you claim the deduction.</p>
+                </div>
+                <div class="p-4 rounded-xl bg-gray-50 border border-gray-100">
+                  <p class="font-bold text-sm mb-2" style="color: #1e3a5f;">Mortgage Interest Deduction</p>
+                  <p class="text-xs text-gray-600 leading-relaxed">100% of mortgage interest on investment properties is deductible against rental income. In the early years of a 30-year mortgage, the majority of each payment is interest — providing a substantial deduction that reduces your taxable rental income.</p>
+                </div>
+                <div class="p-4 rounded-xl bg-gray-50 border border-gray-100">
+                  <p class="font-bold text-sm mb-2" style="color: #1e3a5f;">Operating Expense Deductions</p>
+                  <p class="text-xs text-gray-600 leading-relaxed">Property taxes, insurance, property management fees, repairs, maintenance, advertising, and professional services (accountant, attorney) are all fully deductible in the year incurred. Capital improvements are depreciated separately.</p>
+                </div>
+                <div class="p-4 rounded-xl bg-gray-50 border border-gray-100">
+                  <p class="font-bold text-sm mb-2" style="color: #1e3a5f;">1031 Exchange</p>
+                  <p class="text-xs text-gray-600 leading-relaxed">When you sell an investment property, you can defer capital gains taxes indefinitely by rolling the proceeds into a "like-kind" property within 180 days (45-day identification window). Serial 1031 exchanges are how many investors build multi-million-dollar portfolios tax-deferred.</p>
+                </div>
+              </div>
+              <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm text-amber-800">
+                <strong>Note:</strong> Passive loss rules (IRC §469) limit how much rental depreciation can offset W-2 income. Active investors with AGI under $100K can deduct up to $25K/year; this phases out between $100K–$150K. Real Estate Professional status (750+ hours/year) removes the passive loss limitation entirely. Consult a CPA familiar with real estate.
+              </div>
+            </div>
+
+            <!-- Market Returns -->
             <div id="market-returns" class="bg-white rounded-2xl border border-gray-200 p-8">
               <h2 class="text-xl font-extrabold mb-2" style="color: #1e3a5f;">Rental Property Returns by US Market (2026)</h2>
               <p class="text-gray-500 text-sm mb-6">Typical cash-on-cash returns for stabilized residential rentals, assuming 25% down and current interest rates. Higher-yield markets generally carry more risk or require more active management.</p>
@@ -517,33 +702,157 @@
                   <p class="text-2xl font-extrabold text-amber-600 mb-1">3–6%</p>
                   <p class="text-xs text-gray-500">Seattle area. No income tax. Strong tech-driven rental demand but high acquisition cost.</p>
                 </div>
+                <div class="p-4 rounded-xl border border-gray-100 bg-gray-50">
+                  <p class="font-bold text-sm mb-1" style="color:#1e3a5f;">Ohio (OH)</p>
+                  <p class="text-2xl font-extrabold text-green-600 mb-1">8–13%</p>
+                  <p class="text-xs text-gray-500">Columbus, Cleveland. Some of the highest CoC in the country. Low entry prices, solid tenant demand.</p>
+                </div>
+                <div class="p-4 rounded-xl border border-gray-100 bg-gray-50">
+                  <p class="font-bold text-sm mb-1" style="color:#1e3a5f;">North Carolina (NC)</p>
+                  <p class="text-2xl font-extrabold text-green-600 mb-1">5–9%</p>
+                  <p class="text-xs text-gray-500">Charlotte, Raleigh. Strong job growth and in-migration. Landlord-friendly state laws.</p>
+                </div>
+                <div class="p-4 rounded-xl border border-gray-100 bg-gray-50">
+                  <p class="font-bold text-sm mb-1" style="color:#1e3a5f;">Tennessee (TN)</p>
+                  <p class="text-2xl font-extrabold text-green-600 mb-1">6–10%</p>
+                  <p class="text-xs text-gray-500">Nashville, Memphis. No state income tax. Strong population growth and rent demand.</p>
+                </div>
+                <div class="p-4 rounded-xl border border-gray-100 bg-gray-50">
+                  <p class="font-bold text-sm mb-1" style="color:#1e3a5f;">Illinois (IL)</p>
+                  <p class="text-2xl font-extrabold text-amber-600 mb-1">4–7%</p>
+                  <p class="text-xs text-gray-500">Chicago suburbs. High property taxes compress returns. Strong rental demand in blue-chip neighborhoods.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Common Mistakes -->
+            <div id="common-mistakes" class="bg-white rounded-2xl border border-gray-200 p-8">
+              <h2 class="text-xl font-extrabold mb-4" style="color: #1e3a5f;">8 Common Mistakes Rental Property Investors Make</h2>
+              <div class="grid md:grid-cols-2 gap-4">
+                <div class="flex gap-3 p-4 rounded-xl bg-red-50 border border-red-100">
+                  <div class="flex-shrink-0 w-7 h-7 rounded-full bg-red-100 flex items-center justify-center font-extrabold text-red-600 text-sm">1</div>
+                  <div>
+                    <p class="font-bold text-sm text-gray-800 mb-1">Underestimating expenses</p>
+                    <p class="text-xs text-gray-600">New investors consistently forget CapEx reserves, vacancy, management fees, and annual maintenance. Always use 40–50% expense ratio until you have 12 months of real data.</p>
+                  </div>
+                </div>
+                <div class="flex gap-3 p-4 rounded-xl bg-red-50 border border-red-100">
+                  <div class="flex-shrink-0 w-7 h-7 rounded-full bg-red-100 flex items-center justify-center font-extrabold text-red-600 text-sm">2</div>
+                  <div>
+                    <p class="font-bold text-sm text-gray-800 mb-1">Using optimistic rent estimates</p>
+                    <p class="text-xs text-gray-600">Model rent at current market rates — never at what you hope to charge after improvements. Verify with 3–5 comparable rentals actively listed within 0.5 miles.</p>
+                  </div>
+                </div>
+                <div class="flex gap-3 p-4 rounded-xl bg-red-50 border border-red-100">
+                  <div class="flex-shrink-0 w-7 h-7 rounded-full bg-red-100 flex items-center justify-center font-extrabold text-red-600 text-sm">3</div>
+                  <div>
+                    <p class="font-bold text-sm text-gray-800 mb-1">Ignoring vacancy</p>
+                    <p class="text-xs text-gray-600">Even great properties have tenant turnover. Budget 5–8% vacancy for SFR, 3–5% for multi-family in strong markets. Never assume 100% occupancy.</p>
+                  </div>
+                </div>
+                <div class="flex gap-3 p-4 rounded-xl bg-red-50 border border-red-100">
+                  <div class="flex-shrink-0 w-7 h-7 rounded-full bg-red-100 flex items-center justify-center font-extrabold text-red-600 text-sm">4</div>
+                  <div>
+                    <p class="font-bold text-sm text-gray-800 mb-1">Buying on appreciation assumptions</p>
+                    <p class="text-xs text-gray-600">If the deal only works because you expect the property to appreciate 7%/year, it's a speculation. Run your base case on cash flow alone — appreciation is the upside, not the thesis.</p>
+                  </div>
+                </div>
+                <div class="flex gap-3 p-4 rounded-xl bg-red-50 border border-red-100">
+                  <div class="flex-shrink-0 w-7 h-7 rounded-full bg-red-100 flex items-center justify-center font-extrabold text-red-600 text-sm">5</div>
+                  <div>
+                    <p class="font-bold text-sm text-gray-800 mb-1">Over-leveraging</p>
+                    <p class="text-xs text-gray-600">Maximum leverage amplifies returns in good times but can destroy cash flow when rates rise or rents soften. Maintain at least 3–6 months of reserves per property.</p>
+                  </div>
+                </div>
+                <div class="flex gap-3 p-4 rounded-xl bg-red-50 border border-red-100">
+                  <div class="flex-shrink-0 w-7 h-7 rounded-full bg-red-100 flex items-center justify-center font-extrabold text-red-600 text-sm">6</div>
+                  <div>
+                    <p class="font-bold text-sm text-gray-800 mb-1">Skipping property management costs</p>
+                    <p class="text-xs text-gray-600">Self-management isn't free — it costs you time. Model 8–10% management fee even if you plan to self-manage. This ensures the deal works if you ever need to hire out.</p>
+                  </div>
+                </div>
+                <div class="flex gap-3 p-4 rounded-xl bg-red-50 border border-red-100">
+                  <div class="flex-shrink-0 w-7 h-7 rounded-full bg-red-100 flex items-center justify-center font-extrabold text-red-600 text-sm">7</div>
+                  <div>
+                    <p class="font-bold text-sm text-gray-800 mb-1">Not stress-testing the deal</p>
+                    <p class="text-xs text-gray-600">What happens if rent drops 10%? If the rate resets 2% higher? If the property sits vacant for 3 months? Run downside scenarios before you buy — not after.</p>
+                  </div>
+                </div>
+                <div class="flex gap-3 p-4 rounded-xl bg-red-50 border border-red-100">
+                  <div class="flex-shrink-0 w-7 h-7 rounded-full bg-red-100 flex items-center justify-center font-extrabold text-red-600 text-sm">8</div>
+                  <div>
+                    <p class="font-bold text-sm text-gray-800 mb-1">Emotional buying</p>
+                    <p class="text-xs text-gray-600">Never buy a property because you "love it." The numbers are the decision. If the metrics don't hit your targets after conservative underwriting, walk away — there will always be another deal.</p>
+                  </div>
+                </div>
               </div>
             </div>
 
             <!-- FAQ -->
             <div id="faq" class="bg-white rounded-2xl border border-gray-200 p-8">
               <h2 class="text-xl font-extrabold mb-6" style="color: #1e3a5f;">Frequently Asked Questions — Rental Property Analysis</h2>
-              <div class="space-y-5">
-                <div class="border-b border-gray-100 pb-5">
+              <div class="space-y-0 divide-y divide-gray-100">
+
+                <div class="py-5">
                   <h3 class="font-bold text-gray-800 mb-2">What is a good cash-on-cash return for a rental property?</h3>
-                  <p class="text-gray-600 text-sm leading-relaxed">Most US investors target 6–12% cash-on-cash return depending on the market. In high-appreciation markets like CA or NY, investors often accept 2–4% CoC and rely on long-term price appreciation. In cash-flow markets like GA, OH, or IN, 8–12% CoC is achievable. Anything below 4% in a flat-appreciation market is generally not worth the management effort.</p>
+                  <p class="text-gray-600 text-sm leading-relaxed">Most US investors target 6–12% cash-on-cash return. In high-appreciation markets like CA or NY, investors often accept 2–4% CoC and rely on long-term price growth. In cash-flow markets like GA, OH, or IN, 8–12% CoC is achievable. Anything below 4% in a flat-appreciation market is generally not worth the management effort and capital tied up.</p>
                 </div>
-                <div class="border-b border-gray-100 pb-5">
+
+                <div class="py-5">
                   <h3 class="font-bold text-gray-800 mb-2">What is the 1% rule for rental properties?</h3>
-                  <p class="text-gray-600 text-sm leading-relaxed">The 1% rule states that a property's monthly gross rent should be at least 1% of its purchase price. A $200,000 property should rent for at least $2,000/month. This is a quick screening rule, not an analysis — many strong investments fail the 1% rule in major metros while still generating solid returns. Always run the full numbers.</p>
+                  <p class="text-gray-600 text-sm leading-relaxed">The 1% rule states that a property's monthly gross rent should equal at least 1% of its purchase price. A $200,000 property should rent for at least $2,000/month. This is a quick screening tool, not a substitute for full analysis. Many strong investments in coastal markets fail the 1% rule while still generating solid long-term returns through appreciation.</p>
                 </div>
-                <div class="border-b border-gray-100 pb-5">
-                  <h3 class="font-bold text-gray-800 mb-2">How much should I budget for expenses?</h3>
-                  <p class="text-gray-600 text-sm leading-relaxed">A common rule of thumb is the 50% rule — expect expenses to run about 50% of gross rent. This is conservative and includes taxes, insurance, management, maintenance, and vacancy. For newer properties in low-tax markets, 35–40% is realistic. For older properties or high-tax states, 50–60% is not unusual.</p>
+
+                <div class="py-5">
+                  <h3 class="font-bold text-gray-800 mb-2">How much should I budget for rental property expenses?</h3>
+                  <p class="text-gray-600 text-sm leading-relaxed">The 50% rule suggests budgeting 50% of gross rent for operating expenses (excluding mortgage). This covers taxes, insurance, management, maintenance, vacancy, and reserves. For newer properties in low-tax markets with tenant-paid utilities, 35–40% is realistic. Older properties or high-tax states like NY and IL can run 50–60%.</p>
                 </div>
-                <div class="border-b border-gray-100 pb-5">
-                  <h3 class="font-bold text-gray-800 mb-2">Should I include appreciation in my analysis?</h3>
-                  <p class="text-gray-600 text-sm leading-relaxed">Keep appreciation out of your base case analysis. Run the numbers on income and cash flow alone — if the deal only works with appreciation assumptions, it is a speculation, not an investment. Appreciation is a bonus you earn while holding a property that cash flows on its own merits.</p>
+
+                <div class="py-5">
+                  <h3 class="font-bold text-gray-800 mb-2">Should I include appreciation in my rental property analysis?</h3>
+                  <p class="text-gray-600 text-sm leading-relaxed">Keep appreciation out of your base-case analysis. If the deal only makes sense with appreciation assumptions, it is a speculation, not a cash-flow investment. Appreciation is a bonus — underwrite on income and cash flow alone, and you will never be caught off guard by a flat or declining market.</p>
                 </div>
-                <div>
+
+                <div class="py-5">
                   <h3 class="font-bold text-gray-800 mb-2">What down payment do I need for an investment property?</h3>
-                  <p class="text-gray-600 text-sm leading-relaxed">Investment properties require a minimum 15–25% down payment for conventional financing. FHA loans are only available for owner-occupied properties. DSCR loans (popular with investors) typically require 20–25% down with no income verification — qualifying is based on the property's rent income, not your personal income.</p>
+                  <p class="text-gray-600 text-sm leading-relaxed">Conventional investment loans require 15% down for single-family rentals and 20–25% for 2–4 unit properties. FHA loans (3.5% down) are only available for owner-occupied properties. DSCR loans — popular with investors — require 20–25% down but do not verify personal income; the property's rent-to-mortgage ratio qualifies the loan.</p>
                 </div>
+
+                <div class="py-5">
+                  <h3 class="font-bold text-gray-800 mb-2">What is a good cap rate for a rental property?</h3>
+                  <p class="text-gray-600 text-sm leading-relaxed">Cap rate benchmarks depend heavily on market and property class. In primary markets (NYC, LA, SF), cap rates of 3–5% are common. In secondary markets (Atlanta, Phoenix, Nashville), 5–7% is typical. In tertiary markets and Midwest metros, 7–10%+ cap rates are achievable. A cap rate below your local financing rate means the property is negatively leveraged without significant rent growth.</p>
+                </div>
+
+                <div class="py-5">
+                  <h3 class="font-bold text-gray-800 mb-2">How do I calculate monthly cash flow on a rental property?</h3>
+                  <p class="text-gray-600 text-sm leading-relaxed">Monthly cash flow = Effective Gross Income − Operating Expenses − Monthly Mortgage Payment (P&amp;I). Effective gross income is gross rent × (1 − vacancy rate). Operating expenses include taxes, insurance, management, maintenance, and reserves. The result is what you actually pocket each month after all costs. A property with $2,000 gross rent, 5% vacancy, 45% expense ratio, and a $900 mortgage produces: $1,900 EGI − $855 expenses − $900 = $145/month cash flow.</p>
+                </div>
+
+                <div class="py-5">
+                  <h3 class="font-bold text-gray-800 mb-2">What is DSCR and why does it matter for rental investors?</h3>
+                  <p class="text-gray-600 text-sm leading-relaxed">DSCR (Debt-Service Coverage Ratio) measures how many times a property's NOI covers its mortgage payment. DSCR = Annual NOI ÷ Annual Debt Service. A DSCR of 1.25 means the property generates 25% more income than needed to cover the mortgage. Lenders use DSCR to qualify DSCR loans — they typically require ≥ 1.20–1.25. From an investor's perspective, a DSCR below 1.0 means you are subsidizing the property from personal income.</p>
+                </div>
+
+                <div class="py-5">
+                  <h3 class="font-bold text-gray-800 mb-2">Is rental property better than stocks as an investment?</h3>
+                  <p class="text-gray-600 text-sm leading-relaxed">Both have merits. Rental property offers leverage (you control a $300K asset with $75K), tax advantages (depreciation, 1031 exchanges), and inflation hedging through rent increases. Stocks offer liquidity, zero management burden, and broad diversification. Most wealth-building strategies recommend holding both. Real estate tends to outperform in inflationary environments; stocks tend to outperform in low-inflation, high-growth periods.</p>
+                </div>
+
+                <div class="py-5">
+                  <h3 class="font-bold text-gray-800 mb-2">How many rental properties do I need to replace my income?</h3>
+                  <p class="text-gray-600 text-sm leading-relaxed">Divide your target monthly income by average cash flow per property. If you need $5,000/month and each property generates $300/month net cash flow, you need ~17 properties. Most investors target $200–$500/month per door for SFR. Scaling up with multi-family (duplexes through 20-unit apartments) accelerates the timeline since each building generates more cash flow per transaction and management effort.</p>
+                </div>
+
+                <div class="py-5">
+                  <h3 class="font-bold text-gray-800 mb-2">What is the difference between gross rent and effective gross income?</h3>
+                  <p class="text-gray-600 text-sm leading-relaxed">Gross rent (or Potential Gross Income) is what you would collect if the property were 100% occupied all year. Effective Gross Income (EGI) is gross rent minus vacancy loss, plus any additional income (laundry, parking, storage). EGI is the realistic top-line figure used for all further calculations. For a property with $2,000/month gross rent and 5% vacancy: EGI = $2,000 × (1 − 0.05) = $1,900/month.</p>
+                </div>
+
+                <div class="py-5">
+                  <h3 class="font-bold text-gray-800 mb-2">When does a rental property make sense even with negative cash flow?</h3>
+                  <p class="text-gray-600 text-sm leading-relaxed">Negative cash flow may be acceptable if: (1) you are in a high-appreciation market where price growth substantially exceeds the monthly shortfall; (2) you have strong W-2 income to absorb losses and offset them with depreciation deductions; (3) the property is in a lease-up phase and will reach positive cash flow within 12–18 months; or (4) you are house-hacking and living rent-free. Never accept permanent negative cash flow with no path to break-even — that is not investing, it is speculating with monthly out-of-pocket costs.</p>
+                </div>
+
               </div>
             </div>
 
