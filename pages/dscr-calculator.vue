@@ -1710,7 +1710,7 @@ useHead({
   meta: [
     {
       name: 'description',
-      content: 'Free DSCR calculator for US investors. Property DSCR (NOI ÷ Debt Service) and DSCR Loan (Rent ÷ PITIA) modes with stress test, lender thresholds, and 2026 benchmarks.'
+      content: 'DSCR calculator for US investors. Property DSCR and DSCR Loan modes, stress test at +1%/+2%, Fannie/Freddie lender thresholds, and 2026 benchmarks. Free.'
     },
     { property: 'og:title', content: 'DSCR Calculator — Debt Service Coverage Ratio Tool for US Investors | RealCalc' },
     { property: 'og:description', content: 'Calculate DSCR for investment property loans. Property DSCR and DSCR Loan modes, stress test at +1%/+2%, Fannie/Freddie lender context, find max loan or required NOI. Free.' },
@@ -1815,14 +1815,16 @@ function calcMonthlyPayment(P, annualRate, termYears) {
 }
 
 function calcMaxLoan(noi, targetDSCR, annualRate, termYears) {
-  if (!noi || noi <= 0 || !termYears) return null
-  const r = annualRate / 100 / 12
+  if (!noi || noi <= 0 || !targetDSCR || targetDSCR <= 0 || !termYears || termYears <= 0) return null
+  // annualPayment = NOI / targetDSCR
+  const annualPayment = noi / targetDSCR
+  const r = (annualRate || 0) / 100 / 12
   const n = termYears * 12
-  if (r === 0) return (noi / targetDSCR) * n / 12
+  // Zero-rate (all-cash or 0% financing): loan = annualPayment × term
+  if (r <= 0) return annualPayment * termYears
   const pow = Math.pow(1 + r, n)
   const monthlyFactor = (r * pow) / (pow - 1)
-  const allowedMonthly = noi / targetDSCR / 12
-  return allowedMonthly / monthlyFactor
+  return (annualPayment / 12) / monthlyFactor
 }
 
 function formatCurrency(val) {
@@ -1933,7 +1935,8 @@ const dscr = computed(() => {
     const rent = Number(form.monthlyRent) || 0
     // All-cash: no loan → no P&I component, DSCR is infinite
     if (loanAmountCalc.value === 0) return rent > 0 ? Infinity : null
-    if (totalPITIA.value <= 0) return null
+    // Explicit: PITIA = 0 with loan present → treat as no-debt (Infinity)
+    if (totalPITIA.value <= 0) return rent > 0 ? Infinity : null
     return rent / totalPITIA.value
   }
   return null
@@ -1955,7 +1958,8 @@ const findNOIResult = computed(() => {
 
 const hasResult = computed(() => {
   if (calcMode.value === 'property') return dscr.value !== null && loanAmountCalc.value > 0 && grossRentalIncomeCalc.value > 0
-  if (calcMode.value === 'dscr-loan') return dscr.value !== null && (Number(form.monthlyRent) || 0) > 0 && loanAmountCalc.value > 0
+  // dscr-loan: valid when rent entered and dscr resolved (including Infinity / no-debt case)
+  if (calcMode.value === 'dscr-loan') return dscr.value !== null && (Number(form.monthlyRent) || 0) > 0 && (loanAmountCalc.value > 0 || !isFinite(dscr.value))
   if (calcMode.value === 'find-loan') return findLoanResult.value !== null && findLoanResult.value > 0
   if (calcMode.value === 'find-noi') return findNOIResult.value !== null && findNOIResult.value > 0
   return false
@@ -2019,7 +2023,8 @@ const stressedDSCR2 = computed(() => {
 const maxLoanAt125 = computed(() => {
   if (calcMode.value === 'dscr-loan') return null
   const noiVal = calcMode.value === 'find-noi' ? (findNOIResult.value || 0) : noi.value
-  if (noiVal <= 0 || interestRateCalc.value <= 0) return null
+  if (noiVal <= 0) return null
+  // Works for zero-rate too (calcMaxLoan handles r ≤ 0 explicitly)
   return calcMaxLoan(noiVal, 1.25, interestRateCalc.value, loanTermCalc.value)
 })
 
@@ -2033,6 +2038,7 @@ const rentCushion = computed(() => {
 const badge = computed(() => {
   const d = dscr.value
   if (d === null) return { label: '—', bg1: '#9ca3af', bg2: '#6b7280' }
+  if (!isFinite(d)) return { label: 'N/A (no debt)', bg1: '#6366f1', bg2: '#4f46e5' }
   if (d >= 1.50) return { label: 'Excellent', bg1: '#059669', bg2: '#047857' }
   if (d >= 1.25) return { label: 'Strong',    bg1: '#10B981', bg2: '#059669' }
   if (d >= 1.15) return { label: 'Moderate',  bg1: '#F59E0B', bg2: '#D97706' }
@@ -2044,6 +2050,7 @@ const badge = computed(() => {
 const insightText = computed(() => {
   const d = dscr.value
   if (d === null) return ''
+  if (!isFinite(d)) return 'No debt service — all-cash scenario. DSCR is not applicable (N/A). The property generates income with zero debt obligation. To evaluate leverage scenarios, enter a loan amount and interest rate.'
   const fmt = d.toFixed(2) + 'x'
   const mode = calcMode.value === 'dscr-loan' ? 'DSCR Loan' : 'Property DSCR'
   if (d >= 1.50) return `DSCR of ${fmt} is in the Excellent range. This ${mode} meets the threshold for best pricing across agency and portfolio loan programs — strong cushion absorbs rate shocks and operating surprises. Rarely achieved at 75% LTV in 2026; often requires lower leverage or above-market rents.`
@@ -2092,8 +2099,14 @@ const warnings = computed(() => {
     } else if (dscr.value !== null && isFinite(dscr.value) && dscr.value < 1.25) {
       ws.push({ type: 'warning', msg: `DSCR of ${dscr.value.toFixed(2)}x is in the Moderate range (1.15x–1.24x) — meets Fannie MAH affordable program threshold (1.15x) but below the conventional 1.25x minimum. Lender options narrow here. Check stressed DSCR carefully.` })
     }
-    if (stressedDSCR1.value !== null && stressedDSCR1.value < 1.00) {
-      ws.push({ type: 'warning', msg: `Stressed DSCR at +1% rate falls to ${stressedDSCR1.value.toFixed(2)}x — below 1.00x. Fails stress test used by many underwriters.` })
+    if (stressedDSCR1.value !== null && isFinite(stressedDSCR1.value)) {
+      if (stressedDSCR1.value < 1.00) {
+        ws.push({ type: 'error', msg: `Stressed DSCR at +1% rate falls to ${stressedDSCR1.value.toFixed(2)}x — below 1.00x. Fails stress test; expect denial or LTV restrictions from most lenders.` })
+      } else if (stressedDSCR1.value < 1.15 && dscr.value !== null && isFinite(dscr.value) && dscr.value >= 1.15) {
+        ws.push({ type: 'warning', msg: `Stressed DSCR at +1% rate drops to ${stressedDSCR1.value.toFixed(2)}x (Marginal). Stress test exposes fragility — conservative underwriters will flag this.` })
+      } else if (stressedDSCR1.value < 1.25 && dscr.value !== null && isFinite(dscr.value) && dscr.value >= 1.25) {
+        ws.push({ type: 'warning', msg: `Stressed DSCR at +1% rate falls to ${stressedDSCR1.value.toFixed(2)}x — below the 1.25x conventional minimum. Deal is fragile under rate stress.` })
+      }
     }
     if (vacancyRateClamped.value > 15) {
       ws.push({ type: 'warning', msg: `Vacancy of ${vacancyRateClamped.value}% is high. Lenders may apply additional 5–10% vacancy haircut above 15%.` })
@@ -2105,7 +2118,11 @@ const warnings = computed(() => {
       ws.push({ type: 'error', msg: 'Monthly rent is less than total PITIA — property does not cover debt. Automatic fail for DSCR loan underwriting.' })
     }
     if (dscr.value !== null && isFinite(dscr.value) && dscr.value < 1.00) {
-      ws.push({ type: 'error', msg: `DSCR Loan DSCR of ${dscr.value.toFixed(2)}x is below 1.00x — rent does not cover PITIA.` })
+      ws.push({ type: 'error', msg: `DSCR Loan DSCR of ${dscr.value.toFixed(2)}x is below 1.00x — rent does not cover PITIA. Automatic fail for DSCR loan underwriting.` })
+    } else if (dscr.value !== null && isFinite(dscr.value) && dscr.value < 1.10) {
+      ws.push({ type: 'error', msg: `DSCR Loan DSCR of ${dscr.value.toFixed(2)}x is in the Marginal range (1.00x–1.09x). Only the most aggressive non-QM lenders accept this — expect rate premiums and 70% LTV caps.` })
+    } else if (dscr.value !== null && isFinite(dscr.value) && dscr.value < 1.20) {
+      ws.push({ type: 'warning', msg: `DSCR Loan DSCR of ${dscr.value.toFixed(2)}x is borderline. Standard lenders require 1.20x; conservative lenders require 1.25x. Limited product options at this level.` })
     }
   }
   const ir = interestRateCalc.value
@@ -2378,7 +2395,7 @@ async function exportPDF() {
     doc.text('Stressed DSCR at +1% rate', 20, y)
     doc.setTextColor(...navy)
     doc.setFont('helvetica', 'bold')
-    doc.text(stressedDSCR1.value.toFixed(2) + 'x', 150, y, { align: 'right' })
+    doc.text(isFinite(stressedDSCR1.value) ? stressedDSCR1.value.toFixed(2) + 'x' : 'N/A (all-cash)', 150, y, { align: 'right' })
     y += 7
     if (stressedDSCR2.value !== null) {
       doc.setFont('helvetica', 'normal')
@@ -2386,7 +2403,7 @@ async function exportPDF() {
       doc.text('Stressed DSCR at +2% rate', 20, y)
       doc.setTextColor(...navy)
       doc.setFont('helvetica', 'bold')
-      doc.text(stressedDSCR2.value.toFixed(2) + 'x', 150, y, { align: 'right' })
+      doc.text(isFinite(stressedDSCR2.value) ? stressedDSCR2.value.toFixed(2) + 'x' : 'N/A (all-cash)', 150, y, { align: 'right' })
     }
   }
 
