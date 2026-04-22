@@ -1710,7 +1710,7 @@ useHead({
   meta: [
     {
       name: 'description',
-      content: 'Free DSCR calculator for US real estate investors. Calculate Property DSCR (NOI/Debt Service) or DSCR Loan (Rent/PITIA) with 1.25x stress test, lender context panel, and 2026 benchmarks. No signup required.'
+      content: 'Free DSCR calculator for US investors. Property DSCR (NOI ÷ Debt Service) and DSCR Loan (Rent ÷ PITIA) modes with stress test, lender thresholds, and 2026 benchmarks.'
     },
     { property: 'og:title', content: 'DSCR Calculator — Debt Service Coverage Ratio Tool for US Investors | RealCalc' },
     { property: 'og:description', content: 'Calculate DSCR for investment property loans. Property DSCR and DSCR Loan modes, stress test at +1%/+2%, Fannie/Freddie lender context, find max loan or required NOI. Free.' },
@@ -1721,7 +1721,7 @@ useHead({
       type: 'application/ld+json',
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
-        '@type': 'SoftwareApplication',
+        '@type': 'Calculator',
         name: 'DSCR Calculator',
         applicationCategory: 'FinanceApplication',
         operatingSystem: 'Web',
@@ -1806,8 +1806,8 @@ const expenseFields = [
 
 // ─── HELPERS ─────────────────────────────────────────────────────────────────
 function calcMonthlyPayment(P, annualRate, termYears) {
-  if (!P || P <= 0 || !annualRate || annualRate <= 0 || !termYears || termYears <= 0) return 0
-  const r = annualRate / 100 / 12
+  if (!P || P <= 0 || !termYears || termYears <= 0) return 0
+  const r = (annualRate || 0) / 100 / 12
   const n = termYears * 12
   if (r === 0) return P / n
   const pow = Math.pow(1 + r, n)
@@ -1815,7 +1815,7 @@ function calcMonthlyPayment(P, annualRate, termYears) {
 }
 
 function calcMaxLoan(noi, targetDSCR, annualRate, termYears) {
-  if (!noi || noi <= 0 || !annualRate || annualRate <= 0 || !termYears) return null
+  if (!noi || noi <= 0 || !termYears) return null
   const r = annualRate / 100 / 12
   const n = termYears * 12
   if (r === 0) return (noi / targetDSCR) * n / 12
@@ -1924,13 +1924,16 @@ const totalPITIA = computed(() => {
 // ─── PRIMARY RESULT ────────────────────────────────────────────────────────────
 const dscr = computed(() => {
   if (calcMode.value === 'property') {
-    if (loanAmountCalc.value === 0) return null
+    // All-cash purchase: no debt → DSCR is mathematically infinite
+    if (loanAmountCalc.value === 0) return grossRentalIncomeCalc.value > 0 ? Infinity : null
     if (annualDebtService.value <= 0) return null
     return noi.value / annualDebtService.value
   }
   if (calcMode.value === 'dscr-loan') {
     const rent = Number(form.monthlyRent) || 0
-    if (totalPITIA.value <= 0 || loanAmountCalc.value === 0) return null
+    // All-cash: no loan → no P&I component, DSCR is infinite
+    if (loanAmountCalc.value === 0) return rent > 0 ? Infinity : null
+    if (totalPITIA.value <= 0) return null
     return rent / totalPITIA.value
   }
   return null
@@ -1939,7 +1942,7 @@ const dscr = computed(() => {
 const findLoanResult = computed(() => {
   if (calcMode.value !== 'find-loan') return null
   const td = Number(form.targetDSCR) || 1.25
-  if (noi.value <= 0 || interestRateCalc.value <= 0) return null
+  if (noi.value <= 0) return null
   return calcMaxLoan(noi.value, td, interestRateCalc.value, loanTermCalc.value)
 })
 
@@ -2082,10 +2085,12 @@ const warnings = computed(() => {
     if (loanAmountCalc.value === 0 && grossRentalIncomeCalc.value > 0) {
       ws.push({ type: 'info', msg: 'Enter loan details (amount, rate, term) to calculate DSCR.' })
     }
-    if (dscr.value !== null && dscr.value < 1.00) {
+    if (dscr.value !== null && isFinite(dscr.value) && dscr.value < 1.00) {
       ws.push({ type: 'error', msg: `DSCR of ${dscr.value.toFixed(2)}x is below 1.00x — property does not cover debt service. Loan typically denied across all programs.` })
-    } else if (dscr.value !== null && dscr.value < 1.15) {
-      ws.push({ type: 'warning', msg: `DSCR of ${dscr.value.toFixed(2)}x is below the Fannie/Freddie 1.25x conventional minimum. Limited lender options — consider DSCR loan products or higher down payment.` })
+    } else if (dscr.value !== null && isFinite(dscr.value) && dscr.value < 1.15) {
+      ws.push({ type: 'error', msg: `DSCR of ${dscr.value.toFixed(2)}x is in the Marginal range (1.00x–1.14x). Only aggressive non-QM DSCR loan lenders accept this range — at higher rate premiums and LTV caps of 70–75%. A 0.5% rate increase will push stressed DSCR below 1.00x.` })
+    } else if (dscr.value !== null && isFinite(dscr.value) && dscr.value < 1.25) {
+      ws.push({ type: 'warning', msg: `DSCR of ${dscr.value.toFixed(2)}x is in the Moderate range (1.15x–1.24x) — meets Fannie MAH affordable program threshold (1.15x) but below the conventional 1.25x minimum. Lender options narrow here. Check stressed DSCR carefully.` })
     }
     if (stressedDSCR1.value !== null && stressedDSCR1.value < 1.00) {
       ws.push({ type: 'warning', msg: `Stressed DSCR at +1% rate falls to ${stressedDSCR1.value.toFixed(2)}x — below 1.00x. Fails stress test used by many underwriters.` })
@@ -2099,7 +2104,7 @@ const warnings = computed(() => {
     if (rent > 0 && totalPITIA.value > 0 && rent < totalPITIA.value) {
       ws.push({ type: 'error', msg: 'Monthly rent is less than total PITIA — property does not cover debt. Automatic fail for DSCR loan underwriting.' })
     }
-    if (dscr.value !== null && dscr.value < 1.00) {
+    if (dscr.value !== null && isFinite(dscr.value) && dscr.value < 1.00) {
       ws.push({ type: 'error', msg: `DSCR Loan DSCR of ${dscr.value.toFixed(2)}x is below 1.00x — rent does not cover PITIA.` })
     }
   }
