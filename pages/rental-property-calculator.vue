@@ -1030,6 +1030,19 @@
       </div>
 
       <!-- ═══════════════════════════════════════════════
+           SCENARIO PANEL
+      ═══════════════════════════════════════════════ -->
+      <div class="max-w-6xl mx-auto px-4 pb-6 mt-4">
+        <ScenarioPanel
+          calculator="rental-property"
+          :has-result="hasResult"
+          :result="currentScenarioResult"
+          :trigger-save="triggerScenarioSave"
+          @saved="onScenarioSaved"
+        />
+      </div>
+
+      <!-- ═══════════════════════════════════════════════
            SEO CONTENT SECTIONS
       ═══════════════════════════════════════════════ -->
       <div class="bg-white rounded-2xl shadow-sm border border-gray-100 mt-8 overflow-hidden">
@@ -1677,19 +1690,6 @@
         </div>
 
       </div><!-- /SEO Content container -->
-
-      <!-- ═══════════════════════════════════════════════
-           SCENARIO PANEL
-      ═══════════════════════════════════════════════ -->
-      <div class="max-w-6xl mx-auto px-4 pb-10">
-        <ScenarioPanel
-          calculator="rental-property"
-          :has-result="hasResult"
-          :result="currentScenarioResult"
-          :trigger-save="triggerScenarioSave"
-          @saved="onScenarioSaved"
-        />
-      </div>
 
     </main>
 

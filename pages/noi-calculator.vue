@@ -724,6 +724,19 @@
       </div>
       </div>
 
+      <!-- ═══════════════════════════════════════════════
+           SCENARIO PANEL
+      ═══════════════════════════════════════════════ -->
+      <div class="max-w-6xl mx-auto px-4 pb-6 mt-4">
+        <ScenarioPanel
+          calculator="noi"
+          :has-result="hasResult"
+          :result="currentScenarioResult"
+          :trigger-save="triggerScenarioSave"
+          @saved="onScenarioSaved"
+        />
+      </div>
+
       <!-- SEO CONTENT -->
       <div class="mt-6 bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
 
@@ -1444,20 +1457,7 @@
 
       </div><!-- /SEO content -->
 
-    <!-- ═══════════════════════════════════════════════
-         SCENARIO PANEL
-    ═══════════════════════════════════════════════ -->
-    <div class="max-w-6xl mx-auto px-4 pb-10">
-      <ScenarioPanel
-        calculator="noi"
-        :has-result="hasResult"
-        :result="currentScenarioResult"
-        :trigger-save="triggerScenarioSave"
-        @saved="onScenarioSaved"
-      />
-    </div>
-
-    </main>
+        </main>
 
     <!-- Email Capture Modal -->
     <EmailCaptureModal

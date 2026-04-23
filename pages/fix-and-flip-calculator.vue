@@ -1251,6 +1251,19 @@
       </div>
     </main>
 
+    <!-- ═══════════════════════════════════════════════
+         SCENARIO PANEL
+    ═══════════════════════════════════════════════ -->
+    <div class="max-w-[1100px] mx-auto px-4 pb-6 mt-4">
+      <ScenarioPanel
+        calculator="fix-and-flip"
+        :has-result="hasResult"
+        :result="currentScenarioResult"
+        :trigger-save="triggerScenarioSave"
+        @saved="onScenarioSaved"
+      />
+    </div>
+
     <!-- ═══════════════════════════════════════════════════════════════════
          SEO CONTENT SECTIONS
     ═══════════════════════════════════════════════════════════════════ -->
@@ -2002,19 +2015,6 @@
         </div>
       </div>
     </footer>
-
-    <!-- ═══════════════════════════════════════════════
-         SCENARIO PANEL + EMAIL MODAL
-    ═══════════════════════════════════════════════ -->
-    <div class="max-w-[1100px] mx-auto px-4 pb-10">
-      <ScenarioPanel
-        calculator="fix-and-flip"
-        :has-result="hasResult"
-        :result="currentScenarioResult"
-        :trigger-save="triggerScenarioSave"
-        @saved="onScenarioSaved"
-      />
-    </div>
 
     <EmailCaptureModal
       :show="showEmailModal"

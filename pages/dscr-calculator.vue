@@ -1021,6 +1021,19 @@
       </div><!-- /gradient wrapper -->
 
       <!-- ═══════════════════════════════════════════════
+           SCENARIO PANEL
+      ═══════════════════════════════════════════════ -->
+      <div class="max-w-6xl mx-auto px-4 pb-6 mt-4">
+        <ScenarioPanel
+          calculator="dscr"
+          :has-result="hasResult && (calcMode === 'property' || calcMode === 'dscr-loan')"
+          :result="currentScenarioResult"
+          :trigger-save="triggerScenarioSave"
+          @saved="onScenarioSaved"
+        />
+      </div>
+
+      <!-- ═══════════════════════════════════════════════
            SEO CONTENT
       ═══════════════════════════════════════════════ -->
       <div class="mt-6 bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
@@ -1657,17 +1670,6 @@
             {{ calc.label }}
           </NuxtLink>
         </div>
-      </div>
-
-      <!-- SCENARIO PANEL -->
-      <div class="max-w-6xl mx-auto px-4 pb-10">
-        <ScenarioPanel
-          calculator="dscr"
-          :has-result="hasResult && (calcMode === 'property' || calcMode === 'dscr-loan')"
-          :result="currentScenarioResult"
-          :trigger-save="triggerScenarioSave"
-          @saved="onScenarioSaved"
-        />
       </div>
 
     </main>
