@@ -1501,11 +1501,15 @@
     </div><!-- end SEO content -->
 
     <!-- SCENARIO PANEL -->
-    <ScenarioPanel
-      calculator="arv"
-      :currentResult="currentScenarioResult"
-      @load="loadScenario"
-    />
+    <div class="max-w-6xl mx-auto px-4 pb-10">
+      <ScenarioPanel
+        calculator="arv"
+        :has-result="calc.ready"
+        :result="currentScenarioResult"
+        :trigger-save="triggerScenarioSave"
+        @saved="onScenarioSaved"
+      />
+    </div>
 
     <!-- EMAIL MODAL -->
     <EmailCaptureModal
@@ -1566,7 +1570,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed, onMounted } from 'vue'
+import { ref, reactive, computed, onMounted, nextTick } from 'vue'
 
 // ─── SEO HEAD ───────────────────────────────────────────────────────────────
 useHead({
@@ -2098,14 +2102,20 @@ const insightText = computed(() => {
 })
 
 // ─── CURRENT SCENARIO RESULT ─────────────────────────────────────────────────
+const triggerScenarioSave = ref(false)
+
 const currentScenarioResult = computed(() => {
-  if (!calc.value.ready) return null
+  const ready = calc.value.ready
+  const tier = ready ? calc.value.confTier : null
+  const badgeLabel = tier === 'HIGH' ? 'Good' : tier === 'MEDIUM' ? 'Average' : ready ? 'Poor' : undefined
+  const badgeColor = tier === 'HIGH' ? '#10b981' : tier === 'MEDIUM' ? '#f59e0b' : ready ? '#ef4444' : '#6b7280'
   return {
-    tier: calc.value.confTier,
-    label: `${calc.value.confTier} Confidence`,
-    primaryValue: formatCurrency(calc.value.finalARV),
-    secondaryValue: `${formatCurrency(calc.value.confLow)} – ${formatCurrency(calc.value.confHigh)}`,
-    score: calc.value.confScore
+    primaryMetric: 'ARV',
+    primaryValue:  ready ? formatCurrency(calc.value.finalARV) : '—',
+    badgeLabel,
+    badgeColor,
+    arv:           ready ? calc.value.finalARV : undefined,
+    rehabCost:     rehabBudget.value ? Number(rehabBudget.value) : undefined,
   }
 })
 
@@ -2197,11 +2207,16 @@ function shareResult() {
   shareSuccess.value = true
   setTimeout(() => { shareSuccess.value = false }, 2000)
 }
-function openSaveScenario() { document.dispatchEvent(new CustomEvent('scenario:open')) }
-function loadScenario(data) {
-  if (data.subject) Object.assign(subject, data.subject)
-  if (data.mode) calcMode.value = data.mode
+function openSaveScenario() {
+  triggerScenarioSave.value = true
+  nextTick(() => { triggerScenarioSave.value = false })
+  try {
+    if (!localStorage.getItem('realcalc_email_captured')) {
+      showEmailModal.value = true
+    }
+  } catch {}
 }
+function onScenarioSaved(_id) {}
 function onEmailCaptured() { showEmailModal.value = false }
 
 async function exportPDF() {
