@@ -63,7 +63,7 @@
 
         <p class="text-center text-lg md:text-xl text-blue-100 max-w-3xl mx-auto mb-10 leading-relaxed">
           Analyze rental properties, flip deals, and BRRRR strategies in seconds.
-          35+ professional tools — 100% free, no signup required. Instant PDF reports.
+          30 professional tools — 100% free, no signup required. Instant PDF reports.
         </p>
 
         <!-- Trust pills -->
@@ -103,7 +103,7 @@
         <!-- Stats row -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-10 border-t border-white/10">
           <div class="text-center">
-            <div class="text-4xl md:text-5xl font-extrabold mb-1" style="color: #f59e0b;">35+</div>
+            <div class="text-4xl md:text-5xl font-extrabold mb-1" style="color: #f59e0b;">30</div>
             <div class="text-sm text-blue-200 font-medium">Free Calculators</div>
           </div>
           <div class="text-center">
@@ -281,7 +281,7 @@
           </NuxtLink>
 
           <!-- Compare Deals -->
-          <NuxtLink to="/compare-deals"
+          <NuxtLink to="/compare-real-estate-deals"
             class="group bg-white p-7 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-yellow-400 flex flex-col">
             <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-transform group-hover:scale-110" style="background: #1e3a5f;">
               <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -289,8 +289,8 @@
               </svg>
             </div>
             <div class="flex-1">
-              <h3 class="text-lg font-bold mb-2" style="color: #1e3a5f;">Compare Deals</h3>
-              <p class="text-sm text-gray-500 mb-4 leading-relaxed">Compare up to 4 investment deals side by side — spot the winner instantly</p>
+              <h3 class="text-lg font-bold mb-2" style="color: #1e3a5f;">Compare Real Estate Deals</h3>
+              <p class="text-sm text-gray-500 mb-4 leading-relaxed">Compare up to 3 deals across Rental, Fix &amp; Flip, and BRRRR — get a Winner tier verdict with confidence level</p>
             </div>
             <span class="inline-flex items-center gap-1 text-sm font-bold transition group-hover:gap-2" style="color: #f59e0b;">
               Compare Now
@@ -298,13 +298,64 @@
             </span>
           </NuxtLink>
 
+          <!-- Coming Soon: Mortgage Calculator -->
+          <div class="group bg-gray-50 p-7 rounded-2xl border border-gray-200 flex flex-col opacity-70 cursor-not-allowed relative">
+            <div class="absolute top-3 right-3">
+              <span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-gray-200 text-gray-600">Coming Soon</span>
+            </div>
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background: #94a3b8;">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-lg font-bold mb-2 text-gray-500">Mortgage Calculator</h3>
+              <p class="text-sm text-gray-400 mb-4 leading-relaxed">Investment property mortgage with DSCR, rate, and amortization.</p>
+            </div>
+            <span class="inline-flex items-center gap-1 text-sm font-semibold text-gray-400">In development</span>
+          </div>
+
+          <!-- Coming Soon: Rent vs Buy -->
+          <div class="group bg-gray-50 p-7 rounded-2xl border border-gray-200 flex flex-col opacity-70 cursor-not-allowed relative">
+            <div class="absolute top-3 right-3">
+              <span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-gray-200 text-gray-600">Coming Soon</span>
+            </div>
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background: #94a3b8;">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-lg font-bold mb-2 text-gray-500">Rent vs Buy Calculator</h3>
+              <p class="text-sm text-gray-400 mb-4 leading-relaxed">Financial comparison of renting vs. buying a primary residence or investment.</p>
+            </div>
+            <span class="inline-flex items-center gap-1 text-sm font-semibold text-gray-400">In development</span>
+          </div>
+
+          <!-- Coming Soon: 70% Rule -->
+          <div class="group bg-gray-50 p-7 rounded-2xl border border-gray-200 flex flex-col opacity-70 cursor-not-allowed relative">
+            <div class="absolute top-3 right-3">
+              <span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-gray-200 text-gray-600">Coming Soon</span>
+            </div>
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background: #94a3b8;">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-lg font-bold mb-2 text-gray-500">70% Rule Calculator</h3>
+              <p class="text-sm text-gray-400 mb-4 leading-relaxed">Quick flip offer calculator — maximum purchase price based on ARV and rehab.</p>
+            </div>
+            <span class="inline-flex items-center gap-1 text-sm font-semibold text-gray-400">In development</span>
+          </div>
+
         </div>
 
         <div class="text-center mt-10">
           <NuxtLink to="/calculators"
             class="inline-flex items-center gap-2 font-bold text-base px-8 py-4 rounded-xl text-white transition hover:opacity-90 shadow-lg"
             style="background: #1e3a5f;">
-            View All 35+ Calculators
+            View All 30 Calculators
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
           </NuxtLink>
         </div>
@@ -328,7 +379,7 @@
           <div class="text-center">
             <div class="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-extrabold mx-auto mb-6 shadow-lg text-white" style="background: #1e3a5f;">1</div>
             <h3 class="text-xl font-bold mb-3" style="color: #1e3a5f;">Choose Your Calculator</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">Pick from 30+ specialized tools — rental property, fix &amp; flip, BRRRR, DSCR, and more.</p>
+            <p class="text-gray-600 text-sm leading-relaxed">Pick from 30 specialized tools — rental property, fix &amp; flip, BRRRR, DSCR, and more.</p>
           </div>
 
           <div class="text-center">
@@ -367,7 +418,7 @@
                 <div class="w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5" style="background: #f59e0b;">
                   <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
                 </div>
-                <span class="text-gray-700 font-medium">All 35+ calculators 100% free — no limits, no credit card</span>
+                <span class="text-gray-700 font-medium">All 30 calculators 100% free — no limits, no credit card</span>
               </li>
               <li class="flex items-start gap-3">
                 <div class="w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5" style="background: #f59e0b;">
@@ -451,7 +502,7 @@
               <div class="text-sm text-gray-400">Forever</div>
             </div>
             <ul class="space-y-3 flex-1 mb-8">
-              <li class="flex items-center gap-2 text-sm text-gray-600"><svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> All 35+ calculators</li>
+              <li class="flex items-center gap-2 text-sm text-gray-600"><svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> All 30 calculators</li>
               <li class="flex items-center gap-2 text-sm text-gray-600"><svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Unlimited calculations</li>
               <li class="flex items-center gap-2 text-sm text-gray-600"><svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Real-time results</li>
               <li class="flex items-center gap-2 text-sm text-gray-400"><svg class="w-4 h-4 text-gray-300 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg> PDF reports</li>
@@ -575,7 +626,7 @@
               Are these calculators really free forever?
               <svg class="w-5 h-5 text-gray-400 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </summary>
-            <p class="px-6 pb-5 text-gray-600 text-sm leading-relaxed">Yes — completely free, forever. All 30+ calculators with unlimited calculations, no signup and no credit card required. The paid plans unlock PDF reports, saved history, and advanced features, but all calculations themselves remain free.</p>
+            <p class="px-6 pb-5 text-gray-600 text-sm leading-relaxed">Yes — completely free, forever. All 30 calculators with unlimited calculations, no signup and no credit card required. The paid plans unlock PDF reports, saved history, and advanced features, but all calculations themselves remain free.</p>
           </details>
 
           <details class="bg-gray-50 rounded-xl border border-gray-200 group overflow-hidden">
@@ -692,8 +743,8 @@
               <li><NuxtLink to="/fix-and-flip-calculator"    class="text-gray-400 hover:text-white text-sm transition">Fix &amp; Flip</NuxtLink></li>
               <li><NuxtLink to="/arv-calculator"             class="text-gray-400 hover:text-white text-sm transition">ARV</NuxtLink></li>
               <li><NuxtLink to="/brrrr-calculator"           class="text-gray-400 hover:text-white text-sm transition">BRRRR</NuxtLink></li>
-              <li><NuxtLink to="/compare-deals"              class="text-gray-400 hover:text-white text-sm transition">Compare Deals</NuxtLink></li>
-              <li><NuxtLink to="/calculators"                class="font-semibold transition text-sm" style="color: #f59e0b;">View All 35+ →</NuxtLink></li>
+              <li><NuxtLink to="/compare-real-estate-deals"  class="text-gray-400 hover:text-white text-sm transition">Compare Real Estate Deals</NuxtLink></li>
+              <li><NuxtLink to="/calculators"                class="font-semibold transition text-sm" style="color: #f59e0b;">View All 30 →</NuxtLink></li>
             </ul>
           </div>
 
@@ -733,7 +784,7 @@
         {
           "@type": "WebSite",
           "name": "RealCalc — Real Estate Investment Calculator Hub",
-          "description": "Free real estate investment calculators for US investors (2026). Cap Rate, DSCR, Rental Property, Fix & Flip, BRRRR, ARV, NOI, Cash-on-Cash and 35+ more tools. Trusted by 25,000+ investors.",
+          "description": "Free real estate investment calculators for US investors (2026). Cap Rate, DSCR, Rental Property, Fix & Flip, BRRRR, ARV, NOI, Cash-on-Cash and 30 tools total. Trusted by 25,000+ investors.",
           "url": "https://realcalc.io",
           "potentialAction": {
             "@type": "SearchAction",
@@ -749,7 +800,7 @@
               "name": "Are these real estate calculators really free forever?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Yes — completely free, forever. All 35+ calculators with unlimited calculations, no signup and no credit card required. PDF reports and saved history are available on paid plans."
+                "text": "Yes — completely free, forever. All 30 calculators with unlimited calculations, no signup and no credit card required. PDF reports and saved history are available on paid plans."
               }
             },
             {
@@ -807,15 +858,15 @@ useHead({
   meta: [
     {
       name: 'description',
-      content: 'Free real estate investment calculators for US investors (2026). Calculate cap rate, DSCR, cash-on-cash, NOI, fix & flip profit, ARV, BRRRR and 35+ more metrics. Instant results, no signup required.'
+      content: 'Free real estate investment calculators for US investors (2026). Calculate cap rate, DSCR, cash-on-cash, NOI, fix & flip profit, ARV, BRRRR and more — 30 tools total. Instant results, no signup required.'
     },
     { name: 'keywords', content: 'real estate calculator 2026, cap rate calculator, DSCR calculator, rental property calculator, fix and flip calculator, BRRRR calculator, NOI calculator, cash on cash return calculator, ARV calculator, real estate investment analysis, free real estate tools' },
     { property: 'og:title', content: 'Free Real Estate Investment Calculators 2026 — RealCalc' },
-    { property: 'og:description', content: 'Professional real estate investment calculators for US investors. 35+ free tools: cap rate, DSCR, rental property, fix & flip, BRRRR, ARV, NOI and more. Trusted by 25,000+ investors.' },
+    { property: 'og:description', content: 'Professional real estate investment calculators for US investors. 30 free tools: cap rate, DSCR, rental property, fix & flip, BRRRR, ARV, NOI and more. Trusted by 25,000+ investors.' },
     { property: 'og:type', content: 'website' },
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:title', content: 'Free Real Estate Investment Calculators 2026 — RealCalc' },
-    { name: 'twitter:description', content: '35+ free real estate investment calculators for US investors. Trusted by 25,000+ investors. No signup required.' },
+    { name: 'twitter:description', content: '30 free real estate investment calculators for US investors. Trusted by 25,000+ investors. No signup required.' },
     { name: 'robots', content: 'index, follow' },
     { name: 'author', content: 'RealCalc' }
   ],

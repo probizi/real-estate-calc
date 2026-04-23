@@ -15,7 +15,7 @@
           <h3 class="font-bold text-gray-900 text-sm leading-tight">Saved Scenarios</h3>
           <p class="text-xs text-gray-400 leading-tight">
             {{ localScenarios.length }}/{{ MAX }} saved
-            <span v-if="localScenarios.length > 0"> · <NuxtLink to="/compare-deals" class="underline hover:text-gray-600 transition">Compare all</NuxtLink></span>
+            <span v-if="localScenarios.length > 0"> · <NuxtLink to="/compare-real-estate-deals" class="underline hover:text-gray-600 transition">Compare all</NuxtLink></span>
           </p>
         </div>
       </div>
@@ -138,7 +138,7 @@
 
           <!-- Actions -->
           <div class="flex items-center gap-1 flex-shrink-0">
-            <NuxtLink :to="`/compare-deals?ids=${s.id}`"
+            <NuxtLink :to="`/compare-real-estate-deals?ids=${s.id}`"
               class="opacity-0 group-hover:opacity-100 transition p-1.5 rounded-lg text-gray-400 hover:text-blue-600 hover:bg-blue-50"
               title="Compare">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -162,7 +162,7 @@
 
     <!-- Footer CTA (when ≥2 scenarios) -->
     <div v-if="localScenarios.length >= 2" class="px-6 py-4 border-t border-gray-100" style="background: #f8fafc;">
-      <NuxtLink to="/compare-deals"
+      <NuxtLink to="/compare-real-estate-deals"
         class="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-sm transition hover:opacity-90"
         style="background: #1e3a5f; color: white;">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -46,7 +46,7 @@
           Free Real Estate Investment Calculators
         </h1>
         <p class="text-blue-100 text-lg max-w-2xl leading-relaxed mb-6">
-          10 professional tools for US real estate investors. Analyze rental properties, flip deals, BRRRR strategies, and more — instantly, no signup required.
+          30 professional tools for US real estate investors. Analyze rental properties, flip deals, BRRRR strategies, compare deals side-by-side, and more — instantly, no signup required.
         </p>
         <div class="flex flex-wrap gap-3">
           <span class="flex items-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-full border border-white/20 bg-white/10">
@@ -68,12 +68,13 @@
     <!-- MAIN CONTENT -->
     <main class="max-w-[1100px] mx-auto px-4 sm:px-6 py-12">
 
-      <!-- Rental & Income Investing -->
+      <!-- ── Section 1: Rental & Income Property ── -->
       <div class="mb-12">
-        <h2 class="text-xl font-extrabold mb-1" style="color: #1e3a5f;">Rental & Income Property</h2>
+        <h2 class="text-xl font-extrabold mb-1" style="color: #1e3a5f;">Rental &amp; Income Property</h2>
         <p class="text-gray-500 text-sm mb-6">Analyze buy-and-hold investments, BRRRR, and recurring income strategies.</p>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
 
+          <!-- Active -->
           <NuxtLink to="/rental-property-calculator"
             class="group bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-all border border-gray-100 hover:border-yellow-400 flex flex-col">
             <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110" style="background: #1e3a5f;">
@@ -170,16 +171,117 @@
             </span>
           </NuxtLink>
 
+          <NuxtLink to="/compare-real-estate-deals"
+            class="group bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-all border border-gray-100 hover:border-yellow-400 flex flex-col">
+            <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110" style="background: #1e3a5f;">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-base mb-1" style="color: #1e3a5f;">Compare Real Estate Deals</h3>
+              <p class="text-sm text-gray-500 leading-relaxed mb-3">Side-by-side comparison of 2-3 real estate deals. Winner tier verdict with calibrated confidence — Clear, Slight Edge, or Too Close to Call.</p>
+            </div>
+            <span class="inline-flex items-center gap-1 text-sm font-bold group-hover:gap-2 transition-all" style="color: #f59e0b;">
+              Compare Now <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </span>
+          </NuxtLink>
+
+          <!-- Coming Soon cards for Rental category -->
+          <div class="group bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col opacity-70 cursor-not-allowed relative">
+            <div class="absolute top-3 right-3"><span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-gray-200 text-gray-600">Coming Soon</span></div>
+            <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background: #94a3b8;">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-base mb-1 text-gray-500">Rental Property ROI Calculator</h3>
+              <p class="text-sm text-gray-400 leading-relaxed mb-3">Full lifetime ROI analysis for rental properties — cash flow, appreciation, tax benefits, and equity build-up over the hold period.</p>
+            </div>
+            <span class="inline-flex items-center gap-1 text-sm font-semibold text-gray-400">In development</span>
+          </div>
+
+          <div class="group bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col opacity-70 cursor-not-allowed relative">
+            <div class="absolute top-3 right-3"><span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-gray-200 text-gray-600">Coming Soon</span></div>
+            <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background: #94a3b8;">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-base mb-1 text-gray-500">Property Cash Flow Calculator</h3>
+              <p class="text-sm text-gray-400 leading-relaxed mb-3">Detailed monthly cash flow projection with rent, expenses, debt service, and reserves.</p>
+            </div>
+            <span class="inline-flex items-center gap-1 text-sm font-semibold text-gray-400">In development</span>
+          </div>
+
+          <div class="group bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col opacity-70 cursor-not-allowed relative">
+            <div class="absolute top-3 right-3"><span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-gray-200 text-gray-600">Coming Soon</span></div>
+            <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background: #94a3b8;">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-base mb-1 text-gray-500">Vacancy Rate Calculator</h3>
+              <p class="text-sm text-gray-400 leading-relaxed mb-3">Estimate vacancy impact on NOI and cash flow — market and property-specific scenarios.</p>
+            </div>
+            <span class="inline-flex items-center gap-1 text-sm font-semibold text-gray-400">In development</span>
+          </div>
+
+          <div class="group bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col opacity-70 cursor-not-allowed relative">
+            <div class="absolute top-3 right-3"><span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-gray-200 text-gray-600">Coming Soon</span></div>
+            <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background: #94a3b8;">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-base mb-1 text-gray-500">Multifamily Property Calculator</h3>
+              <p class="text-sm text-gray-400 leading-relaxed mb-3">Underwriting tool for 5+ unit apartment buildings with per-unit analysis.</p>
+            </div>
+            <span class="inline-flex items-center gap-1 text-sm font-semibold text-gray-400">In development</span>
+          </div>
+
+          <div class="group bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col opacity-70 cursor-not-allowed relative">
+            <div class="absolute top-3 right-3"><span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-gray-200 text-gray-600">Coming Soon</span></div>
+            <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background: #94a3b8;">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-base mb-1 text-gray-500">Airbnb / STR Calculator</h3>
+              <p class="text-sm text-gray-400 leading-relaxed mb-3">Short-term rental income projection — seasonal occupancy, ADR, cleaning costs, platform fees.</p>
+            </div>
+            <span class="inline-flex items-center gap-1 text-sm font-semibold text-gray-400">In development</span>
+          </div>
+
+          <div class="group bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col opacity-70 cursor-not-allowed relative">
+            <div class="absolute top-3 right-3"><span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-gray-200 text-gray-600">Coming Soon</span></div>
+            <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background: #94a3b8;">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-base mb-1 text-gray-500">GRM Calculator</h3>
+              <p class="text-sm text-gray-400 leading-relaxed mb-3">Gross Rent Multiplier — quick valuation screening ratio.</p>
+            </div>
+            <span class="inline-flex items-center gap-1 text-sm font-semibold text-gray-400">In development</span>
+          </div>
+
+          <div class="group bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col opacity-70 cursor-not-allowed relative">
+            <div class="absolute top-3 right-3"><span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-gray-200 text-gray-600">Coming Soon</span></div>
+            <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background: #94a3b8;">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-base mb-1 text-gray-500">Property Management Fee Calculator</h3>
+              <p class="text-sm text-gray-400 leading-relaxed mb-3">Compare self-management vs. professional property management costs.</p>
+            </div>
+            <span class="inline-flex items-center gap-1 text-sm font-semibold text-gray-400">In development</span>
+          </div>
+
         </div>
       </div>
 
-      <!-- Fix & Flip and Value -->
+      <!-- ── Section 2: Fix & Flip and Value Analysis ── -->
       <div class="mb-12">
         <h2 class="text-xl font-extrabold mb-1" style="color: #1e3a5f;">Fix &amp; Flip and Value Analysis</h2>
         <p class="text-gray-500 text-sm mb-6">Profit estimation and after-repair value tools for active investors.</p>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
 
-          <NuxtLink to="/fix-flip-calculator"
+          <NuxtLink to="/fix-and-flip-calculator"
             class="group bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-all border border-gray-100 hover:border-yellow-400 flex flex-col">
             <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110" style="background: #1e3a5f;">
               <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -212,21 +314,212 @@
             </span>
           </NuxtLink>
 
-          <NuxtLink to="/compare-deals"
-            class="group bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-all border border-gray-100 hover:border-yellow-400 flex flex-col">
-            <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110" style="background: #1e3a5f;">
-              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-              </svg>
+          <div class="group bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col opacity-70 cursor-not-allowed relative">
+            <div class="absolute top-3 right-3"><span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-gray-200 text-gray-600">Coming Soon</span></div>
+            <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background: #94a3b8;">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             </div>
             <div class="flex-1">
-              <h3 class="font-bold text-base mb-1" style="color: #1e3a5f;">Compare Deals</h3>
-              <p class="text-sm text-gray-500 leading-relaxed mb-3">Side-by-side comparison of up to 4 investment deals. Spot the best opportunity instantly.</p>
+              <h3 class="font-bold text-base mb-1 text-gray-500">70% Rule Calculator</h3>
+              <p class="text-sm text-gray-400 leading-relaxed mb-3">Quick flip offer calculator — maximum purchase price based on ARV and rehab.</p>
             </div>
-            <span class="inline-flex items-center gap-1 text-sm font-bold group-hover:gap-2 transition-all" style="color: #f59e0b;">
-              Compare Now <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-            </span>
-          </NuxtLink>
+            <span class="inline-flex items-center gap-1 text-sm font-semibold text-gray-400">In development</span>
+          </div>
+
+          <div class="group bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col opacity-70 cursor-not-allowed relative">
+            <div class="absolute top-3 right-3"><span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-gray-200 text-gray-600">Coming Soon</span></div>
+            <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background: #94a3b8;">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-base mb-1 text-gray-500">House Flipping Profit Calculator</h3>
+              <p class="text-sm text-gray-400 leading-relaxed mb-3">Full flip profit projection with all costs and resale assumptions.</p>
+            </div>
+            <span class="inline-flex items-center gap-1 text-sm font-semibold text-gray-400">In development</span>
+          </div>
+
+          <div class="group bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col opacity-70 cursor-not-allowed relative">
+            <div class="absolute top-3 right-3"><span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-gray-200 text-gray-600">Coming Soon</span></div>
+            <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background: #94a3b8;">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-base mb-1 text-gray-500">Rehab Cost Estimator</h3>
+              <p class="text-sm text-gray-400 leading-relaxed mb-3">Room-by-room renovation cost breakdown for flips and BRRRR.</p>
+            </div>
+            <span class="inline-flex items-center gap-1 text-sm font-semibold text-gray-400">In development</span>
+          </div>
+
+          <div class="group bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col opacity-70 cursor-not-allowed relative">
+            <div class="absolute top-3 right-3"><span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-gray-200 text-gray-600">Coming Soon</span></div>
+            <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background: #94a3b8;">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-base mb-1 text-gray-500">BRRRR Refinance Calculator</h3>
+              <p class="text-sm text-gray-400 leading-relaxed mb-3">Dedicated refi cash-out calculator for the "R" step of BRRRR.</p>
+            </div>
+            <span class="inline-flex items-center gap-1 text-sm font-semibold text-gray-400">In development</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── Section 3: Financing & Loans ── -->
+      <div class="mb-12">
+        <h2 class="text-xl font-extrabold mb-1" style="color: #1e3a5f;">Financing &amp; Loans</h2>
+        <p class="text-gray-500 text-sm mb-6">Mortgage analysis, LTV, hard money, and closing cost tools for leveraged investors.</p>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+          <div class="group bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col opacity-70 cursor-not-allowed relative">
+            <div class="absolute top-3 right-3"><span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-gray-200 text-gray-600">Coming Soon</span></div>
+            <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background: #94a3b8;">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-base mb-1 text-gray-500">Mortgage Calculator (Investment)</h3>
+              <p class="text-sm text-gray-400 leading-relaxed mb-3">Investment property mortgage with DSCR, rate, and amortization.</p>
+            </div>
+            <span class="inline-flex items-center gap-1 text-sm font-semibold text-gray-400">In development</span>
+          </div>
+
+          <div class="group bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col opacity-70 cursor-not-allowed relative">
+            <div class="absolute top-3 right-3"><span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-gray-200 text-gray-600">Coming Soon</span></div>
+            <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background: #94a3b8;">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-base mb-1 text-gray-500">LTV Calculator</h3>
+              <p class="text-sm text-gray-400 leading-relaxed mb-3">Loan-to-Value ratio for acquisition and refinance scenarios.</p>
+            </div>
+            <span class="inline-flex items-center gap-1 text-sm font-semibold text-gray-400">In development</span>
+          </div>
+
+          <div class="group bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col opacity-70 cursor-not-allowed relative">
+            <div class="absolute top-3 right-3"><span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-gray-200 text-gray-600">Coming Soon</span></div>
+            <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background: #94a3b8;">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-base mb-1 text-gray-500">Hard Money Loan Calculator</h3>
+              <p class="text-sm text-gray-400 leading-relaxed mb-3">Short-term hard money costs, points, and total interest for flips.</p>
+            </div>
+            <span class="inline-flex items-center gap-1 text-sm font-semibold text-gray-400">In development</span>
+          </div>
+
+          <div class="group bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col opacity-70 cursor-not-allowed relative">
+            <div class="absolute top-3 right-3"><span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-gray-200 text-gray-600">Coming Soon</span></div>
+            <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background: #94a3b8;">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-base mb-1 text-gray-500">Debt Yield Calculator</h3>
+              <p class="text-sm text-gray-400 leading-relaxed mb-3">NOI/loan-amount ratio used by commercial lenders.</p>
+            </div>
+            <span class="inline-flex items-center gap-1 text-sm font-semibold text-gray-400">In development</span>
+          </div>
+
+          <div class="group bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col opacity-70 cursor-not-allowed relative">
+            <div class="absolute top-3 right-3"><span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-gray-200 text-gray-600">Coming Soon</span></div>
+            <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background: #94a3b8;">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-base mb-1 text-gray-500">Closing Costs Calculator (Investor)</h3>
+              <p class="text-sm text-gray-400 leading-relaxed mb-3">Estimated closing costs for investment purchases.</p>
+            </div>
+            <span class="inline-flex items-center gap-1 text-sm font-semibold text-gray-400">In development</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── Section 4: Returns & Analysis ── -->
+      <div class="mb-12">
+        <h2 class="text-xl font-extrabold mb-1" style="color: #1e3a5f;">Returns &amp; Analysis</h2>
+        <p class="text-gray-500 text-sm mb-6">ROI, IRR, and buy-vs-rent tools for comprehensive investment evaluation.</p>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+          <div class="group bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col opacity-70 cursor-not-allowed relative">
+            <div class="absolute top-3 right-3"><span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-gray-200 text-gray-600">Coming Soon</span></div>
+            <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background: #94a3b8;">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-base mb-1 text-gray-500">Real Estate ROI Calculator</h3>
+              <p class="text-sm text-gray-400 leading-relaxed mb-3">General-purpose ROI calculator for any real estate investment.</p>
+            </div>
+            <span class="inline-flex items-center gap-1 text-sm font-semibold text-gray-400">In development</span>
+          </div>
+
+          <div class="group bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col opacity-70 cursor-not-allowed relative">
+            <div class="absolute top-3 right-3"><span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-gray-200 text-gray-600">Coming Soon</span></div>
+            <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background: #94a3b8;">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-base mb-1 text-gray-500">Rent vs Buy Calculator</h3>
+              <p class="text-sm text-gray-400 leading-relaxed mb-3">Financial comparison of renting vs. buying a primary residence or investment.</p>
+            </div>
+            <span class="inline-flex items-center gap-1 text-sm font-semibold text-gray-400">In development</span>
+          </div>
+
+          <div class="group bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col opacity-70 cursor-not-allowed relative">
+            <div class="absolute top-3 right-3"><span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-gray-200 text-gray-600">Coming Soon</span></div>
+            <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background: #94a3b8;">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-base mb-1 text-gray-500">Real Estate IRR Calculator</h3>
+              <p class="text-sm text-gray-400 leading-relaxed mb-3">Internal Rate of Return for multi-year investment analysis.</p>
+            </div>
+            <span class="inline-flex items-center gap-1 text-sm font-semibold text-gray-400">In development</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── Section 5: Tax & Exit Strategy ── -->
+      <div class="mb-12">
+        <h2 class="text-xl font-extrabold mb-1" style="color: #1e3a5f;">Tax &amp; Exit Strategy</h2>
+        <p class="text-gray-500 text-sm mb-6">1031 exchanges, capital gains, and depreciation tools for tax-smart exits.</p>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+          <div class="group bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col opacity-70 cursor-not-allowed relative">
+            <div class="absolute top-3 right-3"><span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-gray-200 text-gray-600">Coming Soon</span></div>
+            <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background: #94a3b8;">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-base mb-1 text-gray-500">1031 Exchange Calculator</h3>
+              <p class="text-sm text-gray-400 leading-relaxed mb-3">Tax-deferred exchange analysis — basis, boot, and depreciation recapture.</p>
+            </div>
+            <span class="inline-flex items-center gap-1 text-sm font-semibold text-gray-400">In development</span>
+          </div>
+
+          <div class="group bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col opacity-70 cursor-not-allowed relative">
+            <div class="absolute top-3 right-3"><span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-gray-200 text-gray-600">Coming Soon</span></div>
+            <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background: #94a3b8;">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-base mb-1 text-gray-500">Real Estate Capital Gains Tax Calculator</h3>
+              <p class="text-sm text-gray-400 leading-relaxed mb-3">Short-term vs. long-term capital gains on property sales.</p>
+            </div>
+            <span class="inline-flex items-center gap-1 text-sm font-semibold text-gray-400">In development</span>
+          </div>
+
+          <div class="group bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col opacity-70 cursor-not-allowed relative">
+            <div class="absolute top-3 right-3"><span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-gray-200 text-gray-600">Coming Soon</span></div>
+            <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background: #94a3b8;">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-bold text-base mb-1 text-gray-500">Depreciation Calculator</h3>
+              <p class="text-sm text-gray-400 leading-relaxed mb-3">Annual depreciation schedule for rental properties.</p>
+            </div>
+            <span class="inline-flex items-center gap-1 text-sm font-semibold text-gray-400">In development</span>
+          </div>
 
         </div>
       </div>
@@ -253,7 +546,7 @@
             <span class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 text-xs font-extrabold text-white" style="background:#1e3a5f;">3</span>
             <div>
               <p class="font-semibold text-gray-800 text-sm">"I'm planning a fix &amp; flip"</p>
-              <p class="text-sm text-gray-500">Use <NuxtLink to="/arv-calculator" class="font-semibold hover:underline" style="color:#f59e0b;">ARV</NuxtLink> then <NuxtLink to="/fix-flip-calculator" class="font-semibold hover:underline" style="color:#f59e0b;">Fix &amp; Flip</NuxtLink></p>
+              <p class="text-sm text-gray-500">Use <NuxtLink to="/arv-calculator" class="font-semibold hover:underline" style="color:#f59e0b;">ARV</NuxtLink> then <NuxtLink to="/fix-and-flip-calculator" class="font-semibold hover:underline" style="color:#f59e0b;">Fix &amp; Flip</NuxtLink></p>
             </div>
           </div>
           <div class="flex gap-3">
@@ -266,8 +559,8 @@
           <div class="flex gap-3">
             <span class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 text-xs font-extrabold text-white" style="background:#1e3a5f;">5</span>
             <div>
-              <p class="font-semibold text-gray-800 text-sm">"I want to compare multiple deals"</p>
-              <p class="text-sm text-gray-500">Use <NuxtLink to="/compare-deals" class="font-semibold hover:underline" style="color:#f59e0b;">Compare Deals</NuxtLink> side-by-side tool</p>
+              <p class="font-semibold text-gray-800 text-sm">"I want to compare multiple deals across strategies"</p>
+              <p class="text-sm text-gray-500">Use <NuxtLink to="/compare-real-estate-deals" class="font-semibold hover:underline" style="color:#f59e0b;">Compare Real Estate Deals</NuxtLink> — works for Rental vs BRRRR vs Flip</p>
             </div>
           </div>
           <div class="flex gap-3">
@@ -275,6 +568,13 @@
             <div>
               <p class="font-semibold text-gray-800 text-sm">"I want to know my actual cash yield"</p>
               <p class="text-sm text-gray-500">Use <NuxtLink to="/cash-on-cash-calculator" class="font-semibold hover:underline" style="color:#f59e0b;">Cash-on-Cash Return</NuxtLink></p>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <span class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 text-xs font-extrabold text-white" style="background:#1e3a5f;">7</span>
+            <div>
+              <p class="font-semibold text-gray-800 text-sm">"I want to know my investment mortgage payment"</p>
+              <p class="text-sm text-gray-500">Use Mortgage Calculator (coming soon) + <NuxtLink to="/dscr-calculator" class="font-semibold hover:underline" style="color:#f59e0b;">DSCR</NuxtLink> to pre-qualify</p>
             </div>
           </div>
         </div>
@@ -302,9 +602,9 @@
 useHead({
   title: 'Free Real Estate Investment Calculators — RealCalc',
   meta: [
-    { name: 'description', content: 'All 10 free real estate investment calculators for US investors: rental property, cap rate, NOI, DSCR, cash-on-cash, fix & flip, ARV, BRRRR, compare deals. No signup required.' },
+    { name: 'description', content: '30 free real estate investment calculators for US investors: rental property, cap rate, NOI, DSCR, cash-on-cash, fix & flip, ARV, BRRRR, compare real estate deals, and more. No signup required.' },
     { property: 'og:title', content: 'Free Real Estate Investment Calculators — RealCalc' },
-    { property: 'og:description', content: 'All 10 free real estate investment calculators for US investors. Instant results, PDF export, no signup.' },
+    { property: 'og:description', content: '30 free real estate investment calculators for US investors. Instant results, PDF export, no signup.' },
     { name: 'robots', content: 'index, follow' },
   ]
 })
