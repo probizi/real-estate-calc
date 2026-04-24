@@ -358,22 +358,32 @@
             </div>
           </div>
 
-          <!-- Share + Export -->
-          <div class="px-4 py-3 flex flex-wrap gap-2">
-            <button @click="shareResult"
-              class="flex items-center gap-2 px-4 py-2 rounded-xl border-2 border-gray-200 hover:border-gray-300 text-sm font-semibold text-gray-600 hover:text-gray-800 bg-white transition">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+          <!-- Save + Share + Export -->
+          <div class="px-4 py-3 space-y-2">
+            <button v-if="hasResult" @click="openSaveScenario"
+              class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-sm transition hover:opacity-90"
+              style="background: #f59e0b; color: #1e3a5f;">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
               </svg>
-              {{ shareSuccess ? 'Link copied!' : 'Share' }}
+              Save Scenario
             </button>
-            <button @click="exportPDF"
-              class="flex items-center gap-2 px-4 py-2 rounded-xl border-2 border-gray-200 hover:border-gray-300 text-sm font-semibold text-gray-600 hover:text-gray-800 bg-white transition">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-              </svg>
-              Export PDF
-            </button>
+            <div class="flex flex-wrap gap-2">
+              <button @click="shareResult"
+                class="flex items-center gap-2 px-4 py-2 rounded-xl border-2 border-gray-200 hover:border-gray-300 text-sm font-semibold text-gray-600 hover:text-gray-800 bg-white transition">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                </svg>
+                {{ shareSuccess ? 'Link copied!' : 'Share' }}
+              </button>
+              <button @click="exportPDF"
+                class="flex items-center gap-2 px-4 py-2 rounded-xl border-2 border-gray-200 hover:border-gray-300 text-sm font-semibold text-gray-600 hover:text-gray-800 bg-white transition">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                </svg>
+                Export PDF
+              </button>
+            </div>
           </div>
 
         </div>
@@ -723,6 +733,19 @@
       </div>
 
     </main>
+
+    <!-- ═══════════════════════════════════════════════
+         SCENARIO PANEL
+    ═══════════════════════════════════════════════ -->
+    <div class="max-w-[1100px] mx-auto px-4 pb-6 mt-4">
+      <ScenarioPanel
+        calculator="70-percent-rule"
+        :has-result="hasResult"
+        :result="scenarioPanelResult"
+        :trigger-save="triggerScenarioSave"
+        @saved="onScenarioSaved"
+      />
+    </div>
 
     <!-- ═══════════════════════════════════════════════
          SEO CONTENT — 15 SECTIONS
@@ -1383,7 +1406,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, nextTick, onMounted } from 'vue'
 
 // ─── STATE ────────────────────────────────────────────────────────────────────
 const isNavExpanded = ref(false)
@@ -1397,6 +1420,7 @@ const financingBuffer = ref(false)
 const showAdvanced = ref(false)
 const shareSuccess = ref(false)
 const openFaqs = ref(new Set())
+const triggerScenarioSave = ref(false)
 
 // ─── URL PARAMS IMPORT ────────────────────────────────────────────────────────
 onMounted(() => {
@@ -1427,6 +1451,7 @@ const baseMao = computed(() => {
 })
 
 const maoValid = computed(() => baseMao.value !== null && baseMao.value > 0 && !(rehabPctOfArv.value > 80))
+const hasResult = computed(() => maoValid.value || reverseValid.value)
 const maoDisplay = computed(() => {
   if (!maoValid.value) return 0
   // Round to nearest $500
@@ -1506,6 +1531,46 @@ const fixAndFlipUrlMode3 = computed(() => {
   if (purchasePrice.value) params.set('price', purchasePrice.value)
   return `/fix-and-flip-calculator?${params}`
 })
+
+// ─── SCENARIO PANEL ──────────────────────────────────────────────────────────
+const scenarioPanelResult = computed(() => {
+  if (calcMode.value === 'reverse' && reverseValid.value) {
+    return {
+      badgeLabel: reverseOfferTier.value.label,
+      primaryMetric: 'Implied Rule',
+      primaryValue: impliedPct.value.toFixed(1) + '%',
+      inputs: {
+        'ARV': formatCurrency(arv.value),
+        'Rehab': formatCurrency(rehab.value),
+        'Purchase Price': formatCurrency(purchasePrice.value),
+        'Mode': 'Reverse (Mode 3)',
+      }
+    }
+  }
+  if (maoValid.value) {
+    return {
+      badgeLabel: statusTier.value.label,
+      primaryMetric: 'MAO',
+      primaryValue: formatCurrency(maoDisplay.value),
+      inputs: {
+        'ARV': formatCurrency(arv.value),
+        'Rehab': formatCurrency(rehab.value),
+        'Rule %': activePercent.value + '%',
+        'Gross Margin': formatCurrency(grossMargin.value),
+      }
+    }
+  }
+  return null
+})
+
+function openSaveScenario() {
+  triggerScenarioSave.value = true
+  nextTick(() => { triggerScenarioSave.value = false })
+}
+
+function onScenarioSaved(_id) {
+  // no-op — panel handles display
+}
 
 // ─── SENSITIVITY TABLE ────────────────────────────────────────────────────────
 const sensColLabels = [
