@@ -1017,6 +1017,18 @@
                 </svg>
                 Email me this analysis
               </button>
+              <!-- Analyze long-term ROI integration button -->
+              <button @click="analyzeLongTermROI"
+                class="mt-1 w-full flex items-center justify-center gap-2 py-3 rounded-xl font-semibold text-sm text-white transition hover:opacity-90"
+                style="background: #4f46e5;">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                </svg>
+                Analyze long-term ROI (5–30 years)
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                </svg>
+              </button>
             </div>
 
           </div><!-- /Main Result Card -->
@@ -2624,6 +2636,23 @@ const warnings = computed(() => {
   }
   return w
 })
+
+function analyzeLongTermROI() {
+  const params = new URLSearchParams({
+    p: form.purchasePrice || '',
+    dp: form.downPaymentPct ?? 25,
+    cc: form.closingCostsPct ?? 2,
+    lr: form.interestRate ?? 7.5,
+    lt: form.loanTermYears ?? 30,
+    r: form.monthlyRent || '',
+    vc: form.vacancyRate ?? 8,
+    ga: form.appreciationRate ?? 3,
+    gr: form.rentGrowthRate ?? 3,
+    hp: form.holdPeriodYears ?? 10,
+  })
+  if (form.initialRehab) params.set('rb', form.initialRehab)
+  window.location.href = `/rental-property-roi-calculator?${params}`
+}
 
 async function shareResult() {
   const params = buildShareParams()
