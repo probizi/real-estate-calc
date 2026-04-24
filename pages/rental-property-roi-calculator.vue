@@ -403,7 +403,9 @@
                 </div>
                 <div class="bg-indigo-50 rounded-xl p-3 border border-indigo-100">
                   <p class="text-xs text-indigo-500 mb-0.5">Total ROI %</p>
-                  <p class="text-2xl font-extrabold" :class="result.totalROI >= 0 ? 'text-indigo-700' : 'text-red-600'">{{ result.totalROI.toFixed(1) }}%</p>
+                  <p class="text-2xl font-extrabold" :class="result.totalROI >= 0 ? 'text-indigo-700' : 'text-red-600'">
+                    {{ result.totalROI > 9999 ? '>9,999' : result.totalROI.toFixed(1) }}%
+                  </p>
                 </div>
                 <div class="rounded-xl p-3 border" :class="irrDisplayClass">
                   <p class="text-xs mb-0.5" :class="result.irrApproximated ? 'text-amber-500' : 'text-indigo-500'">Annualized Return (IRR)</p>
@@ -436,6 +438,36 @@
               <div class="mt-3 bg-gray-50 rounded-xl p-3">
                 <p class="text-xs text-gray-400 mb-0.5">Year 1 Cash-on-Cash Return</p>
                 <p class="font-bold text-sm" :class="result.yr1CoC >= 6 ? 'text-green-600' : result.yr1CoC >= 3 ? 'text-amber-600' : 'text-red-600'">{{ result.yr1CoC.toFixed(2) }}%</p>
+              </div>
+
+              <!-- Save + Share + PDF -->
+              <div class="pt-3 mt-3 border-t border-gray-100 space-y-2">
+                <button @click="openSaveScenario"
+                  class="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-sm transition hover:opacity-90"
+                  style="background: #f59e0b; color: #1e3a5f;">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
+                  </svg>
+                  Save Scenario
+                </button>
+                <div class="grid grid-cols-2 gap-2">
+                  <button @click="shareResult"
+                    class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border"
+                    :class="shareSuccess ? 'border-green-400 text-green-700 bg-green-50' : 'border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50'">
+                    <svg v-if="!shareSuccess" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                    </svg>
+                    <svg v-else class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                    {{ shareSuccess ? 'Copied!' : 'Share' }}
+                  </button>
+                  <button @click="exportPDF"
+                    class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    </svg>
+                    Export PDF
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -560,7 +592,7 @@
               <div v-if="scenarioResult" class="grid grid-cols-2 gap-2 text-xs">
                 <div class="bg-gray-50 rounded-lg p-2">
                   <p class="text-gray-400">Total ROI</p>
-                  <p class="font-bold text-gray-700">{{ scenarioResult.totalROI.toFixed(1) }}%</p>
+                  <p class="font-bold text-gray-700">{{ scenarioResult.totalROI > 9999 ? '>9,999' : scenarioResult.totalROI.toFixed(1) }}%</p>
                 </div>
                 <div class="bg-gray-50 rounded-lg p-2">
                   <p class="text-gray-400">IRR</p>
@@ -781,38 +813,6 @@
           </div>
           <div v-if="result && calcMode === 'compare' && !compareYearsValid" class="bg-emerald-50 rounded-2xl border border-emerald-100 p-6 text-center text-sm text-emerald-700">
             Enter two different Sell Year values (1–30) above to compare exit timings.
-          </div>
-
-          <!-- Save + Share + PDF -->
-          <div v-if="hasResult" class="p-0 space-y-2">
-            <!-- PRIMARY: Save Scenario -->
-            <button @click="openSaveScenario"
-              class="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-sm transition hover:opacity-90"
-              style="background: #f59e0b; color: #1e3a5f;">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
-              </svg>
-              Save Scenario
-            </button>
-            <!-- SECONDARY: Share + PDF -->
-            <div class="grid grid-cols-2 gap-2">
-              <button @click="shareResult"
-                class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border"
-                :class="shareSuccess ? 'border-green-400 text-green-700 bg-green-50' : 'border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50'">
-                <svg v-if="!shareSuccess" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
-                </svg>
-                <svg v-else class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                {{ shareSuccess ? 'Copied!' : 'Share' }}
-              </button>
-              <button @click="exportPDF"
-                class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                </svg>
-                Export PDF
-              </button>
-            </div>
           </div>
 
           <!-- Disclaimer -->
