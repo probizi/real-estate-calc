@@ -953,6 +953,14 @@
 
               <!-- Action Buttons -->
               <div class="p-4 border-t border-gray-100 space-y-2">
+                <!-- 70% Rule integration patch -->
+                <a :href="`/70-percent-rule-calculator?arv=${calc.finalARV}`"
+                  class="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-sm transition hover:opacity-90 bg-amber-600 hover:bg-amber-700 text-white">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                  </svg>
+                  Check offer viability (70% Rule)
+                </a>
                 <button @click="openSaveScenario"
                   class="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-sm transition hover:opacity-90"
                   style="background: #f59e0b; color: #1e3a5f;">
