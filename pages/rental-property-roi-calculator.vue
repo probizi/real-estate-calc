@@ -71,7 +71,10 @@
             <li><a href="#result-meaning" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Result Meaning</a></li>
             <li><a href="#benchmarks" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Benchmarks</a></li>
             <li><a href="#strategy" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Strategy</a></li>
+            <li><a href="#applications" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Use Cases</a></li>
+            <li><a href="#industry-standards" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Industry Standards</a></li>
             <li><a href="#limitations" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Limitations</a></li>
+            <li><a href="#common-mistakes" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Common Mistakes</a></li>
             <li><a href="#faq" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">FAQ</a></li>
           </ul>
           <div class="md:hidden">
@@ -83,8 +86,14 @@
             <ul v-show="isNavExpanded" class="flex flex-col gap-y-2 mt-2">
               <li><a href="#inputs-outputs" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Inputs &amp; Outputs</a></li>
               <li><a href="#formula" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Formula</a></li>
+              <li><a href="#what-is" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">What Is Rental ROI</a></li>
               <li><a href="#result-meaning" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Result Meaning</a></li>
+              <li><a href="#benchmarks" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Benchmarks</a></li>
+              <li><a href="#strategy" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Strategy</a></li>
+              <li><a href="#applications" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Use Cases</a></li>
+              <li><a href="#industry-standards" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Industry Standards</a></li>
               <li><a href="#limitations" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Limitations</a></li>
+              <li><a href="#common-mistakes" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Common Mistakes</a></li>
               <li><a href="#faq" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">FAQ</a></li>
             </ul>
             <button @click="isNavExpanded = !isNavExpanded" class="mt-2 flex items-center gap-1 text-xs font-bold transition" style="color: #b45309;">
@@ -1289,7 +1298,7 @@
       </div>
 
       <!-- ── INDUSTRY STANDARDS ── -->
-      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 px-8 py-8 mb-4">
+      <div id="industry-standards" class="bg-white rounded-2xl shadow-sm border border-gray-100 px-8 py-8 mb-4">
         <h2 class="text-xl font-extrabold mb-1" style="color:#1e3a5f;">How This Calculator Aligns with Industry Conventions</h2>
         <p class="text-sm text-gray-400 mb-5 italic">Methodology standards and peer tool positioning</p>
 
@@ -1389,7 +1398,7 @@
       </div>
 
       <!-- ── COMMON MISTAKES ── -->
-      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 px-8 py-8 mb-4">
+      <div id="common-mistakes" class="bg-white rounded-2xl shadow-sm border border-gray-100 px-8 py-8 mb-4">
         <h2 class="text-xl font-extrabold mb-1" style="color:#1e3a5f;">Common Mistakes When Analyzing Rental ROI</h2>
         <p class="text-sm text-gray-400 mb-5 italic">Avoid these five errors</p>
 
