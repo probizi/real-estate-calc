@@ -134,7 +134,7 @@
         </button>
       </div>
 
-      <div class="grid lg:grid-cols-[3fr_2fr] gap-6 items-start">
+      <div class="grid lg:grid-cols-[3fr_2fr] gap-6 items-stretch">
 
         <!-- ── LEFT: INPUT FORM ── -->
         <div class="space-y-4">
@@ -368,7 +368,8 @@
         </div><!-- /Left col -->
 
         <!-- ── RIGHT: RESULTS PANEL ── -->
-        <div class="lg:sticky lg:top-[4.5rem] space-y-4">
+        <div class="lg:sticky lg:top-[4.5rem] lg:overflow-y-auto lg:max-h-[calc(100vh-5.5rem)] lg:pr-1">
+          <div class="space-y-4">
 
           <!-- No inputs state -->
           <div v-if="!hasResult" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 text-center">
@@ -380,7 +381,7 @@
           </div>
 
           <!-- ── MODE 1: FORWARD ROI RESULTS ── -->
-          <div v-if="hasResult && calcMode === 'forward'" class="space-y-4">
+          <div v-if="result && calcMode === 'forward'" class="space-y-4">
 
             <!-- Primary Metrics Row -->
             <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
@@ -656,7 +657,7 @@
           </div><!-- /Mode 1 results -->
 
           <!-- ── MODE 2: HOLD SENSITIVITY ── -->
-          <div v-if="hasResult && calcMode === 'sensitivity'" class="bg-white rounded-2xl shadow-sm border border-blue-100 p-5">
+          <div v-if="result && calcMode === 'sensitivity'" class="bg-white rounded-2xl shadow-sm border border-blue-100 p-5">
             <h3 class="text-sm font-bold mb-4 text-blue-700">Hold Period Sensitivity — When Should You Sell?</h3>
             <div class="overflow-x-auto">
               <table class="text-xs w-full">
@@ -727,7 +728,7 @@
           </div>
 
           <!-- ── MODE 3: COMPARE SELL YEARS ── -->
-          <div v-if="hasResult && calcMode === 'compare' && compareYearsValid" class="bg-white rounded-2xl shadow-sm border border-emerald-100 p-5">
+          <div v-if="result && calcMode === 'compare' && compareYearsValid" class="bg-white rounded-2xl shadow-sm border border-emerald-100 p-5">
             <h3 class="text-sm font-bold mb-4 text-emerald-700">Compare Sell Years — Year {{ f.sellYearA }} vs Year {{ f.sellYearB }}</h3>
             <!-- Winner badge -->
             <div v-if="compareWinner" class="mb-4 px-4 py-2 rounded-xl text-sm font-semibold text-center"
@@ -778,28 +779,40 @@
             </div>
             <p class="text-xs text-gray-400 mt-3">v1 scope: sell-year comparison only. 1031 Exchange and mid-hold refinance are v2 features.</p>
           </div>
-          <div v-if="hasResult && calcMode === 'compare' && !compareYearsValid" class="bg-emerald-50 rounded-2xl border border-emerald-100 p-6 text-center text-sm text-emerald-700">
+          <div v-if="result && calcMode === 'compare' && !compareYearsValid" class="bg-emerald-50 rounded-2xl border border-emerald-100 p-6 text-center text-sm text-emerald-700">
             Enter two different Sell Year values (1–30) above to compare exit timings.
           </div>
 
-          <!-- Share + PDF -->
-          <div v-if="hasResult" class="grid grid-cols-2 gap-2">
-            <button @click="shareResult"
-              class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border"
-              :class="shareSuccess ? 'border-green-400 text-green-700 bg-green-50' : 'border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50'">
-              <svg v-if="!shareSuccess" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+          <!-- Save + Share + PDF -->
+          <div v-if="hasResult" class="p-0 space-y-2">
+            <!-- PRIMARY: Save Scenario -->
+            <button @click="openSaveScenario"
+              class="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-sm transition hover:opacity-90"
+              style="background: #f59e0b; color: #1e3a5f;">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
               </svg>
-              <svg v-else class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              {{ shareSuccess ? 'Copied!' : 'Share' }}
+              Save Scenario
             </button>
-            <button @click="exportPDF"
-              class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-              </svg>
-              Export PDF
-            </button>
+            <!-- SECONDARY: Share + PDF -->
+            <div class="grid grid-cols-2 gap-2">
+              <button @click="shareResult"
+                class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border"
+                :class="shareSuccess ? 'border-green-400 text-green-700 bg-green-50' : 'border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50'">
+                <svg v-if="!shareSuccess" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                </svg>
+                <svg v-else class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                {{ shareSuccess ? 'Copied!' : 'Share' }}
+              </button>
+              <button @click="exportPDF"
+                class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+                Export PDF
+              </button>
+            </div>
           </div>
 
           <!-- Disclaimer -->
@@ -807,6 +820,7 @@
             ROI and IRR shown use pre-tax cash flow with estimated depreciation benefit added and simplified sale tax deducted. Annual income tax on rental profit is NOT modeled. Consult a real estate CPA for precise after-tax planning.
           </div>
 
+          </div><!-- /inner space-y-4 -->
         </div><!-- /Right col -->
       </div><!-- /Grid -->
     </div><!-- /Calculator -->
@@ -820,7 +834,7 @@
         :has-result="hasResult"
         :result="scenarioPanelResult"
         :trigger-save="triggerScenarioSave"
-        @save-done="triggerScenarioSave = false"
+        @saved="onScenarioSaved"
       />
     </div>
 
@@ -1543,7 +1557,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed, onMounted } from 'vue'
+import { ref, reactive, computed, onMounted, nextTick } from 'vue'
 
 // ─── 1. SEO HEAD ──────────────────────────────────────────────────────────────
 useHead({
@@ -2102,12 +2116,18 @@ const equityChartPoints = computed(() => {
 // Scenario panel result
 const scenarioPanelResult = computed(() => {
   if (!result.value) return null
+  const roi = result.value.totalROI
+  const irr = result.value.irr
   return {
-    totalROI: result.value.totalROI,
-    irr: result.value.irr,
-    totalWealth: result.value.totalWealth,
-    initialCash: result.value.initialCash,
-    holdPeriod: f.value.holdPeriod,
+    primaryMetric: 'Total ROI',
+    primaryValue: roi != null ? roi.toFixed(1) + '%' : '—',
+    badgeLabel: roiTierLabel.value,
+    badgeColor: roi >= 220 ? '#10b981' : roi >= 120 ? '#3b82f6' : roi >= 60 ? '#f59e0b' : '#ef4444',
+    roi: roi,
+    cashOnCash: irr,
+    purchasePrice: f.value.purchasePrice,
+    totalCashInvested: result.value.initialCash,
+    annualCashFlow: result.value.totalWealth,
   }
 })
 
@@ -2130,6 +2150,15 @@ function formatCurrencyK(val) {
 }
 
 // ─── 7. ACTIONS ──────────────────────────────────────────────────────────────
+
+function openSaveScenario() {
+  triggerScenarioSave.value = true
+  nextTick(() => { triggerScenarioSave.value = false })
+}
+
+function onScenarioSaved(_id) {
+  // no-op — panel handles display
+}
 
 async function shareResult() {
   const params = new URLSearchParams()
