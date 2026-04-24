@@ -149,6 +149,10 @@
             <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
             <span><strong>Very optimistic vacancy assumption.</strong> US average is 6–8%.</span>
           </div>
+          <div v-if="form.purchasePrice > 0 && form.purchasePrice < 10000" class="bg-red-50 border border-red-300 rounded-xl px-4 py-3 flex gap-2 text-sm text-red-800">
+            <svg class="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+            <span><strong>Purchase price appears too low.</strong> US residential real estate is typically $50,000+. If you meant ${{ (form.purchasePrice * 1000).toLocaleString('en-US') }}, please re-enter the full amount (e.g., enter 300000 for $300,000).</span>
+          </div>
 
           <!-- Acquisition -->
           <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
@@ -1712,6 +1716,8 @@ function computeForYear(holdYears, overrides = {}) {
   const closingAmt = p.purchasePrice * (p.closingCosts / 100)
   const initialCash = downPaymentAmt + closingAmt + p.rehab
   if (initialCash <= 0) return null
+  // Guard: prevent astronomical ROI from near-zero initial investment
+  if (initialCash < 500) return null
 
   // Phase 2: Amortization
   const loanAmount = p.purchasePrice - downPaymentAmt
