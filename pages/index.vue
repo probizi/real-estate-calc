@@ -130,7 +130,7 @@
         <div class="text-center mb-14">
           <span class="inline-block text-xs font-bold uppercase tracking-widest mb-3 px-3 py-1 rounded-full" style="background: rgba(30,58,95,0.08); color: #1e3a5f;">Essential Tools</span>
           <h2 class="text-4xl md:text-5xl font-extrabold mb-4" style="color: #1e3a5f;">Most Popular Calculators</h2>
-          <p class="text-lg text-gray-600 max-w-2xl mx-auto">8 essential tools used by 25,000+ US investors every day to analyze deals, qualify for loans, and build lasting wealth.</p>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">30 free calculators used by 25,000+ US investors every day to analyze deals, qualify for loans, and build lasting wealth.</p>
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -298,22 +298,23 @@
             </span>
           </NuxtLink>
 
-          <!-- Coming Soon: Mortgage Calculator -->
-          <div class="group bg-gray-50 p-7 rounded-2xl border border-gray-200 flex flex-col opacity-70 cursor-not-allowed relative">
-            <div class="absolute top-3 right-3">
-              <span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-gray-200 text-gray-600">Coming Soon</span>
-            </div>
-            <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background: #94a3b8;">
+          <!-- Rental Property ROI -->
+          <NuxtLink to="/rental-property-roi-calculator"
+            class="group bg-white p-7 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-yellow-400 flex flex-col">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-transform group-hover:scale-110" style="background: #1e3a5f;">
               <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
               </svg>
             </div>
             <div class="flex-1">
-              <h3 class="text-lg font-bold mb-2 text-gray-500">Mortgage Calculator</h3>
-              <p class="text-sm text-gray-400 mb-4 leading-relaxed">Investment property mortgage with DSCR, rate, and amortization.</p>
+              <h3 class="text-lg font-bold mb-2" style="color: #1e3a5f;">Rental Property ROI</h3>
+              <p class="text-sm text-gray-500 mb-4 leading-relaxed">Full lifetime ROI — cash flow, appreciation, equity build-up, and wealth projection over the hold period</p>
             </div>
-            <span class="inline-flex items-center gap-1 text-sm font-semibold text-gray-400">In development</span>
-          </div>
+            <span class="inline-flex items-center gap-1 text-sm font-bold transition group-hover:gap-2" style="color: #f59e0b;">
+              Calculate Now
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </span>
+          </NuxtLink>
 
           <!-- Coming Soon: Rent vs Buy -->
           <div class="group bg-gray-50 p-7 rounded-2xl border border-gray-200 flex flex-col opacity-70 cursor-not-allowed relative">
