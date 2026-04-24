@@ -416,12 +416,43 @@
               </div>
             </div>
 
+          <!-- Share + Export -->
+          <div v-if="hasResult" class="px-4 pb-4 pt-1 flex flex-wrap gap-2">
+            <button @click="shareResult"
+              class="flex items-center gap-2 px-4 py-2 rounded-xl border-2 border-gray-200 hover:border-gray-300 text-sm font-semibold text-gray-600 hover:text-gray-800 bg-white transition">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+              </svg>
+              {{ shareSuccess ? 'Link copied!' : 'Share' }}
+            </button>
+            <button @click="exportPDF"
+              class="flex items-center gap-2 px-4 py-2 rounded-xl border-2 border-gray-200 hover:border-gray-300 text-sm font-semibold text-gray-600 hover:text-gray-800 bg-white transition">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+              </svg>
+              Export PDF
+            </button>
+          </div>
+
           </div>
           </div>
         </div>
 
       </div>
     </main>
+
+    <!-- ═══════════════════════════════════════════════
+         SCENARIO PANEL
+    ═══════════════════════════════════════════════ -->
+    <div class="max-w-[1100px] mx-auto px-4 pb-6 mt-4">
+      <ScenarioPanel
+        calculator="brrrr"
+        :has-result="hasResult"
+        :result="currentScenarioResult"
+        :trigger-save="triggerScenarioSave"
+        @saved="onScenarioSaved"
+      />
+    </div>
 
     <!-- SEO CONTENT -->
     <div class="max-w-[1100px] mx-auto px-4 pb-16 mt-12 space-y-12">
@@ -592,8 +623,8 @@
 </template>
 
 <script setup>
+import { reactive, ref, computed, nextTick } from 'vue'
 const isNavExpanded = ref(false)
-import { reactive, ref, computed } from 'vue'
 
 useHead({
   title: 'BRRRR Calculator — Buy Rehab Rent Refinance Repeat | RealCalc',
@@ -690,6 +721,125 @@ const cashOnCash = computed(() => {
 const hasResult = computed(() => {
   return form.purchasePrice && form.arv && form.refiLTV && form.refiRate
 })
+
+// ─── SCENARIO PANEL ──────────────────────────────────────────────────────────
+const triggerScenarioSave = ref(false)
+const shareSuccess = ref(false)
+
+const currentScenarioResult = computed(() => {
+  if (!hasResult.value) return null
+  return {
+    label: cashLeftInDeal.value <= 0 ? 'Infinite Return' : `$${Math.round(cashLeftInDeal.value / 1000)}K left in deal`,
+    value: cashLeftInDeal.value <= 0 ? '∞' : formatCurrency(cashLeftInDeal.value),
+    subValue: `Cash Flow: ${monthlyCashFlow.value >= 0 ? '+' : ''}${formatCurrency(monthlyCashFlow.value)}/mo`,
+    inputs: {
+      'Purchase Price': formatCurrency(form.purchasePrice || 0),
+      'Rehab Cost': formatCurrency(form.rehabCost || 0),
+      'ARV': formatCurrency(form.arv || 0),
+      'Refi LTV': `${form.refiLTV || 0}%`,
+      'Refi Rate': `${form.refiRate || 0}%`,
+      'Monthly Rent': formatCurrency(form.monthlyRent || 0),
+    },
+    metrics: {
+      'Cash Left in Deal': formatCurrency(cashLeftInDeal.value),
+      'Equity Created': formatCurrency(equityCreated.value),
+      'Monthly Cash Flow': `${monthlyCashFlow.value >= 0 ? '+' : ''}${formatCurrency(monthlyCashFlow.value)}`,
+      'Cash-on-Cash': cashOnCash.value > 999 ? '∞' : `${cashOnCash.value.toFixed(1)}%`,
+    }
+  }
+})
+
+function onScenarioSaved(_id) {}
+
+async function shareResult() {
+  const params = new URLSearchParams()
+  if (form.purchasePrice) params.set('pp', form.purchasePrice)
+  if (form.closingCosts) params.set('cc', form.closingCosts)
+  if (form.rehabCost) params.set('rehab', form.rehabCost)
+  if (form.rehabMonths) params.set('months', form.rehabMonths)
+  if (form.monthlyHolding) params.set('holding', form.monthlyHolding)
+  if (form.arv) params.set('arv', form.arv)
+  if (form.monthlyRent) params.set('rent', form.monthlyRent)
+  if (form.vacancyRate) params.set('vacancy', form.vacancyRate)
+  if (form.monthlyExpenses) params.set('expenses', form.monthlyExpenses)
+  if (form.refiLTV) params.set('ltv', form.refiLTV)
+  if (form.refiRate) params.set('rate', form.refiRate)
+  if (form.refiTerm) params.set('term', form.refiTerm)
+  if (form.refiClosingCosts) params.set('reficc', form.refiClosingCosts)
+  const url = `${window.location.origin}${window.location.pathname}?${params.toString()}`
+  try {
+    await navigator.clipboard.writeText(url)
+  } catch {
+    const el = document.createElement('input')
+    el.value = url
+    document.body.appendChild(el)
+    el.select()
+    document.execCommand('copy')
+    document.body.removeChild(el)
+  }
+  shareSuccess.value = true
+  setTimeout(() => { shareSuccess.value = false }, 2000)
+}
+
+async function exportPDF() {
+  const { jsPDF } = await import('jspdf')
+  const doc = new jsPDF()
+  const navy = [30, 58, 95]
+  const gold = [245, 158, 11]
+
+  doc.setFillColor(...navy)
+  doc.rect(0, 0, 210, 40, 'F')
+  doc.setTextColor(255, 255, 255)
+  doc.setFontSize(22)
+  doc.setFont('helvetica', 'bold')
+  doc.text('RealCalc', 20, 20)
+  doc.setFontSize(11)
+  doc.setFont('helvetica', 'normal')
+  doc.text('BRRRR Strategy Analysis Report', 20, 30)
+  doc.setFontSize(9)
+  doc.text(`Generated: ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}`, 130, 28)
+
+  let y = 55
+  doc.setFontSize(14)
+  doc.setFont('helvetica', 'bold')
+  doc.setTextColor(...navy)
+  doc.text('Deal Summary', 20, y)
+  y += 10
+
+  const rows = [
+    ['Purchase Price', formatCurrency(form.purchasePrice || 0)],
+    ['Closing Costs', formatCurrency(form.closingCosts || 0)],
+    ['Rehab Cost', formatCurrency(form.rehabCost || 0)],
+    ['Holding Costs', formatCurrency(totalHoldingCosts.value)],
+    ['Total Cash In', formatCurrency(totalCashIn.value)],
+    ['ARV', formatCurrency(form.arv || 0)],
+    ['Refi Loan Amount', formatCurrency(refiLoanAmount.value)],
+    ['Cash Left in Deal', formatCurrency(cashLeftInDeal.value)],
+    ['Equity Created', formatCurrency(equityCreated.value)],
+    ['Monthly Cash Flow', `${monthlyCashFlow.value >= 0 ? '+' : ''}${formatCurrency(monthlyCashFlow.value)}`],
+    ['Cash-on-Cash', cashOnCash.value > 999 ? '∞' : `${cashOnCash.value.toFixed(1)}%`],
+  ]
+
+  doc.setFontSize(10)
+  rows.forEach(([label, value]) => {
+    doc.setFont('helvetica', 'normal')
+    doc.setTextColor(80, 80, 80)
+    doc.text(label, 20, y)
+    doc.setFont('helvetica', 'bold')
+    doc.setTextColor(...navy)
+    doc.text(value, 140, y, { align: 'right' })
+    y += 8
+  })
+
+  doc.setFillColor(...gold)
+  doc.rect(0, 280, 210, 17, 'F')
+  doc.setTextColor(...navy)
+  doc.setFontSize(9)
+  doc.setFont('helvetica', 'bold')
+  doc.text('RealCalc.io — Free Real Estate Investment Calculator Hub', 105, 291, { align: 'center' })
+
+  doc.save('brrrr-analysis.pdf')
+}
 
 const brrrrSteps = [
   { letter: 'B', name: 'Buy', color: '#1e3a5f', desc: 'Purchase a distressed or undervalued property below market value, typically with cash or hard money.' },

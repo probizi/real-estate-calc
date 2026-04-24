@@ -358,16 +358,8 @@
             </div>
           </div>
 
-          <!-- Save + Share + Export -->
+          <!-- Share + Export -->
           <div class="px-4 py-3 space-y-2">
-            <button v-if="hasResult" @click="openSaveScenario"
-              class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-sm transition hover:opacity-90"
-              style="background: #f59e0b; color: #1e3a5f;">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
-              </svg>
-              Save Scenario
-            </button>
             <div class="flex flex-wrap gap-2">
               <button @click="shareResult"
                 class="flex items-center gap-2 px-4 py-2 rounded-xl border-2 border-gray-200 hover:border-gray-300 text-sm font-semibold text-gray-600 hover:text-gray-800 bg-white transition">
