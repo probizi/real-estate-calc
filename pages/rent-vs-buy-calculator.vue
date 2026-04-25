@@ -469,45 +469,6 @@
               </p>
             </div>
 
-            <!-- Saved Scenarios Widget -->
-            <div v-if="hasResult" class="mt-2 p-4 bg-slate-50 rounded-xl border border-slate-200">
-              <div class="flex items-center justify-between mb-3">
-                <div>
-                  <h3 class="font-semibold text-slate-900 text-sm">Saved Scenarios</h3>
-                  <p class="text-xs text-slate-600">
-                    {{ savedScenarios.length }}/20 saved ·
-                    <button @click="compareAllScenarios"
-                            :disabled="savedScenarios.length === 0"
-                            class="text-indigo-600 hover:underline disabled:text-slate-400">
-                      Compare all
-                    </button>
-                  </p>
-                </div>
-                <button @click="saveCurrentScenario"
-                        :disabled="savedScenarios.length >= 20"
-                        class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 text-white rounded-lg text-sm font-medium transition">
-                  Save Scenario
-                </button>
-              </div>
-              <div v-if="savedScenarios.length > 0" class="space-y-2 mt-3">
-                <div v-for="(scenario, idx) in savedScenarios" :key="idx"
-                     class="flex items-center justify-between p-2 bg-white rounded border border-slate-200">
-                  <div class="text-xs">
-                    <span class="font-medium">{{ scenario.label || `Scenario ${idx + 1}` }}</span>
-                    <span class="text-slate-500 ml-2">
-                      {{ scenario.homePrice ? '$' + scenario.homePrice.toLocaleString() : 'N/A' }} home ·
-                      ${{ scenario.monthlyRent ? scenario.monthlyRent.toLocaleString() : '0' }} rent ·
-                      {{ scenario.holdPeriod }}yr ·
-                      {{ scenario.breakEvenYear ? `BE Year ${scenario.breakEvenYear}` : 'Rent wins' }}
-                    </span>
-                  </div>
-                  <div class="flex gap-2">
-                    <button @click="loadScenario(idx)" class="text-xs text-indigo-600 hover:underline">Load</button>
-                    <button @click="deleteScenario(idx)" class="text-xs text-red-600 hover:underline">Delete</button>
-                  </div>
-                </div>
-              </div>
-            </div>
 
             <!-- Secondary Metrics -->
             <div v-if="hasResult" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
@@ -712,6 +673,17 @@
         </div>
 
       </section>
+
+      <!-- ═══════════════════════════════════════════════
+           SCENARIO PANEL
+      ═══════════════════════════════════════════════ -->
+      <ScenarioPanel
+        calculator="rent-vs-buy"
+        :has-result="hasResult"
+        :result="currentScenarioResult"
+        :trigger-save="triggerScenarioSave"
+        @saved="onScenarioSaved"
+      />
 
       <!-- ═══════════════════════════════════════════════
            SEO CONTENT SECTIONS
@@ -1556,6 +1528,7 @@ const filingStatus = ref('married')
 const shareSuccess = ref(false)
 const savedScenarios = ref([])
 const showUpgradeModal = ref(false)
+const triggerScenarioSave = ref(false)
 
 // Chart refs
 const wealthChartRef = ref(null)
@@ -1802,6 +1775,32 @@ const statusBadgeLabel = computed(() => {
     default: return 'Renting Favored'
   }
 })
+
+// ─── SCENARIO PANEL ──────────────────────────────────
+const currentScenarioResult = computed(() => {
+  if (!hasResult.value) return null
+  return {
+    primaryMetric: breakEvenYear.value ? 'Break-Even' : 'Verdict',
+    primaryValue: breakEvenYear.value ? `Year ${breakEvenYear.value}` : 'Rent Wins',
+    badgeLabel: statusBadgeLabel.value,
+    purchasePrice: homePrice.value || 0,
+    inputs: {
+      'Home Price': formatCurrency(homePrice.value || 0),
+      'Monthly Rent': formatCurrency(monthlyRent.value || 0),
+      'Hold Period': `${holdPeriod.value} yr`,
+      'Mode': `Mode ${currentMode.value}`,
+      'Mortgage Rate': `${mortgageRate.value}%`,
+      'Down Payment': `${downPayment.value}%`,
+    },
+    metrics: {
+      'Buy Net Wealth': formatCurrency(finalNetWealthBuy.value),
+      'Rent Net Wealth': formatCurrency(finalNetWealthRent.value),
+      'Wealth Diff': (wealthDiffAtHold.value >= 0 ? '+' : '') + formatCurrency(wealthDiffAtHold.value),
+    }
+  }
+})
+
+function onScenarioSaved(_id) {}
 
 const initialCapitalDiff = computed(() => {
   if (!hasResult.value) return 0
