@@ -768,6 +768,19 @@
 
         </div><!-- /grid -->
 
+        <!-- ═══════════════════════════════════════════════
+             SCENARIO PANEL
+        ═══════════════════════════════════════════════ -->
+        <div class="mt-6">
+          <ScenarioPanel
+            calculator="mortgage-investment"
+            :has-result="hasResult"
+            :result="currentScenarioResult"
+            :trigger-save="triggerScenarioSave"
+            @saved="onScenarioSaved"
+          />
+        </div>
+
         <!-- ═══ INFO BLOCKS ═══ -->
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
           <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
@@ -1699,6 +1712,18 @@ Break-Even Rent (Gross Required Rent) = PITI / [(1−Vacancy%) × (1−OpEx%)]</
         <section id="related-calculators" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 mb-6">
           <h2 class="text-2xl font-extrabold mb-1" style="color:#1e3a5f;">Related Calculators</h2>
           <p class="text-sm text-gray-400 mb-5">Continue your investor analysis workflow</p>
+
+          <!-- Primary Residence Redirect -->
+          <div class="mb-5 p-4 bg-slate-50 border border-slate-200 rounded-xl flex flex-col sm:flex-row sm:items-center gap-3">
+            <div class="flex-1">
+              <p class="text-sm font-semibold text-slate-700">Evaluating a primary residence — not an investment property?</p>
+              <p class="text-xs text-slate-500 mt-0.5">This calculator uses investor defaults (7.5% rate, 25% down). For homebuyers comparing buying vs. renting, use the dedicated Rent vs Buy Calculator instead.</p>
+            </div>
+            <button @click="goToRentVsBuy" class="shrink-0 px-4 py-2 text-sm font-semibold bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 rounded-lg flex items-center gap-2 transition whitespace-nowrap">
+              <span>If primary residence, see Rent vs Buy →</span>
+            </button>
+          </div>
+
           <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <NuxtLink to="/rental-property-calculator" class="block p-5 rounded-xl border border-gray-200 bg-gray-50 hover:border-indigo-300 hover:bg-indigo-50 transition group">
               <p class="font-bold text-sm mb-1 group-hover:text-indigo-800" style="color: #1e3a5f;">Rental Property Calculator</p>
@@ -1730,19 +1755,6 @@ Break-Even Rent (Gross Required Rent) = PITI / [(1−Vacancy%) × (1−OpEx%)]</
       </div><!-- /seo content -->
 
     </main>
-
-    <!-- ═══════════════════════════════════════════════
-         SCENARIO PANEL
-    ═══════════════════════════════════════════════ -->
-    <div class="max-w-[1100px] mx-auto px-4 pb-6 mt-4">
-      <ScenarioPanel
-        calculator="mortgage-investment"
-        :has-result="hasResult"
-        :result="currentScenarioResult"
-        :trigger-save="triggerScenarioSave"
-        @saved="onScenarioSaved"
-      />
-    </div>
 
     <!-- ═══════════════════════════════════════════════
          FOOTER
@@ -2269,6 +2281,16 @@ onMounted(() => {
   if (params.get('hoa')) hoaMonthly.value = Number(params.get('hoa'))
   if (params.get('mode')) currentMode.value = Number(params.get('mode'))
 })
+
+// ─── AUDIENCE REDIRECT ───────────────────────────────
+function goToRentVsBuy() {
+  const params = new URLSearchParams({
+    p: propertyPrice.value || '',
+    lr: 6.75,
+    dp: 20
+  })
+  window.location.href = `/rent-vs-buy-calculator?${params}`
+}
 
 // ─── SHARE / PDF ─────────────────────────────────────
 function shareResult() {
