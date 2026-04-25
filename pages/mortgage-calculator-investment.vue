@@ -136,46 +136,6 @@
     ═══════════════════════════════════════════════ -->
     <main class="max-w-[1100px] mx-auto px-4 sm:px-6 py-8">
 
-      <!-- ═══ INFO BLOCKS ═══ -->
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
-          <div class="w-9 h-9 rounded-xl flex items-center justify-center mb-3" style="background:#eff6ff;">
-            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 11h.01M12 11h.01M15 11h.01M4 19h16a2 2 0 002-2V7a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-            </svg>
-          </div>
-          <p class="font-bold text-sm mb-1" style="color:#1e3a5f;">Full PITI Payment</p>
-          <p class="text-xs text-gray-500">Principal, Interest, Taxes, Insurance — not just P&I like most calculators.</p>
-        </div>
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
-          <div class="w-9 h-9 rounded-xl flex items-center justify-center mb-3" style="background:#eef2ff;">
-            <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
-          </div>
-          <p class="font-bold text-sm mb-1" style="color:#1e3a5f;">Rental Cash Flow</p>
-          <p class="text-xs text-gray-500">Mode 2 offsets PITI against effective rent for true investor cash flow.</p>
-        </div>
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
-          <div class="w-9 h-9 rounded-xl flex items-center justify-center mb-3" style="background:#f0fdf4;">
-            <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-            </svg>
-          </div>
-          <p class="font-bold text-sm mb-1" style="color:#1e3a5f;">DSCR Analysis</p>
-          <p class="text-xs text-gray-500">Lender underwriting metric — P&I only. Know if your deal pencils before applying.</p>
-        </div>
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
-          <div class="w-9 h-9 rounded-xl flex items-center justify-center mb-3" style="background:#fff7ed;">
-            <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
-            </svg>
-          </div>
-          <p class="font-bold text-sm mb-1" style="color:#1e3a5f;">Compare Loan Scenarios</p>
-          <p class="text-xs text-gray-500">Side-by-side: Conv 30yr vs 15yr vs DSCR. Find the lowest lifetime cost.</p>
-        </div>
-      </div>
-
       <!-- ═══════════════════════════════════════════════
            CALCULATOR SECTION
       ═══════════════════════════════════════════════ -->
@@ -622,46 +582,6 @@
                   <NuxtLink to="/dscr-calculator" class="text-xs font-bold text-amber-700 underline mt-1 inline-block">Run DSCR Calculator for underwriting details →</NuxtLink>
                 </div>
 
-                <!-- Saved Scenarios Widget -->
-                <div v-if="hasResult" class="mx-4 my-3">
-                  <div class="p-4 bg-slate-50 rounded-lg border border-slate-200">
-                    <div class="flex items-center justify-between mb-3">
-                      <div>
-                        <h3 class="font-semibold text-slate-900 text-sm">Saved Scenarios</h3>
-                        <p class="text-xs text-slate-600">
-                          {{ savedScenarios.length }}/20 saved ·
-                          <button @click="compareAllScenarios"
-                            :disabled="savedScenarios.length === 0"
-                            class="text-indigo-600 hover:underline disabled:text-slate-400">
-                            Compare all
-                          </button>
-                        </p>
-                      </div>
-                      <button @click="saveCurrentScenario"
-                        :disabled="savedScenarios.length >= 20"
-                        class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 text-white rounded-lg text-xs font-bold transition">
-                        Save Scenario
-                      </button>
-                    </div>
-                    <div v-if="savedScenarios.length > 0" class="space-y-2 mt-3">
-                      <div v-for="(scenario, idx) in savedScenarios" :key="idx"
-                        class="flex items-center justify-between p-2 bg-white rounded border border-slate-200">
-                        <div class="text-xs">
-                          <span class="font-medium">{{ scenario.label || `Scenario ${idx + 1}` }}</span>
-                          <span class="text-slate-500 ml-2">
-                            ${{ (scenario.propertyPrice || 0).toLocaleString() }} ·
-                            {{ scenario.loanType }} ·
-                            PITI ${{ Math.round(scenario.monthlyPITI || 0).toLocaleString() }}
-                          </span>
-                        </div>
-                        <div class="flex gap-2">
-                          <button @click="loadScenario(idx)" class="text-xs text-indigo-600 hover:underline">Load</button>
-                          <button @click="deleteScenario(idx)" class="text-xs text-red-600 hover:underline">Delete</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
 
                 <!-- Secondary Metrics -->
                 <div v-if="hasResult" class="p-5 space-y-2">
@@ -847,6 +767,46 @@
           </div><!-- /right col -->
 
         </div><!-- /grid -->
+
+        <!-- ═══ INFO BLOCKS ═══ -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+            <div class="w-9 h-9 rounded-xl flex items-center justify-center mb-3" style="background:#eff6ff;">
+              <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 11h.01M12 11h.01M15 11h.01M4 19h16a2 2 0 002-2V7a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <p class="font-bold text-sm mb-1" style="color:#1e3a5f;">Full PITI Payment</p>
+            <p class="text-xs text-gray-500">Principal, Interest, Taxes, Insurance — not just P&I like most calculators.</p>
+          </div>
+          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+            <div class="w-9 h-9 rounded-xl flex items-center justify-center mb-3" style="background:#eef2ff;">
+              <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <p class="font-bold text-sm mb-1" style="color:#1e3a5f;">Rental Cash Flow</p>
+            <p class="text-xs text-gray-500">Mode 2 offsets PITI against effective rent for true investor cash flow.</p>
+          </div>
+          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+            <div class="w-9 h-9 rounded-xl flex items-center justify-center mb-3" style="background:#f0fdf4;">
+              <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+              </svg>
+            </div>
+            <p class="font-bold text-sm mb-1" style="color:#1e3a5f;">DSCR Analysis</p>
+            <p class="text-xs text-gray-500">Lender underwriting metric — P&I only. Know if your deal pencils before applying.</p>
+          </div>
+          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+            <div class="w-9 h-9 rounded-xl flex items-center justify-center mb-3" style="background:#fff7ed;">
+              <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+              </svg>
+            </div>
+            <p class="font-bold text-sm mb-1" style="color:#1e3a5f;">Compare Loan Scenarios</p>
+            <p class="text-xs text-gray-500">Side-by-side: Conv 30yr vs 15yr vs DSCR. Find the lowest lifetime cost.</p>
+          </div>
+        </div>
 
         <!-- ═══ VISUALIZATIONS ═══ -->
         <div v-if="hasResult && currentMode !== 3" class="mt-6 grid md:grid-cols-2 gap-6">
@@ -1772,6 +1732,19 @@ Break-Even Rent (Gross Required Rent) = PITI / [(1−Vacancy%) × (1−OpEx%)]</
     </main>
 
     <!-- ═══════════════════════════════════════════════
+         SCENARIO PANEL
+    ═══════════════════════════════════════════════ -->
+    <div class="max-w-[1100px] mx-auto px-4 pb-6 mt-4">
+      <ScenarioPanel
+        calculator="mortgage-investment"
+        :has-result="hasResult"
+        :result="currentScenarioResult"
+        :trigger-save="triggerScenarioSave"
+        @saved="onScenarioSaved"
+      />
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
          FOOTER
     ═══════════════════════════════════════════════ -->
     <footer class="bg-gray-900 text-gray-400 mt-16">
@@ -1823,17 +1796,6 @@ Break-Even Rent (Gross Required Rent) = PITI / [(1−Vacancy%) × (1−OpEx%)]</
       </div>
     </footer>
 
-    <!-- Upgrade Modal -->
-    <div v-if="showUpgradeModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-      <div class="bg-white p-6 rounded-2xl max-w-md mx-4 shadow-2xl">
-        <h3 class="font-bold text-lg mb-3" style="color:#1e3a5f;">Scenario limit reached</h3>
-        <p class="text-sm text-gray-600 mb-4">Free tier: 20 saved scenarios. Upgrade to Pro for unlimited scenario saves across all calculators.</p>
-        <div class="flex gap-2 justify-end">
-          <button @click="showUpgradeModal = false" class="px-4 py-2 text-gray-600 font-medium text-sm rounded-lg border border-gray-200 hover:bg-gray-50 transition">Cancel</button>
-          <button @click="goToUpgrade" class="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-bold hover:bg-indigo-700 transition">Upgrade to Pro</button>
-        </div>
-      </div>
-    </div>
 
   </div>
 </template>
@@ -1949,9 +1911,8 @@ const compareScenarios = ref([
   { loanType: 'DSCR', rate: 8.25, term: 30, down: 25 }
 ])
 
-// Saved Scenarios
-const savedScenarios = ref([])
-const showUpgradeModal = ref(false)
+// Scenario Panel
+const triggerScenarioSave = ref(false)
 
 // Rate defaults by loan type
 const RATE_DEFAULTS = {
@@ -2259,14 +2220,41 @@ function onCompareTypeChange(idx) {
   s.rate = RATE_DEFAULTS[s.loanType] || 7.5
 }
 
-// ─── SAVED SCENARIOS ─────────────────────────────────
-onMounted(() => {
-  const saved = localStorage.getItem('mortgage-investment-scenarios')
-  if (saved) {
-    try { savedScenarios.value = JSON.parse(saved) } catch { savedScenarios.value = [] }
+// ─── SCENARIO PANEL ──────────────────────────────────
+const currentScenarioResult = computed(() => {
+  if (!hasResult.value) return undefined
+  if (currentMode.value === 2) {
+    const cf = netMonthlyCashFlow.value
+    const badge = cashFlowBadge.value
+    const colorMap = {
+      'bg-emerald-500': '#10b981',
+      'bg-blue-500':    '#3b82f6',
+      'bg-amber-500':   '#f59e0b',
+      'bg-red-500':     '#ef4444',
+    }
+    return {
+      primaryMetric: 'Monthly Cash Flow',
+      primaryValue:  (cf >= 0 ? '+' : '') + formatCurrency(Math.abs(cf)),
+      badgeLabel:    badge.shortLabel,
+      badgeColor:    colorMap[badge.bgClass] ?? '#6b7280',
+      purchasePrice: propertyPrice.value || undefined,
+      monthlyCashFlow: cf,
+      annualCashFlow:  annualCashFlow.value,
+      dscr:            dscr.value || undefined,
+    }
   }
+  return {
+    primaryMetric: 'Monthly PITI',
+    primaryValue:  formatCurrency(monthlyPITI.value),
+    badgeColor:    '#1e3a5f',
+    purchasePrice: propertyPrice.value || undefined,
+  }
+})
 
-  // URL param import
+function onScenarioSaved(_id) {}
+
+// ─── URL PARAMS ──────────────────────────────────────
+onMounted(() => {
   const params = new URLSearchParams(window.location.search)
   if (params.get('p')) propertyPrice.value = Number(params.get('p'))
   if (params.get('dp')) downPayment.value = Number(params.get('dp'))
@@ -2281,54 +2269,6 @@ onMounted(() => {
   if (params.get('hoa')) hoaMonthly.value = Number(params.get('hoa'))
   if (params.get('mode')) currentMode.value = Number(params.get('mode'))
 })
-
-function saveCurrentScenario() {
-  if (savedScenarios.value.length >= 20) {
-    showUpgradeModal.value = true
-    return
-  }
-  savedScenarios.value.push({
-    propertyPrice: propertyPrice.value,
-    downPayment: downPayment.value,
-    loanRate: loanRate.value,
-    loanTerm: loanTerm.value,
-    loanType: loanType.value,
-    monthlyPITI: monthlyPITI.value,
-    netMonthlyCashFlow: currentMode.value === 2 ? netMonthlyCashFlow.value : null,
-    dscr: currentMode.value === 2 ? dscr.value : null,
-    mode: currentMode.value,
-    timestamp: Date.now(),
-    label: ''
-  })
-  localStorage.setItem('mortgage-investment-scenarios', JSON.stringify(savedScenarios.value))
-}
-
-function loadScenario(idx) {
-  const s = savedScenarios.value[idx]
-  propertyPrice.value = s.propertyPrice
-  downPayment.value = s.downPayment
-  loanRate.value = s.loanRate
-  loanTerm.value = s.loanTerm
-  loanType.value = s.loanType
-  currentMode.value = s.mode || 1
-}
-
-function deleteScenario(idx) {
-  savedScenarios.value.splice(idx, 1)
-  localStorage.setItem('mortgage-investment-scenarios', JSON.stringify(savedScenarios.value))
-}
-
-function compareAllScenarios() {
-  if (savedScenarios.value.length === 0) return
-  const params = new URLSearchParams()
-  params.set('source', 'mortgage-investment')
-  params.set('scenarios', JSON.stringify(savedScenarios.value.slice(0, 3)))
-  window.location.href = `/compare-real-estate-deals?${params}`
-}
-
-function goToUpgrade() {
-  window.location.href = '/pricing'
-}
 
 // ─── SHARE / PDF ─────────────────────────────────────
 function shareResult() {
