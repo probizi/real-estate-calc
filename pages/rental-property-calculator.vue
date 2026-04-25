@@ -990,6 +990,15 @@
                 </svg>
                 Save Scenario
               </button>
+              <!-- Mortgage Investment integration patch -->
+              <a v-if="hasResult"
+                :href="`/mortgage-calculator-investment?p=${form.purchasePrice || ''}&lr=7.5&r=${form.monthlyRent || ''}&vc=${form.vacancyRate || 8}&op=30&mode=2`"
+                class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl font-semibold text-sm transition text-white bg-indigo-600 hover:bg-indigo-700">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                </svg>
+                Model this financing (Mortgage Calc)
+              </a>
               <div class="grid grid-cols-2 gap-2">
                 <button @click="shareResult"
                   class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border"
