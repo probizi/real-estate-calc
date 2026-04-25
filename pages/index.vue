@@ -316,22 +316,41 @@
             </span>
           </NuxtLink>
 
-          <!-- Coming Soon: Rent vs Buy -->
-          <div class="group bg-gray-50 p-7 rounded-2xl border border-gray-200 flex flex-col opacity-70 cursor-not-allowed relative">
-            <div class="absolute top-3 right-3">
-              <span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-gray-200 text-gray-600">Coming Soon</span>
+          <!-- Mortgage Investment -->
+          <NuxtLink to="/mortgage-calculator-investment"
+            class="group bg-white p-7 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-yellow-400 flex flex-col">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-transform group-hover:scale-110" style="background: #1e3a5f;">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+              </svg>
             </div>
-            <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background: #94a3b8;">
+            <div class="flex-1">
+              <h3 class="text-lg font-bold mb-2" style="color: #1e3a5f;">Investment Property Mortgage Calculator</h3>
+              <p class="text-sm text-gray-500 mb-4 leading-relaxed">Project monthly PITI, rental cash flow, DSCR, and compare loan scenarios. Uses 2026 investor rates.</p>
+            </div>
+            <span class="inline-flex items-center gap-1 text-sm font-bold transition group-hover:gap-2" style="color: #f59e0b;">
+              Calculate Now
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </span>
+          </NuxtLink>
+
+          <!-- Rent vs Buy Calculator -->
+          <NuxtLink to="/rent-vs-buy-calculator"
+            class="group bg-white p-7 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-yellow-400 flex flex-col">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-transform group-hover:scale-110" style="background: #1e3a5f;">
               <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
               </svg>
             </div>
             <div class="flex-1">
-              <h3 class="text-lg font-bold mb-2 text-gray-500">Rent vs Buy Calculator</h3>
-              <p class="text-sm text-gray-400 mb-4 leading-relaxed">Financial comparison of renting vs. buying a primary residence or investment.</p>
+              <h3 class="text-lg font-bold mb-2" style="color: #1e3a5f;">Rent vs Buy Calculator</h3>
+              <p class="text-sm text-gray-500 mb-4 leading-relaxed">Financial comparison of renting vs. buying — break-even year, wealth gap, and 10-year projection.</p>
             </div>
-            <span class="inline-flex items-center gap-1 text-sm font-semibold text-gray-400">In development</span>
-          </div>
+            <span class="inline-flex items-center gap-1 text-sm font-bold transition group-hover:gap-2" style="color: #f59e0b;">
+              Calculate Now
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </span>
+          </NuxtLink>
 
           <!-- 70% Rule Calculator -->
           <NuxtLink to="/70-percent-rule-calculator"

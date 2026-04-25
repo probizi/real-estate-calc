@@ -82,9 +82,45 @@
     </div>
 
     <!-- ═══════════════════════════════════════════════
+         MOBILE LIVE RESULT BAR
+    ═══════════════════════════════════════════════ -->
+    <div class="lg:hidden sticky top-[4.5rem] z-40 bg-white border-b border-gray-200 shadow-sm">
+      <div class="px-4 py-3 flex items-center justify-between max-w-6xl mx-auto">
+        <div class="flex items-center gap-2 text-sm text-gray-500 font-medium">
+          <svg class="w-4 h-4 flex-shrink-0" style="color: #1e3a5f;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+          </svg>
+          <span v-if="calcMode === 'analyze'">Capital Left</span>
+          <span v-else-if="calcMode === 'find-arv'">Required ARV</span>
+          <span v-else>Max Price</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <template v-if="calcMode === 'analyze'">
+            <span v-if="hasResult" class="text-xl font-extrabold leading-none" :style="`color: ${badge.bg1}`">
+              <span v-if="badge.label === 'Infinite Return'">⚡ ∞</span>
+              <span v-else>{{ formatCurrency(Math.abs(capitalLeft)) }}</span>
+            </span>
+            <span v-else class="text-xl font-bold text-gray-200">—</span>
+            <span v-if="hasResult" class="text-xs font-bold px-2.5 py-1 rounded-full text-white" :style="`background: ${badge.bg1}`">
+              {{ badge.label }}
+            </span>
+          </template>
+          <template v-else-if="calcMode === 'find-arv'">
+            <span v-if="reverseArvResult !== null" class="text-xl font-extrabold text-blue-700">{{ formatCurrency(reverseArvResult) }}</span>
+            <span v-else class="text-base text-gray-400 font-medium">Fill fields</span>
+          </template>
+          <template v-else>
+            <span v-if="reversePriceResult !== null" class="text-xl font-extrabold text-emerald-700">{{ formatCurrency(reversePriceResult) }}</span>
+            <span v-else class="text-base text-gray-400 font-medium">Fill fields</span>
+          </template>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
          H1 + ON THIS PAGE NAV
     ═══════════════════════════════════════════════ -->
-    <div class="bg-white border-b border-gray-100">
+    <div class="bg-white border-b border-gray-100 mt-6">
       <div class="max-w-[1100px] mx-auto px-4 sm:px-6 py-6">
         <div class="mb-4">
           <p class="text-base font-semibold text-gray-500 mb-1">BRRRR Calculator — Capital Recovery Analysis</p>
@@ -133,87 +169,6 @@
               <span>{{ isNavExpanded ? 'Show less' : 'Show all sections' }}</span>
             </button>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ═══════════════════════════════════════════════
-         INFO BLOCKS (before calculator)
-    ═══════════════════════════════════════════════ -->
-    <div class="max-w-[1100px] mx-auto px-4 pt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      <!-- Phase Overview -->
-      <div class="bg-white rounded-2xl border border-gray-200 p-5">
-        <div class="flex items-start gap-3 mb-3">
-          <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style="background: #fef3c7;">
-            <svg class="w-5 h-5" style="color: #d97706;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-          </div>
-          <div>
-            <p class="font-bold text-sm text-gray-800">Two-Phase BRRRR Model</p>
-            <p class="text-xs text-gray-400 mt-0.5">Hard money → Refi → Rental</p>
-          </div>
-        </div>
-        <p class="text-xs text-gray-600 leading-relaxed">Phase 1: Hard money acquisition and rehab (months 0 to seasoning). Refi Event: transition at end of seasoning period. Phase 3: Year 1 rental operations post-refi. Holding costs and rental expenses are strictly separated by phase.</p>
-      </div>
-      <!-- Dual Primary Metrics -->
-      <div class="bg-white rounded-2xl border border-gray-200 p-5">
-        <div class="flex items-start gap-3 mb-3">
-          <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style="background: #f0fdf4;">
-            <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-          </div>
-          <div>
-            <p class="font-bold text-sm text-gray-800">Dual Primary Metrics</p>
-            <p class="text-xs text-gray-400 mt-0.5">Capital Left + Post-Refi CoC</p>
-          </div>
-        </div>
-        <p class="text-xs text-gray-600 leading-relaxed">Capital Left in Deal ($) shows how much cash remains trapped after refi. Post-Refi Cash-on-Cash (%) shows return on that remaining capital. Together they tell you both how much capital is at work and how efficiently it works. Special case: Capital Left ≤ $0 + positive CF = Infinite Return.</p>
-      </div>
-      <!-- Before-Tax Note -->
-      <div class="bg-white rounded-2xl border border-amber-200 p-5">
-        <div class="flex items-start gap-3 mb-3">
-          <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style="background: #fef3c7;">
-            <svg class="w-5 h-5" style="color: #d97706;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
-          </div>
-          <div>
-            <p class="font-bold text-sm text-gray-800">Before-Tax Analysis Only</p>
-            <p class="text-xs text-amber-700 mt-0.5">v1 scope limitation</p>
-          </div>
-        </div>
-        <p class="text-xs text-gray-600 leading-relaxed">Calculator does not model rental income taxes, depreciation shield, or refi tax mechanics. Refi proceeds are NOT taxable (loan proceeds). Rental income post-refi IS taxed as ordinary income at 25–37% marginal rates. Consult a CPA for after-tax optimization.</p>
-      </div>
-    </div>
-
-    <!-- ═══════════════════════════════════════════════
-         MOBILE LIVE RESULT BAR
-    ═══════════════════════════════════════════════ -->
-    <div class="lg:hidden sticky top-[4.5rem] z-40 bg-white border-b border-gray-200 shadow-sm">
-      <div class="px-4 py-3 flex items-center justify-between max-w-6xl mx-auto">
-        <div class="flex items-center gap-2 text-sm text-gray-500 font-medium">
-          <svg class="w-4 h-4 flex-shrink-0" style="color: #1e3a5f;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-          </svg>
-          <span v-if="calcMode === 'analyze'">Capital Left</span>
-          <span v-else-if="calcMode === 'find-arv'">Required ARV</span>
-          <span v-else>Max Price</span>
-        </div>
-        <div class="flex items-center gap-3">
-          <template v-if="calcMode === 'analyze'">
-            <span v-if="hasResult" class="text-xl font-extrabold leading-none" :style="`color: ${badge.bg1}`">
-              <span v-if="badge.label === 'Infinite Return'">⚡ ∞</span>
-              <span v-else>{{ formatCurrency(Math.abs(capitalLeft)) }}</span>
-            </span>
-            <span v-else class="text-xl font-bold text-gray-200">—</span>
-            <span v-if="hasResult" class="text-xs font-bold px-2.5 py-1 rounded-full text-white" :style="`background: ${badge.bg1}`">
-              {{ badge.label }}
-            </span>
-          </template>
-          <template v-else-if="calcMode === 'find-arv'">
-            <span v-if="reverseArvResult !== null" class="text-xl font-extrabold text-blue-700">{{ formatCurrency(reverseArvResult) }}</span>
-            <span v-else class="text-base text-gray-400 font-medium">Fill fields</span>
-          </template>
-          <template v-else>
-            <span v-if="reversePriceResult !== null" class="text-xl font-extrabold text-emerald-700">{{ formatCurrency(reversePriceResult) }}</span>
-            <span v-else class="text-base text-gray-400 font-medium">Fill fields</span>
-          </template>
         </div>
       </div>
     </div>
@@ -1051,6 +1006,51 @@
         :trigger-save="triggerScenarioSave"
         @saved="onScenarioSaved"
       />
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
+         INFO BLOCKS
+    ═══════════════════════════════════════════════ -->
+    <div class="max-w-[1100px] mx-auto px-4 pt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <!-- Phase Overview -->
+      <div class="bg-white rounded-2xl border border-gray-200 p-5">
+        <div class="flex items-start gap-3 mb-3">
+          <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style="background: #fef3c7;">
+            <svg class="w-5 h-5" style="color: #d97706;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <div>
+            <p class="font-bold text-sm text-gray-800">Two-Phase BRRRR Model</p>
+            <p class="text-xs text-gray-400 mt-0.5">Hard money → Refi → Rental</p>
+          </div>
+        </div>
+        <p class="text-xs text-gray-600 leading-relaxed">Phase 1: Hard money acquisition and rehab (months 0 to seasoning). Refi Event: transition at end of seasoning period. Phase 3: Year 1 rental operations post-refi. Holding costs and rental expenses are strictly separated by phase.</p>
+      </div>
+      <!-- Dual Primary Metrics -->
+      <div class="bg-white rounded-2xl border border-gray-200 p-5">
+        <div class="flex items-start gap-3 mb-3">
+          <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style="background: #f0fdf4;">
+            <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          </div>
+          <div>
+            <p class="font-bold text-sm text-gray-800">Dual Primary Metrics</p>
+            <p class="text-xs text-gray-400 mt-0.5">Capital Left + Post-Refi CoC</p>
+          </div>
+        </div>
+        <p class="text-xs text-gray-600 leading-relaxed">Capital Left in Deal ($) shows how much cash remains trapped after refi. Post-Refi Cash-on-Cash (%) shows return on that remaining capital. Together they tell you both how much capital is at work and how efficiently it works. Special case: Capital Left ≤ $0 + positive CF = Infinite Return.</p>
+      </div>
+      <!-- Before-Tax Note -->
+      <div class="bg-white rounded-2xl border border-amber-200 p-5">
+        <div class="flex items-start gap-3 mb-3">
+          <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style="background: #fef3c7;">
+            <svg class="w-5 h-5" style="color: #d97706;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+          </div>
+          <div>
+            <p class="font-bold text-sm text-gray-800">Before-Tax Analysis Only</p>
+            <p class="text-xs text-amber-700 mt-0.5">v1 scope limitation</p>
+          </div>
+        </div>
+        <p class="text-xs text-gray-600 leading-relaxed">Calculator does not model rental income taxes, depreciation shield, or refi tax mechanics. Refi proceeds are NOT taxable (loan proceeds). Rental income post-refi IS taxed as ordinary income at 25–37% marginal rates. Consult a CPA for after-tax optimization.</p>
+      </div>
     </div>
 
     <!-- ═══════════════════════════════════════════════
