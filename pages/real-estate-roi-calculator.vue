@@ -1,5 +1,6 @@
 <template>
   <div class="min-h-screen bg-gray-50">
+
     <!-- JSON-LD Schema -->
     <Head>
       <title>Real Estate ROI Calculator — Verdict + Strategy + Risk Score | RealCalc</title>
@@ -24,18 +25,12 @@
             "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
           },
           {
-            "@type": "FinancialProduct",
-            "name": "Real Estate ROI Analysis",
-            "description": "Comprehensive ROI analysis tool for rental, fix-and-flip, BRRRR, and strategy comparison.",
-            "url": "https://arvcalc.com/real-estate-roi-calculator"
-          },
-          {
             "@type": "FAQPage",
             "mainEntity": [
               {
                 "@type": "Question",
                 "name": "What is a good ROI for real estate?",
-                "acceptedAnswer": { "@type": "Answer", "text": "A strong real estate ROI is generally 12–18%+ annualized. Cash-on-cash returns of 8–12% are considered good for rental properties. However, ROI thresholds vary by market, strategy, and risk tolerance. Our calculator provides context-aware verdicts based on your specific inputs." }
+                "acceptedAnswer": { "@type": "Answer", "text": "A strong real estate ROI is generally 12–18%+ annualized. Cash-on-cash returns of 8–12% are considered good for rental properties. Our calculator provides context-aware verdicts based on your specific inputs." }
               },
               {
                 "@type": "Question",
@@ -44,18 +39,8 @@
               },
               {
                 "@type": "Question",
-                "name": "What is the difference between ROI and cash-on-cash return?",
-                "acceptedAnswer": { "@type": "Answer", "text": "ROI measures total return on investment including equity, appreciation, and all income over the hold period. Cash-on-cash (CoC) measures only the annual pre-tax cash income divided by actual cash invested. CoC is a simpler metric focused on current yield; ROI gives the complete picture." }
-              },
-              {
-                "@type": "Question",
                 "name": "What is BRRRR strategy in real estate?",
-                "acceptedAnswer": { "@type": "Answer", "text": "BRRRR stands for Buy, Rehab, Rent, Refinance, Repeat. Investors buy distressed properties, rehab them, rent them out, refinance to pull out equity (often 75% LTV), then repeat. When done correctly, BRRRR can yield 'infinite ROI' by recovering all initial capital through the refinance." }
-              },
-              {
-                "@type": "Question",
-                "name": "What is a Risk Score in real estate investing?",
-                "acceptedAnswer": { "@type": "Answer", "text": "Our Risk Score (0–10) evaluates 5 factors: LTV ratio, profit margin or cash-on-cash yield, sensitivity to rent changes, appreciation dependency, and hold period appropriateness. Lower scores indicate safer investments. Scores above 7 suggest high-risk deals requiring careful management." }
+                "acceptedAnswer": { "@type": "Answer", "text": "BRRRR stands for Buy, Rehab, Rent, Refinance, Repeat. When done correctly, BRRRR can yield 'infinite ROI' by recovering all initial capital through the refinance." }
               }
             ]
           }
@@ -64,502 +49,593 @@
       </script>
     </Head>
 
-    <!-- Header -->
+    <!-- ═══════════════════════════════════════════════
+         HEADER
+    ═══════════════════════════════════════════════ -->
     <header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16">
-          <NuxtLink to="/" class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-gradient-to-br from-navy-600 to-blue-700 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);">
-              <span class="text-white text-xs font-bold">RC</span>
+      <div class="max-w-[1100px] mx-auto px-4 sm:px-6 py-4">
+        <div class="flex items-center justify-between">
+          <NuxtLink to="/" class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: #1e3a5f;">
+              <span class="text-white font-extrabold text-lg leading-none">RC</span>
             </div>
-            <span class="text-xl font-bold" style="color:#1e3a5f">RealCalc</span>
+            <div class="leading-tight">
+              <span class="block font-extrabold text-xl" style="color: #1e3a5f;">RealCalc</span>
+              <span class="block text-xs font-medium text-gray-400 -mt-0.5">Investment Hub</span>
+            </div>
           </NuxtLink>
-          <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-600">
-            <NuxtLink to="/" class="hover:text-yellow-500 transition-colors">Calculators</NuxtLink>
-            <NuxtLink to="/compare-deals" class="hover:text-yellow-500 transition-colors">Compare Deals</NuxtLink>
-            <NuxtLink to="/blog" class="hover:text-yellow-500 transition-colors">Blog</NuxtLink>
-            <NuxtLink to="/pricing" class="hover:text-yellow-500 transition-colors">Pricing</NuxtLink>
+          <nav class="hidden md:flex items-center gap-8">
+            <NuxtLink to="/calculators" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Calculators</NuxtLink>
+            <NuxtLink to="/pricing" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Pricing</NuxtLink>
+            <NuxtLink to="/blog" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</NuxtLink>
           </nav>
+          <NuxtLink to="/pricing"
+            class="inline-flex items-center gap-2 text-sm font-bold text-white px-5 py-2.5 rounded-lg transition hover:opacity-90"
+            style="background: #f59e0b; color: #1e3a5f;">
+            Get Started Free
+          </NuxtLink>
         </div>
       </div>
     </header>
 
-    <!-- Hero -->
-    <section class="py-10 px-4" style="background: linear-gradient(135deg, #1e3a5f 0%, #2d5282 100%);">
-      <div class="max-w-5xl mx-auto">
-        <nav class="text-sm mb-4" aria-label="Breadcrumb">
-          <ol class="flex items-center gap-2 text-blue-200">
-            <li><NuxtLink to="/" class="hover:text-white transition-colors">Home</NuxtLink></li>
-            <li class="text-blue-400">/</li>
-            <li><NuxtLink to="/" class="hover:text-white transition-colors">Calculators</NuxtLink></li>
-            <li class="text-blue-400">/</li>
-            <li class="text-white font-medium">Real Estate ROI Calculator</li>
+    <!-- ═══════════════════════════════════════════════
+         BREADCRUMB
+    ═══════════════════════════════════════════════ -->
+    <div class="bg-white border-b border-gray-100 px-4 py-3">
+      <div class="max-w-[1100px] mx-auto">
+        <nav aria-label="Breadcrumb">
+          <ol class="flex items-center gap-2 text-sm text-gray-400">
+            <li><NuxtLink to="/" class="hover:text-gray-600 transition">Home</NuxtLink></li>
+            <li><span>/</span></li>
+            <li><NuxtLink to="/calculators" class="hover:text-gray-600 transition">Calculators</NuxtLink></li>
+            <li><span>/</span></li>
+            <li class="text-gray-700 font-semibold">Real Estate ROI Calculator</li>
           </ol>
         </nav>
-        <div class="flex flex-wrap items-start gap-4">
-          <div class="flex-1">
-            <h1 class="text-3xl md:text-4xl font-extrabold text-white leading-tight mb-3">
-              Real Estate ROI Calculator — Verdict, Strategy Winner, and Risk Score
-            </h1>
-            <p class="text-blue-100 text-lg max-w-2xl">Analyze rental income, fix-and-flip profit, BRRRR returns, and compare strategies. Get an 8-tier Verdict, 5-factor Risk Score, IRR, and Capital Payback — all in one tool.</p>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
+         PAGE TITLE + ON THIS PAGE NAV
+    ═══════════════════════════════════════════════ -->
+    <div class="bg-white border-b border-gray-100">
+      <div class="max-w-[1100px] mx-auto px-4 sm:px-6 py-6">
+
+        <!-- H1 -->
+        <div class="mb-4">
+          <h1 class="text-3xl sm:text-4xl font-extrabold leading-tight" style="color: #1e3a5f;">
+            Real Estate ROI Calculator — Verdict, Strategy Winner, and Risk Score
+          </h1>
+        </div>
+
+        <!-- On this page nav -->
+        <div class="block rounded-2xl border border-gray-200 bg-gray-50 p-4 mb-2">
+          <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">On this page</p>
+
+          <!-- Desktop: full list -->
+          <ul class="hidden md:flex flex-wrap gap-x-5 gap-y-1.5">
+            <li><a href="#calculator" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Calculator</a></li>
+            <li><a href="#saved-scenarios" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Saved Scenarios</a></li>
+            <li><a href="#what-is-roi" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">What is ROI?</a></li>
+            <li><a href="#how-to-use" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">How to Use</a></li>
+            <li><a href="#verdict-system" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Verdict System</a></li>
+            <li><a href="#risk-score" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Risk Score</a></li>
+            <li><a href="#strategy-comparison" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Strategy Comparison</a></li>
+            <li><a href="#faq" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">FAQ</a></li>
+          </ul>
+
+          <!-- Mobile: first 3 always visible + collapsible rest -->
+          <div class="md:hidden">
+            <ul class="flex flex-col gap-y-2">
+              <li><a href="#calculator" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Calculator</a></li>
+              <li><a href="#saved-scenarios" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Saved Scenarios</a></li>
+              <li><a href="#what-is-roi" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">What is ROI?</a></li>
+            </ul>
+            <ul v-show="isNavExpanded" class="flex flex-col gap-y-2 mt-2">
+              <li><a href="#how-to-use" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">How to Use</a></li>
+              <li><a href="#verdict-system" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Verdict System</a></li>
+              <li><a href="#risk-score" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Risk Score</a></li>
+              <li><a href="#strategy-comparison" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Strategy Comparison</a></li>
+              <li><a href="#faq" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">FAQ</a></li>
+            </ul>
+            <button
+              @click="isNavExpanded = !isNavExpanded"
+              class="mt-2 flex items-center gap-1 text-xs font-bold transition"
+              style="color: #b45309;">
+              <svg class="w-3 h-3 transition-transform duration-200" :class="isNavExpanded ? 'rotate-180' : ''"
+                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+              </svg>
+              <span>{{ isNavExpanded ? 'Show less' : 'Show all sections' }}</span>
+            </button>
           </div>
-          <div class="flex-shrink-0">
-            <span class="inline-flex items-center gap-1.5 bg-yellow-400 text-gray-900 text-sm font-bold px-4 py-2 rounded-full shadow">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-              Free Calculator
-            </span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
+         MOBILE LIVE RESULT BAR (sticky, hidden on desktop)
+    ═══════════════════════════════════════════════ -->
+    <div class="lg:hidden sticky top-[4.5rem] z-40 bg-white border-b border-gray-200 shadow-sm">
+      <div class="px-4 py-3 flex items-center justify-between max-w-6xl mx-auto">
+        <div class="flex items-center gap-2 text-sm text-gray-500 font-medium">
+          <svg class="w-4 h-4 flex-shrink-0" style="color: #1e3a5f;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+          </svg>
+          <span>ROI Analysis</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <template v-if="dm">
+            <span class="text-xl font-extrabold leading-none" :class="dm.roiColor">{{ dm.primaryROIDisplay }}</span>
+            <span class="text-xs font-bold px-2.5 py-1 rounded-full border" :class="[dm.verdictStyle.border, dm.verdictStyle.text]">{{ dm.verdictLabel }}</span>
+          </template>
+          <template v-else>
+            <span class="text-2xl font-bold text-gray-200">—</span>
+            <span class="text-xs text-gray-400 font-medium">fill in fields below</span>
+          </template>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
+         MAIN CALCULATOR
+    ═══════════════════════════════════════════════ -->
+    <main id="calculator" class="max-w-[1100px] mx-auto px-4 pt-8 pb-10">
+
+      <!-- Gradient border wrapper -->
+      <div class="rounded-3xl p-[3px]" style="background: linear-gradient(135deg, #1e3a5f 0%, #f59e0b 50%, #1e3a5f 100%);">
+      <div class="bg-white rounded-[21px] shadow-xl shadow-slate-200/60" style="overflow: clip;">
+
+      <!-- ═══════════════════════════════════════════════
+           CALCULATOR MODE SELECTOR
+      ═══════════════════════════════════════════════ -->
+      <div class="border-b border-gray-100 rounded-t-2xl bg-white">
+        <div class="px-5 pt-4 pb-3">
+          <p class="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-2">
+            What strategy do you want to analyze?
+          </p>
+          <div class="calc-mode-tabs">
+            <button v-for="m in modes" :key="m.id"
+              @click="currentMode = m.id"
+              class="calc-mode-tab"
+              :class="currentMode === m.id ? 'calc-mode-tab-active' : 'calc-mode-tab-inactive'">
+              <span class="block text-xs font-bold leading-tight" :style="currentMode === m.id ? 'color:#1e3a5f;' : ''">{{ m.label }}</span>
+            </button>
+          </div>
+          <div class="mt-2.5">
+            <p v-if="currentMode === 1" class="text-xs text-gray-500 leading-relaxed">
+              Buy-and-hold rental analysis. Calculates annualized total ROI including appreciation, equity buildup, tax benefits, and sale proceeds over your hold period.
+            </p>
+            <p v-else-if="currentMode === 2" class="text-xs text-red-700 leading-relaxed bg-red-50 px-3 py-1.5 rounded-lg">
+              Fix-and-flip analysis. Enter ARV, hold period, and hard money details to see annualized profit and 70% Rule compliance.
+            </p>
+            <p v-else-if="currentMode === 3" class="text-xs text-emerald-700 leading-relaxed bg-emerald-50 px-3 py-1.5 rounded-lg">
+              BRRRR strategy: Buy, Rehab, Rent, Refinance, Repeat. Evaluates capital recovery through cash-out refinance. Infinite ROI achieved when all capital is recovered.
+            </p>
+            <p v-else class="text-xs text-slate-700 leading-relaxed bg-slate-50 px-3 py-1.5 rounded-lg">
+              Runs all three strategies simultaneously and determines the <strong>Strategy Winner</strong> — the approach with the highest risk-adjusted annualized ROI for your property.
+            </p>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- On This Page -->
-    <section class="bg-white border-b border-gray-200 py-4 px-4">
-      <div class="max-w-5xl mx-auto">
-        <div class="flex flex-wrap gap-3 text-sm">
-          <span class="text-gray-500 font-medium">On this page:</span>
-          <a href="#calculator" class="text-blue-600 hover:text-yellow-500 transition-colors">Calculator</a>
-          <a href="#saved-scenarios" class="text-blue-600 hover:text-yellow-500 transition-colors">Saved Scenarios</a>
-          <a href="#what-is-roi" class="text-blue-600 hover:text-yellow-500 transition-colors">What is ROI?</a>
-          <a href="#how-to-use" class="text-blue-600 hover:text-yellow-500 transition-colors">How to Use</a>
-          <a href="#verdict-system" class="text-blue-600 hover:text-yellow-500 transition-colors">Verdict System</a>
-          <a href="#risk-score" class="text-blue-600 hover:text-yellow-500 transition-colors">Risk Score</a>
-          <a href="#strategy-comparison" class="text-blue-600 hover:text-yellow-500 transition-colors">Strategy Comparison</a>
-          <a href="#faq" class="text-blue-600 hover:text-yellow-500 transition-colors">FAQ</a>
-        </div>
-      </div>
-    </section>
+      <!-- TWO-COLUMN BODY: inputs left, results right -->
+      <div class="lg:grid lg:grid-cols-[3fr_2fr] lg:items-stretch">
 
-    <!-- Info Blocks -->
-    <section class="py-8 px-4">
-      <div class="max-w-5xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-          <div class="w-9 h-9 rounded-xl flex items-center justify-center mb-3" style="background:#e8f0fe">
-            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-          </div>
-          <h3 class="font-semibold text-gray-900 text-sm mb-1">4 Strategy Modes</h3>
-          <p class="text-gray-500 text-xs">Rental, Flip, BRRRR, Strategy Comparison — pick your investment approach</p>
-        </div>
-        <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-          <div class="w-9 h-9 rounded-xl flex items-center justify-center mb-3" style="background:#fef3c7">
-            <svg class="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-          </div>
-          <h3 class="font-semibold text-gray-900 text-sm mb-1">8-Tier Verdict</h3>
-          <p class="text-gray-500 text-xs">From Infinite ROI to Do Not Proceed — clear go/no-go decision</p>
-        </div>
-        <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-          <div class="w-9 h-9 rounded-xl flex items-center justify-center mb-3" style="background:#fee2e2">
-            <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
-          </div>
-          <h3 class="font-semibold text-gray-900 text-sm mb-1">Risk Score 0–10</h3>
-          <p class="text-gray-500 text-xs">5-factor model: LTV, margin, sensitivity, appreciation, hold period</p>
-        </div>
-        <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-          <div class="w-9 h-9 rounded-xl flex items-center justify-center mb-3" style="background:#d1fae5">
-            <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
-          </div>
-          <h3 class="font-semibold text-gray-900 text-sm mb-1">IRR + Capital Payback</h3>
-          <p class="text-gray-500 text-xs">True time-value returns with Newton-Raphson IRR calculation</p>
-        </div>
-      </div>
-    </section>
+        <!-- ── INPUTS (left column) ── -->
+        <div class="calc-inputs border-b lg:border-b-0 lg:border-r border-gray-200 bg-white min-w-0">
 
-    <!-- CALCULATOR BLOCK -->
-    <section id="calculator" class="py-4 px-4">
-      <div class="max-w-5xl mx-auto">
-
-        <!-- Mode Tabs -->
-        <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-2 mb-6 flex flex-wrap gap-2">
-          <button
-            v-for="m in modes" :key="m.id"
-            @click="currentMode = m.id"
-            :class="[
-              'flex-1 min-w-[120px] py-2.5 px-4 rounded-xl text-sm font-semibold transition-all',
-              currentMode === m.id ? m.activeClass : 'text-gray-500 hover:bg-gray-50'
-            ]"
-          >{{ m.label }}</button>
-        </div>
-
-        <!-- Main Calculator Grid -->
-        <div class="grid lg:grid-cols-[3fr_2fr] gap-6">
-          <!-- LEFT: Inputs -->
-          <div class="space-y-4">
-
-            <!-- Shared Inputs -->
-            <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-              <h2 class="text-base font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <span class="w-6 h-6 rounded-lg bg-blue-100 text-blue-700 text-xs flex items-center justify-center font-bold">1</span>
-                Property &amp; Purchase
-              </h2>
-              <div class="grid sm:grid-cols-2 gap-4">
+          <!-- Property & Purchase -->
+          <div class="border-b border-gray-100">
+            <div class="calc-section-header">
+              <h2 class="calc-section-title">Property &amp; Purchase</h2>
+            </div>
+            <div class="px-4 py-3">
+              <div class="grid sm:grid-cols-2 gap-3">
                 <div>
-                  <label class="block text-xs font-medium text-gray-600 mb-1">Purchase Price</label>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Purchase Price</label>
                   <div class="relative">
-                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">$</span>
-                    <input v-model.number="inputs.purchasePrice" type="number" min="0" placeholder="e.g. 350000" class="w-full pl-7 pr-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-sm" />
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
+                    <input v-model.number="inputs.purchasePrice" type="number" min="0" placeholder="Enter purchase price"
+                      class="w-full pl-8 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                   </div>
                 </div>
                 <div v-if="currentMode !== 2">
-                  <label class="block text-xs font-medium text-gray-600 mb-1">Down Payment (%)</label>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Down Payment (%)</label>
                   <div class="relative">
-                    <input v-model.number="inputs.downPayment" type="number" min="0" max="100" placeholder="Enter down payment %" class="w-full pl-3 pr-7 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-sm" />
+                    <input v-model.number="inputs.downPayment" type="number" min="0" max="100" placeholder="Enter down payment %"
+                      class="w-full pl-4 pr-8 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                     <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
                   </div>
                 </div>
                 <div v-if="currentMode !== 2">
-                  <label class="block text-xs font-medium text-gray-600 mb-1">Mortgage Rate (%)</label>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Mortgage Rate (%)</label>
                   <div class="relative">
-                    <input v-model.number="inputs.mortgageRate" type="number" step="0.1" placeholder="Enter interest rate %" class="w-full pl-3 pr-7 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-sm" />
+                    <input v-model.number="inputs.mortgageRate" type="number" step="0.1" placeholder="Enter interest rate %"
+                      class="w-full pl-4 pr-8 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                     <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
                   </div>
                 </div>
                 <div v-if="currentMode !== 2">
-                  <label class="block text-xs font-medium text-gray-600 mb-1">Loan Term (years)</label>
-                  <input v-model.number="inputs.loanTerm" type="number" min="1" max="30" placeholder="Enter term in years" class="w-full px-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-sm" />
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Loan Term (years)</label>
+                  <input v-model.number="inputs.loanTerm" type="number" min="1" max="30" placeholder="Enter term in years"
+                    class="w-full px-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                 </div>
                 <div>
-                  <label class="block text-xs font-medium text-gray-600 mb-1">Rehab Budget</label>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Rehab Budget</label>
                   <div class="relative">
-                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">$</span>
-                    <input v-model.number="inputs.rehab" type="number" min="0" placeholder="Enter rehab budget (0 if turnkey)" class="w-full pl-7 pr-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-sm" />
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
+                    <input v-model.number="inputs.rehab" type="number" min="0" placeholder="Enter rehab budget (0 if turnkey)"
+                      class="w-full pl-8 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                   </div>
                 </div>
                 <div>
-                  <label class="block text-xs font-medium text-gray-600 mb-1">Closing Costs (%)</label>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Closing Costs (%)</label>
                   <div class="relative">
-                    <input v-model.number="inputs.closingCostsPct" type="number" step="0.1" placeholder="Enter closing costs %" class="w-full pl-3 pr-7 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-sm" />
+                    <input v-model.number="inputs.closingCostsPct" type="number" step="0.1" placeholder="Enter closing costs %"
+                      class="w-full pl-4 pr-8 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
                     <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
                   </div>
                 </div>
               </div>
-            </div>
-
-            <!-- Mode 1: Rental Inputs -->
-            <div v-if="currentMode === 1 || currentMode === 4" class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-              <h2 class="text-base font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <span class="w-6 h-6 rounded-lg bg-indigo-100 text-indigo-700 text-xs flex items-center justify-center font-bold">2</span>
-                Rental Income &amp; Expenses
-              </h2>
-              <div class="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label class="block text-xs font-medium text-gray-600 mb-1">Monthly Rent</label>
-                  <div class="relative">
-                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">$</span>
-                    <input v-model.number="inputs.monthlyRent" type="number" min="0" placeholder="e.g. 2400" class="w-full pl-7 pr-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-sm" />
-                  </div>
-                </div>
-                <div>
-                  <label class="block text-xs font-medium text-gray-600 mb-1">Vacancy Rate (%)</label>
-                  <div class="relative">
-                    <input v-model.number="inputs.vacancy" type="number" min="0" max="50" placeholder="Enter vacancy %" class="w-full pl-3 pr-7 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-sm" />
-                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
-                  </div>
-                </div>
-                <div>
-                  <label class="block text-xs font-medium text-gray-600 mb-1">Operating Expenses (%)</label>
-                  <div class="relative">
-                    <input v-model.number="inputs.opEx" type="number" min="0" max="90" placeholder="Enter operating expenses %" class="w-full pl-3 pr-7 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-sm" />
-                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
-                  </div>
-                </div>
-                <div>
-                  <label class="block text-xs font-medium text-gray-600 mb-1">Hold Period (years)</label>
-                  <input v-model.number="inputs.holdPeriod" type="number" min="1" max="40" placeholder="Enter hold period (years)" class="w-full px-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-sm" />
-                </div>
-                <div>
-                  <label class="block text-xs font-medium text-gray-600 mb-1">Appreciation (%/yr)</label>
-                  <div class="relative">
-                    <input v-model.number="inputs.appreciation" type="number" step="0.1" placeholder="Enter annual appreciation %" class="w-full pl-3 pr-7 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-sm" />
-                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
-                  </div>
-                </div>
-                <div>
-                  <label class="block text-xs font-medium text-gray-600 mb-1">Selling Costs (%)</label>
-                  <div class="relative">
-                    <input v-model.number="inputs.sellingCostsPct" type="number" step="0.1" placeholder="Enter selling costs %" class="w-full pl-3 pr-7 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-sm" />
-                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
-                  </div>
-                </div>
-                <div>
-                  <label class="block text-xs font-medium text-gray-600 mb-1">Marginal Tax Rate (%)</label>
-                  <div class="relative">
-                    <input v-model.number="inputs.marginalTax" type="number" min="0" max="60" placeholder="Enter marginal tax rate %" class="w-full pl-3 pr-7 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-sm" />
-                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
-                  </div>
-                </div>
-                <div>
-                  <label class="block text-xs font-medium text-gray-600 mb-1">Property Tax (%/yr)</label>
-                  <div class="relative">
-                    <input v-model.number="inputs.propertyTaxPct" type="number" step="0.1" placeholder="Enter property tax %" class="w-full pl-3 pr-7 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-sm" />
-                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
-                  </div>
-                </div>
-                <div>
-                  <label class="block text-xs font-medium text-gray-600 mb-1">Insurance ($/yr)</label>
-                  <div class="relative">
-                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">$</span>
-                    <input v-model.number="inputs.insurance" type="number" min="0" placeholder="Enter annual insurance $" class="w-full pl-7 pr-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-sm" />
-                  </div>
-                </div>
-                <div>
-                  <label class="block text-xs font-medium text-gray-600 mb-1">HOA ($/mo)</label>
-                  <div class="relative">
-                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">$</span>
-                    <input v-model.number="inputs.hoaMonthly" type="number" min="0" placeholder="Enter monthly HOA $" class="w-full pl-7 pr-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-sm" />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Mode 2: Flip Inputs -->
-            <div v-if="currentMode === 2 || currentMode === 4" class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-              <h2 class="text-base font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <span class="w-6 h-6 rounded-lg bg-red-100 text-red-700 text-xs flex items-center justify-center font-bold">2</span>
-                Fix &amp; Flip Details
-              </h2>
-              <div class="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label class="block text-xs font-medium text-gray-600 mb-1">After Repair Value (ARV)</label>
-                  <div class="relative">
-                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">$</span>
-                    <input v-model.number="inputs.arv" type="number" min="0" placeholder="e.g. 480000" class="w-full pl-7 pr-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-sm" />
-                  </div>
-                </div>
-                <div>
-                  <label class="block text-xs font-medium text-gray-600 mb-1">Hold Period (months)</label>
-                  <input v-model.number="inputs.holdingMonths" type="number" min="1" max="60" placeholder="Enter holding months" class="w-full px-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-sm" />
-                </div>
-                <div>
-                  <label class="block text-xs font-medium text-gray-600 mb-1">Hard Money Rate (%)</label>
-                  <div class="relative">
-                    <input v-model.number="inputs.hardMoneyRate" type="number" step="0.1" placeholder="Enter hard money rate %" class="w-full pl-3 pr-7 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-sm" />
-                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
-                  </div>
-                </div>
-                <div>
-                  <label class="block text-xs font-medium text-gray-600 mb-1">Hard Money LTV (%)</label>
-                  <div class="relative">
-                    <input v-model.number="inputs.hardMoneyLTV" type="number" min="0" max="100" placeholder="Enter hard money LTV %" class="w-full pl-3 pr-7 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-sm" />
-                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
-                  </div>
-                </div>
-                <div>
-                  <label class="block text-xs font-medium text-gray-600 mb-1">Holding Costs ($/mo)</label>
-                  <div class="relative">
-                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">$</span>
-                    <input v-model.number="inputs.holdingCostsPerMonth" type="number" min="0" placeholder="Enter monthly holding costs $" class="w-full pl-7 pr-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-sm" />
-                  </div>
-                </div>
-                <div>
-                  <label class="block text-xs font-medium text-gray-600 mb-1">Flip Selling Costs (%)</label>
-                  <div class="relative">
-                    <input v-model.number="inputs.flipSellingCostsPct" type="number" step="0.1" placeholder="Enter flip selling costs %" class="w-full pl-3 pr-7 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-sm" />
-                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Mode 3: BRRRR Inputs -->
-            <div v-if="currentMode === 3 || currentMode === 4" class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-              <h2 class="text-base font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <span class="w-6 h-6 rounded-lg bg-emerald-100 text-emerald-700 text-xs flex items-center justify-center font-bold">2</span>
-                BRRRR Refinance Details
-              </h2>
-              <div class="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label class="block text-xs font-medium text-gray-600 mb-1">ARV for Refi</label>
-                  <div class="relative">
-                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">$</span>
-                    <input v-model.number="inputs.arv" type="number" min="0" placeholder="e.g. 450000" class="w-full pl-7 pr-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-sm" />
-                  </div>
-                </div>
-                <div>
-                  <label class="block text-xs font-medium text-gray-600 mb-1">Refi LTV (%)</label>
-                  <div class="relative">
-                    <input v-model.number="inputs.refiLTV" type="number" min="0" max="100" placeholder="Enter refinance LTV %" class="w-full pl-3 pr-7 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-sm" />
-                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
-                  </div>
-                </div>
-                <div>
-                  <label class="block text-xs font-medium text-gray-600 mb-1">Refi Rate (DSCR %)</label>
-                  <div class="relative">
-                    <input v-model.number="inputs.refiRate" type="number" step="0.1" placeholder="Enter refinance rate %" class="w-full pl-3 pr-7 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-sm" />
-                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
-                  </div>
-                </div>
-                <div>
-                  <label class="block text-xs font-medium text-gray-600 mb-1">Refi Term (years)</label>
-                  <input v-model.number="inputs.refiTerm" type="number" min="1" max="30" placeholder="Enter refi term (years)" class="w-full px-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-sm" />
-                </div>
-                <div>
-                  <label class="block text-xs font-medium text-gray-600 mb-1">Refi Closing Costs (%)</label>
-                  <div class="relative">
-                    <input v-model.number="inputs.refiClosingPct" type="number" step="0.1" placeholder="Enter refi closing costs %" class="w-full pl-3 pr-7 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-sm" />
-                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
-                  </div>
-                </div>
-                <div>
-                  <label class="block text-xs font-medium text-gray-600 mb-1">Months Pre-Refi</label>
-                  <input v-model.number="inputs.holdingMonthsPreRefi" type="number" min="1" max="24" placeholder="Enter months before refi" class="w-full px-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-sm" />
-                </div>
-                <div>
-                  <label class="block text-xs font-medium text-gray-600 mb-1">Hold Post-Refi (yrs)</label>
-                  <input v-model.number="inputs.holdPostRefi" type="number" min="1" max="40" placeholder="Enter post-refi hold (years)" class="w-full px-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-sm" />
-                </div>
-                <div>
-                  <label class="block text-xs font-medium text-gray-600 mb-1">Monthly Rent</label>
-                  <div class="relative">
-                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">$</span>
-                    <input v-model.number="inputs.monthlyRent" type="number" min="0" placeholder="e.g. 2400" class="w-full pl-7 pr-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-sm" />
-                  </div>
-                </div>
-                <div>
-                  <label class="block text-xs font-medium text-gray-600 mb-1">Vacancy + OpEx (%)</label>
-                  <div class="relative">
-                    <input v-model.number="inputs.vacancyOpExCombined" type="number" min="0" max="90" placeholder="Enter vacancy + OpEx combined %" class="w-full pl-3 pr-7 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-sm" />
-                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="flex flex-wrap gap-3">
-              <button @click="saveScenario" class="flex items-center gap-2 px-5 py-2.5 bg-slate-700 text-white rounded-xl text-sm font-semibold hover:bg-slate-800 transition-colors">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
-                Save Scenario
-              </button>
-              <button @click="copyShareableURL" class="flex items-center gap-2 px-5 py-2.5 bg-white border-2 border-gray-200 text-gray-700 rounded-xl text-sm font-semibold hover:border-gray-300 transition-colors">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
-                Share
-              </button>
-              <button @click="exportPDF" class="flex items-center gap-2 px-5 py-2.5 bg-white border-2 border-gray-200 text-gray-700 rounded-xl text-sm font-semibold hover:border-gray-300 transition-colors">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-                Export PDF
-              </button>
             </div>
           </div>
 
-          <!-- RIGHT: Results Panel -->
-          <div class="lg:sticky lg:top-20 self-start space-y-4">
+          <!-- Rental Inputs (modes 1, 4) -->
+          <div v-if="currentMode === 1 || currentMode === 4" class="border-b border-gray-100">
+            <div class="calc-section-header">
+              <h2 class="calc-section-title">Rental Income &amp; Expenses</h2>
+            </div>
+            <div class="px-4 py-3">
+              <div class="grid sm:grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Monthly Rent</label>
+                  <div class="relative">
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
+                    <input v-model.number="inputs.monthlyRent" type="number" min="0" placeholder="Enter monthly rent"
+                      class="w-full pl-8 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Vacancy Rate (%)</label>
+                  <div class="relative">
+                    <input v-model.number="inputs.vacancy" type="number" min="0" max="50" placeholder="Enter vacancy %"
+                      class="w-full pl-4 pr-8 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Operating Expenses (%)</label>
+                  <div class="relative">
+                    <input v-model.number="inputs.opEx" type="number" min="0" max="90" placeholder="Enter operating expenses %"
+                      class="w-full pl-4 pr-8 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Hold Period (years)</label>
+                  <input v-model.number="inputs.holdPeriod" type="number" min="1" max="40" placeholder="Enter hold period (years)"
+                    class="w-full px-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Appreciation (%/yr)</label>
+                  <div class="relative">
+                    <input v-model.number="inputs.appreciation" type="number" step="0.1" placeholder="Enter annual appreciation %"
+                      class="w-full pl-4 pr-8 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Selling Costs (%)</label>
+                  <div class="relative">
+                    <input v-model.number="inputs.sellingCostsPct" type="number" step="0.1" placeholder="Enter selling costs %"
+                      class="w-full pl-4 pr-8 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Marginal Tax Rate (%)</label>
+                  <div class="relative">
+                    <input v-model.number="inputs.marginalTax" type="number" min="0" max="60" placeholder="Enter marginal tax rate %"
+                      class="w-full pl-4 pr-8 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Property Tax (%/yr)</label>
+                  <div class="relative">
+                    <input v-model.number="inputs.propertyTaxPct" type="number" step="0.1" placeholder="Enter property tax %"
+                      class="w-full pl-4 pr-8 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Insurance ($/yr)</label>
+                  <div class="relative">
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
+                    <input v-model.number="inputs.insurance" type="number" min="0" placeholder="Enter annual insurance $"
+                      class="w-full pl-8 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">HOA ($/mo)</label>
+                  <div class="relative">
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
+                    <input v-model.number="inputs.hoaMonthly" type="number" min="0" placeholder="Enter monthly HOA $"
+                      class="w-full pl-8 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-            <!-- Waiting State -->
-            <div v-if="!dm" class="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 text-center">
+          <!-- Fix & Flip Inputs (modes 2, 4) -->
+          <div v-if="currentMode === 2 || currentMode === 4" class="border-b border-gray-100">
+            <div class="calc-section-header">
+              <h2 class="calc-section-title">Fix &amp; Flip Details</h2>
+            </div>
+            <div class="px-4 py-3">
+              <div class="grid sm:grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">After Repair Value (ARV)</label>
+                  <div class="relative">
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
+                    <input v-model.number="inputs.arv" type="number" min="0" placeholder="Enter ARV"
+                      class="w-full pl-8 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Hold Period (months)</label>
+                  <input v-model.number="inputs.holdingMonths" type="number" min="1" max="60" placeholder="Enter holding months"
+                    class="w-full px-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Hard Money Rate (%)</label>
+                  <div class="relative">
+                    <input v-model.number="inputs.hardMoneyRate" type="number" step="0.1" placeholder="Enter hard money rate %"
+                      class="w-full pl-4 pr-8 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Hard Money LTV (%)</label>
+                  <div class="relative">
+                    <input v-model.number="inputs.hardMoneyLTV" type="number" min="0" max="100" placeholder="Enter hard money LTV %"
+                      class="w-full pl-4 pr-8 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Holding Costs ($/mo)</label>
+                  <div class="relative">
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
+                    <input v-model.number="inputs.holdingCostsPerMonth" type="number" min="0" placeholder="Enter monthly holding costs"
+                      class="w-full pl-8 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Flip Selling Costs (%)</label>
+                  <div class="relative">
+                    <input v-model.number="inputs.flipSellingCostsPct" type="number" step="0.1" placeholder="Enter selling costs %"
+                      class="w-full pl-4 pr-8 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- BRRRR Inputs (modes 3, 4) -->
+          <div v-if="currentMode === 3 || currentMode === 4" class="border-b border-gray-100">
+            <div class="calc-section-header">
+              <h2 class="calc-section-title">BRRRR Refinance Details</h2>
+            </div>
+            <div class="px-4 py-3">
+              <div class="grid sm:grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">ARV for Refi</label>
+                  <div class="relative">
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
+                    <input v-model.number="inputs.arv" type="number" min="0" placeholder="Enter ARV for refinance"
+                      class="w-full pl-8 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Refi LTV (%)</label>
+                  <div class="relative">
+                    <input v-model.number="inputs.refiLTV" type="number" min="0" max="100" placeholder="Enter refinance LTV %"
+                      class="w-full pl-4 pr-8 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Refi Rate (DSCR %)</label>
+                  <div class="relative">
+                    <input v-model.number="inputs.refiRate" type="number" step="0.1" placeholder="Enter refinance rate %"
+                      class="w-full pl-4 pr-8 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Refi Term (years)</label>
+                  <input v-model.number="inputs.refiTerm" type="number" min="1" max="30" placeholder="Enter refi term (years)"
+                    class="w-full px-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Refi Closing Costs (%)</label>
+                  <div class="relative">
+                    <input v-model.number="inputs.refiClosingPct" type="number" step="0.1" placeholder="Enter refi closing costs %"
+                      class="w-full pl-4 pr-8 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Months Pre-Refi</label>
+                  <input v-model.number="inputs.holdingMonthsPreRefi" type="number" min="1" max="24" placeholder="Enter months before refi"
+                    class="w-full px-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Hold Post-Refi (yrs)</label>
+                  <input v-model.number="inputs.holdPostRefi" type="number" min="1" max="40" placeholder="Enter post-refi hold (years)"
+                    class="w-full px-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Monthly Rent</label>
+                  <div class="relative">
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
+                    <input v-model.number="inputs.monthlyRent" type="number" min="0" placeholder="Enter monthly rent"
+                      class="w-full pl-8 pr-4 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Vacancy + OpEx (%)</label>
+                  <div class="relative">
+                    <input v-model.number="inputs.vacancyOpExCombined" type="number" min="0" max="90" placeholder="Enter vacancy + OpEx combined %"
+                      class="w-full pl-4 pr-8 py-2 rounded-xl border border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none text-gray-900 font-semibold text-sm transition" />
+                    <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reset Button -->
+          <div class="px-4 py-3">
+            <button @click="resetInputs"
+              class="w-full py-2 rounded-lg border border-gray-200 text-gray-400 font-medium text-xs hover:border-gray-300 hover:text-gray-600 transition">
+              Reset All Fields
+            </button>
+          </div>
+
+        </div><!-- /calc-inputs -->
+
+        <!-- ── RESULTS (right column) ── -->
+        <div class="min-w-0 lg:relative lg:overflow-hidden">
+        <div class="bg-gray-50 scrollbar-thin lg:absolute lg:inset-0 lg:overflow-y-auto">
+        <div class="space-y-4 p-4 lg:p-5">
+
+          <!-- Main result card -->
+          <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+
+            <!-- Waiting state -->
+            <div v-if="!dm" class="px-5 py-8 text-center">
               <div class="w-14 h-14 rounded-2xl bg-slate-100 flex items-center justify-center mx-auto mb-4">
-                <svg class="w-7 h-7 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 11h.01M12 11h.01M15 11h.01M4 19h16a2 2 0 002-2V7a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                <svg class="w-7 h-7 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 11h.01M12 11h.01M15 11h.01M4 19h16a2 2 0 002-2V7a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
               </div>
-              <h3 class="font-bold text-gray-900 mb-2">Enter your numbers</h3>
-              <p class="text-sm text-gray-500">Fill in Purchase Price and key inputs to generate your ROI analysis and Verdict.</p>
+              <h3 class="font-bold text-gray-900 mb-1 text-sm">Enter your numbers</h3>
+              <p class="text-xs text-gray-500">Fill in Purchase Price and key inputs to generate your ROI analysis and Verdict.</p>
             </div>
 
-            <!-- Results -->
+            <!-- Results when dm is available -->
             <template v-if="dm">
-              <!-- Verdict Badge -->
-              <div :class="['rounded-2xl border shadow-sm p-6 text-center', dm.verdictStyle.bg, dm.verdictStyle.border]">
-                <div class="text-xs font-semibold uppercase tracking-widest mb-1" :class="dm.verdictStyle.muted">Verdict</div>
-                <div class="text-2xl font-extrabold mb-1" :class="dm.verdictStyle.text">{{ dm.verdictLabel }}</div>
-                <div class="text-sm font-medium" :class="dm.verdictStyle.text">{{ dc.finalDecisionLine }}</div>
+
+              <!-- Verdict header -->
+              <div class="px-5 py-5 border-b border-gray-100" :class="dm.verdictStyle.bg">
+                <p class="text-xs font-semibold uppercase tracking-wide mb-1" :class="dm.verdictStyle.muted">Verdict</p>
+                <div class="text-3xl font-extrabold leading-none mb-2" :class="dm.verdictStyle.text">{{ dm.verdictLabel }}</div>
+                <div class="text-xs font-medium" :class="dm.verdictStyle.text">{{ dc.finalDecisionLine }}</div>
               </div>
 
-              <!-- Key Metrics -->
-              <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-                <h3 class="text-sm font-bold text-gray-700 mb-3">Key Metrics</h3>
-                <div class="space-y-2.5">
-                  <div class="flex justify-between items-center">
-                    <span class="text-xs text-gray-500">{{ dm.primaryROILabel }}</span>
-                    <span :class="['text-sm font-bold', dm.roiColor]">{{ dm.primaryROIDisplay }}</span>
-                  </div>
-                  <div v-if="dm.cashOnCash !== null" class="flex justify-between items-center">
-                    <span class="text-xs text-gray-500">Cash-on-Cash</span>
-                    <span class="text-sm font-semibold text-gray-800">{{ fmt1(dm.cashOnCash) }}%</span>
-                  </div>
-                  <div v-if="dm.capRate !== null" class="flex justify-between items-center">
-                    <span class="text-xs text-gray-500">Cap Rate</span>
-                    <span class="text-sm font-semibold text-gray-800">{{ fmt1(dm.capRate) }}%</span>
-                  </div>
-                  <div v-if="dm.irr !== null" class="flex justify-between items-center">
-                    <span class="text-xs text-gray-500">IRR</span>
-                    <span class="text-sm font-semibold text-gray-800">{{ fmt1(dm.irr) }}%</span>
-                  </div>
-                  <div v-if="dm.totalProfit !== null" class="flex justify-between items-center">
-                    <span class="text-xs text-gray-500">Total Profit</span>
-                    <span class="text-sm font-semibold text-gray-800">{{ fmtDollar(dm.totalProfit) }}</span>
-                  </div>
-                  <div v-if="dm.equityMultiple !== null" class="flex justify-between items-center">
-                    <span class="text-xs text-gray-500">Equity Multiple</span>
-                    <span class="text-sm font-semibold text-gray-800">{{ fmt2(dm.equityMultiple) }}x</span>
-                  </div>
-                  <div v-if="dm.capitalPayback !== null" class="flex justify-between items-center">
-                    <span class="text-xs text-gray-500">Capital Payback</span>
-                    <span :class="['text-sm font-semibold', dm.capitalPaybackFlag ? 'text-orange-600' : 'text-gray-800']">{{ fmt1(dm.capitalPayback) }} yrs{{ dm.capitalPaybackFlag ? ' ⚠' : '' }}</span>
-                  </div>
-                  <div class="border-t border-gray-100 pt-2 mt-2 flex justify-between items-center">
-                    <span class="text-xs text-gray-500">Total Cash Invested</span>
-                    <span class="text-sm font-semibold text-gray-800">{{ fmtDollar(dm.totalCashInvested) }}</span>
-                  </div>
+              <!-- Key metrics -->
+              <div class="p-5 space-y-2">
+                <h3 class="text-xs font-bold uppercase tracking-wide text-gray-400 mb-3">Key Metrics</h3>
+                <div class="flex justify-between items-center py-1.5 border-b border-gray-50">
+                  <span class="text-sm text-gray-500">{{ dm.primaryROILabel }}</span>
+                  <span :class="['text-sm font-bold', dm.roiColor]">{{ dm.primaryROIDisplay }}</span>
+                </div>
+                <div v-if="dm.cashOnCash !== null" class="flex justify-between items-center py-1.5 border-b border-gray-50">
+                  <span class="text-sm text-gray-500">Cash-on-Cash</span>
+                  <span class="text-sm font-semibold text-gray-800">{{ fmt1(dm.cashOnCash) }}%</span>
+                </div>
+                <div v-if="dm.capRate !== null" class="flex justify-between items-center py-1.5 border-b border-gray-50">
+                  <span class="text-sm text-gray-500">Cap Rate</span>
+                  <span class="text-sm font-semibold text-gray-800">{{ fmt1(dm.capRate) }}%</span>
+                </div>
+                <div v-if="dm.irr !== null" class="flex justify-between items-center py-1.5 border-b border-gray-50">
+                  <span class="text-sm text-gray-500">IRR</span>
+                  <span class="text-sm font-semibold text-gray-800">{{ fmt1(dm.irr) }}%</span>
+                </div>
+                <div v-if="dm.totalProfit !== null" class="flex justify-between items-center py-1.5 border-b border-gray-50">
+                  <span class="text-sm text-gray-500">Total Profit</span>
+                  <span class="text-sm font-semibold text-gray-800">{{ fmtDollar(dm.totalProfit) }}</span>
+                </div>
+                <div v-if="dm.equityMultiple !== null" class="flex justify-between items-center py-1.5 border-b border-gray-50">
+                  <span class="text-sm text-gray-500">Equity Multiple</span>
+                  <span class="text-sm font-semibold text-gray-800">{{ fmt2(dm.equityMultiple) }}x</span>
+                </div>
+                <div v-if="dm.capitalPayback !== null" class="flex justify-between items-center py-1.5 border-b border-gray-50">
+                  <span class="text-sm text-gray-500">Capital Payback</span>
+                  <span :class="['text-sm font-semibold', dm.capitalPaybackFlag ? 'text-orange-600' : 'text-gray-800']">{{ fmt1(dm.capitalPayback) }} yrs{{ dm.capitalPaybackFlag ? ' ⚠' : '' }}</span>
+                </div>
+                <div class="flex justify-between items-center py-1.5">
+                  <span class="text-sm text-gray-500">Total Cash Invested</span>
+                  <span class="text-sm font-semibold text-gray-800">{{ fmtDollar(dm.totalCashInvested) }}</span>
                 </div>
               </div>
 
               <!-- Risk Score -->
-              <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-                <div class="flex items-center justify-between mb-3">
-                  <h3 class="text-sm font-bold text-gray-700">Risk Score</h3>
-                  <span :class="['text-lg font-extrabold', dm.riskStyle.text]">{{ dm.riskScore }}/10</span>
+              <div class="px-5 pb-4 pt-0 border-b border-gray-100">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs font-bold uppercase tracking-wide text-gray-400">Risk Score</span>
+                  <span :class="['text-base font-extrabold', dm.riskStyle.text]">{{ dm.riskScore }}/10</span>
                 </div>
-                <div class="w-full bg-gray-100 rounded-full h-2 mb-3">
+                <div class="w-full bg-gray-100 rounded-full h-2 mb-2">
                   <div :class="['h-2 rounded-full transition-all', dm.riskStyle.bar]" :style="{width: (dm.riskScore/10*100)+'%'}"></div>
                 </div>
-                <div class="text-xs font-medium" :class="dm.riskStyle.text">{{ dm.riskLabel }}</div>
-                <div class="mt-2 text-xs text-gray-500">{{ dc.riskContext }}</div>
+                <div class="text-xs font-medium mb-1" :class="dm.riskStyle.text">{{ dm.riskLabel }}</div>
+                <div class="text-xs text-gray-500">{{ dc.riskContext }}</div>
               </div>
 
               <!-- Stability + Confidence -->
-              <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+              <div class="px-5 py-4 border-b border-gray-100">
                 <div class="grid grid-cols-2 gap-4">
                   <div>
-                    <div class="text-xs text-gray-500 mb-1">Stability</div>
+                    <div class="text-xs text-gray-500 mb-0.5">Stability</div>
                     <div :class="['text-sm font-bold', dm.stabilityStyle.text]">{{ dm.stability }}</div>
                     <div class="text-xs text-gray-400 mt-0.5">{{ dc.stabilityContext }}</div>
                   </div>
                   <div>
-                    <div class="text-xs text-gray-500 mb-1">Confidence</div>
+                    <div class="text-xs text-gray-500 mb-0.5">Confidence</div>
                     <div :class="['text-sm font-bold', dm.confidenceStyle.text]">{{ dm.confidenceTier }} ({{ dm.confidenceScore }}/9)</div>
                     <div class="text-xs text-gray-400 mt-0.5">{{ dc.confidenceContext }}</div>
                   </div>
                 </div>
               </div>
 
-              <!-- Mode 4: Strategy Winner -->
-              <div v-if="currentMode === 4 && dm.strategyWinner" class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-                <h3 class="text-sm font-bold text-gray-700 mb-3">Strategy Comparison</h3>
-                <div class="space-y-2">
-                  <div v-for="s in dm.strategyComparison" :key="s.name" :class="['flex justify-between items-center p-2 rounded-lg', s.winner ? 'bg-emerald-50 border border-emerald-200' : 'bg-gray-50']">
+              <!-- Strategy Winner (Mode 4) -->
+              <div v-if="currentMode === 4 && dm.strategyWinner" class="px-5 py-4 border-b border-gray-100">
+                <h3 class="text-xs font-bold uppercase tracking-wide text-gray-400 mb-3">Strategy Comparison</h3>
+                <div class="space-y-1.5">
+                  <div v-for="s in dm.strategyComparison" :key="s.name"
+                    :class="['flex justify-between items-center p-2 rounded-lg text-sm', s.winner ? 'bg-emerald-50 border border-emerald-200' : 'bg-gray-50']">
                     <div class="flex items-center gap-2">
-                      <span v-if="s.winner" class="text-xs font-bold text-emerald-700">WINNER</span>
-                      <span class="text-sm font-medium" :class="s.winner ? 'text-emerald-800' : 'text-gray-700'">{{ s.name }}</span>
+                      <span v-if="s.winner" class="text-xs font-bold text-emerald-700">WIN</span>
+                      <span :class="s.winner ? 'font-semibold text-emerald-800' : 'text-gray-700'">{{ s.name }}</span>
                     </div>
-                    <span :class="['text-sm font-bold', s.winner ? 'text-emerald-700' : 'text-gray-600']">{{ s.roiDisplay }}</span>
+                    <span :class="['font-bold', s.winner ? 'text-emerald-700' : 'text-gray-600']">{{ s.roiDisplay }}</span>
                   </div>
                 </div>
-                <div class="mt-3 text-xs text-gray-500">{{ dc.strategyContext }}</div>
+                <div class="mt-2 text-xs text-gray-500">{{ dc.strategyContext }}</div>
               </div>
 
               <!-- Scenario Analysis -->
-              <div v-if="dm.scenarios" class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-                <h3 class="text-sm font-bold text-gray-700 mb-3">Scenario Analysis</h3>
-                <div class="space-y-2">
-                  <div v-for="sc in dm.scenarios" :key="sc.label" class="flex justify-between items-center">
-                    <span class="text-xs text-gray-500">{{ sc.label }}</span>
-                    <span :class="['text-sm font-semibold', sc.roiVal >= 0 ? 'text-gray-800' : 'text-red-600']">{{ sc.display }}</span>
+              <div v-if="dm.scenarios" class="px-5 py-4 border-b border-gray-100">
+                <h3 class="text-xs font-bold uppercase tracking-wide text-gray-400 mb-2">Scenario Analysis</h3>
+                <div class="space-y-1.5">
+                  <div v-for="sc in dm.scenarios" :key="sc.label" class="flex justify-between items-center text-sm">
+                    <span class="text-gray-500">{{ sc.label }}</span>
+                    <span :class="['font-semibold', sc.roiVal >= 0 ? 'text-gray-800' : 'text-red-600']">{{ sc.display }}</span>
                   </div>
                 </div>
               </div>
 
               <!-- Action Block -->
-              <div :class="['rounded-2xl border shadow-sm p-5', dm.actionStyle.bg, dm.actionStyle.border]">
-                <h3 :class="['text-sm font-bold mb-2', dm.actionStyle.title]">Action</h3>
-                <p :class="['text-sm', dm.actionStyle.text]">{{ dc.actionBlock }}</p>
+              <div class="px-5 py-4 border-b border-gray-100" :class="dm.actionStyle.bg">
+                <h3 class="text-xs font-bold uppercase tracking-wide mb-1.5" :class="dm.actionStyle.title">Action</h3>
+                <p class="text-sm leading-relaxed" :class="dm.actionStyle.text">{{ dc.actionBlock }}</p>
                 <ul v-if="dc.actionItems && dc.actionItems.length" class="mt-2 space-y-1">
                   <li v-for="item in dc.actionItems" :key="item" :class="['text-xs flex items-start gap-1.5', dm.actionStyle.text]">
                     <span class="mt-0.5">•</span>{{ item }}
@@ -568,528 +644,594 @@
               </div>
 
               <!-- Deal Context -->
-              <div class="bg-gray-50 rounded-2xl border border-gray-100 p-5">
-                <h3 class="text-sm font-bold text-gray-700 mb-2">Deal Context</h3>
-                <p class="text-sm text-gray-600">{{ dc.dealContext }}</p>
+              <div class="px-5 py-4" style="background: #1e3a5f12;">
+                <div class="flex items-center gap-2 mb-1.5">
+                  <span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-0.5 rounded-full text-white" style="background:#1e3a5f;">
+                    <span class="w-1.5 h-1.5 rounded-full bg-white/70 flex-shrink-0"></span>
+                    {{ dm.verdictLabel }}
+                  </span>
+                  <span class="text-xs font-semibold text-gray-400 uppercase tracking-wide">Deal context</span>
+                </div>
+                <p class="text-sm leading-relaxed font-medium text-gray-700">{{ dc.dealContext }}</p>
               </div>
+
             </template>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- SAVED SCENARIOS (immediately below calculator, before SEO) -->
-    <section id="saved-scenarios" class="bg-slate-50 py-12 px-4 border-y border-slate-200">
-      <div class="max-w-5xl mx-auto">
-        <div class="flex items-center justify-between mb-6">
-          <div>
-            <h2 class="text-2xl font-bold text-slate-900">Saved Scenarios</h2>
-            <p class="text-slate-500 text-sm mt-1">Compare different investment scenarios side by side</p>
-          </div>
-          <NuxtLink v-if="savedScenarios.length >= 2" to="/compare-deals?source=real-estate-roi" class="inline-flex items-center gap-2 px-4 py-2 bg-slate-700 text-white rounded-xl text-sm font-semibold hover:bg-slate-800 transition-colors">
-            Compare All →
-          </NuxtLink>
-        </div>
-
-        <!-- Empty State -->
-        <div v-if="savedScenarios.length === 0" class="text-center py-12 bg-white rounded-2xl border border-slate-200">
-          <div class="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center mx-auto mb-3">
-            <svg class="w-6 h-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
-          </div>
-          <p class="text-slate-600 font-medium">No saved scenarios yet</p>
-          <p class="text-slate-400 text-sm mt-1">Fill in the calculator and click "Save Scenario" to save your analysis</p>
-        </div>
-
-        <!-- Scenario List -->
-        <div v-else class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <div v-for="scenario in savedScenarios" :key="scenario.id" class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 hover:shadow-md transition-shadow">
-            <div class="flex items-start justify-between mb-3">
-              <div>
-                <div class="text-sm font-bold text-gray-900">{{ scenario.name }}</div>
-                <div class="text-xs text-gray-400 mt-0.5">{{ scenario.date }} · {{ modeLabel(scenario.mode) }}</div>
+            <!-- Save + Share + PDF -->
+            <div v-if="dm" class="p-4 border-t border-gray-100 space-y-2">
+              <button @click="saveScenario"
+                class="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-sm transition hover:opacity-90"
+                style="background: #f59e0b; color: #1e3a5f;">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
+                </svg>
+                Save Scenario
+              </button>
+              <div class="grid grid-cols-2 gap-2">
+                <button @click="copyShareableURL"
+                  class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                  </svg>
+                  Share
+                </button>
+                <button @click="exportPDF"
+                  class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                  </svg>
+                  Export PDF
+                </button>
               </div>
-              <button @click="deleteScenario(scenario.id)" class="text-gray-300 hover:text-red-400 transition-colors ml-2">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </div>
+
+          </div><!-- /main result card -->
+
+        </div>
+        </div>
+        </div><!-- /right column -->
+
+      </div><!-- /two-column -->
+
+      </div><!-- /bg-white inner -->
+      </div><!-- /gradient wrapper -->
+
+      <!-- ═══════════════════════════════════════════════
+           SAVED SCENARIOS
+      ═══════════════════════════════════════════════ -->
+      <div id="saved-scenarios" class="mt-6 bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+        <div class="px-6 py-5 border-b border-gray-100">
+          <div class="flex items-center justify-between">
+            <div>
+              <h2 class="text-xl font-extrabold" style="color: #1e3a5f;">Saved Scenarios</h2>
+              <p class="text-gray-500 text-sm mt-0.5">Compare different investment scenarios side by side</p>
+            </div>
+            <NuxtLink v-if="savedScenarios.length >= 2" to="/compare-deals?source=real-estate-roi"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition hover:opacity-90"
+              style="background: #1e3a5f; color: white;">
+              Compare All →
+            </NuxtLink>
+          </div>
+        </div>
+        <div class="p-6">
+          <div v-if="savedScenarios.length === 0" class="text-center py-10">
+            <div class="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center mx-auto mb-3">
+              <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/>
+              </svg>
+            </div>
+            <p class="text-gray-600 font-medium text-sm">No saved scenarios yet</p>
+            <p class="text-gray-400 text-xs mt-1">Fill in the calculator and click "Save Scenario" to save your analysis</p>
+          </div>
+          <div v-else class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div v-for="scenario in savedScenarios" :key="scenario.id"
+              class="bg-gray-50 rounded-2xl border border-gray-200 p-5 hover:shadow-sm transition-shadow">
+              <div class="flex items-start justify-between mb-3">
+                <div>
+                  <div class="text-sm font-bold text-gray-900">{{ scenario.name }}</div>
+                  <div class="text-xs text-gray-400 mt-0.5">{{ scenario.date }} · {{ modeLabel(scenario.mode) }}</div>
+                </div>
+                <button @click="deleteScenario(scenario.id)" class="text-gray-300 hover:text-red-400 transition-colors ml-2">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="space-y-1.5">
+                <div class="flex justify-between text-xs">
+                  <span class="text-gray-500">ROI</span>
+                  <span :class="['font-bold', scenario.roi >= 0 ? 'text-green-600' : 'text-red-600']">{{ scenario.roi !== null ? fmt1(scenario.roi) + '%' : 'N/A' }}</span>
+                </div>
+                <div class="flex justify-between text-xs">
+                  <span class="text-gray-500">Verdict</span>
+                  <span class="font-semibold text-gray-800">{{ scenario.verdict }}</span>
+                </div>
+                <div class="flex justify-between text-xs">
+                  <span class="text-gray-500">Risk Score</span>
+                  <span class="font-semibold text-gray-800">{{ scenario.riskScore }}/10</span>
+                </div>
+                <div class="flex justify-between text-xs">
+                  <span class="text-gray-500">Investment</span>
+                  <span class="font-semibold text-gray-800">{{ fmtDollar(scenario.cashInvested) }}</span>
+                </div>
+              </div>
+              <button @click="loadScenario(scenario)"
+                class="mt-3 w-full py-1.5 bg-white border border-gray-200 text-gray-700 rounded-lg text-xs font-semibold hover:bg-gray-50 transition-colors">
+                Load Scenario
               </button>
             </div>
-            <div class="space-y-1.5">
-              <div class="flex justify-between text-xs">
-                <span class="text-gray-500">ROI</span>
-                <span :class="['font-bold', scenario.roi >= 0 ? 'text-green-600' : 'text-red-600']">{{ scenario.roi !== null ? fmt1(scenario.roi) + '%' : 'N/A' }}</span>
-              </div>
-              <div class="flex justify-between text-xs">
-                <span class="text-gray-500">Verdict</span>
-                <span class="font-semibold text-gray-800">{{ scenario.verdict }}</span>
-              </div>
-              <div class="flex justify-between text-xs">
-                <span class="text-gray-500">Risk Score</span>
-                <span class="font-semibold text-gray-800">{{ scenario.riskScore }}/10</span>
-              </div>
-              <div class="flex justify-between text-xs">
-                <span class="text-gray-500">Investment</span>
-                <span class="font-semibold text-gray-800">{{ fmtDollar(scenario.cashInvested) }}</span>
-              </div>
-            </div>
-            <button @click="loadScenario(scenario)" class="mt-3 w-full py-1.5 bg-slate-50 border border-slate-200 text-slate-700 rounded-lg text-xs font-semibold hover:bg-slate-100 transition-colors">
-              Load Scenario
-            </button>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- SEO CONTENT SECTIONS -->
-    <div class="max-w-5xl mx-auto px-4 py-12 space-y-16">
+      <!-- ═══════════════════════════════════════════════
+           SEO CONTENT
+      ═══════════════════════════════════════════════ -->
+      <div class="mt-6 bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
 
-      <!-- Disclosure Banner -->
-      <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5">
-        <p class="text-sm text-amber-800"><strong>Disclosure:</strong> This calculator is for educational and informational purposes only. Results are estimates based on your inputs and do not constitute financial, tax, or investment advice. Actual returns vary based on market conditions, property management, financing terms, and other factors. Consult a licensed real estate professional, CPA, or financial advisor before making investment decisions. Past performance does not guarantee future results.</p>
-      </div>
-
-      <!-- Section 1: What Is ROI -->
-      <section id="what-is-roi">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">What Is Real Estate ROI?</h2>
-        <div class="prose prose-gray max-w-none text-gray-600 space-y-3">
-          <p>Return on investment (ROI) in real estate measures the total financial gain from a property investment relative to the capital you deployed. Unlike simple yield metrics, true real estate ROI captures <strong>all value created</strong>: rental income, property appreciation, mortgage paydown (equity buildup), tax benefits, and net sale proceeds — offset by every dollar you spent.</p>
-          <p>The core formula: <strong>ROI = (Total Profit ÷ Total Capital Invested) × 100</strong>. For a rental property held over multiple years, this calculation requires modeling annual cash flows, applying time-value-of-money principles (IRR), and accounting for the eventual sale. Our calculator runs this complete analysis automatically.</p>
-          <p>ROI is often confused with cash-on-cash return. Cash-on-cash measures only your annual pre-tax cash flow divided by invested capital — it ignores appreciation, loan paydown, and tax benefits. ROI provides the complete picture over your intended hold period.</p>
-          <p>For fix-and-flip investors, ROI = net profit ÷ total invested capital, annualized by dividing by the hold period in years. For BRRRR investors who recover most or all capital through refinancing, the concept of "infinite ROI" applies when essentially zero capital remains at risk after the refinance.</p>
+        <!-- Feature highlights -->
+        <div class="border-b border-gray-100 px-8 py-8">
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="bg-gray-50 rounded-2xl border border-gray-100 p-5">
+              <div class="w-9 h-9 rounded-xl flex items-center justify-center mb-3" style="background:#e8f0fe">
+                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+              </div>
+              <h3 class="font-semibold text-gray-900 text-sm mb-1">4 Strategy Modes</h3>
+              <p class="text-gray-500 text-xs">Rental, Flip, BRRRR, Strategy Comparison — pick your investment approach</p>
+            </div>
+            <div class="bg-gray-50 rounded-2xl border border-gray-100 p-5">
+              <div class="w-9 h-9 rounded-xl flex items-center justify-center mb-3" style="background:#fef3c7">
+                <svg class="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+              <h3 class="font-semibold text-gray-900 text-sm mb-1">8-Tier Verdict</h3>
+              <p class="text-gray-500 text-xs">From Infinite ROI to Do Not Proceed — clear go/no-go decision</p>
+            </div>
+            <div class="bg-gray-50 rounded-2xl border border-gray-100 p-5">
+              <div class="w-9 h-9 rounded-xl flex items-center justify-center mb-3" style="background:#fee2e2">
+                <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+              </div>
+              <h3 class="font-semibold text-gray-900 text-sm mb-1">Risk Score 0–10</h3>
+              <p class="text-gray-500 text-xs">5-factor model: LTV, margin, sensitivity, appreciation, hold period</p>
+            </div>
+            <div class="bg-gray-50 rounded-2xl border border-gray-100 p-5">
+              <div class="w-9 h-9 rounded-xl flex items-center justify-center mb-3" style="background:#d1fae5">
+                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+              </div>
+              <h3 class="font-semibold text-gray-900 text-sm mb-1">IRR + Capital Payback</h3>
+              <p class="text-gray-500 text-xs">True time-value returns with Newton-Raphson IRR calculation</p>
+            </div>
+          </div>
         </div>
-      </section>
 
-      <!-- Section 2: How to Use -->
-      <section id="how-to-use">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">How to Use This Calculator</h2>
-        <div class="grid md:grid-cols-2 gap-6">
-          <div class="space-y-4">
-            <div class="flex gap-3">
-              <div class="w-7 h-7 rounded-full bg-blue-600 text-white text-xs flex items-center justify-center font-bold flex-shrink-0 mt-0.5">1</div>
-              <div>
-                <div class="font-semibold text-gray-900 text-sm">Choose Your Strategy Mode</div>
-                <div class="text-sm text-gray-500 mt-0.5">Select Rental (Mode 1), Fix &amp; Flip (Mode 2), BRRRR (Mode 3), or Strategy Comparison (Mode 4). Mode 4 runs all three analyses simultaneously.</div>
+        <!-- Disclosure -->
+        <div class="border-b border-gray-100 px-8 py-6">
+          <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4">
+            <p class="text-sm text-amber-800"><strong>Disclosure:</strong> This calculator is for educational and informational purposes only. Results are estimates based on your inputs and do not constitute financial, tax, or investment advice. Actual returns vary based on market conditions, property management, financing terms, and other factors. Consult a licensed real estate professional, CPA, or financial advisor before making investment decisions. Past performance does not guarantee future results.</p>
+          </div>
+        </div>
+
+        <!-- Section 1: What Is ROI -->
+        <div id="what-is-roi" class="border-b border-gray-100 px-8 py-8">
+          <h2 class="text-xl font-extrabold mb-3" style="color: #1e3a5f;">What Is Real Estate ROI?</h2>
+          <div class="space-y-3 text-gray-600 leading-relaxed">
+            <p>Return on investment (ROI) in real estate measures the total financial gain from a property investment relative to the capital you deployed. Unlike simple yield metrics, true real estate ROI captures <strong>all value created</strong>: rental income, property appreciation, mortgage paydown (equity buildup), tax benefits, and net sale proceeds — offset by every dollar you spent.</p>
+            <p>The core formula: <strong>ROI = (Total Profit ÷ Total Capital Invested) × 100</strong>. For a rental property held over multiple years, this calculation requires modeling annual cash flows, applying time-value-of-money principles (IRR), and accounting for the eventual sale. Our calculator runs this complete analysis automatically.</p>
+            <p>ROI is often confused with cash-on-cash return. Cash-on-cash measures only your annual pre-tax cash flow divided by invested capital — it ignores appreciation, loan paydown, and tax benefits. ROI provides the complete picture over your intended hold period.</p>
+            <p>For fix-and-flip investors, ROI = net profit ÷ total invested capital, annualized by dividing by the hold period in years. For BRRRR investors who recover most or all capital through refinancing, the concept of "infinite ROI" applies when essentially zero capital remains at risk after the refinance.</p>
+          </div>
+        </div>
+
+        <!-- Section 2: How to Use -->
+        <div id="how-to-use" class="border-b border-gray-100 px-8 py-8">
+          <h2 class="text-xl font-extrabold mb-1" style="color: #1e3a5f;">How to Use This Calculator</h2>
+          <p class="text-gray-500 text-sm mb-6">Follow these steps to analyze any US real estate deal in under 3 minutes</p>
+          <div class="grid md:grid-cols-2 gap-10">
+            <ol class="space-y-5">
+              <li class="flex gap-4">
+                <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-extrabold text-white" style="background: #1e3a5f; min-width: 2rem;">1</div>
+                <div>
+                  <p class="font-bold text-gray-900 text-sm">Choose Your Strategy Mode</p>
+                  <p class="text-gray-500 text-sm mt-1">Select Rental (Mode 1), Fix &amp; Flip (Mode 2), BRRRR (Mode 3), or Strategy Comparison (Mode 4). Mode 4 runs all three analyses simultaneously.</p>
+                </div>
+              </li>
+              <li class="flex gap-4">
+                <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-extrabold text-white" style="background: #1e3a5f; min-width: 2rem;">2</div>
+                <div>
+                  <p class="font-bold text-gray-900 text-sm">Enter Purchase Details</p>
+                  <p class="text-gray-500 text-sm mt-1">Start with purchase price and rehab budget. Down payment defaults to 25%, mortgage rate to 7.5% (conventional). Adjust to match your actual financing.</p>
+                </div>
+              </li>
+              <li class="flex gap-4">
+                <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-extrabold text-white" style="background: #1e3a5f; min-width: 2rem;">3</div>
+                <div>
+                  <p class="font-bold text-gray-900 text-sm">Complete Mode-Specific Inputs</p>
+                  <p class="text-gray-500 text-sm mt-1">For rentals: add monthly rent, vacancy, operating expenses. For flips: add ARV, hold months, hard money details. For BRRRR: add refi parameters and post-refi rent.</p>
+                </div>
+              </li>
+            </ol>
+            <div class="space-y-5">
+              <div class="flex gap-4">
+                <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-extrabold text-white" style="background: #1e3a5f; min-width: 2rem;">4</div>
+                <div>
+                  <p class="font-bold text-gray-900 text-sm">Read the Verdict Panel</p>
+                  <p class="text-gray-500 text-sm mt-1">The right panel shows your 8-tier Verdict, Risk Score 0–10, Stability tier, and Confidence Score. These update instantly as you type.</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-extrabold text-white" style="background: #1e3a5f; min-width: 2rem;">5</div>
+                <div>
+                  <p class="font-bold text-gray-900 text-sm">Review the Action Block</p>
+                  <p class="text-gray-500 text-sm mt-1">The color-coded Action block gives concrete next steps based on your specific Verdict, risk level, and input confidence. Follow the action directive to move forward or improve the deal.</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-extrabold text-white" style="background: #1e3a5f; min-width: 2rem;">6</div>
+                <div>
+                  <p class="font-bold text-gray-900 text-sm">Save &amp; Compare Scenarios</p>
+                  <p class="text-gray-500 text-sm mt-1">Click "Save Scenario" to store up to 20 analyses. Use "Compare All" to view scenarios side by side in the Deal Comparison tool.</p>
+                </div>
               </div>
             </div>
-            <div class="flex gap-3">
-              <div class="w-7 h-7 rounded-full bg-blue-600 text-white text-xs flex items-center justify-center font-bold flex-shrink-0 mt-0.5">2</div>
-              <div>
-                <div class="font-semibold text-gray-900 text-sm">Enter Purchase Details</div>
-                <div class="text-sm text-gray-500 mt-0.5">Start with purchase price and rehab budget. Down payment defaults to 25%, mortgage rate to 7.5% (conventional). Adjust to match your actual financing.</div>
-              </div>
-            </div>
-            <div class="flex gap-3">
-              <div class="w-7 h-7 rounded-full bg-blue-600 text-white text-xs flex items-center justify-center font-bold flex-shrink-0 mt-0.5">3</div>
-              <div>
-                <div class="font-semibold text-gray-900 text-sm">Complete Mode-Specific Inputs</div>
-                <div class="text-sm text-gray-500 mt-0.5">For rentals: add monthly rent, vacancy, operating expenses. For flips: add ARV, hold months, hard money details. For BRRRR: add refi parameters and post-refi rent.</div>
-              </div>
-            </div>
-          </div>
-          <div class="space-y-4">
-            <div class="flex gap-3">
-              <div class="w-7 h-7 rounded-full bg-blue-600 text-white text-xs flex items-center justify-center font-bold flex-shrink-0 mt-0.5">4</div>
-              <div>
-                <div class="font-semibold text-gray-900 text-sm">Read the Verdict Panel</div>
-                <div class="text-sm text-gray-500 mt-0.5">The right panel shows your 8-tier Verdict, Risk Score 0–10, Stability tier, and Confidence Score. These update instantly as you type.</div>
-              </div>
-            </div>
-            <div class="flex gap-3">
-              <div class="w-7 h-7 rounded-full bg-blue-600 text-white text-xs flex items-center justify-center font-bold flex-shrink-0 mt-0.5">5</div>
-              <div>
-                <div class="font-semibold text-gray-900 text-sm">Review the Action Block</div>
-                <div class="text-sm text-gray-500 mt-0.5">The color-coded Action block gives concrete next steps based on your specific Verdict, risk level, and input confidence. Follow the action directive to move forward or improve the deal.</div>
-              </div>
-            </div>
-            <div class="flex gap-3">
-              <div class="w-7 h-7 rounded-full bg-blue-600 text-white text-xs flex items-center justify-center font-bold flex-shrink-0 mt-0.5">6</div>
-              <div>
-                <div class="font-semibold text-gray-900 text-sm">Save &amp; Compare Scenarios</div>
-                <div class="text-sm text-gray-500 mt-0.5">Click "Save Scenario" to store up to 20 analyses. Use "Compare All" to view scenarios side by side in the Deal Comparison tool.</div>
-              </div>
-            </div>
           </div>
         </div>
-      </section>
 
-      <!-- Section 3: Verdict System -->
-      <section id="verdict-system">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Understanding the 8-Tier Verdict System</h2>
-        <p class="text-gray-600 mb-6">Our Verdict system goes beyond simple pass/fail by providing 8 distinct outcome tiers, each with specific ROI thresholds and governance rules. The system evaluates not just returns but also risk-adjusted feasibility.</p>
-        <div class="grid sm:grid-cols-2 gap-3">
-          <div class="flex gap-3 p-4 bg-green-50 border border-green-200 rounded-xl">
-            <div class="w-3 h-3 rounded-full bg-green-500 mt-1.5 flex-shrink-0"></div>
-            <div>
-              <div class="font-bold text-green-800 text-sm">INFINITE ROI</div>
-              <div class="text-xs text-green-700 mt-0.5">BRRRR only: all capital recovered via refinance. No capital at risk.</div>
-            </div>
-          </div>
-          <div class="flex gap-3 p-4 bg-blue-50 border border-blue-200 rounded-xl">
-            <div class="w-3 h-3 rounded-full bg-blue-500 mt-1.5 flex-shrink-0"></div>
-            <div>
-              <div class="font-bold text-blue-800 text-sm">STRONG (≥18% annualized)</div>
-              <div class="text-xs text-blue-700 mt-0.5">Top-tier deal. Proceed with confidence if risk is manageable.</div>
-            </div>
-          </div>
-          <div class="flex gap-3 p-4 bg-indigo-50 border border-indigo-200 rounded-xl">
-            <div class="w-3 h-3 rounded-full bg-indigo-500 mt-1.5 flex-shrink-0"></div>
-            <div>
-              <div class="font-bold text-indigo-800 text-sm">GOOD (12–18% annualized)</div>
-              <div class="text-xs text-indigo-700 mt-0.5">Solid performer. Competitive returns for active investors.</div>
-            </div>
-          </div>
-          <div class="flex gap-3 p-4 bg-amber-50 border border-amber-200 rounded-xl">
-            <div class="w-3 h-3 rounded-full bg-amber-500 mt-1.5 flex-shrink-0"></div>
-            <div>
-              <div class="font-bold text-amber-800 text-sm">MARGINAL (8–12% annualized)</div>
-              <div class="text-xs text-amber-700 mt-0.5">Acceptable. Evaluate whether risk justifies returns vs. alternatives.</div>
-            </div>
-          </div>
-          <div class="flex gap-3 p-4 bg-orange-50 border border-orange-200 rounded-xl">
-            <div class="w-3 h-3 rounded-full bg-orange-500 mt-1.5 flex-shrink-0"></div>
-            <div>
-              <div class="font-bold text-orange-800 text-sm">WEAK (4–8% annualized)</div>
-              <div class="text-xs text-orange-700 mt-0.5">Below-target returns. Negotiate harder or improve income/expenses.</div>
-            </div>
-          </div>
-          <div class="flex gap-3 p-4 bg-red-50 border border-red-200 rounded-xl">
-            <div class="w-3 h-3 rounded-full bg-red-400 mt-1.5 flex-shrink-0"></div>
-            <div>
-              <div class="font-bold text-red-800 text-sm">PASS (&lt;4%) / LOSS (&lt;0%)</div>
-              <div class="text-xs text-red-700 mt-0.5">Insufficient returns or net loss. Do not proceed at current inputs.</div>
-            </div>
-          </div>
-          <div class="flex gap-3 p-4 bg-gray-100 border border-gray-200 rounded-xl sm:col-span-2">
-            <div class="w-3 h-3 rounded-full bg-gray-500 mt-1.5 flex-shrink-0"></div>
-            <div>
-              <div class="font-bold text-gray-800 text-sm">DO NOT PROCEED (Governance override)</div>
-              <div class="text-xs text-gray-600 mt-0.5">Stability LOW: Base, conservative, and optimistic scenarios all diverge dangerously. Structural deal problem regardless of ROI number.</div>
-            </div>
-          </div>
-        </div>
-        <div class="mt-4 bg-amber-50 border border-amber-200 rounded-xl p-4">
-          <p class="text-sm text-amber-800"><strong>Governance Rule:</strong> If Stability = LOW, the Verdict is overridden to DO NOT PROCEED regardless of base ROI. If Capital Payback exceeds your hold period, the Verdict is capped at MARGINAL.</p>
-        </div>
-      </section>
-
-      <!-- Section 4: Risk Score -->
-      <section id="risk-score">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">5-Factor Risk Score Model</h2>
-        <p class="text-gray-600 mb-6">The Risk Score (0–10, lower = safer) evaluates your deal across five independent dimensions. Each factor scores 0–2 points; the sum determines overall risk tier. A sixth factor (capital payback flag) adds +1 if capital isn't recovered within your hold period.</p>
-        <div class="overflow-x-auto">
-          <table class="w-full text-sm border-collapse">
-            <thead>
-              <tr class="bg-gray-100">
-                <th class="text-left p-3 font-semibold text-gray-700 rounded-tl-xl">Factor</th>
-                <th class="text-center p-3 font-semibold text-gray-700">0 pts (Safe)</th>
-                <th class="text-center p-3 font-semibold text-gray-700">1 pt (Caution)</th>
-                <th class="text-center p-3 font-semibold text-gray-700 rounded-tr-xl">2 pts (Risk)</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-100">
-              <tr class="hover:bg-gray-50"><td class="p-3 font-medium text-gray-800">LTV Ratio</td><td class="p-3 text-center text-gray-600">≤70%</td><td class="p-3 text-center text-gray-600">71–80%</td><td class="p-3 text-center text-gray-600">&gt;80%</td></tr>
-              <tr class="hover:bg-gray-50"><td class="p-3 font-medium text-gray-800">Profit Margin / CoC</td><td class="p-3 text-center text-gray-600">&gt;8% (&gt;25% flip)</td><td class="p-3 text-center text-gray-600">4–8% (15–25% flip)</td><td class="p-3 text-center text-gray-600">&lt;4% (&lt;15% flip)</td></tr>
-              <tr class="hover:bg-gray-50"><td class="p-3 font-medium text-gray-800">Rent Sensitivity</td><td class="p-3 text-center text-gray-600">Profitable at -10%</td><td class="p-3 text-center text-gray-600">Breakeven at -10%</td><td class="p-3 text-center text-gray-600">Loss at -10%</td></tr>
-              <tr class="hover:bg-gray-50"><td class="p-3 font-medium text-gray-800">Appreciation Dependency</td><td class="p-3 text-center text-gray-600">&lt;40% of return</td><td class="p-3 text-center text-gray-600">40–70% of return</td><td class="p-3 text-center text-gray-600">&gt;70% of return</td></tr>
-              <tr class="hover:bg-gray-50"><td class="p-3 font-medium text-gray-800">Hold Period</td><td class="p-3 text-center text-gray-600">5–10 years</td><td class="p-3 text-center text-gray-600">Other</td><td class="p-3 text-center text-gray-600">—</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="grid sm:grid-cols-4 gap-3 mt-4">
-          <div class="p-3 bg-green-50 border border-green-200 rounded-xl text-center"><div class="text-xs font-bold text-green-700">LOW RISK</div><div class="text-xs text-green-600 mt-0.5">0–3 pts</div></div>
-          <div class="p-3 bg-yellow-50 border border-yellow-200 rounded-xl text-center"><div class="text-xs font-bold text-yellow-700">MODERATE</div><div class="text-xs text-yellow-600 mt-0.5">4–5 pts</div></div>
-          <div class="p-3 bg-orange-50 border border-orange-200 rounded-xl text-center"><div class="text-xs font-bold text-orange-700">HIGH RISK</div><div class="text-xs text-orange-600 mt-0.5">6–7 pts</div></div>
-          <div class="p-3 bg-red-50 border border-red-200 rounded-xl text-center"><div class="text-xs font-bold text-red-700">EXTREME</div><div class="text-xs text-red-600 mt-0.5">8–10 pts</div></div>
-        </div>
-      </section>
-
-      <!-- Section 5: Strategy Comparison -->
-      <section id="strategy-comparison">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Strategy Comparison Mode (Mode 4)</h2>
-        <p class="text-gray-600 mb-4">Mode 4 runs all three investment engines simultaneously on the same property and determines the Strategy Winner — the approach that generates the highest risk-adjusted annualized ROI.</p>
-        <div class="grid md:grid-cols-3 gap-4 mb-6">
-          <div class="bg-indigo-50 border border-indigo-200 rounded-2xl p-5">
-            <div class="font-bold text-indigo-800 mb-2">Rental (Mode 1)</div>
-            <p class="text-sm text-indigo-700">Best for: Cash flow-focused investors, long-term wealth building, tax benefit utilization. Evaluates annualized total ROI including appreciation, equity buildup, and tax deductions over a 5–15 year hold.</p>
-          </div>
-          <div class="bg-red-50 border border-red-200 rounded-2xl p-5">
-            <div class="font-bold text-red-800 mb-2">Fix &amp; Flip (Mode 2)</div>
-            <p class="text-sm text-red-700">Best for: Active investors seeking quick capital turns. Evaluates annualized profit after hard money financing, holding costs, and selling expenses. Uses 70% Rule as a deal quality benchmark.</p>
-          </div>
-          <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-5">
-            <div class="font-bold text-emerald-800 mb-2">BRRRR (Mode 3)</div>
-            <p class="text-sm text-emerald-700">Best for: Investors who want to recycle capital. Evaluates capital recovery through cash-out refinance. BRRRR auto-wins in Mode 4 when infinite ROI is achieved (100%+ capital recovered).</p>
-          </div>
-        </div>
-        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5">
-          <h3 class="font-bold text-slate-900 mb-2">Winner Selection Logic</h3>
-          <ol class="space-y-2 text-sm text-slate-700">
-            <li class="flex gap-2"><span class="font-bold text-slate-500">1.</span> If BRRRR achieves infinite ROI (all capital recovered) → BRRRR wins automatically</li>
-            <li class="flex gap-2"><span class="font-bold text-slate-500">2.</span> Otherwise, the strategy with the highest annualized ROI wins</li>
-            <li class="flex gap-2"><span class="font-bold text-slate-500">3.</span> If two strategies are within 3 percentage points → declared a tie</li>
-            <li class="flex gap-2"><span class="font-bold text-slate-500">4.</span> The overall Verdict uses the winning strategy's ROI tier</li>
-          </ol>
-        </div>
-      </section>
-
-      <!-- Section 6: IRR and Capital Payback -->
-      <section>
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">IRR and Capital Payback Explained</h2>
-        <div class="grid md:grid-cols-2 gap-6">
-          <div>
-            <h3 class="font-bold text-gray-900 mb-3">Internal Rate of Return (IRR)</h3>
-            <p class="text-sm text-gray-600 mb-3">IRR is the annualized return that makes your investment's net present value equal to zero — accounting for the exact timing of every cash flow. Unlike simple ROI, IRR recognizes that $1 received today is worth more than $1 received in year 7.</p>
-            <p class="text-sm text-gray-600">We calculate IRR using the Newton-Raphson method on your actual annual cash flows plus net sale proceeds. An IRR above your cost of capital indicates the investment creates value. A rental property with 12% IRR outperforms a 8% conventional mortgage by 4 percentage points annually.</p>
-          </div>
-          <div>
-            <h3 class="font-bold text-gray-900 mb-3">Capital Payback Period</h3>
-            <p class="text-sm text-gray-600 mb-3">Capital Payback measures how many years until cumulative cash flows return your initial invested capital — without relying on the sale. This is a conservative measure of how dependent your return is on successfully exiting the investment.</p>
-            <p class="text-sm text-gray-600">Our governance system flags deals where Capital Payback exceeds your hold period as a warning: you're depending entirely on appreciation and sale to recover your investment. When flagged, the Verdict is capped at MARGINAL regardless of total ROI.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Section 7: Rental ROI Deep Dive -->
-      <section>
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">How We Calculate Rental Property ROI</h2>
-        <div class="space-y-4 text-gray-600">
-          <p>Rental property ROI requires modeling all cash flows over the hold period. Our 12-step canonical calculation pipeline processes:</p>
-          <ol class="space-y-2 text-sm list-decimal list-inside marker:text-blue-600 marker:font-bold">
-            <li><strong>Total Cash Invested:</strong> Down payment + rehab + closing costs + reserves</li>
-            <li><strong>Loan Amortization:</strong> Monthly P&amp;I, annual interest (tax-deductible), remaining balance at sale</li>
-            <li><strong>Net Operating Income (NOI):</strong> Gross rent × (1 - vacancy%) × (1 - opEx%) minus property tax, insurance, HOA</li>
-            <li><strong>Annual Cash Flow:</strong> NOI minus mortgage debt service</li>
-            <li><strong>Tax Benefits:</strong> Mortgage interest deduction × marginal tax rate + depreciation shield (27.5-year straight line)</li>
-            <li><strong>After-Tax Cash Flow:</strong> Cash flow + tax benefit (simplified pre-tax equivalent)</li>
-            <li><strong>Appreciation:</strong> Property value × (1 + appreciation%)^year</li>
-            <li><strong>Sale Proceeds:</strong> Final value × (1 - selling cost%) minus remaining mortgage</li>
-            <li><strong>Total Profit:</strong> Sum of after-tax CFs + sale proceeds − total cash invested</li>
-            <li><strong>IRR:</strong> Newton-Raphson on [−invested, CF1, CF2, ..., CFn + sale]</li>
-            <li><strong>Equity Multiple:</strong> Total capital returned ÷ total capital invested</li>
-            <li><strong>Capital Payback:</strong> Years for cumulative CFs to equal initial investment</li>
-          </ol>
-          <p class="text-sm bg-amber-50 border border-amber-200 rounded-xl p-3 text-amber-800"><strong>Note:</strong> Tax calculations are simplified estimates. Actual tax treatment varies based on active/passive classification, income limits, depreciation recapture, and individual circumstances. Consult a CPA for precise tax modeling.</p>
-        </div>
-      </section>
-
-      <!-- Section 8: Fix and Flip ROI -->
-      <section>
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Fix &amp; Flip ROI: The 70% Rule and Beyond</h2>
-        <div class="space-y-4 text-gray-600 text-sm">
-          <p>Fix-and-flip ROI analysis starts with the 70% Rule — a quick filter used by experienced flippers: <strong>MAO (Maximum Allowable Offer) = ARV × 70% − Rehab Costs</strong>. If your purchase price exceeds MAO, the deal is traditionally considered too risky.</p>
-          <p>Our flip calculator goes further by accounting for all actual costs:</p>
+        <!-- Section 3: Verdict System -->
+        <div id="verdict-system" class="border-b border-gray-100 px-8 py-8">
+          <h2 class="text-xl font-extrabold mb-3" style="color: #1e3a5f;">Understanding the 8-Tier Verdict System</h2>
+          <p class="text-gray-600 mb-6 text-sm leading-relaxed">Our Verdict system goes beyond simple pass/fail by providing 8 distinct outcome tiers, each with specific ROI thresholds and governance rules. The system evaluates not just returns but also risk-adjusted feasibility.</p>
           <div class="grid sm:grid-cols-2 gap-3">
-            <div class="bg-white border border-gray-200 rounded-xl p-4"><div class="font-semibold text-gray-800 mb-1">Total Capital Deployed</div><div class="text-gray-500">Down payment (hard money equity) + rehab + closing costs (buy) + holding costs × months + closing costs (sell)</div></div>
-            <div class="bg-white border border-gray-200 rounded-xl p-4"><div class="font-semibold text-gray-800 mb-1">Hard Money Financing</div><div class="text-gray-500">Interest-only payments: loan × (rate ÷ 12) × hold months. Hard money typically covers 80% LTV with 12% rate.</div></div>
-            <div class="bg-white border border-gray-200 rounded-xl p-4"><div class="font-semibold text-gray-800 mb-1">Net Profit</div><div class="text-gray-500">ARV × (1 - selling costs%) − purchase price − rehab − all financing &amp; holding costs</div></div>
-            <div class="bg-white border border-gray-200 rounded-xl p-4"><div class="font-semibold text-gray-800 mb-1">Annualized ROI</div><div class="text-gray-500">= (Net Profit ÷ Cash Invested) ÷ (Hold Months ÷ 12). Shorter holds with good margins = higher annualized ROI.</div></div>
-          </div>
-          <p class="bg-amber-50 border border-amber-200 rounded-xl p-3 text-amber-800"><strong>Disclosure:</strong> Flip projections depend heavily on ARV accuracy and rehab cost control — two of the most variable inputs in real estate. Always get multiple contractor bids and comparable sales before committing to a purchase price.</p>
-        </div>
-      </section>
-
-      <!-- Section 9: BRRRR Strategy -->
-      <section>
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">BRRRR Strategy: Achieving Infinite ROI</h2>
-        <div class="space-y-4 text-gray-600 text-sm">
-          <p>BRRRR (Buy, Rehab, Rent, Refinance, Repeat) is the investor's capital recycling machine. When executed successfully, the cash-out refinance returns more capital than you initially invested — leaving you with a cash-flowing rental property and zero net capital deployed.</p>
-          <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-5 mb-2">
-            <div class="font-bold text-emerald-800 mb-2">BRRRR Calculation Phases</div>
-            <div class="grid sm:grid-cols-3 gap-3 text-emerald-700">
-              <div><div class="font-semibold text-xs uppercase tracking-wide mb-1">Phase 1: Acquisition</div>Total cash in = purchase + rehab + buying closing costs + pre-refi holding costs</div>
-              <div><div class="font-semibold text-xs uppercase tracking-wide mb-1">Phase 2: Refinance</div>Refi proceeds = ARV × LTV%. Capital recovered = refi proceeds − refi closing costs. Capital remaining = Phase 1 cost − capital recovered</div>
-              <div><div class="font-semibold text-xs uppercase tracking-wide mb-1">Phase 3: Hold</div>Annual NOI after refi mortgage payments. CoC on remaining capital. If capital remaining ≤ 0 → Infinite ROI</div>
+            <div class="flex gap-3 p-4 bg-green-50 border border-green-200 rounded-xl">
+              <div class="w-3 h-3 rounded-full bg-green-500 mt-1.5 flex-shrink-0"></div>
+              <div><div class="font-bold text-green-800 text-sm">INFINITE ROI</div><div class="text-xs text-green-700 mt-0.5">BRRRR only: all capital recovered via refinance. No capital at risk.</div></div>
+            </div>
+            <div class="flex gap-3 p-4 bg-blue-50 border border-blue-200 rounded-xl">
+              <div class="w-3 h-3 rounded-full bg-blue-500 mt-1.5 flex-shrink-0"></div>
+              <div><div class="font-bold text-blue-800 text-sm">STRONG (≥18% annualized)</div><div class="text-xs text-blue-700 mt-0.5">Top-tier deal. Proceed with confidence if risk is manageable.</div></div>
+            </div>
+            <div class="flex gap-3 p-4 bg-indigo-50 border border-indigo-200 rounded-xl">
+              <div class="w-3 h-3 rounded-full bg-indigo-500 mt-1.5 flex-shrink-0"></div>
+              <div><div class="font-bold text-indigo-800 text-sm">GOOD (12–18% annualized)</div><div class="text-xs text-indigo-700 mt-0.5">Solid performer. Competitive returns for active investors.</div></div>
+            </div>
+            <div class="flex gap-3 p-4 bg-amber-50 border border-amber-200 rounded-xl">
+              <div class="w-3 h-3 rounded-full bg-amber-500 mt-1.5 flex-shrink-0"></div>
+              <div><div class="font-bold text-amber-800 text-sm">MARGINAL (8–12% annualized)</div><div class="text-xs text-amber-700 mt-0.5">Acceptable. Evaluate whether risk justifies returns vs. alternatives.</div></div>
+            </div>
+            <div class="flex gap-3 p-4 bg-orange-50 border border-orange-200 rounded-xl">
+              <div class="w-3 h-3 rounded-full bg-orange-500 mt-1.5 flex-shrink-0"></div>
+              <div><div class="font-bold text-orange-800 text-sm">WEAK (4–8% annualized)</div><div class="text-xs text-orange-700 mt-0.5">Below-target returns. Negotiate harder or improve income/expenses.</div></div>
+            </div>
+            <div class="flex gap-3 p-4 bg-red-50 border border-red-200 rounded-xl">
+              <div class="w-3 h-3 rounded-full bg-red-400 mt-1.5 flex-shrink-0"></div>
+              <div><div class="font-bold text-red-800 text-sm">PASS (&lt;4%) / LOSS (&lt;0%)</div><div class="text-xs text-red-700 mt-0.5">Insufficient returns or net loss. Do not proceed at current inputs.</div></div>
+            </div>
+            <div class="flex gap-3 p-4 bg-gray-100 border border-gray-200 rounded-xl sm:col-span-2">
+              <div class="w-3 h-3 rounded-full bg-gray-500 mt-1.5 flex-shrink-0"></div>
+              <div><div class="font-bold text-gray-800 text-sm">DO NOT PROCEED (Governance override)</div><div class="text-xs text-gray-600 mt-0.5">Stability LOW: Base, conservative, and optimistic scenarios all diverge dangerously. Structural deal problem regardless of ROI number.</div></div>
             </div>
           </div>
-          <p>The deal quality hinges on the spread between your all-in cost and the refinanced value. Buying at 75% of ARV with controlled rehab creates the equity needed for capital recovery. Market appreciation further widens this spread over time.</p>
+          <div class="mt-4 bg-amber-50 border border-amber-200 rounded-xl p-4">
+            <p class="text-sm text-amber-800"><strong>Governance Rule:</strong> If Stability = LOW, the Verdict is overridden to DO NOT PROCEED regardless of base ROI. If Capital Payback exceeds your hold period, the Verdict is capped at MARGINAL.</p>
+          </div>
         </div>
-      </section>
 
-      <!-- Section 10: Stability and Confidence -->
-      <section>
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Stability and Confidence Score Explained</h2>
-        <div class="grid md:grid-cols-2 gap-6">
-          <div>
-            <h3 class="font-bold text-gray-900 mb-3">Result Stability (3 Tiers)</h3>
-            <div class="space-y-3">
-              <div class="flex gap-3 p-3 bg-green-50 border border-green-200 rounded-xl">
-                <div class="w-3 h-3 rounded-full bg-green-500 mt-1 flex-shrink-0"></div>
-                <div><div class="font-semibold text-green-800 text-sm">HIGH Stability</div><div class="text-xs text-green-700">Conservative, base, and optimistic scenarios all show positive ROI with similar verdict tiers. The deal works across market conditions.</div></div>
+        <!-- Section 4: Risk Score -->
+        <div id="risk-score" class="border-b border-gray-100 px-8 py-8">
+          <h2 class="text-xl font-extrabold mb-3" style="color: #1e3a5f;">5-Factor Risk Score Model</h2>
+          <p class="text-gray-600 mb-6 text-sm leading-relaxed">The Risk Score (0–10, lower = safer) evaluates your deal across five independent dimensions. Each factor scores 0–2 points; the sum determines overall risk tier. A sixth factor (capital payback flag) adds +1 if capital isn't recovered within your hold period.</p>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="bg-gray-100">
+                  <th class="text-left p-3 font-semibold text-gray-700 rounded-tl-xl">Factor</th>
+                  <th class="text-center p-3 font-semibold text-gray-700">0 pts (Safe)</th>
+                  <th class="text-center p-3 font-semibold text-gray-700">1 pt (Caution)</th>
+                  <th class="text-center p-3 font-semibold text-gray-700 rounded-tr-xl">2 pts (Risk)</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-100">
+                <tr class="hover:bg-gray-50"><td class="p-3 font-medium text-gray-800">LTV Ratio</td><td class="p-3 text-center text-gray-600">≤70%</td><td class="p-3 text-center text-gray-600">71–80%</td><td class="p-3 text-center text-gray-600">&gt;80%</td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-3 font-medium text-gray-800">Profit Margin / CoC</td><td class="p-3 text-center text-gray-600">&gt;8% (&gt;25% flip)</td><td class="p-3 text-center text-gray-600">4–8% (15–25% flip)</td><td class="p-3 text-center text-gray-600">&lt;4% (&lt;15% flip)</td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-3 font-medium text-gray-800">Rent Sensitivity</td><td class="p-3 text-center text-gray-600">Profitable at -10%</td><td class="p-3 text-center text-gray-600">Breakeven at -10%</td><td class="p-3 text-center text-gray-600">Loss at -10%</td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-3 font-medium text-gray-800">Appreciation Dependency</td><td class="p-3 text-center text-gray-600">&lt;40% of return</td><td class="p-3 text-center text-gray-600">40–70% of return</td><td class="p-3 text-center text-gray-600">&gt;70% of return</td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-3 font-medium text-gray-800">Hold Period</td><td class="p-3 text-center text-gray-600">5–10 years</td><td class="p-3 text-center text-gray-600">Other</td><td class="p-3 text-center text-gray-600">—</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="grid sm:grid-cols-4 gap-3 mt-4">
+            <div class="p-3 bg-green-50 border border-green-200 rounded-xl text-center"><div class="text-xs font-bold text-green-700">LOW RISK</div><div class="text-xs text-green-600 mt-0.5">0–3 pts</div></div>
+            <div class="p-3 bg-yellow-50 border border-yellow-200 rounded-xl text-center"><div class="text-xs font-bold text-yellow-700">MODERATE</div><div class="text-xs text-yellow-600 mt-0.5">4–5 pts</div></div>
+            <div class="p-3 bg-orange-50 border border-orange-200 rounded-xl text-center"><div class="text-xs font-bold text-orange-700">HIGH RISK</div><div class="text-xs text-orange-600 mt-0.5">6–7 pts</div></div>
+            <div class="p-3 bg-red-50 border border-red-200 rounded-xl text-center"><div class="text-xs font-bold text-red-700">EXTREME</div><div class="text-xs text-red-600 mt-0.5">8–10 pts</div></div>
+          </div>
+        </div>
+
+        <!-- Section 5: Strategy Comparison -->
+        <div id="strategy-comparison" class="border-b border-gray-100 px-8 py-8">
+          <h2 class="text-xl font-extrabold mb-3" style="color: #1e3a5f;">Strategy Comparison Mode (Mode 4)</h2>
+          <p class="text-gray-600 mb-4 text-sm leading-relaxed">Mode 4 runs all three investment engines simultaneously on the same property and determines the Strategy Winner — the approach that generates the highest risk-adjusted annualized ROI.</p>
+          <div class="grid md:grid-cols-3 gap-4 mb-6">
+            <div class="bg-indigo-50 border border-indigo-200 rounded-2xl p-5">
+              <div class="font-bold text-indigo-800 mb-2 text-sm">Rental (Mode 1)</div>
+              <p class="text-sm text-indigo-700">Best for: Cash flow-focused investors, long-term wealth building, tax benefit utilization. Evaluates annualized total ROI including appreciation, equity buildup, and tax deductions over a 5–15 year hold.</p>
+            </div>
+            <div class="bg-red-50 border border-red-200 rounded-2xl p-5">
+              <div class="font-bold text-red-800 mb-2 text-sm">Fix &amp; Flip (Mode 2)</div>
+              <p class="text-sm text-red-700">Best for: Active investors seeking quick capital turns. Evaluates annualized profit after hard money financing, holding costs, and selling expenses. Uses 70% Rule as a deal quality benchmark.</p>
+            </div>
+            <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-5">
+              <div class="font-bold text-emerald-800 mb-2 text-sm">BRRRR (Mode 3)</div>
+              <p class="text-sm text-emerald-700">Best for: Investors who want to recycle capital. Evaluates capital recovery through cash-out refinance. BRRRR auto-wins in Mode 4 when infinite ROI is achieved (100%+ capital recovered).</p>
+            </div>
+          </div>
+          <div class="bg-gray-50 border border-gray-200 rounded-2xl p-5">
+            <h3 class="font-bold text-gray-900 mb-2 text-sm">Winner Selection Logic</h3>
+            <ol class="space-y-2 text-sm text-gray-700">
+              <li class="flex gap-2"><span class="font-bold text-gray-500">1.</span> If BRRRR achieves infinite ROI (all capital recovered) → BRRRR wins automatically</li>
+              <li class="flex gap-2"><span class="font-bold text-gray-500">2.</span> Otherwise, the strategy with the highest annualized ROI wins</li>
+              <li class="flex gap-2"><span class="font-bold text-gray-500">3.</span> If two strategies are within 3 percentage points → declared a tie</li>
+              <li class="flex gap-2"><span class="font-bold text-gray-500">4.</span> The overall Verdict uses the winning strategy's ROI tier</li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- Section 6: IRR and Capital Payback -->
+        <div class="border-b border-gray-100 px-8 py-8">
+          <h2 class="text-xl font-extrabold mb-3" style="color: #1e3a5f;">IRR and Capital Payback Explained</h2>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <h3 class="font-bold text-gray-900 mb-3 text-sm">Internal Rate of Return (IRR)</h3>
+              <p class="text-sm text-gray-600 mb-3">IRR is the annualized return that makes your investment's net present value equal to zero — accounting for the exact timing of every cash flow. Unlike simple ROI, IRR recognizes that $1 received today is worth more than $1 received in year 7.</p>
+              <p class="text-sm text-gray-600">We calculate IRR using the Newton-Raphson method on your actual annual cash flows plus net sale proceeds. An IRR above your cost of capital indicates the investment creates value. A rental property with 12% IRR outperforms a 8% conventional mortgage by 4 percentage points annually.</p>
+            </div>
+            <div>
+              <h3 class="font-bold text-gray-900 mb-3 text-sm">Capital Payback Period</h3>
+              <p class="text-sm text-gray-600 mb-3">Capital Payback measures how many years until cumulative cash flows return your initial invested capital — without relying on the sale. This is a conservative measure of how dependent your return is on successfully exiting the investment.</p>
+              <p class="text-sm text-gray-600">Our governance system flags deals where Capital Payback exceeds your hold period as a warning: you're depending entirely on appreciation and sale to recover your investment. When flagged, the Verdict is capped at MARGINAL regardless of total ROI.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 7: Rental ROI Deep Dive -->
+        <div class="border-b border-gray-100 px-8 py-8">
+          <h2 class="text-xl font-extrabold mb-3" style="color: #1e3a5f;">How We Calculate Rental Property ROI</h2>
+          <div class="space-y-4 text-gray-600 text-sm">
+            <p>Rental property ROI requires modeling all cash flows over the hold period. Our 12-step canonical calculation pipeline processes:</p>
+            <ol class="space-y-2 list-decimal list-inside marker:text-blue-600 marker:font-bold">
+              <li><strong>Total Cash Invested:</strong> Down payment + rehab + closing costs + reserves</li>
+              <li><strong>Loan Amortization:</strong> Monthly P&amp;I, annual interest (tax-deductible), remaining balance at sale</li>
+              <li><strong>Net Operating Income (NOI):</strong> Gross rent × (1 - vacancy%) × (1 - opEx%) minus property tax, insurance, HOA</li>
+              <li><strong>Annual Cash Flow:</strong> NOI minus mortgage debt service</li>
+              <li><strong>Tax Benefits:</strong> Mortgage interest deduction × marginal tax rate + depreciation shield (27.5-year straight line)</li>
+              <li><strong>After-Tax Cash Flow:</strong> Cash flow + tax benefit (simplified pre-tax equivalent)</li>
+              <li><strong>Appreciation:</strong> Property value × (1 + appreciation%)^year</li>
+              <li><strong>Sale Proceeds:</strong> Final value × (1 - selling cost%) minus remaining mortgage</li>
+              <li><strong>Total Profit:</strong> Sum of after-tax CFs + sale proceeds − total cash invested</li>
+              <li><strong>IRR:</strong> Newton-Raphson on [−invested, CF1, CF2, ..., CFn + sale]</li>
+              <li><strong>Equity Multiple:</strong> Total capital returned ÷ total capital invested</li>
+              <li><strong>Capital Payback:</strong> Years for cumulative CFs to equal initial investment</li>
+            </ol>
+            <p class="bg-amber-50 border border-amber-200 rounded-xl p-3 text-amber-800"><strong>Note:</strong> Tax calculations are simplified estimates. Actual tax treatment varies based on active/passive classification, income limits, depreciation recapture, and individual circumstances. Consult a CPA for precise tax modeling.</p>
+          </div>
+        </div>
+
+        <!-- Section 8: Fix and Flip ROI -->
+        <div class="border-b border-gray-100 px-8 py-8">
+          <h2 class="text-xl font-extrabold mb-3" style="color: #1e3a5f;">Fix &amp; Flip ROI: The 70% Rule and Beyond</h2>
+          <div class="space-y-4 text-gray-600 text-sm">
+            <p>Fix-and-flip ROI analysis starts with the 70% Rule — a quick filter used by experienced flippers: <strong>MAO (Maximum Allowable Offer) = ARV × 70% − Rehab Costs</strong>. If your purchase price exceeds MAO, the deal is traditionally considered too risky.</p>
+            <p>Our flip calculator goes further by accounting for all actual costs:</p>
+            <div class="grid sm:grid-cols-2 gap-3">
+              <div class="bg-white border border-gray-200 rounded-xl p-4"><div class="font-semibold text-gray-800 mb-1 text-sm">Total Capital Deployed</div><div class="text-gray-500 text-xs">Down payment (hard money equity) + rehab + closing costs (buy) + holding costs × months + closing costs (sell)</div></div>
+              <div class="bg-white border border-gray-200 rounded-xl p-4"><div class="font-semibold text-gray-800 mb-1 text-sm">Hard Money Financing</div><div class="text-gray-500 text-xs">Interest-only payments: loan × (rate ÷ 12) × hold months. Hard money typically covers 80% LTV with 12% rate.</div></div>
+              <div class="bg-white border border-gray-200 rounded-xl p-4"><div class="font-semibold text-gray-800 mb-1 text-sm">Net Profit</div><div class="text-gray-500 text-xs">ARV × (1 - selling costs%) − purchase price − rehab − all financing &amp; holding costs</div></div>
+              <div class="bg-white border border-gray-200 rounded-xl p-4"><div class="font-semibold text-gray-800 mb-1 text-sm">Annualized ROI</div><div class="text-gray-500 text-xs">= (Net Profit ÷ Cash Invested) ÷ (Hold Months ÷ 12). Shorter holds with good margins = higher annualized ROI.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 9: BRRRR Strategy -->
+        <div class="border-b border-gray-100 px-8 py-8">
+          <h2 class="text-xl font-extrabold mb-3" style="color: #1e3a5f;">BRRRR Strategy: Achieving Infinite ROI</h2>
+          <div class="space-y-4 text-gray-600 text-sm">
+            <p>BRRRR (Buy, Rehab, Rent, Refinance, Repeat) is the investor's capital recycling machine. When executed successfully, the cash-out refinance returns more capital than you initially invested — leaving you with a cash-flowing rental property and zero net capital deployed.</p>
+            <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-5">
+              <div class="font-bold text-emerald-800 mb-2 text-sm">BRRRR Calculation Phases</div>
+              <div class="grid sm:grid-cols-3 gap-3 text-emerald-700 text-xs">
+                <div><div class="font-semibold uppercase tracking-wide mb-1">Phase 1: Acquisition</div>Total cash in = purchase + rehab + buying closing costs + pre-refi holding costs</div>
+                <div><div class="font-semibold uppercase tracking-wide mb-1">Phase 2: Refinance</div>Refi proceeds = ARV × LTV%. Capital recovered = refi proceeds − refi closing costs. Capital remaining = Phase 1 cost − capital recovered</div>
+                <div><div class="font-semibold uppercase tracking-wide mb-1">Phase 3: Hold</div>Annual NOI after refi mortgage payments. CoC on remaining capital. If capital remaining ≤ 0 → Infinite ROI</div>
               </div>
-              <div class="flex gap-3 p-3 bg-yellow-50 border border-yellow-200 rounded-xl">
-                <div class="w-3 h-3 rounded-full bg-yellow-500 mt-1 flex-shrink-0"></div>
-                <div><div class="font-semibold text-yellow-800 text-sm">MEDIUM Stability</div><div class="text-xs text-yellow-700">Scenarios diverge by 1–2 verdict tiers. Conservative scenario may be marginal. Proceed with caution; manage downside risks.</div></div>
+            </div>
+            <p>The deal quality hinges on the spread between your all-in cost and the refinanced value. Buying at 75% of ARV with controlled rehab creates the equity needed for capital recovery. Market appreciation further widens this spread over time.</p>
+          </div>
+        </div>
+
+        <!-- Section 10: Stability and Confidence -->
+        <div class="border-b border-gray-100 px-8 py-8">
+          <h2 class="text-xl font-extrabold mb-3" style="color: #1e3a5f;">Stability and Confidence Score Explained</h2>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <h3 class="font-bold text-gray-900 mb-3 text-sm">Result Stability (3 Tiers)</h3>
+              <div class="space-y-3">
+                <div class="flex gap-3 p-3 bg-green-50 border border-green-200 rounded-xl">
+                  <div class="w-3 h-3 rounded-full bg-green-500 mt-1 flex-shrink-0"></div>
+                  <div><div class="font-semibold text-green-800 text-sm">HIGH Stability</div><div class="text-xs text-green-700">Conservative, base, and optimistic scenarios all show positive ROI with similar verdict tiers. The deal works across market conditions.</div></div>
+                </div>
+                <div class="flex gap-3 p-3 bg-yellow-50 border border-yellow-200 rounded-xl">
+                  <div class="w-3 h-3 rounded-full bg-yellow-500 mt-1 flex-shrink-0"></div>
+                  <div><div class="font-semibold text-yellow-800 text-sm">MEDIUM Stability</div><div class="text-xs text-yellow-700">Scenarios diverge by 1–2 verdict tiers. Conservative scenario may be marginal. Proceed with caution; manage downside risks.</div></div>
+                </div>
+                <div class="flex gap-3 p-3 bg-red-50 border border-red-200 rounded-xl">
+                  <div class="w-3 h-3 rounded-full bg-red-500 mt-1 flex-shrink-0"></div>
+                  <div><div class="font-semibold text-red-800 text-sm">LOW Stability (Governance Override)</div><div class="text-xs text-red-700">Conservative scenario shows a LOSS or scenarios diverge dramatically. Verdict overridden to DO NOT PROCEED.</div></div>
+                </div>
               </div>
-              <div class="flex gap-3 p-3 bg-red-50 border border-red-200 rounded-xl">
-                <div class="w-3 h-3 rounded-full bg-red-500 mt-1 flex-shrink-0"></div>
-                <div><div class="font-semibold text-red-800 text-sm">LOW Stability (Governance Override)</div><div class="text-xs text-red-700">Conservative scenario shows a LOSS or scenarios diverge dramatically. Verdict overridden to DO NOT PROCEED. Fix inputs or deal structure.</div></div>
+            </div>
+            <div>
+              <h3 class="font-bold text-gray-900 mb-3 text-sm">Confidence Score (0–9)</h3>
+              <p class="text-sm text-gray-600 mb-3">The Confidence Score reflects data quality — how many inputs have been customized and how sensitive the result is to key assumptions. Higher = better confidence in the output.</p>
+              <div class="space-y-2 text-sm">
+                <div class="flex justify-between p-2 bg-gray-50 rounded-lg"><span class="text-gray-600">7–9: HIGH confidence</span><span class="text-green-600 font-semibold">Good to act</span></div>
+                <div class="flex justify-between p-2 bg-gray-50 rounded-lg"><span class="text-gray-600">4–6: MEDIUM confidence</span><span class="text-yellow-600 font-semibold">Verify key inputs</span></div>
+                <div class="flex justify-between p-2 bg-gray-50 rounded-lg"><span class="text-gray-600">0–3: LOW confidence</span><span class="text-red-600 font-semibold">Don't commit yet</span></div>
               </div>
             </div>
           </div>
-          <div>
-            <h3 class="font-bold text-gray-900 mb-3">Confidence Score (0–9)</h3>
-            <p class="text-sm text-gray-600 mb-3">The Confidence Score reflects data quality — how many inputs have been customized from defaults and how sensitive the result is to key assumptions. Higher = better confidence in the output.</p>
-            <div class="space-y-2 text-sm">
-              <div class="flex justify-between p-2 bg-gray-50 rounded-lg"><span class="text-gray-600">7–9: HIGH confidence</span><span class="text-green-600 font-semibold">Good to act</span></div>
-              <div class="flex justify-between p-2 bg-gray-50 rounded-lg"><span class="text-gray-600">4–6: MEDIUM confidence</span><span class="text-yellow-600 font-semibold">Verify key inputs</span></div>
-              <div class="flex justify-between p-2 bg-gray-50 rounded-lg"><span class="text-gray-600">0–3: LOW confidence</span><span class="text-red-600 font-semibold">Don't commit yet</span></div>
+        </div>
+
+        <!-- Section 11: Cap Rate and NOI -->
+        <div class="border-b border-gray-100 px-8 py-8">
+          <h2 class="text-xl font-extrabold mb-3" style="color: #1e3a5f;">Cap Rate, NOI, and Their Role in ROI</h2>
+          <div class="space-y-4 text-gray-600 text-sm">
+            <p>Cap rate (capitalization rate) = NOI ÷ Property Value. It measures a property's income return independent of financing — useful for comparing properties across markets. However, cap rate alone doesn't tell you your personal ROI, which depends heavily on your financing structure.</p>
+            <div class="grid sm:grid-cols-3 gap-4">
+              <div class="bg-white border border-gray-200 rounded-xl p-4"><div class="font-bold text-gray-900 text-sm mb-2">Cap Rate 3–5%</div><p class="text-gray-500 text-xs">Typical for gateway markets (NYC, SF, LA). Low cap = high appreciation expectations. Cash flow is thin; returns depend on appreciation.</p></div>
+              <div class="bg-white border border-gray-200 rounded-xl p-4"><div class="font-bold text-gray-900 text-sm mb-2">Cap Rate 5–8%</div><p class="text-gray-500 text-xs">Secondary markets. Balance of cash flow and appreciation. Strong fundamentals for long-term investors using conventional financing.</p></div>
+              <div class="bg-white border border-gray-200 rounded-xl p-4"><div class="font-bold text-gray-900 text-sm mb-2">Cap Rate 8%+</div><p class="text-gray-500 text-xs">Tertiary or value-add markets. Strong cash flow, potentially lower appreciation. Excellent for cash-flow-first investors and DSCR financing.</p></div>
             </div>
-            <p class="text-xs text-gray-500 mt-3">Confidence is NOT inverted from risk. A low-confidence deal may still have low risk — but you should verify inputs before committing capital.</p>
           </div>
         </div>
-      </section>
 
-      <!-- Section 11: Cap Rate and NOI -->
-      <section>
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Cap Rate, NOI, and Their Role in ROI</h2>
-        <div class="space-y-4 text-gray-600 text-sm">
-          <p>Cap rate (capitalization rate) = NOI ÷ Property Value. It measures a property's income return independent of financing — useful for comparing properties across markets. However, cap rate alone doesn't tell you your personal ROI, which depends heavily on your financing structure.</p>
-          <div class="grid sm:grid-cols-3 gap-4">
-            <div class="bg-white border border-gray-200 rounded-xl p-4"><div class="font-bold text-gray-900 text-sm mb-2">Cap Rate 3–5%</div><p class="text-gray-500 text-xs">Typical for gateway markets (NYC, SF, LA). Low cap = high appreciation expectations. Cash flow is thin; returns depend on appreciation.</p></div>
-            <div class="bg-white border border-gray-200 rounded-xl p-4"><div class="font-bold text-gray-900 text-sm mb-2">Cap Rate 5–8%</div><p class="text-gray-500 text-xs">Secondary markets. Balance of cash flow and appreciation. Strong fundamentals for long-term investors using conventional financing.</p></div>
-            <div class="bg-white border border-gray-200 rounded-xl p-4"><div class="font-bold text-gray-900 text-sm mb-2">Cap Rate 8%+</div><p class="text-gray-500 text-xs">Tertiary or value-add markets. Strong cash flow, potentially lower appreciation. Excellent for cash-flow-first investors and DSCR financing.</p></div>
-          </div>
-          <p>The "cash-on-cash vs. cap rate spread" reveals leverage efficiency. If your financing cost (mortgage rate) is below cap rate, positive leverage is working for you — each dollar borrowed amplifies returns. When cap rate falls below your debt cost, leverage works against you.</p>
-        </div>
-      </section>
-
-      <!-- Section 12: 2026 Market Context -->
-      <section>
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">2026 Real Estate Investment Rate Environment</h2>
-        <div class="space-y-4 text-gray-600 text-sm">
-          <p>Our default rates reflect typical 2026 lending conditions for investment properties. These are starting points — your actual rates depend on credit score, property type, LTV, and lender relationship.</p>
-          <div class="grid sm:grid-cols-3 gap-4">
-            <div class="bg-indigo-50 border border-indigo-200 rounded-xl p-4"><div class="font-bold text-indigo-800 mb-2">Conventional: 7.5%</div><p class="text-indigo-700 text-xs">For investment properties, expect +0.5–0.75% above primary residence rates. 25% down is standard. Best rates for credit scores 740+.</p></div>
-            <div class="bg-blue-50 border border-blue-200 rounded-xl p-4"><div class="font-bold text-blue-800 mb-2">DSCR: 8.25%</div><p class="text-blue-700 text-xs">Debt-service coverage ratio loans qualify based on property income, not personal income. Popular for self-employed investors. Minimum DSCR 1.0–1.25x.</p></div>
-            <div class="bg-orange-50 border border-orange-200 rounded-xl p-4"><div class="font-bold text-orange-800 mb-2">Hard Money: 12%</div><p class="text-orange-700 text-xs">Short-term bridge financing for fix-and-flip and BRRRR. Interest-only payments. 80% LTV on purchase price. 1–3 points origination fee typical.</p></div>
-          </div>
-          <p class="bg-amber-50 border border-amber-200 rounded-xl p-3 text-amber-800"><strong>Disclosure:</strong> Rates shown are illustrative defaults based on typical 2026 market conditions. Actual rates vary by lender, market, property type, and borrower profile. Always obtain loan quotes from multiple lenders before underwriting any deal.</p>
-        </div>
-      </section>
-
-      <!-- Section 13: Common Mistakes -->
-      <section>
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">7 Common Real Estate ROI Calculation Mistakes</h2>
-        <div class="grid sm:grid-cols-2 gap-4 text-sm">
-          <div class="flex gap-3 p-4 bg-red-50 border border-red-200 rounded-xl">
-            <span class="text-red-500 font-bold text-lg leading-none">1</span>
-            <div><div class="font-semibold text-red-800">Using gross rent instead of NOI</div><div class="text-red-700 text-xs mt-1">Always deduct vacancy, maintenance, management, insurance, taxes, and repairs before calculating return on income properties.</div></div>
-          </div>
-          <div class="flex gap-3 p-4 bg-red-50 border border-red-200 rounded-xl">
-            <span class="text-red-500 font-bold text-lg leading-none">2</span>
-            <div><div class="font-semibold text-red-800">Ignoring capital expenditures</div><div class="text-red-700 text-xs mt-1">HVAC, roofs, appliances — budget 5–10% of rent annually for CapEx reserves. Missing this inflates returns significantly.</div></div>
-          </div>
-          <div class="flex gap-3 p-4 bg-red-50 border border-red-200 rounded-xl">
-            <span class="text-red-500 font-bold text-lg leading-none">3</span>
-            <div><div class="font-semibold text-red-800">Underestimating rehab costs</div><div class="text-red-700 text-xs mt-1">First-time flippers consistently underestimate by 20–40%. Get contractor bids, then add a 15–20% contingency buffer.</div></div>
-          </div>
-          <div class="flex gap-3 p-4 bg-red-50 border border-red-200 rounded-xl">
-            <span class="text-red-500 font-bold text-lg leading-none">4</span>
-            <div><div class="font-semibold text-red-800">Over-projecting appreciation</div><div class="text-red-700 text-xs mt-1">US historical average is ~3–4%/year. Projecting 6–8% makes weak deals look attractive. Our Risk Score penalizes high appreciation dependency.</div></div>
-          </div>
-          <div class="flex gap-3 p-4 bg-red-50 border border-red-200 rounded-xl">
-            <span class="text-red-500 font-bold text-lg leading-none">5</span>
-            <div><div class="font-semibold text-red-800">Forgetting selling costs</div><div class="text-red-700 text-xs mt-1">Realtor commissions, title, transfer taxes, and closing costs typically total 7–9% of sale price. This significantly impacts final net proceeds.</div></div>
-          </div>
-          <div class="flex gap-3 p-4 bg-red-50 border border-red-200 rounded-xl">
-            <span class="text-red-500 font-bold text-lg leading-none">6</span>
-            <div><div class="font-semibold text-red-800">Not stress-testing assumptions</div><div class="text-red-700 text-xs mt-1">Run conservative scenarios. If the deal breaks when rent drops 10% or vacancy doubles, you need more cushion before proceeding.</div></div>
-          </div>
-          <div class="flex gap-3 p-4 bg-red-50 border border-red-200 rounded-xl sm:col-span-2">
-            <span class="text-red-500 font-bold text-lg leading-none">7</span>
-            <div><div class="font-semibold text-red-800">Confusing total ROI with annualized ROI</div><div class="text-red-700 text-xs mt-1">A 50% total ROI over 10 years is only 4.1% annualized — a poor result. Always annualize to compare deals and strategies fairly.</div></div>
+        <!-- Section 12: 2026 Market Context -->
+        <div class="border-b border-gray-100 px-8 py-8">
+          <h2 class="text-xl font-extrabold mb-3" style="color: #1e3a5f;">2026 Real Estate Investment Rate Environment</h2>
+          <div class="space-y-4 text-gray-600 text-sm">
+            <p>Our default rates reflect typical 2026 lending conditions for investment properties. These are starting points — your actual rates depend on credit score, property type, LTV, and lender relationship.</p>
+            <div class="grid sm:grid-cols-3 gap-4">
+              <div class="bg-indigo-50 border border-indigo-200 rounded-xl p-4"><div class="font-bold text-indigo-800 mb-2 text-sm">Conventional: 7.5%</div><p class="text-indigo-700 text-xs">For investment properties, expect +0.5–0.75% above primary residence rates. 25% down is standard. Best rates for credit scores 740+.</p></div>
+              <div class="bg-blue-50 border border-blue-200 rounded-xl p-4"><div class="font-bold text-blue-800 mb-2 text-sm">DSCR: 8.25%</div><p class="text-blue-700 text-xs">Debt-service coverage ratio loans qualify based on property income, not personal income. Popular for self-employed investors. Minimum DSCR 1.0–1.25x.</p></div>
+              <div class="bg-orange-50 border border-orange-200 rounded-xl p-4"><div class="font-bold text-orange-800 mb-2 text-sm">Hard Money: 12%</div><p class="text-orange-700 text-xs">Short-term bridge financing for fix-and-flip and BRRRR. Interest-only payments. 80% LTV on purchase price. 1–3 points origination fee typical.</p></div>
+            </div>
           </div>
         </div>
-      </section>
 
-      <!-- Section 14: Comparing Strategies -->
-      <section>
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">Rental vs. Flip vs. BRRRR: Which Strategy Wins?</h2>
-        <div class="overflow-x-auto mb-4">
-          <table class="w-full text-sm border-collapse">
-            <thead>
-              <tr class="bg-gray-100">
-                <th class="text-left p-3 font-semibold text-gray-700 rounded-tl-xl">Factor</th>
-                <th class="text-center p-3 font-semibold text-indigo-700">Rental</th>
-                <th class="text-center p-3 font-semibold text-red-700">Fix &amp; Flip</th>
-                <th class="text-center p-3 font-semibold text-emerald-700 rounded-tr-xl">BRRRR</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-100">
-              <tr class="hover:bg-gray-50"><td class="p-3 font-medium text-gray-700">Capital Recycling</td><td class="p-3 text-center text-gray-600">Slow (years)</td><td class="p-3 text-center text-gray-600">Fast (months)</td><td class="p-3 text-center text-gray-600">Fast (via refi)</td></tr>
-              <tr class="hover:bg-gray-50"><td class="p-3 font-medium text-gray-700">Monthly Cash Flow</td><td class="p-3 text-center text-gray-600">Yes (ongoing)</td><td class="p-3 text-center text-gray-600">No (lump profit)</td><td class="p-3 text-center text-gray-600">Yes (post-refi)</td></tr>
-              <tr class="hover:bg-gray-50"><td class="p-3 font-medium text-gray-700">Tax Benefits</td><td class="p-3 text-center text-gray-600">High (depr., int.)</td><td class="p-3 text-center text-gray-600">Low (income tax)</td><td class="p-3 text-center text-gray-600">High (ongoing)</td></tr>
-              <tr class="hover:bg-gray-50"><td class="p-3 font-medium text-gray-700">Execution Complexity</td><td class="p-3 text-center text-gray-600">Low</td><td class="p-3 text-center text-gray-600">High</td><td class="p-3 text-center text-gray-600">Very High</td></tr>
-              <tr class="hover:bg-gray-50"><td class="p-3 font-medium text-gray-700">Best Market</td><td class="p-3 text-center text-gray-600">High-rent</td><td class="p-3 text-center text-gray-600">Rising prices</td><td class="p-3 text-center text-gray-600">Value-add</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="text-sm text-gray-600">No single strategy is universally superior. BRRRR wins on capital efficiency when deals are available. Flipping wins on liquidity and speed. Rentals win on passive income and tax advantages. Use Mode 4 to evaluate your specific deal across all three.</p>
-      </section>
-
-      <!-- Disclosure -->
-      <div class="bg-gray-50 border border-gray-200 rounded-2xl p-5">
-        <p class="text-xs text-gray-500">All calculations are for informational purposes only. RealCalc does not provide financial, tax, legal, or investment advice. Results are estimates based on your inputs and assumed market conditions. Consult qualified professionals before making real estate investment decisions. Real estate investing involves risk including potential loss of principal.</p>
-      </div>
-
-      <!-- Section 15: FAQ -->
-      <section id="faq">
-        <h2 class="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
-        <div class="space-y-4">
-          <div v-for="faq in faqs" :key="faq.q" class="bg-white rounded-2xl border border-gray-100 shadow-sm">
-            <button
-              @click="faq.open = !faq.open"
-              class="w-full text-left p-5 flex items-center justify-between gap-4"
-            >
-              <span class="font-semibold text-gray-900 text-sm">{{ faq.q }}</span>
-              <svg :class="['w-5 h-5 text-gray-400 flex-shrink-0 transition-transform', faq.open ? 'rotate-180' : '']" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-            </button>
-            <div v-if="faq.open" class="px-5 pb-5 text-sm text-gray-600 border-t border-gray-100 pt-4">{{ faq.a }}</div>
+        <!-- Section 13: Common Mistakes -->
+        <div class="border-b border-gray-100 px-8 py-8">
+          <h2 class="text-xl font-extrabold mb-3" style="color: #1e3a5f;">7 Common Real Estate ROI Calculation Mistakes</h2>
+          <div class="grid sm:grid-cols-2 gap-4 text-sm">
+            <div class="flex gap-3 p-4 bg-red-50 border border-red-200 rounded-xl">
+              <span class="text-red-500 font-bold text-lg leading-none">1</span>
+              <div><div class="font-semibold text-red-800">Using gross rent instead of NOI</div><div class="text-red-700 text-xs mt-1">Always deduct vacancy, maintenance, management, insurance, taxes, and repairs before calculating return on income properties.</div></div>
+            </div>
+            <div class="flex gap-3 p-4 bg-red-50 border border-red-200 rounded-xl">
+              <span class="text-red-500 font-bold text-lg leading-none">2</span>
+              <div><div class="font-semibold text-red-800">Ignoring capital expenditures</div><div class="text-red-700 text-xs mt-1">HVAC, roofs, appliances — budget 5–10% of rent annually for CapEx reserves. Missing this inflates returns significantly.</div></div>
+            </div>
+            <div class="flex gap-3 p-4 bg-red-50 border border-red-200 rounded-xl">
+              <span class="text-red-500 font-bold text-lg leading-none">3</span>
+              <div><div class="font-semibold text-red-800">Underestimating rehab costs</div><div class="text-red-700 text-xs mt-1">First-time flippers consistently underestimate by 20–40%. Get contractor bids, then add a 15–20% contingency buffer.</div></div>
+            </div>
+            <div class="flex gap-3 p-4 bg-red-50 border border-red-200 rounded-xl">
+              <span class="text-red-500 font-bold text-lg leading-none">4</span>
+              <div><div class="font-semibold text-red-800">Over-projecting appreciation</div><div class="text-red-700 text-xs mt-1">US historical average is ~3–4%/year. Projecting 6–8% makes weak deals look attractive. Our Risk Score penalizes high appreciation dependency.</div></div>
+            </div>
+            <div class="flex gap-3 p-4 bg-red-50 border border-red-200 rounded-xl">
+              <span class="text-red-500 font-bold text-lg leading-none">5</span>
+              <div><div class="font-semibold text-red-800">Forgetting selling costs</div><div class="text-red-700 text-xs mt-1">Realtor commissions, title, transfer taxes, and closing costs typically total 7–9% of sale price. This significantly impacts final net proceeds.</div></div>
+            </div>
+            <div class="flex gap-3 p-4 bg-red-50 border border-red-200 rounded-xl">
+              <span class="text-red-500 font-bold text-lg leading-none">6</span>
+              <div><div class="font-semibold text-red-800">Not stress-testing assumptions</div><div class="text-red-700 text-xs mt-1">Run conservative scenarios. If the deal breaks when rent drops 10% or vacancy doubles, you need more cushion before proceeding.</div></div>
+            </div>
+            <div class="flex gap-3 p-4 bg-red-50 border border-red-200 rounded-xl sm:col-span-2">
+              <span class="text-red-500 font-bold text-lg leading-none">7</span>
+              <div><div class="font-semibold text-red-800">Confusing total ROI with annualized ROI</div><div class="text-red-700 text-xs mt-1">A 50% total ROI over 10 years is only 4.1% annualized — a poor result. Always annualize to compare deals and strategies fairly.</div></div>
+            </div>
           </div>
         </div>
-      </section>
 
-    </div>
+        <!-- Section 14: Strategy Comparison Table -->
+        <div class="border-b border-gray-100 px-8 py-8">
+          <h2 class="text-xl font-extrabold mb-3" style="color: #1e3a5f;">Rental vs. Flip vs. BRRRR: Which Strategy Wins?</h2>
+          <div class="overflow-x-auto mb-4">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="bg-gray-100">
+                  <th class="text-left p-3 font-semibold text-gray-700 rounded-tl-xl">Factor</th>
+                  <th class="text-center p-3 font-semibold text-indigo-700">Rental</th>
+                  <th class="text-center p-3 font-semibold text-red-700">Fix &amp; Flip</th>
+                  <th class="text-center p-3 font-semibold text-emerald-700 rounded-tr-xl">BRRRR</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-100">
+                <tr class="hover:bg-gray-50"><td class="p-3 font-medium text-gray-700">Capital Recycling</td><td class="p-3 text-center text-gray-600">Slow (years)</td><td class="p-3 text-center text-gray-600">Fast (months)</td><td class="p-3 text-center text-gray-600">Fast (via refi)</td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-3 font-medium text-gray-700">Monthly Cash Flow</td><td class="p-3 text-center text-gray-600">Yes (ongoing)</td><td class="p-3 text-center text-gray-600">No (lump profit)</td><td class="p-3 text-center text-gray-600">Yes (post-refi)</td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-3 font-medium text-gray-700">Tax Benefits</td><td class="p-3 text-center text-gray-600">High (depr., int.)</td><td class="p-3 text-center text-gray-600">Low (income tax)</td><td class="p-3 text-center text-gray-600">High (ongoing)</td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-3 font-medium text-gray-700">Execution Complexity</td><td class="p-3 text-center text-gray-600">Low</td><td class="p-3 text-center text-gray-600">High</td><td class="p-3 text-center text-gray-600">Very High</td></tr>
+                <tr class="hover:bg-gray-50"><td class="p-3 font-medium text-gray-700">Best Market</td><td class="p-3 text-center text-gray-600">High-rent</td><td class="p-3 text-center text-gray-600">Rising prices</td><td class="p-3 text-center text-gray-600">Value-add</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-sm text-gray-600">No single strategy is universally superior. BRRRR wins on capital efficiency when deals are available. Flipping wins on liquidity and speed. Rentals win on passive income and tax advantages. Use Mode 4 to evaluate your specific deal across all three.</p>
+        </div>
 
-    <!-- Related Calculators -->
-    <section class="bg-gradient-to-br from-slate-50 to-blue-50 border-t border-gray-200 py-12 px-4">
-      <div class="max-w-5xl mx-auto">
-        <h2 class="text-2xl font-bold text-gray-900 mb-2 text-center">Related Calculators</h2>
-        <p class="text-gray-500 text-center mb-8">Complete your real estate investment analysis with these tools</p>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <NuxtLink v-for="rel in relatedCalcs" :key="rel.href" :to="rel.href" class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 hover:shadow-md hover:border-yellow-300 transition-all group">
-            <div class="w-10 h-10 rounded-xl mb-3 flex items-center justify-center text-lg" :style="{background: rel.bg}">{{ rel.icon }}</div>
-            <div class="font-bold text-gray-900 text-sm group-hover:text-yellow-600 transition-colors">{{ rel.title }}</div>
-            <div class="text-xs text-gray-500 mt-1">{{ rel.desc }}</div>
+        <!-- Disclosure -->
+        <div class="border-b border-gray-100 px-8 py-6">
+          <div class="bg-gray-50 border border-gray-200 rounded-2xl p-4">
+            <p class="text-xs text-gray-500">All calculations are for informational purposes only. RealCalc does not provide financial, tax, legal, or investment advice. Results are estimates based on your inputs and assumed market conditions. Consult qualified professionals before making real estate investment decisions. Real estate investing involves risk including potential loss of principal.</p>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div id="faq" class="px-8 py-8">
+          <h2 class="text-xl font-extrabold mb-6" style="color: #1e3a5f;">Frequently Asked Questions</h2>
+          <div class="space-y-4">
+            <div v-for="faq in faqs" :key="faq.q" class="bg-gray-50 rounded-2xl border border-gray-100">
+              <button
+                @click="faq.open = !faq.open"
+                class="w-full text-left p-5 flex items-center justify-between gap-4">
+                <span class="font-semibold text-gray-900 text-sm">{{ faq.q }}</span>
+                <svg :class="['w-5 h-5 text-gray-400 flex-shrink-0 transition-transform', faq.open ? 'rotate-180' : '']" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </button>
+              <div v-if="faq.open" class="px-5 pb-5 text-sm text-gray-600 border-t border-gray-100 pt-4">{{ faq.a }}</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /SEO content white container -->
+
+      <!-- ═══════════════════════════════════════════════
+           RELATED CALCULATORS
+      ═══════════════════════════════════════════════ -->
+      <div id="related-calculators" class="mt-6 rounded-2xl p-8 text-center text-white" style="background: #1e3a5f;">
+        <h2 class="text-2xl font-extrabold mb-2">Related Calculators</h2>
+        <p class="text-blue-200 mb-6">Complete your real estate investment analysis with these tools</p>
+        <div class="flex flex-wrap justify-center gap-3">
+          <NuxtLink v-for="calc in relatedCalcs" :key="calc.href" :to="calc.href"
+            class="px-5 py-2.5 rounded-xl font-semibold text-sm border border-white/20 bg-white/10 hover:bg-white/20 transition">
+            {{ calc.title }}
           </NuxtLink>
         </div>
       </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="mt-0 border-t border-gray-200 bg-white py-8 px-4">
-      <div class="max-w-5xl mx-auto">
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div class="flex items-center gap-2">
-            <div class="w-7 h-7 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);">
-              <span class="text-white text-xs font-bold">RC</span>
-            </div>
-            <span class="font-bold text-gray-900">RealCalc</span>
-            <span class="text-gray-400 text-xs">· arvcalc.com</span>
-          </div>
-          <div class="flex flex-wrap gap-4 text-xs text-gray-400">
-            <NuxtLink to="/" class="hover:text-gray-600 transition-colors">Calculators</NuxtLink>
-            <NuxtLink to="/blog" class="hover:text-gray-600 transition-colors">Blog</NuxtLink>
-            <NuxtLink to="/pricing" class="hover:text-gray-600 transition-colors">Pricing</NuxtLink>
-            <NuxtLink to="/contact" class="hover:text-gray-600 transition-colors">Contact</NuxtLink>
-          </div>
-          <div class="text-xs text-gray-400">© 2026 RealCalc. For educational use only.</div>
+    </main>
+
+    <!-- ═══════════════════════════════════════════════
+         FOOTER
+    ═══════════════════════════════════════════════ -->
+    <footer class="mt-16 border-t border-gray-200 bg-white py-8 px-4">
+      <div class="max-w-[1100px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-sm text-gray-400">© 2026 RealCalc. For informational purposes only. Not financial advice.</p>
+        <div class="flex gap-6">
+          <NuxtLink to="/privacy" class="text-sm text-gray-400 hover:text-gray-600 transition">Privacy</NuxtLink>
+          <NuxtLink to="/terms" class="text-sm text-gray-400 hover:text-gray-600 transition">Terms</NuxtLink>
+          <NuxtLink to="/contact" class="text-sm text-gray-400 hover:text-gray-600 transition">Contact</NuxtLink>
         </div>
       </div>
     </footer>
+
   </div>
 </template>
 
 <script setup>
 import { ref, computed, onMounted, reactive } from 'vue'
+
+// ============================================================
+// UI STATE
+// ============================================================
+const isNavExpanded = ref(false)
 
 // ============================================================
 // MODE CONFIG
@@ -1138,6 +1280,10 @@ const inputs = ref({
   holdPostRefi: null,
   vacancyOpExCombined: null,
 })
+
+function resetInputs() {
+  inputs.value = Object.fromEntries(Object.keys(inputs.value).map(k => [k, null]))
+}
 
 // ============================================================
 // FORMATTING UTILITIES
@@ -1247,7 +1393,6 @@ function calcMode1(inp) {
   const monthlyPI = amort.monthlyPI
   const annualDebt = monthlyPI * 12
 
-  // Annual Cash Flows
   const cashFlows = [-totalCashInvested]
   let cumCF = 0
   let capitalPayback = null
@@ -1278,25 +1423,20 @@ function calcMode1(inp) {
   const sellCosts = finalValue * sellPct
   const remainingLoan = getBalanceAtYear(loan, rate, term, hold)
   const saleProceeds = finalValue - sellCosts - remainingLoan
-  const totalProfit = totalCFsum + saleProceeds - totalCashInvested + totalCashInvested
   const netProfit = totalCFsum + saleProceeds - totalCashInvested
 
   if (capitalPayback === null) capitalPayback = hold + (totalCashInvested - cumCF) / Math.max(1, totalCFsum / hold)
 
-  // IRR
   const irrFlows = [...cashFlows]
   irrFlows[irrFlows.length - 1] += saleProceeds
   const irr = computeIRR(irrFlows)
 
-  // Cap rate
   const annualNOI = effectiveRent - effectiveRent * opPct - pp * propTaxPct - insurance - hoa
   const capRate = annualNOI / pp * 100
   const cashOnCash = (cashFlows[1] || 0) / totalCashInvested * 100
 
-  // Annualized ROI
   const totalROIAnnualized = Math.pow((netProfit + totalCashInvested) / totalCashInvested, 1 / hold) * 100 - 100
 
-  // Appreciation share
   const appreciationValue = finalValue - pp
   const appreciationShare = totalCashInvested > 0 ? appreciationValue / (netProfit + totalCashInvested) : 0
 
@@ -1351,12 +1491,10 @@ function calcMode2(inp) {
   const totalROI = totalCashInvested > 0 ? netProfit / totalCashInvested * 100 : 0
   const annualizedROI = holdYears > 0 ? (Math.pow(1 + totalROI / 100, 1 / holdYears) - 1) * 100 : 0
 
-  // 70% Rule
   const mao = arv * 0.7 - rehab
   const above70Rule = pp <= mao
   const renegotiateTarget = mao * 0.95
 
-  // Deal quality
   let dealQuality = 'Poor'
   if (profitMargin >= 25) dealQuality = 'Excellent'
   else if (profitMargin >= 15) dealQuality = 'Good'
@@ -1391,7 +1529,6 @@ function calcMode3(inp) {
   const refiRate = inp.refiRate || 8.25
   const refiTerm = inp.refiTerm || 30
   const refiCcPct = (inp.refiClosingPct || 2) / 100
-  const preRefiMonths = inp.holdingMonthsPreRefi || 6
   const holdPost = inp.holdPostRefi || 7
   const rent = inp.monthlyRent || 0
   const vacOpEx = (inp.vacancyOpExCombined || 38) / 100
@@ -1407,14 +1544,11 @@ function calcMode3(inp) {
   const refiCosts = refiProceeds * refiCcPct
   const capitalRecovered = refiProceeds - refiCosts
 
-  // Pay off original loan from refi
   const originalLoan = pp - downAmt
-  const netCapitalRecovered = capitalRecovered - originalLoan
   const capitalRemaining = phase1Cost - capitalRecovered
 
   const infiniteROI = capitalRemaining <= 0
 
-  // Post-refi: DSCR loan
   const refiAmort = buildAmortSchedule(refiProceeds, refiRate, refiTerm)
   const annualDebtPost = refiAmort.monthlyPI * 12
   const annualRent = rent * 12
@@ -1422,7 +1556,6 @@ function calcMode3(inp) {
   const year1PostRefiCF = noi - annualDebtPost
   const cocOnRemaining = capitalRemaining > 0 ? year1PostRefiCF / capitalRemaining * 100 : null
 
-  // Capital payback on remaining
   const capitalPayback = capitalRemaining > 0 && year1PostRefiCF > 0 ? capitalRemaining / year1PostRefiCF : null
 
   const ltv = refiProceeds / (arv || pp) * 100
@@ -1490,19 +1623,14 @@ function computeBaseVerdict(roi, mode, result) {
 // ============================================================
 function computeRiskScore5(ltv, margin, sensitivity, appreciationDep, holdYears, mode) {
   let score = 0
-  // LTV
   score += ltv <= 70 ? 0 : ltv <= 80 ? 1 : 2
-  // Margin
   if (mode === 2) {
     score += margin > 25 ? 0 : margin >= 15 ? 1 : 2
   } else {
     score += margin > 8 ? 0 : margin >= 4 ? 1 : 2
   }
-  // Sensitivity
   score += sensitivity === 'profitable' ? 0 : sensitivity === 'breakeven' ? 1 : 2
-  // Appreciation dependency
   score += appreciationDep < 0.4 ? 0 : appreciationDep <= 0.7 ? 1 : 2
-  // Hold period / flip margin
   if (mode === 2) {
     score += margin < 10 ? 2 : margin < 15 ? 1 : 0
   } else {
@@ -1532,7 +1660,6 @@ function computeStability(baseROI, conservROI, optimROI) {
 // ============================================================
 function computeConfidenceScore(inp, mode) {
   let score = 0
-  // Check how many non-default inputs provided
   if (inp.purchasePrice) score += 2
   if (inp.monthlyRent && mode !== 2) score += 2
   if (inp.arv && (mode === 2 || mode === 3)) score += 2
@@ -1584,7 +1711,6 @@ const dm = computed(() => {
   const mode = currentMode.value
   if (!inp.purchasePrice || inp.purchasePrice <= 0) return null
 
-  // Step 1: Run calculations
   let r1 = null, r2 = null, r3 = null, primaryResult = null, primaryROI = null
 
   if (mode === 1 || mode === 4) r1 = calcMode1(inp)
@@ -1597,14 +1723,12 @@ const dm = computed(() => {
     primaryResult = r3
     primaryROI = r3 ? (r3.infiniteROI ? Infinity : r3.cocOnRemaining) : null
   } else if (mode === 4) {
-    // Strategy winner determines primary
     const winner = computeStrategyWinner(r1, r2, r3)
     if (winner && winner.includes('BRRRR')) { primaryResult = r3; primaryROI = r3 ? (r3.infiniteROI ? Infinity : r3.cocOnRemaining) : null }
     else if (winner && winner.includes('Flip')) { primaryResult = r2; primaryROI = r2 ? r2.annualizedROI : null }
     else { primaryResult = r1; primaryROI = r1 ? r1.totalROIAnnualized : null }
   }
 
-  // Step 2: Scenarios
   const conservInp = calcWithScenario(inp, 'conservative')
   const optimInp = calcWithScenario(inp, 'optimistic')
   const modeForScenario = mode === 4 ? 1 : mode
@@ -1612,15 +1736,12 @@ const dm = computed(() => {
   const optimROI = getROIForMode(modeForScenario, optimInp)
   const baseForScenario = mode === 4 ? (r1 ? r1.totalROIAnnualized : null) : primaryROI
 
-  // Step 3: Base verdict
   let verdict = computeBaseVerdict(primaryROI === Infinity ? 999 : primaryROI, mode, primaryResult)
 
-  // Step 4: Capital payback flag
   const holdYears = mode === 2 ? ((inp.holdingMonths || 6) / 12) : (mode === 3 ? (inp.holdPostRefi || 7) : (inp.holdPeriod || 7))
   const capitalPayback = primaryResult ? (primaryResult.capitalPayback || null) : null
   const capitalPaybackFlag = capitalPayback !== null && isFinite(capitalPayback) && capitalPayback > holdYears
 
-  // Step 5: Risk score
   const ltv = primaryResult ? (primaryResult.ltv || 80) : 80
   const margin = mode === 2 ? (r2 ? r2.profitMargin : 0) : (primaryResult ? (primaryResult.cashOnCash || primaryResult.cocOnRemaining || 0) : 0)
   const sensitivity = testSensitivity(mode, inp)
@@ -1628,14 +1749,11 @@ const dm = computed(() => {
   let riskScore = computeRiskScore5(ltv, margin, sensitivity, appreciationDep, holdYears, mode)
   if (capitalPaybackFlag) riskScore = Math.min(10, riskScore + 1)
 
-  // Step 6: Stability
   const stability = computeStability(isFinite(baseForScenario) ? baseForScenario : 99, isFinite(conservROI) ? conservROI : null, isFinite(optimROI) ? optimROI : null)
 
-  // Step 7: Confidence
   const confidenceScore = computeConfidenceScore(inp, mode)
   const confidenceTier = confidenceScore >= 7 ? 'HIGH' : confidenceScore >= 4 ? 'MEDIUM' : 'LOW'
 
-  // Step 8: Governance
   if (stability === 'LOW') verdict = 'DO_NOT_PROCEED'
   else if (capitalPaybackFlag) {
     const ORDER = ['DO_NOT_PROCEED', 'LOSS', 'PASS', 'WEAK', 'MARGINAL', 'GOOD', 'STRONG', 'INFINITE']
@@ -1644,7 +1762,6 @@ const dm = computed(() => {
     if (verdictIdx > marginalIdx) verdict = 'MARGINAL'
   }
 
-  // Step 9: Verdict style
   const verdictStyles = {
     INFINITE: { bg: 'bg-green-50', border: 'border-green-300', text: 'text-green-700', muted: 'text-green-500' },
     STRONG: { bg: 'bg-blue-50', border: 'border-blue-300', text: 'text-blue-700', muted: 'text-blue-500' },
@@ -1660,7 +1777,6 @@ const dm = computed(() => {
     WEAK: 'Weak', PASS: 'Pass', LOSS: 'Loss', DO_NOT_PROCEED: 'Do Not Proceed',
   }
 
-  // Step 10: Risk style
   const riskStyles = {
     low: { text: 'text-green-600', bar: 'bg-green-500', label: 'Low Risk' },
     moderate: { text: 'text-yellow-600', bar: 'bg-yellow-500', label: 'Moderate Risk' },
@@ -1669,7 +1785,6 @@ const dm = computed(() => {
   }
   const riskTier = riskScore <= 3 ? 'low' : riskScore <= 5 ? 'moderate' : riskScore <= 7 ? 'high' : 'extreme'
 
-  // Stability style
   const stabilityStyles = {
     HIGH: { text: 'text-green-600' },
     MEDIUM: { text: 'text-yellow-600' },
@@ -1681,7 +1796,6 @@ const dm = computed(() => {
     LOW: { text: 'text-red-600' },
   }
 
-  // Action style
   const actionStyles = {
     INFINITE: { bg: 'bg-green-50', border: 'border-green-200', title: 'text-green-800', text: 'text-green-700' },
     STRONG: { bg: 'bg-blue-50', border: 'border-blue-200', title: 'text-blue-800', text: 'text-blue-700' },
@@ -1693,7 +1807,6 @@ const dm = computed(() => {
     DO_NOT_PROCEED: { bg: 'bg-gray-100', border: 'border-gray-300', title: 'text-gray-800', text: 'text-gray-700' },
   }
 
-  // ROI display
   let primaryROIDisplay = 'N/A'
   let primaryROILabel = 'Annualized ROI'
   let roiColor = 'text-gray-800'
@@ -1706,7 +1819,6 @@ const dm = computed(() => {
     roiColor = primaryROI >= 12 ? 'text-green-600' : primaryROI >= 8 ? 'text-yellow-600' : primaryROI >= 0 ? 'text-orange-600' : 'text-red-600'
   }
 
-  // Strategy comparison (Mode 4)
   let strategyWinner = null
   let strategyComparison = null
   if (mode === 4) {
@@ -1718,7 +1830,6 @@ const dm = computed(() => {
     ]
   }
 
-  // Scenario display
   const scenarios = [
     { label: 'Conservative', roiVal: isFinite(conservROI) ? conservROI : -999, display: conservROI !== null && isFinite(conservROI) ? fmt1(conservROI) + '%' : 'N/A' },
     { label: 'Base', roiVal: isFinite(baseForScenario) ? baseForScenario : 0, display: baseForScenario !== null && isFinite(baseForScenario) ? fmt1(baseForScenario) + '%' : 'N/A' },
@@ -1770,9 +1881,8 @@ const dm = computed(() => {
 const dc = computed(() => {
   if (!dm.value) return {}
   const d = dm.value
-  const { verdict, riskScore, stability, confidenceTier, capitalPaybackFlag, r2 } = d
+  const { verdict, riskScore, stability, confidenceTier, capitalPaybackFlag } = d
 
-  // Final Decision Line
   let riskPrefix = riskScore <= 3 ? 'Low-risk ' : ''
   const verdictPhrases = {
     INFINITE: 'infinite-ROI BRRRR', STRONG: 'strong performer', GOOD: 'good investment',
@@ -1793,7 +1903,6 @@ const dc = computed(() => {
 
   const finalDecisionLine = `${riskPrefix}${verdictPhrase}${riskSuffix} — ${actionDirective}`
 
-  // Risk Context
   const riskContextMap = {
     low: 'This deal has low structural risk. LTV, margins, and hold period are in optimal range.',
     moderate: 'Moderate risk. Monitor rent performance and keep reserves for unexpected expenses.',
@@ -1803,7 +1912,6 @@ const dc = computed(() => {
   const riskTier = riskScore <= 3 ? 'low' : riskScore <= 5 ? 'moderate' : riskScore <= 7 ? 'high' : 'extreme'
   const riskContext = riskContextMap[riskTier]
 
-  // Stability Context
   const stabilityContextMap = {
     HIGH: 'Scenarios converge. Deal holds across market conditions.',
     MEDIUM: 'Some divergence between scenarios. Manage downside risk.',
@@ -1811,7 +1919,6 @@ const dc = computed(() => {
   }
   const stabilityContext = stabilityContextMap[stability] || ''
 
-  // Confidence Context
   const confidenceContextMap = {
     HIGH: 'Good data quality. Results are reliable.',
     MEDIUM: 'Key inputs present. Verify rent and expenses.',
@@ -1819,7 +1926,6 @@ const dc = computed(() => {
   }
   const confidenceContext = confidenceContextMap[confidenceTier] || ''
 
-  // Action Block
   const actionMap = {
     INFINITE: { text: 'Excellent BRRRR execution. All capital recovered. Focus on tenant quality and post-refi cash flow management.', items: ['Lock in DSCR financing rate', 'Screen tenants carefully', 'Build 6-month cash reserve'] },
     STRONG: { text: 'Strong deal. Proceed with confidence. Optimize for tax efficiency and property management.', items: ['Document all income/expenses', 'Consider cost segregation study', 'Establish management systems early'] },
@@ -1832,7 +1938,6 @@ const dc = computed(() => {
   }
   const actionContent = actionMap[verdict] || actionMap.MARGINAL
 
-  // Deal Context
   const dealContextMap = {
     INFINITE: 'This BRRRR deal achieves the gold standard: all capital recycled back to you through the refinance, leaving a cash-flowing asset with zero net cost basis.',
     STRONG: `This ${d.primaryROIDisplay} annualized return places this deal in the top tier of investment property opportunities. Strong margins provide cushion against market fluctuations.`,
@@ -1840,12 +1945,11 @@ const dc = computed(() => {
     MARGINAL: 'This deal falls in the acceptable zone but offers limited upside. Small improvements in rent, expenses, or purchase price would move it to Good territory.',
     WEAK: 'Weak returns suggest overpayment, high expenses, or insufficient rent. The deal needs structural improvement before committing capital.',
     PASS: 'Returns fall below the threshold needed to justify illiquidity, management effort, and transaction costs. Better opportunities likely exist.',
-    LOSS: 'The numbers don\'t work at these inputs. Verify all inputs for errors; if correct, this is not an investable deal.',
-    DO_NOT_PROCEED: 'The wide gap between conservative and optimistic scenarios means this deal\'s success depends too heavily on things going right. Fix the fragile assumptions first.',
+    LOSS: "The numbers don't work at these inputs. Verify all inputs for errors; if correct, this is not an investable deal.",
+    DO_NOT_PROCEED: "The wide gap between conservative and optimistic scenarios means this deal's success depends too heavily on things going right. Fix the fragile assumptions first.",
   }
   const dealContext = dealContextMap[verdict] || ''
 
-  // Strategy Context (Mode 4)
   let strategyContext = ''
   if (d.strategyWinner) {
     if (d.strategyWinner.includes('BRRRR')) strategyContext = 'BRRRR dominates due to capital recovery via refinance. Infinite ROI auto-wins when all capital is returned.'
@@ -1911,13 +2015,11 @@ function deleteScenario(id) {
 // ============================================================
 onMounted(() => {
   if (process.client) {
-    // Load saved scenarios
     try {
       const stored = localStorage.getItem(STORAGE_KEY)
       if (stored) savedScenarios.value = JSON.parse(stored)
     } catch {}
 
-    // URL params
     const params = new URLSearchParams(window.location.search)
     const map = {
       p: 'purchasePrice', rh: 'rehab', dp: 'downPayment', lr: 'mortgageRate',
@@ -1975,7 +2077,6 @@ async function exportPDF() {
     const inp = inputs.value
     const pageW = 210
 
-    // Header
     doc.setFillColor(30, 58, 95)
     doc.rect(0, 0, pageW, 28, 'F')
     doc.setTextColor(255, 255, 255)
@@ -1986,7 +2087,6 @@ async function exportPDF() {
     doc.setFont('helvetica', 'normal')
     doc.text(`Strategy: ${modeLabel(currentMode.value)} | Generated: ${new Date().toLocaleDateString()} | arvcalc.com`, 14, 22)
 
-    // Verdict box
     doc.setFillColor(240, 253, 244)
     doc.rect(14, 34, 182, 18, 'F')
     doc.setTextColor(22, 101, 52)
@@ -1998,7 +2098,6 @@ async function exportPDF() {
     doc.setTextColor(50, 50, 50)
     doc.text(dc.value.finalDecisionLine || '', 20, 50)
 
-    // Key Metrics
     doc.setFontSize(11)
     doc.setFont('helvetica', 'bold')
     doc.setTextColor(30, 58, 95)
@@ -2036,7 +2135,6 @@ async function exportPDF() {
       y += 7
     })
 
-    // Action block
     y += 5
     doc.setFontSize(11)
     doc.setFont('helvetica', 'bold')
@@ -2051,7 +2149,6 @@ async function exportPDF() {
     doc.text(actionLines, 14, y)
     y += actionLines.length * 5 + 5
 
-    // Inputs
     doc.setFontSize(11)
     doc.setFont('helvetica', 'bold')
     doc.setTextColor(30, 58, 95)
@@ -2077,7 +2174,6 @@ async function exportPDF() {
       }
     })
 
-    // Disclaimer
     y = 282
     doc.setFontSize(7)
     doc.setTextColor(150, 150, 150)
@@ -2100,7 +2196,7 @@ const faqs = reactive([
   },
   {
     q: 'How is real estate ROI different from cap rate?',
-    a: 'Cap rate measures a property\'s income yield independent of financing (NOI ÷ Purchase Price). ROI measures your personal investment return including your specific financing structure, hold period, appreciation, tax benefits, and sale proceeds. Two investors buying the same property can have very different ROIs based on their down payment, loan terms, and hold period.',
+    a: "Cap rate measures a property's income yield independent of financing (NOI ÷ Purchase Price). ROI measures your personal investment return including your specific financing structure, hold period, appreciation, tax benefits, and sale proceeds. Two investors buying the same property can have very different ROIs based on their down payment, loan terms, and hold period.",
     open: false,
   },
   {
@@ -2115,7 +2211,7 @@ const faqs = reactive([
   },
   {
     q: 'What is the 70% Rule for house flipping?',
-    a: 'The 70% Rule states: Maximum Allowable Offer (MAO) = ARV × 70% − Rehab Costs. If your purchase price is below MAO, the deal has sufficient margin for profit and contingencies. It\'s a quick filter, not a guarantee — actual profitability depends on your specific financing costs, holding period, and selling costs. Our flip calculator shows your MAO alongside full profitability analysis.',
+    a: "The 70% Rule states: Maximum Allowable Offer (MAO) = ARV × 70% − Rehab Costs. If your purchase price is below MAO, the deal has sufficient margin for profit and contingencies. It's a quick filter, not a guarantee — actual profitability depends on your specific financing costs, holding period, and selling costs. Our flip calculator shows your MAO alongside full profitability analysis.",
     open: false,
   },
   {
@@ -2135,7 +2231,7 @@ const faqs = reactive([
   },
   {
     q: 'How accurate are the default operating expense percentages?',
-    a: 'Our default 30% operating expense ratio reflects a typical single-family rental excluding debt service. This covers maintenance (8%), property management (10%), and reserves (12%). Multi-family properties often run 35–45%. Properties with high HOA, frequent repairs, or intensive management may run 40–50%. Always adjust based on your specific property and management situation. Use the calculator\'s customizable inputs to reflect your actual expenses.',
+    a: 'Our default 30% operating expense ratio reflects a typical single-family rental excluding debt service. This covers maintenance (8%), property management (10%), and reserves (12%). Multi-family properties often run 35–45%. Properties with high HOA, frequent repairs, or intensive management may run 40–50%. Always adjust based on your specific property and management situation.',
     open: false,
   },
   {
