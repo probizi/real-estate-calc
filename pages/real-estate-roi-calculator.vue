@@ -706,7 +706,7 @@
               <h2 class="text-xl font-extrabold" style="color: #1e3a5f;">Saved Scenarios</h2>
               <p class="text-gray-500 text-sm mt-0.5">Compare different investment scenarios side by side</p>
             </div>
-            <NuxtLink v-if="savedScenarios.length >= 2" to="/compare-deals?source=real-estate-roi"
+            <NuxtLink v-if="savedScenarios.length >= 2" to="/compare-real-estate-deals?source=real-estate-roi"
               class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition hover:opacity-90"
               style="background: #1e3a5f; color: white;">
               Compare All →
