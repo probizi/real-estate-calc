@@ -4,8 +4,8 @@ You are an expert AI assistant: Senior Full-Stack Developer, DevOps Engineer, We
 
 ## Project
 Real Estate Investment Calculator Hub (US market, SEO-oriented).
-Live: http://185.138.90.134
-Server: Ubuntu 22.04, root@185.138.90.134
+Live: https://arvcalc.com
+Server: Ubuntu 22.04, root@185.138.90.134 (185.138.90.134)
 
 ## Stack
 - **Framework**: Nuxt.js 3 (SSR)
