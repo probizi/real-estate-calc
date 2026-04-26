@@ -612,12 +612,16 @@
           <!-- Net Wealth Crossover Chart -->
           <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
             <h3 class="text-sm font-bold mb-3" style="color:#1e3a5f;">Net Wealth Crossover</h3>
-            <canvas ref="wealthChartRef" height="220"></canvas>
+            <div class="relative" style="height:220px;">
+              <canvas ref="wealthChartRef"></canvas>
+            </div>
           </div>
           <!-- Monthly Cost Bar -->
           <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
             <h3 class="text-sm font-bold mb-3" style="color:#1e3a5f;">Monthly Cost Breakdown</h3>
-            <canvas ref="costChartRef" height="220"></canvas>
+            <div class="relative" style="height:220px;">
+              <canvas ref="costChartRef"></canvas>
+            </div>
           </div>
         </div>
 
@@ -625,14 +629,18 @@
           <!-- Cumulative Cost Chart -->
           <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
             <h3 class="text-sm font-bold mb-3" style="color:#1e3a5f;">Cumulative Costs Over Time</h3>
-            <canvas ref="cumulativeChartRef" height="220"></canvas>
+            <div class="relative" style="height:220px;">
+              <canvas ref="cumulativeChartRef"></canvas>
+            </div>
           </div>
           <!-- Lifestyle Radar or Sensitivity Appreciation -->
           <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
             <h3 class="text-sm font-bold mb-3" style="color:#1e3a5f;">
               {{ currentMode === 3 ? 'Lifestyle Radar' : 'Appreciation × Rent Increase Wealth Diff (Year 10)' }}
             </h3>
-            <canvas ref="radarChartRef" height="220"></canvas>
+            <div class="relative" style="height:220px;">
+              <canvas ref="radarChartRef"></canvas>
+            </div>
           </div>
         </div>
 
