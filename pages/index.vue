@@ -316,6 +316,24 @@
             </span>
           </NuxtLink>
 
+          <!-- Property Cash Flow Calculator -->
+          <NuxtLink to="/property-cash-flow-calculator"
+            class="group bg-white p-7 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-yellow-400 flex flex-col">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-transform group-hover:scale-110" style="background: #1e3a5f;">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-lg font-bold mb-2" style="color: #1e3a5f;">Property Cash Flow Calculator</h3>
+              <p class="text-sm text-gray-500 mb-4 leading-relaxed">Cash Flow Verdict + Break-even Occupancy + DCR — Year 1 stabilized monthly cash flow with Composition Breakdown and Saved Scenarios</p>
+            </div>
+            <span class="inline-flex items-center gap-1 text-sm font-bold transition group-hover:gap-2" style="color: #f59e0b;">
+              Calculate Now
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </span>
+          </NuxtLink>
+
           <!-- Real Estate ROI Calculator -->
           <NuxtLink to="/real-estate-roi-calculator"
             class="group bg-white p-7 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-yellow-400 flex flex-col">
