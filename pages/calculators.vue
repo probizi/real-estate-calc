@@ -210,18 +210,6 @@
               <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             </div>
             <div class="flex-1">
-              <h3 class="font-bold text-base mb-1 text-gray-500">Property Cash Flow Calculator</h3>
-              <p class="text-sm text-gray-400 leading-relaxed mb-3">Detailed monthly cash flow projection with rent, expenses, debt service, and reserves.</p>
-            </div>
-            <span class="inline-flex items-center gap-1 text-sm font-semibold text-gray-400">In development</span>
-          </div>
-
-          <div class="group bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col opacity-70 cursor-not-allowed relative">
-            <div class="absolute top-3 right-3"><span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-gray-200 text-gray-600">Coming Soon</span></div>
-            <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background: #94a3b8;">
-              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            </div>
-            <div class="flex-1">
               <h3 class="font-bold text-base mb-1 text-gray-500">Vacancy Rate Calculator</h3>
               <p class="text-sm text-gray-400 leading-relaxed mb-3">Estimate vacancy impact on NOI and cash flow — market and property-specific scenarios.</p>
             </div>
