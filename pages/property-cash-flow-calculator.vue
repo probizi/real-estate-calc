@@ -154,7 +154,7 @@
                   <label class="block text-sm font-semibold text-gray-700 mb-1" for="down_payment_pct">Down Payment %</label>
                   <div class="relative">
                     <input id="down_payment_pct" v-model.number="inp.down_payment_pct" type="number" min="0" max="100" step="0.5"
-                      placeholder="25"
+                      placeholder="Enter down payment percentage"
                       class="w-full pl-4 pr-8 py-3 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 focus:outline-none text-gray-900 font-semibold text-sm transition" />
                     <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
                   </div>
@@ -163,7 +163,7 @@
                   <label class="block text-sm font-semibold text-gray-700 mb-1" for="mortgage_rate_pct">Mortgage Rate %</label>
                   <div class="relative">
                     <input id="mortgage_rate_pct" v-model.number="inp.mortgage_rate_pct" type="number" min="0" max="30" step="0.125"
-                      placeholder="7.5"
+                      placeholder="Enter mortgage interest rate"
                       class="w-full pl-4 pr-8 py-3 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 focus:outline-none text-gray-900 font-semibold text-sm transition" />
                     <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
                   </div>
@@ -171,14 +171,14 @@
                 <div>
                   <label class="block text-sm font-semibold text-gray-700 mb-1" for="loan_term_years">Loan Term (years)</label>
                   <input id="loan_term_years" v-model.number="inp.loan_term_years" type="number" min="1" max="40" step="1"
-                    placeholder="30"
+                    placeholder="Enter loan term in years"
                     class="w-full px-4 py-3 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 focus:outline-none text-gray-900 font-semibold text-sm transition" />
                 </div>
                 <div>
                   <label class="block text-sm font-semibold text-gray-700 mb-1" for="closing_costs_pct">Closing Costs %</label>
                   <div class="relative">
                     <input id="closing_costs_pct" v-model.number="inp.closing_costs_pct" type="number" min="0" max="10" step="0.1"
-                      placeholder="3"
+                      placeholder="Enter closing costs percentage"
                       class="w-full pl-4 pr-8 py-3 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 focus:outline-none text-gray-900 font-semibold text-sm transition" />
                     <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
                   </div>
@@ -206,7 +206,7 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-semibold text-sm">$</span>
                     <input id="other_monthly_income" v-model.number="inp.other_monthly_income" type="number" min="0" step="10"
-                      placeholder="0"
+                      placeholder="Enter other monthly income"
                       class="w-full pl-7 pr-4 py-3 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 focus:outline-none text-gray-900 font-semibold text-sm transition" />
                   </div>
                 </div>
@@ -214,7 +214,7 @@
                   <label class="block text-sm font-semibold text-gray-700 mb-1" for="vacancy_pct">Vacancy %</label>
                   <div class="relative">
                     <input id="vacancy_pct" v-model.number="inp.vacancy_pct" type="number" min="0" max="100" step="0.5"
-                      placeholder="8"
+                      placeholder="Enter vacancy rate"
                       class="w-full pl-4 pr-8 py-3 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 focus:outline-none text-gray-900 font-semibold text-sm transition" />
                     <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
                   </div>
@@ -246,14 +246,14 @@
                   <label class="block text-sm font-semibold text-gray-700 mb-1">Property Tax</label>
                   <div v-if="opexMode === 'pct'" class="relative">
                     <input v-model.number="inp.property_tax_pct" type="number" min="0" max="5" step="0.1"
-                      placeholder="1.2"
+                      placeholder="Enter property tax rate"
                       class="w-full pl-4 pr-8 py-3 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 focus:outline-none text-gray-900 font-semibold text-sm transition" />
                     <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
                   </div>
                   <div v-else class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-semibold text-sm">$</span>
                     <input v-model.number="inp.property_tax_dollar" type="number" min="0" step="100"
-                      placeholder="Annual amount"
+                      placeholder="Enter annual property taxes"
                       class="w-full pl-7 pr-4 py-3 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 focus:outline-none text-gray-900 font-semibold text-sm transition" />
                   </div>
                 </div>
@@ -262,7 +262,7 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-semibold text-sm">$</span>
                     <input v-model.number="inp.insurance_annual" type="number" min="0" step="100"
-                      placeholder="1800"
+                      placeholder="Enter annual insurance cost"
                       class="w-full pl-7 pr-4 py-3 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 focus:outline-none text-gray-900 font-semibold text-sm transition" />
                   </div>
                 </div>
@@ -273,7 +273,7 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-semibold text-sm">$</span>
                     <input v-model.number="inp.hoa_monthly" type="number" min="0" step="10"
-                      placeholder="0"
+                      placeholder="Enter monthly HOA fees"
                       class="w-full pl-7 pr-4 py-3 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 focus:outline-none text-gray-900 font-semibold text-sm transition" />
                   </div>
                 </div>
@@ -281,7 +281,7 @@
                   <label class="block text-sm font-semibold text-gray-700 mb-1">Property Mgmt %</label>
                   <div class="relative">
                     <input v-model.number="inp.pm_pct" type="number" min="0" max="20" step="0.5"
-                      placeholder="8"
+                      placeholder="Enter management percentage"
                       class="w-full pl-4 pr-8 py-3 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 focus:outline-none text-gray-900 font-semibold text-sm transition" />
                     <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
                   </div>
@@ -290,7 +290,7 @@
                   <label class="block text-sm font-semibold text-gray-700 mb-1">Maintenance %</label>
                   <div class="relative">
                     <input v-model.number="inp.maint_pct" type="number" min="0" max="20" step="0.5"
-                      placeholder="5"
+                      placeholder="Enter maintenance percentage"
                       class="w-full pl-4 pr-8 py-3 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 focus:outline-none text-gray-900 font-semibold text-sm transition" />
                     <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
                   </div>
@@ -299,7 +299,7 @@
                   <label class="block text-sm font-semibold text-gray-700 mb-1">CapEx Reserve %</label>
                   <div class="relative">
                     <input v-model.number="inp.capex_pct" type="number" min="0" max="20" step="0.5"
-                      placeholder="5"
+                      placeholder="Enter CapEx reserve percentage"
                       class="w-full pl-4 pr-8 py-3 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 focus:outline-none text-gray-900 font-semibold text-sm transition" />
                     <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
                   </div>
@@ -309,7 +309,7 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-semibold text-sm">$</span>
                     <input v-model.number="inp.utilities_monthly" type="number" min="0" step="10"
-                      placeholder="0"
+                      placeholder="Enter monthly utilities"
                       class="w-full pl-7 pr-4 py-3 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 focus:outline-none text-gray-900 font-semibold text-sm transition" />
                   </div>
                 </div>
@@ -318,7 +318,7 @@
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-semibold text-sm">$</span>
                     <input v-model.number="inp.other_monthly" type="number" min="0" step="10"
-                      placeholder="0"
+                      placeholder="Enter other monthly expenses"
                       class="w-full pl-7 pr-4 py-3 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 focus:outline-none text-gray-900 font-semibold text-sm transition" />
                   </div>
                 </div>
