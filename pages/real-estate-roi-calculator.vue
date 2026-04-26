@@ -1,54 +1,6 @@
 <template>
   <div class="min-h-screen bg-gray-50">
 
-    <!-- JSON-LD Schema -->
-    <Head>
-      <title>Real Estate ROI Calculator — Verdict + Strategy + Risk Score | RealCalc</title>
-      <meta name="description" content="Free Real Estate ROI Calculator with Verdict, Strategy Winner, Risk Score, Capital Payback, IRR. Compare rental, flip, BRRRR strategies. 2026 investor rates." />
-      <meta name="robots" content="index, follow" />
-      <link rel="canonical" href="https://arvcalc.com/real-estate-roi-calculator" />
-      <meta property="og:title" content="Real Estate ROI Calculator — Verdict + Strategy + Risk Score | RealCalc" />
-      <meta property="og:description" content="Free Real Estate ROI Calculator with Verdict, Strategy Winner, Risk Score, Capital Payback, IRR. Compare rental, flip, BRRRR strategies. 2026 investor rates." />
-      <meta property="og:url" content="https://arvcalc.com/real-estate-roi-calculator" />
-      <meta property="og:type" content="website" />
-      <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "SoftwareApplication",
-            "name": "Real Estate ROI Calculator",
-            "url": "https://arvcalc.com/real-estate-roi-calculator",
-            "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Web",
-            "description": "Advanced real estate ROI calculator with Decision Engine, 4 strategy modes, Risk Score, and Verdict system for US investors.",
-            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-          },
-          {
-            "@type": "FAQPage",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": "What is a good ROI for real estate?",
-                "acceptedAnswer": { "@type": "Answer", "text": "A strong real estate ROI is generally 12–18%+ annualized. Cash-on-cash returns of 8–12% are considered good for rental properties. Our calculator provides context-aware verdicts based on your specific inputs." }
-              },
-              {
-                "@type": "Question",
-                "name": "How is real estate ROI calculated?",
-                "acceptedAnswer": { "@type": "Answer", "text": "Real estate ROI = (Total Profit / Total Capital Invested) × 100. For rentals, this includes rental income, appreciation, tax benefits, and sale proceeds minus all costs. For flips, it's net profit divided by total invested capital, annualized by holding period." }
-              },
-              {
-                "@type": "Question",
-                "name": "What is BRRRR strategy in real estate?",
-                "acceptedAnswer": { "@type": "Answer", "text": "BRRRR stands for Buy, Rehab, Rent, Refinance, Repeat. When done correctly, BRRRR can yield 'infinite ROI' by recovering all initial capital through the refinance." }
-              }
-            ]
-          }
-        ]
-      }
-      </script>
-    </Head>
-
     <!-- ═══════════════════════════════════════════════
          HEADER
     ═══════════════════════════════════════════════ -->
@@ -1227,6 +1179,61 @@
 
 <script setup>
 import { ref, computed, onMounted, reactive } from 'vue'
+
+// ─── SEO ─────────────────────────────────────────────────────────────────────
+useHead({
+  title: 'Real Estate ROI Calculator — Verdict + Strategy + Risk Score | RealCalc',
+  meta: [
+    { name: 'description', content: 'Free Real Estate ROI Calculator with Verdict, Strategy Winner, Risk Score, Capital Payback, IRR. Compare rental, flip, BRRRR strategies. 2026 investor rates.' },
+    { name: 'robots', content: 'index, follow' },
+    { property: 'og:title', content: 'Real Estate ROI Calculator — Verdict + Strategy + Risk Score | RealCalc' },
+    { property: 'og:description', content: 'Free Real Estate ROI Calculator with Verdict, Strategy Winner, Risk Score, Capital Payback, IRR. Compare rental, flip, BRRRR strategies. 2026 investor rates.' },
+    { property: 'og:url', content: 'https://arvcalc.com/real-estate-roi-calculator' },
+    { property: 'og:type', content: 'website' },
+  ],
+  link: [
+    { rel: 'canonical', href: 'https://arvcalc.com/real-estate-roi-calculator' },
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'SoftwareApplication',
+            name: 'Real Estate ROI Calculator',
+            url: 'https://arvcalc.com/real-estate-roi-calculator',
+            applicationCategory: 'FinanceApplication',
+            operatingSystem: 'Web',
+            description: 'Advanced real estate ROI calculator with Decision Engine, 4 strategy modes, Risk Score, and Verdict system for US investors.',
+            offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+          },
+          {
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: 'What is a good ROI for real estate?',
+                acceptedAnswer: { '@type': 'Answer', text: 'A strong real estate ROI is generally 12–18%+ annualized. Cash-on-cash returns of 8–12% are considered good for rental properties. Our calculator provides context-aware verdicts based on your specific inputs.' },
+              },
+              {
+                '@type': 'Question',
+                name: 'How is real estate ROI calculated?',
+                acceptedAnswer: { '@type': 'Answer', text: 'Real estate ROI = (Total Profit / Total Capital Invested) × 100. For rentals, this includes rental income, appreciation, tax benefits, and sale proceeds minus all costs. For flips, it\'s net profit divided by total invested capital, annualized by holding period.' },
+              },
+              {
+                '@type': 'Question',
+                name: 'What is BRRRR strategy in real estate?',
+                acceptedAnswer: { '@type': 'Answer', text: 'BRRRR stands for Buy, Rehab, Rent, Refinance, Repeat. When done correctly, BRRRR can yield \'infinite ROI\' by recovering all initial capital through the refinance.' },
+              },
+            ],
+          },
+        ],
+      }),
+    },
+  ],
+})
 
 // ============================================================
 // UI STATE

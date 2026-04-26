@@ -27,7 +27,7 @@
 
           <!-- CTA -->
           <div class="flex items-center gap-3">
-            <NuxtLink to="/login"   class="hidden md:inline text-sm font-semibold text-gray-600 hover:text-gray-900 transition">Sign in</NuxtLink>
+            <NuxtLink to="/pricing" class="hidden md:inline text-sm font-semibold text-gray-600 hover:text-gray-900 transition">Sign in</NuxtLink>
             <NuxtLink to="/pricing" class="inline-flex items-center gap-2 text-sm font-bold text-white px-5 py-2.5 rounded-lg transition hover:opacity-90" style="background: #f59e0b; color: #1e3a5f;">
               Get Started Free
             </NuxtLink>

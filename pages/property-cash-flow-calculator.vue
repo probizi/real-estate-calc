@@ -1,85 +1,6 @@
 <template>
   <div class="min-h-screen bg-gray-50">
 
-    <!-- JSON-LD Schema -->
-    <Head>
-      <title>Property Cash Flow Calculator — Monthly CF, DCR, Break-even Occupancy | RealCalc</title>
-      <meta name="description" content="Free Property Cash Flow Calculator with Cash Flow Verdict, Break-even Occupancy, DCR. Year 1 stabilized monthly cash flow. 2026 investor rates." />
-      <meta name="robots" content="index, follow" />
-      <link rel="canonical" href="https://arvcalc.com/property-cash-flow-calculator" />
-      <meta property="og:title" content="Property Cash Flow Calculator — Monthly CF, DCR, Break-even Occupancy | RealCalc" />
-      <meta property="og:description" content="Free Property Cash Flow Calculator with Cash Flow Verdict, Break-even Occupancy, DCR. Year 1 stabilized monthly cash flow. 2026 investor rates." />
-      <meta property="og:url" content="https://arvcalc.com/property-cash-flow-calculator" />
-      <meta property="og:type" content="website" />
-      <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "SoftwareApplication",
-            "name": "Property Cash Flow Calculator",
-            "url": "https://arvcalc.com/property-cash-flow-calculator",
-            "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Web",
-            "description": "Free Property Cash Flow Calculator with Cash Flow Verdict, Break-even Occupancy, DCR. Year 1 stabilized monthly cash flow. 2026 investor rates.",
-            "featureList": [
-              "Cash Flow Verdict (4 tiers: STRONG / GOOD / THIN / NEGATIVE)",
-              "Monthly Cash Flow primary output (Year 1 stabilized)",
-              "Break-even Occupancy with 5-tier interpretation + vacancy-months translation",
-              "DCR with plain-language interpretation",
-              "Operating Expense Ratio (OER)",
-              "Cash Flow Composition Breakdown signature visualization",
-              "Monthly Cash Flow Bar (12 months with vacancy)",
-              "Break-even Threshold visualization",
-              "3 sensitivity scenarios (Rent ±5%)",
-              "Rent × Vacancy sensitivity table with color zones",
-              "OpEx toggle %/$ mode",
-              "Cross-calculator invariants (NOI, DCR, CoC)",
-              "URL parameter import",
-              "PDF export",
-              "Saved Scenarios widget (up to 20)"
-            ],
-            "audience": {
-              "@type": "Audience",
-              "audienceType": "US real estate investors"
-            },
-            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-          },
-          {
-            "@type": "FAQPage",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": "Is this calculator for primary residence or investment property?",
-                "acceptedAnswer": { "@type": "Answer", "text": "Investment property only. Default rates are 7.5% Conventional, 25% down — investor financing, not primary residence rates. For primary residence analysis, use the Rent vs Buy Calculator." }
-              },
-              {
-                "@type": "Question",
-                "name": "What is Break-even Occupancy?",
-                "acceptedAnswer": { "@type": "Answer", "text": "Break-even Occupancy = (Total OpEx + Annual Debt Service) / Annual Gross Rent. It answers how much occupancy you need to break even. If 85%, you need 85% occupancy — meaning you can tolerate about 1.8 months of vacancy per year before losing money." }
-              },
-              {
-                "@type": "Question",
-                "name": "What does the Cash Flow Verdict mean?",
-                "acceptedAnswer": { "@type": "Answer", "text": "The Cash Flow Verdict is a 4-tier Decision Lite rating: STRONG (CF ≥ $300 AND DCR ≥ 1.25), GOOD (CF ≥ $100 AND DCR ≥ 1.10), THIN (CF $0-100 OR DCR 1.00-1.10), NEGATIVE (CF < $0 OR DCR < 1.00)." }
-              },
-              {
-                "@type": "Question",
-                "name": "How is Monthly Cash Flow calculated?",
-                "acceptedAnswer": { "@type": "Answer", "text": "Monthly Cash Flow = (NOI − Annual Debt Service) / 12. NOI = Effective Gross Income − Total Operating Expenses. EGI = Annual Gross Rent × (1 − Vacancy%). This is a Year 1 stabilized monthly average — actual months vary." }
-              },
-              {
-                "@type": "Question",
-                "name": "Can I save scenarios for comparison?",
-                "acceptedAnswer": { "@type": "Answer", "text": "Yes. The Saved Scenarios widget (directly below the calculator) lets you save up to 20 scenarios for free. All data is stored in your browser's localStorage — no account required. Use Compare Real Estate Deals to view them side by side." }
-              }
-            ]
-          }
-        ]
-      }
-      </script>
-    </Head>
-
     <!-- ═══════════════════════════════════════════════
          HEADER
     ═══════════════════════════════════════════════ -->
@@ -1351,6 +1272,89 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
+
+// ─── SEO ─────────────────────────────────────────────────────────────────────
+useHead({
+  title: 'Property Cash Flow Calculator — Monthly CF, DCR, Break-even Occupancy | RealCalc',
+  meta: [
+    { name: 'description', content: 'Free Property Cash Flow Calculator with Cash Flow Verdict, Break-even Occupancy, DCR. Year 1 stabilized monthly cash flow. 2026 investor rates.' },
+    { name: 'robots', content: 'index, follow' },
+    { property: 'og:title', content: 'Property Cash Flow Calculator — Monthly CF, DCR, Break-even Occupancy | RealCalc' },
+    { property: 'og:description', content: 'Free Property Cash Flow Calculator with Cash Flow Verdict, Break-even Occupancy, DCR. Year 1 stabilized monthly cash flow. 2026 investor rates.' },
+    { property: 'og:url', content: 'https://arvcalc.com/property-cash-flow-calculator' },
+    { property: 'og:type', content: 'website' },
+  ],
+  link: [
+    { rel: 'canonical', href: 'https://arvcalc.com/property-cash-flow-calculator' },
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'SoftwareApplication',
+            name: 'Property Cash Flow Calculator',
+            url: 'https://arvcalc.com/property-cash-flow-calculator',
+            applicationCategory: 'FinanceApplication',
+            operatingSystem: 'Web',
+            description: 'Free Property Cash Flow Calculator with Cash Flow Verdict, Break-even Occupancy, DCR. Year 1 stabilized monthly cash flow. 2026 investor rates.',
+            featureList: [
+              'Cash Flow Verdict (4 tiers: STRONG / GOOD / THIN / NEGATIVE)',
+              'Monthly Cash Flow primary output (Year 1 stabilized)',
+              'Break-even Occupancy with 5-tier interpretation + vacancy-months translation',
+              'DCR with plain-language interpretation',
+              'Operating Expense Ratio (OER)',
+              'Cash Flow Composition Breakdown signature visualization',
+              'Monthly Cash Flow Bar (12 months with vacancy)',
+              'Break-even Threshold visualization',
+              '3 sensitivity scenarios (Rent ±5%)',
+              'Rent × Vacancy sensitivity table with color zones',
+              'OpEx toggle %/$ mode',
+              'Cross-calculator invariants (NOI, DCR, CoC)',
+              'URL parameter import',
+              'PDF export',
+              'Saved Scenarios widget (up to 20)',
+            ],
+            audience: { '@type': 'Audience', audienceType: 'US real estate investors' },
+            offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+          },
+          {
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: 'Is this calculator for primary residence or investment property?',
+                acceptedAnswer: { '@type': 'Answer', text: 'Investment property only. Default rates are 7.5% Conventional, 25% down — investor financing, not primary residence rates. For primary residence analysis, use the Rent vs Buy Calculator.' },
+              },
+              {
+                '@type': 'Question',
+                name: 'What is Break-even Occupancy?',
+                acceptedAnswer: { '@type': 'Answer', text: 'Break-even Occupancy = (Total OpEx + Annual Debt Service) / Annual Gross Rent. It answers how much occupancy you need to break even. If 85%, you need 85% occupancy — meaning you can tolerate about 1.8 months of vacancy per year before losing money.' },
+              },
+              {
+                '@type': 'Question',
+                name: 'What does the Cash Flow Verdict mean?',
+                acceptedAnswer: { '@type': 'Answer', text: 'The Cash Flow Verdict is a 4-tier Decision Lite rating: STRONG (CF ≥ $300 AND DCR ≥ 1.25), GOOD (CF ≥ $100 AND DCR ≥ 1.10), THIN (CF $0-100 OR DCR 1.00-1.10), NEGATIVE (CF < $0 OR DCR < 1.00).' },
+              },
+              {
+                '@type': 'Question',
+                name: 'How is Monthly Cash Flow calculated?',
+                acceptedAnswer: { '@type': 'Answer', text: 'Monthly Cash Flow = (NOI − Annual Debt Service) / 12. NOI = Effective Gross Income − Total Operating Expenses. EGI = Annual Gross Rent × (1 − Vacancy%). This is a Year 1 stabilized monthly average — actual months vary.' },
+              },
+              {
+                '@type': 'Question',
+                name: 'Can I save scenarios for comparison?',
+                acceptedAnswer: { '@type': 'Answer', text: 'Yes. The Saved Scenarios widget (directly below the calculator) lets you save up to 20 scenarios for free. All data is stored in your browser\'s localStorage — no account required. Use Compare Real Estate Deals to view them side by side.' },
+              },
+            ],
+          },
+        ],
+      }),
+    },
+  ],
+})
 
 // ============================================================
 // STATE
