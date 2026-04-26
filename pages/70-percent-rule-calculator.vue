@@ -389,7 +389,7 @@
             <!-- Primary metric header -->
             <div class="text-center">
               <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">Maximum Allowable Offer</p>
-              <p class="text-xs text-gray-400">Based on {{ calcMode === 'standard' ? '70% Rule' : customPct + '% Rule' }}</p>
+              <p class="text-xs text-gray-400">Based on {{ calcMode === 'standard' ? '70% Rule' : (customPct || 70) + '% Rule' }}</p>
             </div>
 
             <!-- Rehab > 80% extreme: forced red banner before result -->
@@ -524,7 +524,7 @@
               </div>
               <div v-if="customPct && Math.abs(customPct - 65) > 0.5 && Math.abs(customPct - 70) > 0.5 && Math.abs(customPct - 75) > 0.5"
                 class="rounded-xl border-2 border-amber-400 bg-amber-50 p-2 text-center">
-                <p class="text-xs font-bold text-amber-800">Your {{ customPct }}% MAO</p>
+                <p class="text-xs font-bold text-amber-800">Your {{ customPct || 70 }}% MAO</p>
                 <p class="text-sm font-extrabold text-amber-900 mt-0.5">{{ formatCurrency(maoDisplay) }}</p>
               </div>
             </div>
@@ -1405,7 +1405,7 @@ const isNavExpanded = ref(false)
 const calcMode = ref('standard')
 const arv = ref(null)
 const rehab = ref(null)
-const customPct = ref(70)
+const customPct = ref(null)
 const purchasePrice = ref(null)
 const wholesaleFee = ref(null)
 const financingBuffer = ref(false)

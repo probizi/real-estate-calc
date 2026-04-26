@@ -200,7 +200,7 @@
                   <div class="flex gap-2">
                     <div class="relative flex-1">
                       <input v-model.number="downPayment" type="number" min="0" max="100" step="0.5"
-                        placeholder="25"
+                        placeholder="Enter down payment %"
                         class="w-full px-4 py-3.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-sm transition pr-8"/>
                       <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">%</span>
                     </div>
@@ -234,7 +234,7 @@
                     <label class="block text-xs font-semibold text-gray-700 mb-1">Interest Rate</label>
                     <div class="relative">
                       <input v-model.number="loanRate" type="number" min="0.1" max="25" step="0.05"
-                        placeholder="7.5"
+                        placeholder="Enter interest rate %"
                         class="w-full px-4 py-3.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-sm transition pr-8"/>
                       <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">%</span>
                     </div>
@@ -271,7 +271,7 @@
                       :style="taxMode === 'dollar' ? 'background:#1e3a5f;' : ''">Dollar Amount</button>
                   </div>
                   <div v-if="taxMode === 'pct'" class="relative">
-                    <input v-model.number="taxPct" type="number" min="0" max="10" step="0.1" placeholder="1.2"
+                    <input v-model.number="taxPct" type="number" min="0" max="10" step="0.1" placeholder="Enter tax rate %"
                       class="w-full px-4 py-3.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-sm transition pr-8"/>
                     <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">%</span>
                   </div>
@@ -288,7 +288,7 @@
                   <label class="block text-xs font-semibold text-gray-700 mb-1">Annual Home Insurance</label>
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
-                    <input v-model.number="annualInsurance" type="number" min="0" step="100" placeholder="1800"
+                    <input v-model.number="annualInsurance" type="number" min="0" step="100" placeholder="Enter annual insurance $"
                       class="w-full pl-8 pr-4 py-3.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-sm transition"/>
                   </div>
                   <p class="text-xs text-gray-400 mt-1">Investor rate default $1,800/yr; FL/TX may be higher</p>
@@ -299,7 +299,7 @@
                   <label class="block text-xs font-semibold text-gray-700 mb-1">HOA Fees (Monthly)</label>
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
-                    <input v-model.number="hoaMonthly" type="number" min="0" step="25" placeholder="0"
+                    <input v-model.number="hoaMonthly" type="number" min="0" step="25" placeholder="Enter monthly HOA $"
                       class="w-full pl-8 pr-4 py-3.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-sm transition"/>
                   </div>
                 </div>
@@ -308,7 +308,7 @@
                 <div v-if="pmIActive">
                   <label class="block text-xs font-semibold text-gray-700 mb-1">PMI Rate</label>
                   <div class="relative">
-                    <input v-model.number="pmiRate" type="number" min="0.1" max="3" step="0.1" placeholder="0.75"
+                    <input v-model.number="pmiRate" type="number" min="0.1" max="3" step="0.1" placeholder="Enter PMI rate %"
                       class="w-full px-4 py-3.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-sm transition pr-8"/>
                     <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">%</span>
                   </div>
@@ -342,7 +342,7 @@
                   <div>
                     <label class="block text-xs font-semibold text-gray-700 mb-1">Vacancy Rate</label>
                     <div class="relative">
-                      <input v-model.number="vacancyPct" type="number" min="0" max="50" step="0.5" placeholder="8"
+                      <input v-model.number="vacancyPct" type="number" min="0" max="50" step="0.5" placeholder="Enter vacancy %"
                         class="w-full px-4 py-3.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-sm transition pr-8"/>
                       <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">%</span>
                     </div>
@@ -351,7 +351,7 @@
                   <div>
                     <label class="block text-xs font-semibold text-gray-700 mb-1">OpEx % of Rent</label>
                     <div class="relative">
-                      <input v-model.number="opexPct" type="number" min="0" max="80" step="1" placeholder="30"
+                      <input v-model.number="opexPct" type="number" min="0" max="80" step="1" placeholder="Enter OpEx % of rent"
                         class="w-full px-4 py-3.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-sm transition pr-8"/>
                       <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">%</span>
                     </div>
@@ -375,7 +375,7 @@
                     <label class="block text-xs font-semibold text-gray-700 mb-1">Extra Monthly Principal</label>
                     <div class="relative">
                       <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">$</span>
-                      <input v-model.number="extraPrincipal" type="number" min="0" step="50" placeholder="0"
+                      <input v-model.number="extraPrincipal" type="number" min="0" step="50" placeholder="Extra $/month (optional)"
                         class="w-full pl-8 pr-4 py-3.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-sm transition"/>
                     </div>
                     <p class="text-xs text-gray-400 mt-1">Shortens payoff, not payment</p>
@@ -383,7 +383,7 @@
                   <div>
                     <label class="block text-xs font-semibold text-gray-700 mb-1">Closing Costs</label>
                     <div class="relative">
-                      <input v-model.number="closingCostsPct" type="number" min="0" max="10" step="0.1" placeholder="2"
+                      <input v-model.number="closingCostsPct" type="number" min="0" max="10" step="0.1" placeholder="Enter closing costs %"
                         class="w-full px-4 py-3.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-sm transition pr-8"/>
                       <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">%</span>
                     </div>
@@ -392,7 +392,7 @@
                 <div>
                   <label class="block text-xs font-semibold text-gray-700 mb-1">Points Paid</label>
                   <div class="relative">
-                    <input v-model.number="pointsPaid" type="number" min="0" max="5" step="0.25" placeholder="0"
+                    <input v-model.number="pointsPaid" type="number" min="0" max="5" step="0.25" placeholder="Points paid (optional)"
                       class="w-full px-4 py-3.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-sm transition pr-8"/>
                     <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-bold text-sm">pts</span>
                   </div>
@@ -1889,38 +1889,38 @@ const shareSuccess = ref(false)
 
 // Core inputs
 const propertyPrice = ref(null)
-const downPayment = ref(25)
+const downPayment = ref(null)
 const loanType = ref('Conventional')
-const loanRate = ref(7.5)
+const loanRate = ref(null)
 const loanTerm = ref(30)
 
 // Tax & Insurance
 const taxMode = ref('pct')
-const taxPct = ref(1.2)
+const taxPct = ref(null)
 const taxDollar = ref(null)
-const annualInsurance = ref(1800)
-const hoaMonthly = ref(0)
-const pmiRate = ref(0.75)
+const annualInsurance = ref(null)
+const hoaMonthly = ref(null)
+const pmiRate = ref(null)
 
 // Mode
 const currentMode = ref(1)
 
 // Mode 2
 const monthlyRent = ref(null)
-const vacancyPct = ref(8)
-const opexPct = ref(30)
+const vacancyPct = ref(null)
+const opexPct = ref(null)
 
 // Advanced
 const showAdvanced = ref(false)
-const extraPrincipal = ref(0)
-const closingCostsPct = ref(2)
-const pointsPaid = ref(0)
+const extraPrincipal = ref(null)
+const closingCostsPct = ref(null)
+const pointsPaid = ref(null)
 
 // Mode 3 compare scenarios
 const compareScenarios = ref([
-  { loanType: 'Conventional', rate: 7.5, term: 30, down: 25 },
-  { loanType: 'Conventional', rate: 7.0, term: 15, down: 25 },
-  { loanType: 'DSCR', rate: 8.25, term: 30, down: 25 }
+  { loanType: 'Conventional', rate: null, term: 30, down: null },
+  { loanType: 'Conventional', rate: null, term: 15, down: null },
+  { loanType: 'DSCR', rate: null, term: 30, down: null }
 ])
 
 // Scenario Panel
@@ -1959,21 +1959,21 @@ const loanAmount = computed(() => {
 const monthlyTax = computed(() => {
   if (!propertyPrice.value) return 0
   if (taxMode.value === 'pct') {
-    return (propertyPrice.value * ((taxPct.value || 1.2) / 100)) / 12
+    return (propertyPrice.value * ((taxPct.value || 0) / 100)) / 12
   }
   return (taxDollar.value || 0) / 12
 })
 
-const monthlyInsurance = computed(() => (annualInsurance.value || 1800) / 12)
+const monthlyInsurance = computed(() => (annualInsurance.value || 0) / 12)
 
 const monthlyPMI = computed(() => {
   if (!pmIActive.value) return 0
-  return loanAmount.value * ((pmiRate.value || 0.75) / 100) / 12
+  return loanAmount.value * ((pmiRate.value || 0) / 100) / 12
 })
 
 const monthlyPI = computed(() => {
-  if (!loanAmount.value || loanAmount.value <= 0) return 0
-  const r = (loanRate.value || 7.5) / 100 / 12
+  if (!loanAmount.value || loanAmount.value <= 0 || !loanRate.value) return 0
+  const r = loanRate.value / 100 / 12
   const n = (loanTerm.value || 30) * 12
   if (r === 0) return loanAmount.value / n
   return loanAmount.value * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1)
@@ -1984,13 +1984,13 @@ const monthlyPITI = computed(() => {
 })
 
 const hasResult = computed(() => {
-  return !!propertyPrice.value && propertyPrice.value >= 10000 && !isAllCash.value
+  return !!propertyPrice.value && propertyPrice.value >= 10000 && !!loanRate.value && !!downPayment.value && !isAllCash.value
 })
 
 // Total cash to close
 const totalCashToClose = computed(() => {
   if (!propertyPrice.value) return 0
-  const cc = propertyPrice.value * ((closingCostsPct.value || 2) / 100)
+  const cc = propertyPrice.value * ((closingCostsPct.value || 0) / 100)
   const ptsCost = loanAmount.value * ((pointsPaid.value || 0) / 100)
   return downPaymentAmount.value + cc + ptsCost
 })
@@ -2005,13 +2005,13 @@ const totalPayments = computed(() => monthlyPI.value * (loanTerm.value || 30) * 
 
 // Effective APR (simplified: accounts for points + closing costs)
 const effectiveAPR = computed(() => {
-  if (!loanAmount.value || !monthlyPI.value) return loanRate.value || 7.5
+  if (!loanAmount.value || !monthlyPI.value) return loanRate.value || 0
   const n = (loanTerm.value || 30) * 12
   const netLoan = loanAmount.value - loanAmount.value * ((pointsPaid.value || 0) / 100)
-  if (netLoan <= 0) return loanRate.value || 7.5
+  if (netLoan <= 0) return loanRate.value || 0
   // Solve for monthly rate using Newton's method
   const pmt = monthlyPI.value
-  let r = (loanRate.value || 7.5) / 100 / 12
+  let r = (loanRate.value || 0) / 100 / 12
   for (let i = 0; i < 20; i++) {
     const f = netLoan - pmt * (1 - Math.pow(1 + r, -n)) / r
     const df = pmt * (1 - Math.pow(1 + r, -n)) / (r * r) - pmt * n * Math.pow(1 + r, -n - 1) / r
@@ -2024,14 +2024,14 @@ const effectiveAPR = computed(() => {
 // First month breakdown
 const firstMonthInterest = computed(() => {
   if (!loanAmount.value) return 0
-  return loanAmount.value * ((loanRate.value || 7.5) / 100 / 12)
+  return loanAmount.value * ((loanRate.value || 0) / 100 / 12)
 })
 const firstMonthPrincipal = computed(() => Math.max(0, monthlyPI.value - firstMonthInterest.value))
 
 // Amortization schedule (simplified, yearly points for chart)
 const amortSchedule = computed(() => {
   if (!loanAmount.value || !monthlyPI.value) return []
-  const r = (loanRate.value || 7.5) / 100 / 12
+  const r = (loanRate.value || 0) / 100 / 12
   const n = (loanTerm.value || 30) * 12
   const extra = extraPrincipal.value || 0
   let balance = loanAmount.value
@@ -2057,7 +2057,7 @@ const amortSchedule = computed(() => {
 // Extra principal payoff calculation
 const earlyPayoffMonths = computed(() => {
   if (!extraPrincipal.value || !loanAmount.value || !monthlyPI.value) return 0
-  const r = (loanRate.value || 7.5) / 100 / 12
+  const r = (loanRate.value || 0) / 100 / 12
   const extra = extraPrincipal.value
   let balance = loanAmount.value
   const stdPayoff = (loanTerm.value || 30) * 12
@@ -2073,7 +2073,7 @@ const earlyPayoffMonths = computed(() => {
 
 const interestSaved = computed(() => {
   if (!earlyPayoffMonths.value) return 0
-  const r = (loanRate.value || 7.5) / 100 / 12
+  const r = (loanRate.value || 0) / 100 / 12
   const extra = extraPrincipal.value
   let balance = loanAmount.value
   let actualInterest = 0

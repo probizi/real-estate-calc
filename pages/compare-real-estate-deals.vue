@@ -1881,8 +1881,8 @@ const screeningCriteria = ref({
 })
 
 // GLOBAL MARKET ASSUMPTIONS
-const globalAppreciation = ref(3.0)
-const globalRentGrowth = ref(3.0)
+const globalAppreciation = ref(null)
+const globalRentGrowth = ref(null)
 const advancedMarketMode = ref(false)
 
 // DEAL COLORS
@@ -2709,8 +2709,8 @@ const compareResults = computed(() => {
     const deal = deals.value[i]
     const apprecRate = (advancedMarketMode.value && deal.appreciationOverride != null)
       ? deal.appreciationOverride
-      : globalAppreciation.value
-    const rentGrowthRate = globalRentGrowth.value
+      : (globalAppreciation.value ?? 3)
+    const rentGrowthRate = globalRentGrowth.value ?? 3
 
     let r = null
     if (deal.strategy === 'rental') r = computeRentalDeal(deal, apprecRate, rentGrowthRate)
@@ -2760,8 +2760,8 @@ const scenarioWinnerChanged = computed(() => {
   if (activeScenario.value === 'base' || compareResults.value.length < 2) return false
   const apprecDelta = activeScenario.value === 'conservative' ? -2 : 1
   const rentDelta = activeScenario.value === 'conservative' ? -2 : 1
-  const scenApprecRate = globalAppreciation.value + apprecDelta
-  const scenRentRate = globalRentGrowth.value + rentDelta
+  const scenApprecRate = (globalAppreciation.value ?? 3) + apprecDelta
+  const scenRentRate = (globalRentGrowth.value ?? 3) + rentDelta
 
   const scenResults = []
   for (let i = 0; i < dealCount.value; i++) {
@@ -2923,9 +2923,9 @@ function runBreakEven() {
 
   // Get reference total return
   let refResult = null
-  if (refDeal.strategy === 'rental') refResult = computeRentalDeal(refDeal, globalAppreciation.value, globalRentGrowth.value)
-  else if (refDeal.strategy === 'flip') refResult = computeFlipDeal(refDeal, globalAppreciation.value)
-  else if (refDeal.strategy === 'brrrr') refResult = computeBrrrrDeal(refDeal, globalAppreciation.value, globalRentGrowth.value)
+  if (refDeal.strategy === 'rental') refResult = computeRentalDeal(refDeal, globalAppreciation.value ?? 3, globalRentGrowth.value ?? 3)
+  else if (refDeal.strategy === 'flip') refResult = computeFlipDeal(refDeal, globalAppreciation.value ?? 3)
+  else if (refDeal.strategy === 'brrrr') refResult = computeBrrrrDeal(refDeal, globalAppreciation.value ?? 3, globalRentGrowth.value ?? 3)
 
   if (!refResult) return
 
@@ -2942,9 +2942,9 @@ function runBreakEven() {
     const mid = (lo + hi) / 2
     const testDeal = { ...targetDeal, [pivotField]: mid }
     let result = null
-    if (testDeal.strategy === 'rental') result = computeRentalDeal(testDeal, globalAppreciation.value, globalRentGrowth.value)
-    else if (testDeal.strategy === 'flip') result = computeFlipDeal(testDeal, globalAppreciation.value)
-    else if (testDeal.strategy === 'brrrr') result = computeBrrrrDeal(testDeal, globalAppreciation.value, globalRentGrowth.value)
+    if (testDeal.strategy === 'rental') result = computeRentalDeal(testDeal, globalAppreciation.value ?? 3, globalRentGrowth.value ?? 3)
+    else if (testDeal.strategy === 'flip') result = computeFlipDeal(testDeal, globalAppreciation.value ?? 3)
+    else if (testDeal.strategy === 'brrrr') result = computeBrrrrDeal(testDeal, globalAppreciation.value ?? 3, globalRentGrowth.value ?? 3)
 
     if (!result) break
     const gap = result.totalReturn - targetTR

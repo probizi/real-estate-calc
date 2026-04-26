@@ -178,7 +178,7 @@
               <div>
                 <label class="block text-xs font-semibold text-gray-500 mb-1">Down Payment %</label>
                 <div class="relative">
-                  <input v-model.number="form.downPayment" type="number" min="0" max="100" placeholder="25"
+                  <input v-model.number="form.downPayment" type="number" min="0" max="100" placeholder="Enter down payment %"
                     class="w-full pr-8 pl-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
                   <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
                 </div>
@@ -186,7 +186,7 @@
               <div>
                 <label class="block text-xs font-semibold text-gray-500 mb-1">Closing Costs %</label>
                 <div class="relative">
-                  <input v-model.number="form.closingCosts" type="number" min="0" max="20" placeholder="2"
+                  <input v-model.number="form.closingCosts" type="number" min="0" max="20" placeholder="Enter closing costs %"
                     class="w-full pr-8 pl-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
                   <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
                 </div>
@@ -209,14 +209,14 @@
               <div>
                 <label class="block text-xs font-semibold text-gray-500 mb-1">Loan Rate %</label>
                 <div class="relative">
-                  <input v-model.number="form.loanRate" type="number" min="0" max="30" step="0.1" placeholder="7.5"
+                  <input v-model.number="form.loanRate" type="number" min="0" max="30" step="0.1" placeholder="Enter interest rate %"
                     class="w-full pr-8 pl-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
                   <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
                 </div>
               </div>
               <div>
                 <label class="block text-xs font-semibold text-gray-500 mb-1">Loan Term (years)</label>
-                <input v-model.number="form.loanTerm" type="number" min="1" max="40" placeholder="30"
+                <input v-model.number="form.loanTerm" type="number" min="1" max="40" placeholder="Enter term in years"
                   class="w-full px-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
               </div>
               <div class="sm:col-span-2">
@@ -246,7 +246,7 @@
               <div>
                 <label class="block text-xs font-semibold text-gray-500 mb-1">Vacancy %</label>
                 <div class="relative">
-                  <input v-model.number="form.vacancy" type="number" min="0" max="50" placeholder="8"
+                  <input v-model.number="form.vacancy" type="number" min="0" max="50" placeholder="Enter vacancy %"
                     class="w-full pr-8 pl-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
                   <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
                 </div>
@@ -254,7 +254,7 @@
               <div>
                 <label class="block text-xs font-semibold text-gray-500 mb-1">Annual Rent Growth %</label>
                 <div class="relative">
-                  <input v-model.number="form.rentGrowth" type="number" min="0" max="20" step="0.5" placeholder="3"
+                  <input v-model.number="form.rentGrowth" type="number" min="0" max="20" step="0.5" placeholder="Enter rent growth %/yr"
                     class="w-full pr-8 pl-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
                   <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
                 </div>
@@ -262,7 +262,7 @@
               <div>
                 <label class="block text-xs font-semibold text-gray-500 mb-1">OpEx % of Rent</label>
                 <div class="relative">
-                  <input v-model.number="form.opex" type="number" min="0" max="90" placeholder="35"
+                  <input v-model.number="form.opex" type="number" min="0" max="90" placeholder="Enter OpEx % of rent"
                     class="w-full pr-8 pl-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
                   <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
                 </div>
@@ -277,7 +277,7 @@
               <div>
                 <label class="block text-xs font-semibold text-gray-500 mb-1">Annual Appreciation %</label>
                 <div class="relative">
-                  <input v-model.number="form.appreciation" type="number" min="0" max="20" step="0.5" placeholder="3"
+                  <input v-model.number="form.appreciation" type="number" min="0" max="20" step="0.5" placeholder="Enter appreciation %/yr"
                     class="w-full pr-8 pl-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
                   <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
                 </div>
@@ -288,7 +288,7 @@
                   <span v-if="calcMode !== 'sensitivity'" class="font-normal text-gray-400">1–30</span>
                   <span v-else class="font-normal text-gray-400">used for Mode 1</span>
                 </label>
-                <input v-model.number="form.holdPeriod" type="number" min="1" max="30" placeholder="10"
+                <input v-model.number="form.holdPeriod" type="number" min="1" max="30" placeholder="Enter hold period (years)"
                   class="w-full px-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
               </div>
             </div>
@@ -300,12 +300,12 @@
             <div class="grid sm:grid-cols-2 gap-3">
               <div>
                 <label class="block text-xs font-semibold text-gray-500 mb-1">Sell Year A</label>
-                <input v-model.number="form.sellYearA" type="number" min="1" max="30" placeholder="7"
+                <input v-model.number="form.sellYearA" type="number" min="1" max="30" placeholder="Enter exit year A"
                   class="w-full px-3 py-2.5 rounded-xl border-2 border-emerald-300 hover:border-emerald-400 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-400/40 text-sm outline-none transition" />
               </div>
               <div>
                 <label class="block text-xs font-semibold text-gray-500 mb-1">Sell Year B</label>
-                <input v-model.number="form.sellYearB" type="number" min="1" max="30" placeholder="15"
+                <input v-model.number="form.sellYearB" type="number" min="1" max="30" placeholder="Enter exit year B"
                   class="w-full px-3 py-2.5 rounded-xl border-2 border-emerald-300 hover:border-emerald-400 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-400/40 text-sm outline-none transition" />
               </div>
             </div>
@@ -324,7 +324,7 @@
               <div>
                 <label class="block text-xs font-semibold text-gray-500 mb-1">Marginal Tax Rate %</label>
                 <div class="relative">
-                  <input v-model.number="form.marginalTax" type="number" min="0" max="60" placeholder="24"
+                  <input v-model.number="form.marginalTax" type="number" min="0" max="60" placeholder="Enter marginal tax rate %"
                     class="w-full pr-8 pl-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
                   <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
                 </div>
@@ -332,7 +332,7 @@
               <div>
                 <label class="block text-xs font-semibold text-gray-500 mb-1">Land Value % of Purchase</label>
                 <div class="relative">
-                  <input v-model.number="form.landValue" type="number" min="0" max="90" placeholder="20"
+                  <input v-model.number="form.landValue" type="number" min="0" max="90" placeholder="Enter land value %"
                     class="w-full pr-8 pl-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
                   <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
                 </div>
@@ -340,7 +340,7 @@
               <div>
                 <label class="block text-xs font-semibold text-gray-500 mb-1">Selling Cost %</label>
                 <div class="relative">
-                  <input v-model.number="form.sellingCost" type="number" min="0" max="20" placeholder="7"
+                  <input v-model.number="form.sellingCost" type="number" min="0" max="20" placeholder="Enter selling cost %"
                     class="w-full pr-8 pl-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
                   <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
                 </div>
@@ -348,7 +348,7 @@
               <div>
                 <label class="block text-xs font-semibold text-gray-500 mb-1">Federal LTCG Rate %</label>
                 <div class="relative">
-                  <input v-model.number="form.fedLTCG" type="number" min="0" max="25" placeholder="15"
+                  <input v-model.number="form.fedLTCG" type="number" min="0" max="25" placeholder="Enter federal LTCG rate %"
                     class="w-full pr-8 pl-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
                   <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
                 </div>
@@ -356,7 +356,7 @@
               <div class="sm:col-span-2">
                 <label class="block text-xs font-semibold text-gray-500 mb-1">State Capital Gains %</label>
                 <div class="relative">
-                  <input v-model.number="form.stateCG" type="number" min="0" max="20" placeholder="0"
+                  <input v-model.number="form.stateCG" type="number" min="0" max="20" placeholder="Enter state CG rate %"
                     class="w-full pr-8 pl-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
                   <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
                 </div>
@@ -1640,25 +1640,25 @@ const triggerScenarioSave = ref(false)
 
 const form = reactive({
   purchasePrice: null,
-  downPayment: 25,
-  closingCosts: 2,
-  rehab: 0,
-  loanRate: 7.5,
-  loanTerm: 30,
+  downPayment: null,
+  closingCosts: null,
+  rehab: null,
+  loanRate: null,
+  loanTerm: null,
   loanType: 'conventional',
   monthlyRent: null,
-  vacancy: 8,
-  rentGrowth: 3,
-  opex: 35,
-  appreciation: 3,
-  holdPeriod: 10,
-  marginalTax: 24,
-  landValue: 20,
-  sellingCost: 7,
-  fedLTCG: 15,
-  stateCG: 0,
-  sellYearA: 7,
-  sellYearB: 15,
+  vacancy: null,
+  rentGrowth: null,
+  opex: null,
+  appreciation: null,
+  holdPeriod: null,
+  marginalTax: null,
+  landValue: null,
+  sellingCost: null,
+  fedLTCG: null,
+  stateCG: null,
+  sellYearA: null,
+  sellYearB: null,
 })
 
 // ─── 3. FAQ DATA ──────────────────────────────────────────────────────────────
@@ -1679,21 +1679,21 @@ const faqs = [
 // Get effective form values with defaults
 const f = computed(() => ({
   purchasePrice: form.purchasePrice || 0,
-  downPayment: form.downPayment ?? 25,
-  closingCosts: form.closingCosts ?? 2,
+  downPayment: form.downPayment ?? 0,
+  closingCosts: form.closingCosts ?? 0,
   rehab: form.rehab || 0,
-  loanRate: form.loanRate ?? 7.5,
+  loanRate: form.loanRate ?? 0,
   loanTerm: form.loanTerm ?? 30,
   monthlyRent: form.monthlyRent || 0,
-  vacancy: form.vacancy ?? 8,
-  rentGrowth: form.rentGrowth ?? 3,
-  opex: form.opex ?? 35,
-  appreciation: form.appreciation ?? 3,
+  vacancy: form.vacancy ?? 0,
+  rentGrowth: form.rentGrowth ?? 0,
+  opex: form.opex ?? 0,
+  appreciation: form.appreciation ?? 0,
   holdPeriod: Math.max(1, Math.min(30, form.holdPeriod ?? 10)),
-  marginalTax: form.marginalTax ?? 24,
-  landValue: form.landValue ?? 20,
-  sellingCost: form.sellingCost ?? 7,
-  fedLTCG: form.fedLTCG ?? 15,
+  marginalTax: form.marginalTax ?? 0,
+  landValue: form.landValue ?? 0,
+  sellingCost: form.sellingCost ?? 0,
+  fedLTCG: form.fedLTCG ?? 0,
   stateCG: form.stateCG ?? 0,
   sellYearA: Math.max(1, Math.min(30, form.sellYearA ?? 7)),
   sellYearB: Math.max(1, Math.min(30, form.sellYearB ?? 15)),
