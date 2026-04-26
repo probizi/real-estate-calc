@@ -1592,7 +1592,7 @@ useHead({
     { property: 'og:type', content: 'website' },
     { name: 'robots', content: 'index, follow' }
   ],
-  link: [{ rel: 'canonical', href: 'https://realcalc.com/arv-calculator' }],
+  link: [{ rel: 'canonical', href: 'https://arvcalc.com/arv-calculator' }],
   script: [{
     type: 'application/ld+json',
     innerHTML: JSON.stringify({
@@ -1603,7 +1603,7 @@ useHead({
           name: 'ARV Calculator',
           applicationCategory: 'FinanceApplication',
           description: 'Free ARV calculator estimating after-repair value from comparable sales with confidence range, outlier detection, and 70% Rule max offer for US real estate investors.',
-          url: 'https://realcalc.com/arv-calculator',
+          url: 'https://arvcalc.com/arv-calculator',
           offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
           featureList: 'ARV estimation, comparable sales, 3-5 comps, outlier detection, confidence range, 70% Rule, 75% Rule, condition multiplier, PPSF spread penalty, sensitivity analysis, PDF export'
         },

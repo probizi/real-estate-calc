@@ -10,7 +10,7 @@
       <Meta property="og:title" content="70% Rule Calculator — Fix and Flip Max Offer | RealCalc" />
       <Meta property="og:description" content="Free 70% Rule Calculator for fix-and-flip investors. Screen maximum offer on any property in seconds — MAO = ARV × 70% − Rehab. Works for wholesalers too." />
       <Meta property="og:type" content="website" />
-      <Link rel="canonical" href="https://realcalc.io/70-percent-rule-calculator" />
+      <Link rel="canonical" href="https://arvcalc.com/70-percent-rule-calculator" />
     </Head>
 
     <!-- ═══════════════════════════════════════════════
@@ -1318,7 +1318,7 @@
           "operatingSystem": "Web browser",
           "description": "Free 70% Rule Calculator for fix-and-flip investors. Screen maximum offer on any distressed property in seconds — MAO = ARV × 70% − Rehab. Includes Adjustable % and Reverse modes for wholesalers.",
           "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-          "url": "https://realcalc.io/70-percent-rule-calculator",
+          "url": "https://arvcalc.com/70-percent-rule-calculator",
           "featureList": [
             "Maximum Allowable Offer (MAO) screening",
             "Canonical 70% Rule formula with explanation",
@@ -1385,9 +1385,9 @@
         {
           "@type": "BreadcrumbList",
           "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://realcalc.io/" },
-            { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://realcalc.io/calculators" },
-            { "@type": "ListItem", "position": 3, "name": "70% Rule Calculator", "item": "https://realcalc.io/70-percent-rule-calculator" }
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://arvcalc.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://arvcalc.com/calculators" },
+            { "@type": "ListItem", "position": 3, "name": "70% Rule Calculator", "item": "https://arvcalc.com/70-percent-rule-calculator" }
           ]
         }
       ]

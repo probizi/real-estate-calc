@@ -1835,7 +1835,7 @@ useHead({
             '@type': 'SoftwareApplication',
             name: 'Investment Property Mortgage Calculator',
             description: 'Free Investment Property Mortgage Calculator for real estate investors. Calculate PITI, rental cash flow, DSCR, compare loan types (Conventional, DSCR, Portfolio) at 2026 investor rates.',
-            url: 'https://realcalc.com/mortgage-calculator-investment',
+            url: 'https://arvcalc.com/mortgage-calculator-investment',
             applicationCategory: 'FinanceApplication',
             operatingSystem: 'Web browser',
             offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
@@ -1872,9 +1872,9 @@ useHead({
           {
             '@type': 'BreadcrumbList',
             itemListElement: [
-              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://realcalc.com' },
-              { '@type': 'ListItem', position: 2, name: 'Calculators', item: 'https://realcalc.com/calculators' },
-              { '@type': 'ListItem', position: 3, name: 'Investment Property Mortgage Calculator', item: 'https://realcalc.com/mortgage-calculator-investment' }
+              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://arvcalc.com' },
+              { '@type': 'ListItem', position: 2, name: 'Calculators', item: 'https://arvcalc.com/calculators' },
+              { '@type': 'ListItem', position: 3, name: 'Investment Property Mortgage Calculator', item: 'https://arvcalc.com/mortgage-calculator-investment' }
             ]
           }
         ]

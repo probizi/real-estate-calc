@@ -1585,9 +1585,9 @@ useHead({
           '@context': 'https://schema.org',
           '@type': 'BreadcrumbList',
           itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://realcalc.com' },
-            { '@type': 'ListItem', position: 2, name: 'Calculators', item: 'https://realcalc.com/calculators' },
-            { '@type': 'ListItem', position: 3, name: 'Rental Property ROI Calculator', item: 'https://realcalc.com/rental-property-roi-calculator' }
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://arvcalc.com' },
+            { '@type': 'ListItem', position: 2, name: 'Calculators', item: 'https://arvcalc.com/calculators' },
+            { '@type': 'ListItem', position: 3, name: 'Rental Property ROI Calculator', item: 'https://arvcalc.com/rental-property-roi-calculator' }
           ]
         },
         {
@@ -1595,7 +1595,7 @@ useHead({
           '@type': ['FinancialProduct', 'SoftwareApplication'],
           name: 'Rental Property ROI Calculator',
           description: 'Free lifetime wealth projection tool for rental properties. Project 1-30 year Total ROI, Annualized Return (IRR), and Wealth Waterfall with correct split tax formula.',
-          url: 'https://realcalc.com/rental-property-roi-calculator',
+          url: 'https://arvcalc.com/rental-property-roi-calculator',
           applicationCategory: 'FinanceApplication',
           operatingSystem: 'Web browser',
           offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },

@@ -1446,7 +1446,7 @@ useHead({
           '@type': 'FinancialProduct',
           name: 'Rent vs Buy Calculator',
           description: 'Free Rent vs Buy Calculator. Compare buying a home vs renting with break-even year, net wealth analysis, and honest opportunity cost. 2026 consumer mortgage rates.',
-          url: 'https://realcalc.com/rent-vs-buy-calculator',
+          url: 'https://arvcalc.com/rent-vs-buy-calculator',
           featureList: [
             'Net Wealth methodology (assets minus liabilities, not cost comparison)',
             '3 modes: Standard, Detailed with Opportunity Cost (recommended), Lifestyle Adjusted',

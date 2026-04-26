@@ -2239,11 +2239,11 @@ useHead({
         '@type': 'Calculator',
         name: 'Cash-on-Cash Return Calculator',
         description: 'Calculate cash-on-cash return for US real estate investment properties. Enter NOI and property value to instantly get cash-on-cash return, or reverse-solve for implied property value and required NOI.',
-        url: 'https://realcalc.com/cash-on-cash-calculator',
+        url: 'https://arvcalc.com/cash-on-cash-calculator',
         provider: {
           '@type': 'Organization',
           name: 'RealCalc',
-          url: 'https://realcalc.com'
+          url: 'https://arvcalc.com'
         }
       })
     },
@@ -3136,7 +3136,7 @@ async function exportPDF() {
   doc.setTextColor(255, 255, 255)
   doc.setFontSize(8)
   doc.setFont('helvetica', 'normal')
-  doc.text('realcalc.io — For informational purposes only. Not financial advice.', 105, 290, { align: 'center' })
+  doc.text('arvcalc.com — For informational purposes only. Not financial advice.', 105, 290, { align: 'center' })
 
   doc.save(`cash-on-cash-analysis-${Date.now()}.pdf`)
 }

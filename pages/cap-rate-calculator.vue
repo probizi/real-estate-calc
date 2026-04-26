@@ -2236,11 +2236,11 @@ useHead({
         '@type': 'Calculator',
         name: 'Cap Rate Calculator',
         description: 'Calculate capitalization rate (cap rate) for US real estate investment properties. Enter NOI and property value to instantly get cap rate, or reverse-solve for implied property value and required NOI.',
-        url: 'https://realcalc.com/cap-rate-calculator',
+        url: 'https://arvcalc.com/cap-rate-calculator',
         provider: {
           '@type': 'Organization',
           name: 'RealCalc',
-          url: 'https://realcalc.com'
+          url: 'https://arvcalc.com'
         }
       })
     },
@@ -3122,7 +3122,7 @@ async function exportPDF() {
   doc.setTextColor(255, 255, 255)
   doc.setFontSize(8)
   doc.setFont('helvetica', 'normal')
-  doc.text('realcalc.io — For informational purposes only. Not financial advice.', 105, 290, { align: 'center' })
+  doc.text('arvcalc.com — For informational purposes only. Not financial advice.', 105, 290, { align: 'center' })
 
   doc.save(`cap-rate-analysis-${Date.now()}.pdf`)
 }

@@ -1795,7 +1795,7 @@ useHead({
     { property: 'og:title', content: 'Rental Property Calculator — Multi-Year Return & IRR | RealCalc' },
     { property: 'og:description', content: 'Project Total Return, IRR, and year-by-year cash flow for any US rental property. Free multi-year deal analyzer for buy-and-hold investors.' },
     { property: 'og:type', content: 'website' },
-    { property: 'og:url', content: 'https://realcalc.com/rental-property-calculator' },
+    { property: 'og:url', content: 'https://arvcalc.com/rental-property-calculator' },
   ],
   script: [
     {
@@ -2773,7 +2773,7 @@ async function exportPDF() {
   // Footer
   doc.setFillColor(...navy); doc.rect(0, 280, 210, 17, 'F')
   doc.setTextColor(255, 255, 255); doc.setFontSize(8); doc.setFont('helvetica', 'normal')
-  doc.text('realcalc.io — For informational purposes only. Not financial advice. Before-tax analysis.', 105, 290, { align: 'center' })
+  doc.text('arvcalc.com — For informational purposes only. Not financial advice. Before-tax analysis.', 105, 290, { align: 'center' })
   doc.save(`rental-property-analysis-${Date.now()}.pdf`)
 }
 

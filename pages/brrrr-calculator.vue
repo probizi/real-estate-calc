@@ -1584,7 +1584,7 @@
           "applicationCategory": "FinanceApplication",
           "operatingSystem": "Web",
           "description": "Free BRRRR Calculator for US real estate investors. Analyzes Capital Left in Deal, Capital Recovery %, 75% Rule compliance, Post-Refi Cash-on-Cash, and DSCR for Buy-Rehab-Rent-Refinance-Repeat strategy.",
-          "url": "https://realcalc.com/brrrr-calculator",
+          "url": "https://arvcalc.com/brrrr-calculator",
           "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
         }
       ]

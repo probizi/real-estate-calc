@@ -1804,7 +1804,7 @@ useHead({
           '@type': 'SoftwareApplication',
           name: 'Compare Real Estate Deals Calculator',
           description: 'Free side-by-side comparison tool for Rental, Fix and Flip, and BRRRR real estate deals. Normalized 5-Year Total Return, Annualized Return, and Winner tier verdict.',
-          url: 'https://realcalc.com/compare-real-estate-deals',
+          url: 'https://arvcalc.com/compare-real-estate-deals',
           applicationCategory: 'FinanceApplication',
           operatingSystem: 'Web browser',
           offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
@@ -1838,9 +1838,9 @@ useHead({
           '@context': 'https://schema.org',
           '@type': 'BreadcrumbList',
           itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://realcalc.com' },
-            { '@type': 'ListItem', position: 2, name: 'Calculators', item: 'https://realcalc.com/calculators' },
-            { '@type': 'ListItem', position: 3, name: 'Compare Real Estate Deals', item: 'https://realcalc.com/compare-real-estate-deals' }
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://arvcalc.com' },
+            { '@type': 'ListItem', position: 2, name: 'Calculators', item: 'https://arvcalc.com/calculators' },
+            { '@type': 'ListItem', position: 3, name: 'Compare Real Estate Deals', item: 'https://arvcalc.com/compare-real-estate-deals' }
           ]
         }
       ])

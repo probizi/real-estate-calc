@@ -1971,7 +1971,7 @@ async function exportPDF() {
   doc.setTextColor(255, 255, 255)
   doc.setFontSize(8)
   doc.setFont('helvetica', 'normal')
-  doc.text('realcalc.io — For informational purposes only. Not financial advice.', 105, 290, { align: 'center' })
+  doc.text('arvcalc.com — For informational purposes only. Not financial advice.', 105, 290, { align: 'center' })
 
   doc.save(`noi-analysis-${Date.now()}.pdf`)
 }

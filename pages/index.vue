@@ -806,10 +806,10 @@
           "@type": "WebSite",
           "name": "RealCalc — Real Estate Investment Calculator Hub",
           "description": "Free real estate investment calculators for US investors (2026). Cap Rate, DSCR, Rental Property, Fix & Flip, BRRRR, ARV, NOI, Cash-on-Cash and 30 tools total. Trusted by 25,000+ investors.",
-          "url": "https://realcalc.io",
+          "url": "https://arvcalc.com",
           "potentialAction": {
             "@type": "SearchAction",
-            "target": "https://realcalc.io/calculators?q={search_term_string}",
+            "target": "https://arvcalc.com/calculators?q={search_term_string}",
             "query-input": "required name=search_term_string"
           }
         },
@@ -892,7 +892,7 @@ useHead({
     { name: 'author', content: 'RealCalc' }
   ],
   link: [
-    { rel: 'canonical', href: 'https://realcalc.io/' }
+    { rel: 'canonical', href: 'https://arvcalc.com/' }
   ]
 })
 </script>
