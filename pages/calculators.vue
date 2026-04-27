@@ -204,17 +204,16 @@
             </span>
           </NuxtLink>
 
-          <div class="group bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col opacity-70 cursor-not-allowed relative">
-            <div class="absolute top-3 right-3"><span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-gray-200 text-gray-600">Coming Soon</span></div>
-            <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background: #94a3b8;">
-              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <NuxtLink to="/vacancy-rate-calculator" class="group bg-white p-6 rounded-2xl border border-gray-200 hover:border-yellow-400 hover:shadow-lg transition flex flex-col relative">
+            <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background: #1e3a5f;">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
             </div>
             <div class="flex-1">
-              <h3 class="font-bold text-base mb-1 text-gray-500">Vacancy Rate Calculator</h3>
-              <p class="text-sm text-gray-400 leading-relaxed mb-3">Estimate vacancy impact on NOI and cash flow — market and property-specific scenarios.</p>
+              <h3 class="font-bold text-base mb-1" style="color: #1e3a5f;">Vacancy Rate Calculator</h3>
+              <p class="text-sm text-gray-500 leading-relaxed mb-3">Diagnostic verdict with likely causes and action thresholds — quantify income lost to vacancy.</p>
             </div>
-            <span class="inline-flex items-center gap-1 text-sm font-semibold text-gray-400">In development</span>
-          </div>
+            <span class="inline-flex items-center gap-1 text-sm font-semibold group-hover:underline" style="color: #f59e0b;">Calculate now →</span>
+          </NuxtLink>
 
           <div class="group bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col opacity-70 cursor-not-allowed relative">
             <div class="absolute top-3 right-3"><span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-gray-200 text-gray-600">Coming Soon</span></div>
