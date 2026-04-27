@@ -505,17 +505,20 @@
         <p class="text-gray-500 text-sm mb-6">1031 exchanges, capital gains, and depreciation tools for tax-smart exits.</p>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
 
-          <div class="group bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col opacity-70 cursor-not-allowed relative">
-            <div class="absolute top-3 right-3"><span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-gray-200 text-gray-600">Coming Soon</span></div>
-            <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background: #94a3b8;">
-              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <NuxtLink to="/1031-exchange-calculator"
+            class="group bg-white p-6 rounded-2xl border border-gray-100 hover:border-yellow-400 shadow-sm hover:shadow-md flex flex-col transition-all duration-200">
+            <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110" style="background: #1e3a5f;">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z"/></svg>
             </div>
             <div class="flex-1">
-              <h3 class="font-bold text-base mb-1 text-gray-500">1031 Exchange Calculator</h3>
-              <p class="text-sm text-gray-400 leading-relaxed mb-3">Tax-deferred exchange analysis — basis, boot, and depreciation recapture.</p>
+              <h3 class="font-bold text-base mb-1" style="color: #1e3a5f;">1031 Exchange Calculator</h3>
+              <p class="text-sm text-gray-500 leading-relaxed mb-3">Tax-deferred exchange analysis — basis, boot, depreciation recapture, and 45/180-day deadlines.</p>
             </div>
-            <span class="inline-flex items-center gap-1 text-sm font-semibold text-gray-400">In development</span>
-          </div>
+            <span class="inline-flex items-center gap-1 text-sm font-bold transition group-hover:gap-2" style="color: #f59e0b;">
+              Open Calculator
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </span>
+          </NuxtLink>
 
           <div class="group bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col opacity-70 cursor-not-allowed relative">
             <div class="absolute top-3 right-3"><span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-gray-200 text-gray-600">Coming Soon</span></div>
