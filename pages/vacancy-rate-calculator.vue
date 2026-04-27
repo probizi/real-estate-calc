@@ -261,17 +261,6 @@
             </div>
           </div>
 
-          <!-- Share + PDF -->
-          <div class="flex gap-3">
-            <button @click="copyShareableURL" class="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border-2 border-gray-300 font-semibold text-sm text-gray-700 hover:border-gray-400 transition">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
-              Share
-            </button>
-            <button @click="exportPDF" class="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border-2 border-gray-300 font-semibold text-sm text-gray-700 hover:border-gray-400 transition">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-              Export PDF
-            </button>
-          </div>
         </div>
 
         <!-- RIGHT: RESULTS -->
@@ -478,6 +467,30 @@
             <div class="bg-blue-50 rounded-2xl border border-blue-100 p-4">
               <p class="text-xs font-bold text-blue-700 mb-1">Trailing 12-Month Metric</p>
               <p class="text-xs text-blue-600">Vacancy rate reflects past performance, not current state. One long vacancy event can distort an annual rate even if today the property is stably occupied. A 60-day vacancy in month 3 creates 16% annual rate — but if subsequent months are fully occupied, the property may already be on track to &lt;5% next year. Re-run quarterly for trend tracking.</p>
+            </div>
+
+            <!-- Share + PDF -->
+            <div class="grid grid-cols-2 gap-2 pt-2">
+              <button @click="copyShareableURL"
+                class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border"
+                :class="shareSuccess
+                  ? 'border-green-400 text-green-700 bg-green-50'
+                  : 'border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50'">
+                <svg v-if="!shareSuccess" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                </svg>
+                <svg v-else class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                {{ shareSuccess ? 'Copied!' : 'Share' }}
+              </button>
+              <button @click="exportPDF"
+                class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+                Export PDF
+              </button>
             </div>
 
           </template>
@@ -1096,6 +1109,7 @@ const isNavExpanded = ref(false)
 const openFaqIndex = ref(null)
 const vacancyInputMode = ref('days')
 const savedScenarios = ref([])
+const shareSuccess = ref(false)
 
 const inp = ref({
   annual_potential_rent: null,
@@ -1619,7 +1633,10 @@ function copyShareableURL() {
   if (inp.value.number_of_turnovers) params.set('turns', inp.value.number_of_turnovers)
   if (inp.value.utilities_during_vacancy_monthly) params.set('utilities', inp.value.utilities_during_vacancy_monthly)
   const url = `${window.location.origin}/vacancy-rate-calculator?${params.toString()}`
-  navigator.clipboard.writeText(url).then(() => alert('Link copied to clipboard!')).catch(() => {})
+  navigator.clipboard.writeText(url).then(() => {
+    shareSuccess.value = true
+    setTimeout(() => { shareSuccess.value = false }, 3000)
+  }).catch(() => {})
 }
 
 async function exportPDF() {

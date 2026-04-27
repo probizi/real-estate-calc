@@ -830,6 +830,32 @@
               </div>
             </div>
 
+            <!-- Share + PDF -->
+            <div class="p-4 border-t border-gray-100 space-y-2">
+              <div class="grid grid-cols-2 gap-2">
+                <button @click="shareResult"
+                  class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border"
+                  :class="shareSuccess
+                    ? 'border-green-400 text-green-700 bg-green-50'
+                    : 'border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50'">
+                  <svg v-if="!shareSuccess" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                  </svg>
+                  <svg v-else class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  {{ shareSuccess ? 'Copied!' : 'Share' }}
+                </button>
+                <button @click="exportPDF"
+                  class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                  </svg>
+                  Export PDF
+                </button>
+              </div>
+            </div>
+
           </template>
         </div><!-- end RIGHT RESULTS -->
 
@@ -1488,6 +1514,7 @@ const route = useRoute()
 const isNavExpanded = ref(false)
 const editingScenarioId = ref(null)
 const editingLabel = ref('')
+const shareSuccess = ref(false)
 
 // Today's date as YYYY-MM-DD
 const todayStr = new Date().toISOString().split('T')[0]
@@ -2305,6 +2332,66 @@ const faqItems = [
   { q: 'Can you live in a 1031 exchange property?', a: 'Not initially. Replacement must be held for investment or business use. After holding as investment for minimum 2 years, IRS safe harbor rules permit conversion to primary residence. Then wait additional 5 years before claiming Section 121 exclusion. Attempting to claim primary residence intent at exchange time invalidates the 1031.' },
   { q: 'How many times can you do a 1031 exchange?', a: 'Unlimited. Investors can chain 1031 exchanges across decades — each defers accumulated tax from all previous exchanges ("swap till you drop"). At the investor\'s death, basis steps up to fair market value, effectively eliminating accumulated deferred tax for heirs. Each exchange must independently meet all IRS rules and has its own QI fees.' },
 ]
+
+// ============================================================
+// SHARE + PDF
+// ============================================================
+function shareResult() {
+  if (!process.client) return
+  const params = new URLSearchParams()
+  const i = inp.value
+  if (i.sale_price) params.set('sp', i.sale_price)
+  if (i.selling_costs_pct) params.set('sc', i.selling_costs_pct)
+  if (i.original_purchase_price) params.set('op', i.original_purchase_price)
+  if (i.original_closing_costs) params.set('oc', i.original_closing_costs)
+  if (i.capital_improvements) params.set('ci', i.capital_improvements)
+  if (i.years_held) params.set('yh', i.years_held)
+  if (i.current_loan_balance) params.set('lb', i.current_loan_balance)
+  if (i.total_depreciation_taken) params.set('dep', i.total_depreciation_taken)
+  if (i.replacement_purchase_price) params.set('rp', i.replacement_purchase_price)
+  if (i.replacement_loan_amount) params.set('rl', i.replacement_loan_amount)
+  if (i.cash_boot_received) params.set('cb', i.cash_boot_received)
+  if (i.federal_ltcg_bracket) params.set('fg', i.federal_ltcg_bracket)
+  if (i.state_cg_rate) params.set('sr', i.state_cg_rate)
+  if (i.filing_status) params.set('fs', i.filing_status)
+  if (i.sale_date) params.set('sd', i.sale_date)
+  const url = `${window.location.origin}/1031-exchange-calculator?${params.toString()}`
+  navigator.clipboard.writeText(url).then(() => {
+    shareSuccess.value = true
+    setTimeout(() => { shareSuccess.value = false }, 3000)
+  }).catch(() => {})
+}
+
+async function exportPDF() {
+  if (!process.client) return
+  const r = results.value
+  if (!r) { return }
+  try {
+    const { jsPDF } = await import('jspdf')
+    const doc = new jsPDF()
+    doc.setFontSize(16)
+    doc.text('1031 Exchange Calculator — RealCalc', 14, 20)
+    doc.setFontSize(10)
+    doc.text(`Generated: ${new Date().toLocaleDateString()}`, 14, 28)
+    doc.setFontSize(12)
+    doc.text(`Eligibility Verdict: ${r.eligibility_verdict}`, 14, 40)
+    doc.text(`Tax Deferred: ${fmtDollarFull(r.tax_deferred)}`, 14, 50)
+    doc.text(`Tax if Straight Sale: ${fmtDollarFull(r.total_tax_if_sold)}`, 14, 60)
+    doc.text(`Tax if Exchanged: ${fmtDollarFull(r.tax_if_exchanged)}`, 14, 70)
+    doc.text(`Realized Gain: ${fmtDollarFull(r.realized_gain)}`, 14, 80)
+    doc.text(`Depreciation Recapture: ${fmtDollarFull(r.depreciation_recapture)}`, 14, 90)
+    if (r.total_boot > 0) {
+      doc.text(`Boot Amount: ${fmtDollarFull(r.total_boot)}`, 14, 100)
+      doc.text(`Boot Tax: ${fmtDollarFull(r.boot_tax)}`, 14, 110)
+    }
+    doc.setFontSize(9)
+    doc.text('DISCLAIMER: This is an estimation tool, not tax advice. Consult a 1031-specialized CPA.', 14, 130)
+    doc.text('arvcalc.com', 14, 280)
+    doc.save(`1031-exchange-analysis-${Date.now()}.pdf`)
+  } catch (e) {
+    console.error('PDF export error:', e)
+  }
+}
 
 const relatedCalcs = [
   { name: 'Real Estate ROI Calculator', desc: 'Full ROI analysis — use for replacement property evaluation', href: '/real-estate-roi-calculator' },
