@@ -352,6 +352,24 @@
             </span>
           </NuxtLink>
 
+          <!-- 1031 Exchange Calculator -->
+          <NuxtLink to="/1031-exchange-calculator"
+            class="group bg-white p-7 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-yellow-400 flex flex-col">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-transform group-hover:scale-110" style="background: #1e3a5f;">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z"/>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-lg font-bold mb-2" style="color: #1e3a5f;">1031 Exchange Calculator</h3>
+              <p class="text-sm text-gray-500 mb-4 leading-relaxed">Tax Deferred + Eligibility Verdict — 45/180-day deadlines, boot taxation (recapture-first), depreciation recapture, and Saved Scenarios</p>
+            </div>
+            <span class="inline-flex items-center gap-1 text-sm font-bold transition group-hover:gap-2" style="color: #f59e0b;">
+              Calculate Now
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </span>
+          </NuxtLink>
+
           <!-- Mortgage Investment -->
           <NuxtLink to="/mortgage-calculator-investment"
             class="group bg-white p-7 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-yellow-400 flex flex-col">
