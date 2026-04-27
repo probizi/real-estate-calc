@@ -388,6 +388,24 @@
             </span>
           </NuxtLink>
 
+          <!-- Gross Rent Multiplier -->
+          <NuxtLink to="/gross-rent-multiplier-calculator"
+            class="group bg-white p-7 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-yellow-400 flex flex-col">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-transform group-hover:scale-110" style="background: #1e3a5f;">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18M10 3v18M14 3v18"/>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-lg font-bold mb-2" style="color: #1e3a5f;">Gross Rent Multiplier Calculator</h3>
+              <p class="text-sm text-gray-500 mb-4 leading-relaxed">GRM verdict with investment rating — quick property screening tool comparing price to gross annual rent.</p>
+            </div>
+            <span class="inline-flex items-center gap-1 text-sm font-bold transition group-hover:gap-2" style="color: #f59e0b;">
+              Calculate Now
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </span>
+          </NuxtLink>
+
           <!-- Mortgage Investment -->
           <NuxtLink to="/mortgage-calculator-investment"
             class="group bg-white p-7 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-yellow-400 flex flex-col">
@@ -835,8 +853,9 @@
               <li><NuxtLink to="/noi-calculator"             class="text-gray-400 hover:text-white text-sm transition">NOI</NuxtLink></li>
               <li><NuxtLink to="/fix-and-flip-calculator"    class="text-gray-400 hover:text-white text-sm transition">Fix &amp; Flip</NuxtLink></li>
               <li><NuxtLink to="/arv-calculator"             class="text-gray-400 hover:text-white text-sm transition">ARV</NuxtLink></li>
-              <li><NuxtLink to="/brrrr-calculator"           class="text-gray-400 hover:text-white text-sm transition">BRRRR</NuxtLink></li>
-              <li><NuxtLink to="/compare-real-estate-deals"  class="text-gray-400 hover:text-white text-sm transition">Compare Real Estate Deals</NuxtLink></li>
+              <li><NuxtLink to="/brrrr-calculator"                   class="text-gray-400 hover:text-white text-sm transition">BRRRR</NuxtLink></li>
+              <li><NuxtLink to="/gross-rent-multiplier-calculator"  class="text-gray-400 hover:text-white text-sm transition">Gross Rent Multiplier</NuxtLink></li>
+              <li><NuxtLink to="/compare-real-estate-deals"         class="text-gray-400 hover:text-white text-sm transition">Compare Real Estate Deals</NuxtLink></li>
               <li><NuxtLink to="/calculators"                class="font-semibold transition text-sm" style="color: #f59e0b;">View All 30 →</NuxtLink></li>
             </ul>
           </div>
