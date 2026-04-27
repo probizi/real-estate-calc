@@ -112,7 +112,7 @@
               <div class="relative">
                 <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-semibold">$</span>
                 <input v-model.number="inp.annual_potential_rent" type="number" min="1" step="100"
-                  placeholder="e.g. 24,000"
+                  placeholder="e.g. Annual gross rent"
                   class="w-full pl-7 pr-4 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
               </div>
               <p class="text-xs text-gray-400 mt-1">Total rent if property were 100% occupied at market rent for 12 months.</p>
@@ -136,7 +136,7 @@
               <!-- Days input -->
               <div v-if="vacancyInputMode === 'days'">
                 <input v-model.number="inp.days_vacant" type="number" min="0" step="1"
-                  :placeholder="inp.number_of_units > 1 ? 'e.g. 365 (sum unit-days)' : 'e.g. 30 days'"
+                  :placeholder="inp.number_of_units > 1 ? 'e.g. Total unit-days vacant' : 'e.g. Days vacant this year'"
                   class="w-full px-4 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
                 <p class="text-xs text-gray-400 mt-1">Total calendar days vacant in last 12 months. For multi-unit: sum unit-days vacant across all units.</p>
               </div>
@@ -144,7 +144,7 @@
               <!-- Months input -->
               <div v-if="vacancyInputMode === 'months'">
                 <input v-model.number="inp.months_vacant" type="number" min="0" max="12" step="0.1"
-                  placeholder="e.g. 1.5 months"
+                  placeholder="e.g. Months vacant"
                   class="w-full px-4 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
                 <p class="text-xs text-gray-400 mt-1">Months vacant (auto-converts to days at 30.4 days/month).</p>
               </div>
@@ -159,7 +159,7 @@
             <div class="mb-4">
               <label class="block text-sm font-semibold text-gray-700 mb-1">Number of Units</label>
               <input v-model.number="inp.number_of_units" type="number" min="1" max="1000" step="1"
-                placeholder="e.g. 1"
+                placeholder="e.g. Number of units"
                 class="w-full px-4 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
               <p class="text-xs text-gray-400 mt-1">1 = single-family. 2-4 = small multifamily. 5+ = apartment building.</p>
             </div>
@@ -219,7 +219,7 @@
                 <div class="relative">
                   <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-semibold">$</span>
                   <input v-model.number="inp.turnover_costs_per_vacancy" type="number" min="0" step="100"
-                    placeholder="e.g. 1,500"
+                    placeholder="e.g. Turnover cost"
                     class="w-full pl-7 pr-4 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
                 </div>
                 <p class="text-xs text-gray-400 mt-1">Cleaning, repairs, leasing fee, ads per event. Typical $500–$2,500.</p>
@@ -227,7 +227,7 @@
               <div>
                 <label class="block text-sm font-semibold text-gray-700 mb-1">Number of Turnovers / Year</label>
                 <input v-model.number="inp.number_of_turnovers" type="number" min="0" step="1"
-                  placeholder="e.g. 1"
+                  placeholder="e.g. Turnovers per year"
                   class="w-full px-4 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
               </div>
               <div>
@@ -235,7 +235,7 @@
                 <div class="relative">
                   <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-semibold">$</span>
                   <input v-model.number="inp.utilities_during_vacancy_monthly" type="number" min="0" step="10"
-                    placeholder="e.g. 150"
+                    placeholder="e.g. Monthly utilities"
                     class="w-full pl-7 pr-4 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
                 </div>
                 <p class="text-xs text-gray-400 mt-1">Owner-paid utilities per unit on average during vacancy.</p>
@@ -1078,7 +1078,15 @@ const PROPERTY_TYPE_DEFAULTS = {
 }
 
 function propertyTypeDefaultMarket(type) {
-  return String(PROPERTY_TYPE_DEFAULTS[type] || 7)
+  const labels = {
+    'Single-Family Rental': 'Default: ~7%',
+    'Multifamily 2-4 Units': 'Default: ~8%',
+    'Apartment Building 5+ Units': 'Default: ~9%',
+    'Vacation/Short-Term Rental': 'Default: ~35%',
+    'Commercial Retail': 'Default: ~12%',
+    'Office': 'Default: ~18%',
+  }
+  return labels[type] || 'Override market rate'
 }
 
 // ============================================================
