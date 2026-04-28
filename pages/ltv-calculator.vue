@@ -857,6 +857,10 @@
             <p class="font-bold text-sm" style="color: #1e3a5f;">Fix &amp; Flip Calculator</p>
             <p class="text-xs text-gray-500">ARV-based analysis for rehab projects</p>
           </NuxtLink>
+          <NuxtLink to="/debt-yield-calculator" class="flex flex-col gap-1 p-4 rounded-xl bg-gray-50 border border-gray-200 hover:border-yellow-400 hover:bg-yellow-50 transition">
+            <p class="font-bold text-sm" style="color: #1e3a5f;">Debt Yield Calculator</p>
+            <p class="text-xs text-gray-500">NOI ÷ Loan — lender risk metric for commercial lending</p>
+          </NuxtLink>
         </div>
       </div>
 
