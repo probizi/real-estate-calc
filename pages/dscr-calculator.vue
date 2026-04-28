@@ -2687,6 +2687,7 @@ const faqs = [
 const relatedCalcs = [
   { label: 'Cap Rate Calculator',        href: '/cap-rate-calculator' },
   { label: 'NOI Calculator',             href: '/noi-calculator' },
+  { label: 'LTV Calculator',             href: '/ltv-calculator' },
   { label: 'Cash-on-Cash Return',        href: '/cash-on-cash-calculator' },
   { label: 'Rental Property Calculator', href: '/rental-property-calculator' },
 ]

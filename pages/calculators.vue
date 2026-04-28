@@ -378,17 +378,22 @@
             </span>
           </NuxtLink>
 
-          <div class="group bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col opacity-70 cursor-not-allowed relative">
-            <div class="absolute top-3 right-3"><span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-gray-200 text-gray-600">Coming Soon</span></div>
-            <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style="background: #94a3b8;">
-              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <NuxtLink to="/ltv-calculator"
+            class="group bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-all border border-gray-100 hover:border-yellow-400 flex flex-col">
+            <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110" style="background: #1e3a5f;">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/>
+              </svg>
             </div>
             <div class="flex-1">
-              <h3 class="font-bold text-base mb-1 text-gray-500">LTV Calculator</h3>
-              <p class="text-sm text-gray-400 leading-relaxed mb-3">Loan-to-Value ratio for acquisition and refinance scenarios.</p>
+              <h3 class="font-bold text-base mb-1" style="color: #1e3a5f;">LTV Calculator</h3>
+              <p class="text-sm text-gray-500 leading-relaxed mb-3">Loan-to-Value ratio, equity, and max loan at target LTV for acquisition and refinance scenarios.</p>
             </div>
-            <span class="inline-flex items-center gap-1 text-sm font-semibold text-gray-400">In development</span>
-          </div>
+            <span class="inline-flex items-center gap-1 text-sm font-bold group-hover:gap-2 transition-all" style="color: #f59e0b;">
+              Calculate Now
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </span>
+          </NuxtLink>
 
           <div class="group bg-gray-50 p-6 rounded-2xl border border-gray-200 flex flex-col opacity-70 cursor-not-allowed relative">
             <div class="absolute top-3 right-3"><span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-gray-200 text-gray-600">Coming Soon</span></div>
