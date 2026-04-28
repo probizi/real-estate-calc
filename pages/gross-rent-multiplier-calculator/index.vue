@@ -93,11 +93,14 @@
     </div>
 
     <!-- CALCULATOR SECTION -->
-    <div id="calculator" class="max-w-[1100px] mx-auto px-4 sm:px-6 py-8">
-      <div class="grid lg:grid-cols-[3fr_2fr] gap-6 items-start">
+    <main id="calculator" class="max-w-[1100px] mx-auto px-4 pt-8 pb-10">
+      <!-- Акцентная рамка калькулятора -->
+      <div class="rounded-3xl p-[3px]" style="background: linear-gradient(135deg, #1e3a5f 0%, #f59e0b 50%, #1e3a5f 100%);">
+      <div class="bg-white rounded-[21px] shadow-xl shadow-slate-200/60 p-6" style="overflow: clip;">
+      <div class="lg:grid lg:grid-cols-[3fr_2fr] lg:items-stretch gap-6">
 
         <!-- LEFT: INPUTS -->
-        <div class="space-y-5">
+        <div class="space-y-5 min-w-0">
 
           <!-- CORE INPUTS -->
           <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
@@ -110,7 +113,7 @@
                 <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-semibold">$</span>
                 <input v-model.number="inp.price" type="number" min="1" step="1000"
                   placeholder="Enter purchase price"
-                  class="w-full pl-7 pr-4 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
+                  class="w-full pl-7 pr-4 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
               </div>
               <p class="text-xs text-gray-400 mt-1">Total acquisition price, including closing costs if applicable.</p>
             </div>
@@ -122,7 +125,7 @@
                 <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-semibold">$</span>
                 <input v-model.number="inp.rent" type="number" min="1" step="100"
                   placeholder="Enter total annual rent before expenses"
-                  class="w-full pl-7 pr-4 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
+                  class="w-full pl-7 pr-4 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
               </div>
               <p class="text-xs text-gray-400 mt-1">Scheduled rental income only — before vacancy, expenses, or taxes. Do not include parking, laundry, or other non-rent income here.</p>
             </div>
@@ -134,7 +137,7 @@
                 <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-semibold">$</span>
                 <input v-model.number="inp.otherIncome" type="number" min="0" step="100"
                   placeholder="Optional: parking, laundry, storage, or other income"
-                  class="w-full pl-7 pr-4 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
+                  class="w-full pl-7 pr-4 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
               </div>
               <p class="text-xs text-gray-400 mt-1">Not included in Primary GRM. Used for Income-Adjusted GRM and Effective GRM.</p>
             </div>
@@ -144,7 +147,7 @@
               <div>
                 <label class="block text-sm font-semibold text-gray-700 mb-1">Property Type</label>
                 <select v-model="inp.propertyType"
-                  class="w-full px-4 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium bg-white">
+                  class="w-full px-4 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium bg-white">
                   <option value="Single-family">Single-family</option>
                   <option value="Multifamily">Multifamily</option>
                   <option value="Vacation rental">Vacation rental</option>
@@ -154,7 +157,7 @@
               <div>
                 <label class="block text-sm font-semibold text-gray-700 mb-1">Market Type</label>
                 <select v-model="inp.marketType"
-                  class="w-full px-4 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium bg-white">
+                  class="w-full px-4 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium bg-white">
                   <option value="Balanced market">Balanced market</option>
                   <option value="Low-cost market">Low-cost market</option>
                   <option value="High-demand market">High-demand market</option>
@@ -174,7 +177,7 @@
               <div class="relative">
                 <input v-model.number="inp.vacancyRate" type="number" min="0" max="99.99" step="0.5"
                   placeholder="Optional: expected vacancy rate"
-                  class="w-full pl-4 pr-8 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
+                  class="w-full pl-4 pr-8 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
                 <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-semibold">%</span>
               </div>
               <p class="text-xs text-gray-400 mt-1">When entered, shows Effective GRM after vacancy adjustment.</p>
@@ -201,7 +204,7 @@
               <div class="relative">
                 <input v-model.number="inp.expenseRatio" type="number" min="0" max="99.99" step="0.5"
                   placeholder="Optional: operating expense ratio"
-                  class="w-full pl-4 pr-8 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
+                  class="w-full pl-4 pr-8 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
                 <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-semibold">%</span>
               </div>
               <p class="text-xs text-gray-400 mt-1">When entered, shows NOI Proxy Yield as a diagnostic supplement.</p>
@@ -212,7 +215,7 @@
               <label class="block text-sm font-semibold text-gray-700 mb-1">Target GRM</label>
               <input v-model.number="inp.targetGrm" type="number" min="0.1" step="0.5"
                 placeholder="Optional: target GRM for rent requirement"
-                class="w-full px-4 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
+                class="w-full px-4 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
               <p class="text-xs text-gray-400 mt-1">Shows how much annual rent is needed to hit your target GRM. Default: 8.</p>
             </div>
           </div>
@@ -224,7 +227,7 @@
               <label class="block text-sm font-semibold text-gray-700 mb-1">Scenario Name</label>
               <input v-model="inp.scenarioName" type="text"
                 placeholder="Optional: name this property"
-                class="w-full px-4 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
+                class="w-full px-4 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
             </div>
             <button @click="saveScenario"
               :disabled="!canCalculate"
@@ -249,7 +252,9 @@
         </div>
 
         <!-- RIGHT: RESULTS -->
-        <div class="lg:sticky lg:top-24 space-y-4">
+        <div class="min-w-0 lg:relative lg:overflow-hidden">
+        <div class="bg-gray-50 scrollbar-thin lg:absolute lg:inset-0 lg:overflow-y-auto">
+        <div class="space-y-4 p-4 lg:p-5">
 
           <!-- MAIN RESULT CARD -->
           <div v-if="canCalculate && !errors.length" class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
@@ -424,14 +429,14 @@
           <!-- SHARE + PDF EXPORT -->
           <div v-if="canCalculate && !errors.length" class="flex gap-3">
             <button @click="shareUrl"
-              class="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 font-semibold text-sm text-gray-700 transition bg-white">
+              class="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 font-semibold text-sm text-gray-700 transition bg-white">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
               </svg>
               {{ shareCopied ? 'Copied!' : 'Share' }}
             </button>
             <button @click="exportPdf"
-              class="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 font-semibold text-sm text-gray-700 transition bg-white">
+              class="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 font-semibold text-sm text-gray-700 transition bg-white">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
               </svg>
@@ -483,8 +488,12 @@
           </div>
 
         </div>
+        </div>
+        </div>
       </div>
-    </div>
+      </div>
+      </div>
+    </main>
 
     <!-- SAVED SCENARIOS -->
     <div id="saved-scenarios" class="max-w-[1100px] mx-auto px-4 sm:px-6 pb-8">

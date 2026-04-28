@@ -58,6 +58,7 @@
           <h1 class="text-3xl sm:text-4xl font-extrabold leading-tight" style="color: #1e3a5f;">
             Real Estate ROI Calculator — Verdict, Strategy Winner, and Risk Score
           </h1>
+          <p class="text-gray-500 mt-2 text-base">Evaluate any real estate investment with verdict tier, strategy comparison, and risk score. Total ROI, annualized return, and sensitivity analysis.</p>
         </div>
 
         <!-- On this page nav -->

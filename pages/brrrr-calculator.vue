@@ -48,40 +48,6 @@
     </div>
 
     <!-- ═══════════════════════════════════════════════
-         HERO
-    ═══════════════════════════════════════════════ -->
-    <div class="py-10 sm:py-14" style="background: linear-gradient(135deg, #1e3a5f 0%, #2d5282 100%);">
-      <div class="max-w-[1100px] mx-auto px-4 sm:px-6">
-        <div class="max-w-3xl">
-          <div class="flex items-center gap-3 mb-4">
-            <span class="text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full" style="background: rgba(245,158,11,0.2); color: #fbbf24;">BRRRR Strategy</span>
-            <span class="text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full bg-white/10 text-white/80">Free Calculator</span>
-          </div>
-          <h1 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight mb-4">
-            BRRRR Calculator — Capital Recovery &amp; Strategy Tool for US Real Estate Investors
-          </h1>
-          <p class="text-blue-200 text-base sm:text-lg leading-relaxed mb-6">
-            Analyze Buy, Rehab, Rent, Refinance, Repeat deals end-to-end. Model Phase 1 hard money → Refi Event → Year 1 rental performance. Outputs Capital Left in Deal, Post-Refi Cash-on-Cash, 75% Rule compliance, and DSCR. Before-tax analysis.
-          </p>
-          <div class="flex flex-wrap gap-3">
-            <div class="flex items-center gap-2 bg-white/10 rounded-xl px-4 py-2.5">
-              <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/></svg>
-              <span class="text-white text-sm font-semibold">Infinite Return Detection</span>
-            </div>
-            <div class="flex items-center gap-2 bg-white/10 rounded-xl px-4 py-2.5">
-              <svg class="w-4 h-4 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 11h.01M12 11h.01M15 11h.01M4 19h16a2 2 0 002-2V7a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-              <span class="text-white text-sm font-semibold">3 Sensitivity Tables</span>
-            </div>
-            <div class="flex items-center gap-2 bg-white/10 rounded-xl px-4 py-2.5">
-              <svg class="w-4 h-4 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-              <span class="text-white text-sm font-semibold">Reverse Solve Modes</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ═══════════════════════════════════════════════
          MOBILE LIVE RESULT BAR
     ═══════════════════════════════════════════════ -->
     <div class="lg:hidden sticky top-[4.5rem] z-40 bg-white border-b border-gray-200 shadow-sm">
@@ -120,10 +86,12 @@
     <!-- ═══════════════════════════════════════════════
          H1 + ON THIS PAGE NAV
     ═══════════════════════════════════════════════ -->
-    <div class="bg-white border-b border-gray-100 mt-6">
+    <div class="bg-white border-b border-gray-100">
       <div class="max-w-[1100px] mx-auto px-4 sm:px-6 py-6">
         <div class="mb-4">
-          <p class="text-base font-semibold text-gray-500 mb-1">BRRRR Calculator — Capital Recovery Analysis</p>
+          <h1 class="text-3xl sm:text-4xl font-extrabold leading-tight" style="color: #1e3a5f;">
+            BRRRR Calculator — Capital Recovery &amp; Strategy Tool for US Real Estate Investors
+          </h1>
         </div>
         <div class="block rounded-2xl border border-gray-200 bg-gray-50 p-4 mb-2">
           <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">On this page</p>
@@ -176,7 +144,10 @@
     <!-- ═══════════════════════════════════════════════
          CALCULATOR
     ═══════════════════════════════════════════════ -->
-    <main id="calculator" class="max-w-[1100px] mx-auto px-4 pt-8 pb-10 bg-white rounded-2xl shadow-xl mt-6" style="border: 1px solid #e5e7eb; border-top: 3px solid #f59e0b;">
+    <main id="calculator" class="max-w-[1100px] mx-auto px-4 pt-8 pb-10">
+      <!-- Акцентная рамка калькулятора -->
+      <div class="rounded-3xl p-[3px]" style="background: linear-gradient(135deg, #1e3a5f 0%, #f59e0b 50%, #1e3a5f 100%);">
+      <div class="bg-white rounded-[21px] shadow-xl shadow-slate-200/60" style="overflow: clip;">
 
       <!-- BRRRR PHASE TIMELINE -->
       <div class="mb-6 hidden md:flex items-center gap-0 rounded-2xl overflow-hidden border border-gray-200">
@@ -207,15 +178,19 @@
       </div>
 
       <!-- MODE TABS -->
-      <div class="flex gap-2 mb-6 overflow-x-auto pb-1">
-        <button
-          v-for="tab in modeTabs" :key="tab.key"
-          @click="calcMode = tab.key"
-          class="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition flex-shrink-0"
-          :class="calcMode === tab.key ? 'text-white shadow-sm' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'"
-          :style="calcMode === tab.key ? `background: ${tab.color}` : ''">
-          <span>{{ tab.label }}</span>
-        </button>
+      <div class="border-b border-gray-100 bg-white">
+        <div class="px-5 pt-4 pb-3">
+          <p class="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-2">What do you want to calculate?</p>
+          <div class="calc-mode-tabs">
+            <button
+              v-for="tab in modeTabs" :key="tab.key"
+              @click="calcMode = tab.key"
+              class="calc-mode-tab"
+              :class="calcMode === tab.key ? 'calc-mode-tab-active' : 'calc-mode-tab-inactive'">
+              <span class="block text-xs font-bold leading-tight" :style="calcMode === tab.key ? 'color:#1e3a5f;' : ''">{{ tab.label }}</span>
+            </button>
+          </div>
+        </div>
       </div>
 
       <div class="lg:grid lg:grid-cols-[3fr_2fr] items-stretch gap-0">
@@ -929,12 +904,12 @@
             <!-- ACTION BUTTONS (all 3 modes) -->
             <div class="flex flex-wrap gap-2 pt-1">
               <button @click="shareResult"
-                class="flex items-center gap-2 px-4 py-2 rounded-xl border-2 border-gray-200 hover:border-gray-300 text-sm font-semibold text-gray-600 hover:text-gray-800 bg-white transition">
+                class="flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-semibold text-gray-600 hover:text-gray-800 bg-white transition">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
                 {{ shareSuccess ? 'Copied!' : 'Share' }}
               </button>
               <button @click="exportPDF"
-                class="flex items-center gap-2 px-4 py-2 rounded-xl border-2 border-gray-200 hover:border-gray-300 text-sm font-semibold text-gray-600 hover:text-gray-800 bg-white transition">
+                class="flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-semibold text-gray-600 hover:text-gray-800 bg-white transition">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                 Export PDF
               </button>
@@ -992,6 +967,8 @@
           </div>
         </div>
 
+      </div>
+      </div>
       </div>
     </main>
 

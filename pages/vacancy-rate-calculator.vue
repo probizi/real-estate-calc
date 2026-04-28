@@ -96,7 +96,10 @@
     </div>
 
     <!-- CALCULATOR SECTION -->
-    <div id="calculator" class="max-w-[1100px] mx-auto px-4 sm:px-6 py-8">
+    <main id="calculator" class="max-w-[1100px] mx-auto px-4 pt-8 pb-10">
+      <!-- Акцентная рамка калькулятора -->
+      <div class="rounded-3xl p-[3px]" style="background: linear-gradient(135deg, #1e3a5f 0%, #f59e0b 50%, #1e3a5f 100%);">
+      <div class="bg-white rounded-[21px] shadow-xl shadow-slate-200/60 p-6" style="overflow: clip;">
       <div class="grid lg:grid-cols-[3fr_2fr] gap-6 items-start">
 
         <!-- LEFT: INPUTS -->
@@ -113,7 +116,7 @@
                 <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-semibold">$</span>
                 <input v-model.number="inp.annual_potential_rent" type="number" min="1" step="100"
                   placeholder="Enter annual gross rent"
-                  class="w-full pl-7 pr-4 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
+                  class="w-full pl-7 pr-4 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
               </div>
               <p class="text-xs text-gray-400 mt-1">Total rent if property were 100% occupied at market rent for 12 months.</p>
             </div>
@@ -137,7 +140,7 @@
               <div v-if="vacancyInputMode === 'days'">
                 <input v-model.number="inp.days_vacant" type="number" min="0" step="1"
                   :placeholder="inp.number_of_units > 1 ? 'Enter total unit-days vacant' : 'Enter days vacant this year'"
-                  class="w-full px-4 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
+                  class="w-full px-4 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
                 <p class="text-xs text-gray-400 mt-1">Total calendar days vacant in last 12 months. For multi-unit: sum unit-days vacant across all units.</p>
               </div>
 
@@ -145,7 +148,7 @@
               <div v-if="vacancyInputMode === 'months'">
                 <input v-model.number="inp.months_vacant" type="number" min="0" max="12" step="0.1"
                   placeholder="Enter months vacant"
-                  class="w-full px-4 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
+                  class="w-full px-4 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
                 <p class="text-xs text-gray-400 mt-1">Months vacant (auto-converts to days at 30.4 days/month).</p>
               </div>
 
@@ -160,7 +163,7 @@
               <label class="block text-sm font-semibold text-gray-700 mb-1">Number of Units</label>
               <input v-model.number="inp.number_of_units" type="number" min="1" max="1000" step="1"
                 placeholder="Enter number of units"
-                class="w-full px-4 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
+                class="w-full px-4 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
               <p class="text-xs text-gray-400 mt-1">1 = single-family. 2-4 = small multifamily. 5+ = apartment building.</p>
             </div>
 
@@ -168,7 +171,7 @@
             <div v-if="(inp.number_of_units || 1) > 1" class="mb-4">
               <label class="block text-sm font-semibold text-gray-700 mb-1">Vacancy Pattern</label>
               <select v-model="inp.vacancy_pattern"
-                class="w-full px-4 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium bg-white">
+                class="w-full px-4 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium bg-white">
                 <option value="Mixed">Mixed (both patterns)</option>
                 <option value="Concentrated">Concentrated (1-2 units always vacant)</option>
                 <option value="Distributed">Distributed (many units short-term vacant)</option>
@@ -185,7 +188,7 @@
             <div class="mb-4">
               <label class="block text-sm font-semibold text-gray-700 mb-1">Property Type</label>
               <select v-model="inp.property_type"
-                class="w-full px-4 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium bg-white">
+                class="w-full px-4 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium bg-white">
                 <option value="Single-Family Rental">Single-Family Rental</option>
                 <option value="Multifamily 2-4 Units">Multifamily 2-4 Units</option>
                 <option value="Apartment Building 5+ Units">Apartment Building 5+ Units</option>
@@ -202,7 +205,7 @@
               <div class="relative">
                 <input v-model.number="inp.market_vacancy_override" type="number" min="0" max="50" step="0.1"
                   :placeholder="propertyTypeDefaultMarket(inp.property_type)"
-                  class="w-full pr-8 px-4 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
+                  class="w-full pr-8 px-4 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
                 <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 font-semibold text-sm">%</span>
               </div>
               <p class="text-xs text-amber-600 font-medium mt-1">Default benchmarks are illustrative national averages, NOT measured local data. Override with local rental market research (property manager, MLS, Rentometer) for accurate comparison.</p>
@@ -220,7 +223,7 @@
                   <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-semibold">$</span>
                   <input v-model.number="inp.turnover_costs_per_vacancy" type="number" min="0" step="100"
                     placeholder="Enter turnover cost"
-                    class="w-full pl-7 pr-4 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
+                    class="w-full pl-7 pr-4 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
                 </div>
                 <p class="text-xs text-gray-400 mt-1">Cleaning, repairs, leasing fee, ads per event. Typical $500–$2,500.</p>
               </div>
@@ -228,7 +231,7 @@
                 <label class="block text-sm font-semibold text-gray-700 mb-1">Number of Turnovers / Year</label>
                 <input v-model.number="inp.number_of_turnovers" type="number" min="0" step="1"
                   placeholder="Enter turnovers per year"
-                  class="w-full px-4 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
+                  class="w-full px-4 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
               </div>
               <div>
                 <label class="block text-sm font-semibold text-gray-700 mb-1">Utilities During Vacancy ($/mo)</label>
@@ -236,7 +239,7 @@
                   <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-semibold">$</span>
                   <input v-model.number="inp.utilities_during_vacancy_monthly" type="number" min="0" step="10"
                     placeholder="Enter monthly utilities"
-                    class="w-full pl-7 pr-4 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
+                    class="w-full pl-7 pr-4 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
                 </div>
                 <p class="text-xs text-gray-400 mt-1">Owner-paid utilities per unit on average during vacancy.</p>
               </div>
@@ -251,12 +254,12 @@
                 <label class="block text-sm font-semibold text-gray-700 mb-1">Scenario Name</label>
                 <input v-model="inp.scenario_name" type="text" maxlength="50"
                   placeholder="Property A"
-                  class="w-full px-4 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
+                  class="w-full px-4 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
               </div>
               <div>
                 <label class="block text-sm font-semibold text-gray-700 mb-1">Analysis Period End Date</label>
                 <input v-model="inp.analysis_period_end_date" type="date" :max="todayStr"
-                  class="w-full px-4 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
+                  class="w-full px-4 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
               </div>
             </div>
           </div>
@@ -505,7 +508,9 @@
           </template>
         </div>
       </div>
-    </div>
+      </div>
+      </div>
+    </main>
 
     <!-- SAVED SCENARIOS WIDGET -->
     <div id="saved-scenarios" class="max-w-[1100px] mx-auto px-4 sm:px-6 pb-8">

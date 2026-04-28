@@ -53,7 +53,7 @@
     <div class="bg-white border-b border-gray-100">
       <div class="max-w-[1100px] mx-auto px-4 sm:px-6 py-6">
         <div class="mb-4">
-          <span class="inline-block bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full mb-3 uppercase tracking-wide">Free Calculator</span>
+          <span class="inline-block text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3" style="background:#fef3c7; color:#92400e;">Free Calculator</span>
           <h1 class="text-3xl sm:text-4xl font-extrabold leading-tight" style="color: #1e3a5f;">
             Rental Property ROI Calculator — Long-Term Wealth Projection Tool
           </h1>
@@ -110,31 +110,44 @@
     <!-- ═══════════════════════════════════════════════
          CALCULATOR
     ═══════════════════════════════════════════════ -->
-    <div id="calculator" class="max-w-[1100px] mx-auto px-4 sm:px-6 py-8">
+    <main id="calculator" class="max-w-[1100px] mx-auto px-4 pt-8 pb-10">
+      <!-- Акцентная рамка калькулятора -->
+      <div class="rounded-3xl p-[3px]" style="background: linear-gradient(135deg, #1e3a5f 0%, #f59e0b 50%, #1e3a5f 100%);">
+      <div class="bg-white rounded-[21px] shadow-xl shadow-slate-200/60" style="overflow: clip;">
 
-      <!-- MODE TABS -->
-      <div class="flex gap-2 mb-6 flex-wrap">
-        <button @click="calcMode = 'forward'"
-          :class="calcMode === 'forward' ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-gray-600 border-gray-200 hover:border-indigo-300'"
-          class="px-4 py-2.5 rounded-xl font-semibold text-sm border-2 transition flex items-center gap-2">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-          Forward ROI
-        </button>
-        <button @click="calcMode = 'sensitivity'"
-          :class="calcMode === 'sensitivity' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-gray-600 border-gray-200 hover:border-blue-300'"
-          class="px-4 py-2.5 rounded-xl font-semibold text-sm border-2 transition flex items-center gap-2">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18M10 3v18"/></svg>
-          Hold Period Sensitivity
-        </button>
-        <button @click="calcMode = 'compare'"
-          :class="calcMode === 'compare' ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white text-gray-600 border-gray-200 hover:border-emerald-300'"
-          class="px-4 py-2.5 rounded-xl font-semibold text-sm border-2 transition flex items-center gap-2">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
-          Compare Sell Years
-        </button>
+      <!-- MODE SELECTOR -->
+      <div class="border-b border-gray-100 rounded-t-2xl bg-white">
+        <div class="px-5 pt-4 pb-3">
+          <p class="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-2">
+            What do you want to analyze?
+          </p>
+          <div class="calc-mode-tabs">
+            <button @click="calcMode = 'forward'"
+              class="calc-mode-tab"
+              :class="calcMode === 'forward' ? 'calc-mode-tab-active' : 'calc-mode-tab-inactive'">
+              <span class="block text-xs font-bold leading-tight" :style="calcMode === 'forward' ? 'color:#1e3a5f;' : ''">Forward ROI</span>
+              <span class="inline-block text-xs mt-1 px-2 py-0.5 rounded-full font-semibold"
+                :class="calcMode === 'forward' ? 'bg-amber-100 text-amber-800' : 'bg-gray-200 text-gray-400'">Standard</span>
+            </button>
+            <button @click="calcMode = 'sensitivity'"
+              class="calc-mode-tab"
+              :class="calcMode === 'sensitivity' ? 'calc-mode-tab-active' : 'calc-mode-tab-inactive'">
+              <span class="block text-xs font-bold leading-tight" :style="calcMode === 'sensitivity' ? 'color:#1e3a5f;' : ''">Hold Period Sensitivity</span>
+              <span class="inline-block text-xs mt-1 px-2 py-0.5 rounded-full font-semibold"
+                :class="calcMode === 'sensitivity' ? 'bg-blue-100 text-blue-800' : 'bg-gray-200 text-gray-400'">Analysis</span>
+            </button>
+            <button @click="calcMode = 'compare'"
+              class="calc-mode-tab"
+              :class="calcMode === 'compare' ? 'calc-mode-tab-active' : 'calc-mode-tab-inactive'">
+              <span class="block text-xs font-bold leading-tight" :style="calcMode === 'compare' ? 'color:#1e3a5f;' : ''">Compare Sell Years</span>
+              <span class="inline-block text-xs mt-1 px-2 py-0.5 rounded-full font-semibold"
+                :class="calcMode === 'compare' ? 'bg-emerald-100 text-emerald-800' : 'bg-gray-200 text-gray-400'">Compare</span>
+            </button>
+          </div>
+        </div>
       </div>
 
-      <div class="grid lg:grid-cols-[3fr_2fr] gap-6 items-stretch">
+      <div class="grid lg:grid-cols-[3fr_2fr] gap-6 items-stretch p-6">
 
         <!-- ── LEFT: INPUT FORM ── -->
         <div class="space-y-4">
@@ -172,14 +185,14 @@
                 <div class="relative">
                   <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-semibold text-sm">$</span>
                   <input v-model.number="form.purchasePrice" type="number" min="0" placeholder="Enter purchase price"
-                    class="w-full pl-7 pr-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
+                    class="w-full pl-7 pr-3 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
                 </div>
               </div>
               <div>
                 <label class="block text-xs font-semibold text-gray-500 mb-1">Down Payment %</label>
                 <div class="relative">
                   <input v-model.number="form.downPayment" type="number" min="0" max="100" placeholder="Enter down payment %"
-                    class="w-full pr-8 pl-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
+                    class="w-full pr-8 pl-3 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
                   <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
                 </div>
               </div>
@@ -187,7 +200,7 @@
                 <label class="block text-xs font-semibold text-gray-500 mb-1">Closing Costs %</label>
                 <div class="relative">
                   <input v-model.number="form.closingCosts" type="number" min="0" max="20" placeholder="Enter closing costs %"
-                    class="w-full pr-8 pl-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
+                    class="w-full pr-8 pl-3 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
                   <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
                 </div>
               </div>
@@ -196,7 +209,7 @@
                 <div class="relative">
                   <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-semibold text-sm">$</span>
                   <input v-model.number="form.rehab" type="number" min="0" placeholder="0 if turnkey"
-                    class="w-full pl-7 pr-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
+                    class="w-full pl-7 pr-3 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
                 </div>
               </div>
             </div>
@@ -210,19 +223,19 @@
                 <label class="block text-xs font-semibold text-gray-500 mb-1">Loan Rate %</label>
                 <div class="relative">
                   <input v-model.number="form.loanRate" type="number" min="0" max="30" step="0.1" placeholder="Enter interest rate %"
-                    class="w-full pr-8 pl-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
+                    class="w-full pr-8 pl-3 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
                   <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
                 </div>
               </div>
               <div>
                 <label class="block text-xs font-semibold text-gray-500 mb-1">Loan Term (years)</label>
                 <input v-model.number="form.loanTerm" type="number" min="1" max="40" placeholder="Enter term in years"
-                  class="w-full px-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
+                  class="w-full px-3 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
               </div>
               <div class="sm:col-span-2">
                 <label class="block text-xs font-semibold text-gray-500 mb-1">Loan Type</label>
                 <select v-model="form.loanType"
-                  class="w-full px-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition bg-white">
+                  class="w-full px-3 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition bg-white">
                   <option value="conventional">Conventional</option>
                   <option value="dscr">DSCR</option>
                   <option value="portfolio">Portfolio</option>
@@ -240,14 +253,14 @@
                 <div class="relative">
                   <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-semibold text-sm">$</span>
                   <input v-model.number="form.monthlyRent" type="number" min="0" placeholder="Enter monthly rent"
-                    class="w-full pl-7 pr-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
+                    class="w-full pl-7 pr-3 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
                 </div>
               </div>
               <div>
                 <label class="block text-xs font-semibold text-gray-500 mb-1">Vacancy %</label>
                 <div class="relative">
                   <input v-model.number="form.vacancy" type="number" min="0" max="50" placeholder="Enter vacancy %"
-                    class="w-full pr-8 pl-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
+                    class="w-full pr-8 pl-3 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
                   <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
                 </div>
               </div>
@@ -255,7 +268,7 @@
                 <label class="block text-xs font-semibold text-gray-500 mb-1">Annual Rent Growth %</label>
                 <div class="relative">
                   <input v-model.number="form.rentGrowth" type="number" min="0" max="20" step="0.5" placeholder="Enter rent growth %/yr"
-                    class="w-full pr-8 pl-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
+                    class="w-full pr-8 pl-3 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
                   <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
                 </div>
               </div>
@@ -263,7 +276,7 @@
                 <label class="block text-xs font-semibold text-gray-500 mb-1">OpEx % of Rent</label>
                 <div class="relative">
                   <input v-model.number="form.opex" type="number" min="0" max="90" placeholder="Enter OpEx % of rent"
-                    class="w-full pr-8 pl-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
+                    class="w-full pr-8 pl-3 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
                   <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
                 </div>
               </div>
@@ -278,7 +291,7 @@
                 <label class="block text-xs font-semibold text-gray-500 mb-1">Annual Appreciation %</label>
                 <div class="relative">
                   <input v-model.number="form.appreciation" type="number" min="0" max="20" step="0.5" placeholder="Enter appreciation %/yr"
-                    class="w-full pr-8 pl-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
+                    class="w-full pr-8 pl-3 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
                   <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
                 </div>
               </div>
@@ -289,7 +302,7 @@
                   <span v-else class="font-normal text-gray-400">used for Mode 1</span>
                 </label>
                 <input v-model.number="form.holdPeriod" type="number" min="1" max="30" placeholder="Enter hold period (years)"
-                  class="w-full px-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
+                  class="w-full px-3 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
               </div>
             </div>
           </div>
@@ -325,7 +338,7 @@
                 <label class="block text-xs font-semibold text-gray-500 mb-1">Marginal Tax Rate %</label>
                 <div class="relative">
                   <input v-model.number="form.marginalTax" type="number" min="0" max="60" placeholder="Enter marginal tax rate %"
-                    class="w-full pr-8 pl-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
+                    class="w-full pr-8 pl-3 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
                   <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
                 </div>
               </div>
@@ -333,7 +346,7 @@
                 <label class="block text-xs font-semibold text-gray-500 mb-1">Land Value % of Purchase</label>
                 <div class="relative">
                   <input v-model.number="form.landValue" type="number" min="0" max="90" placeholder="Enter land value %"
-                    class="w-full pr-8 pl-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
+                    class="w-full pr-8 pl-3 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
                   <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
                 </div>
               </div>
@@ -341,7 +354,7 @@
                 <label class="block text-xs font-semibold text-gray-500 mb-1">Selling Cost %</label>
                 <div class="relative">
                   <input v-model.number="form.sellingCost" type="number" min="0" max="20" placeholder="Enter selling cost %"
-                    class="w-full pr-8 pl-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
+                    class="w-full pr-8 pl-3 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
                   <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
                 </div>
               </div>
@@ -349,7 +362,7 @@
                 <label class="block text-xs font-semibold text-gray-500 mb-1">Federal LTCG Rate %</label>
                 <div class="relative">
                   <input v-model.number="form.fedLTCG" type="number" min="0" max="25" placeholder="Enter federal LTCG rate %"
-                    class="w-full pr-8 pl-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
+                    class="w-full pr-8 pl-3 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
                   <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
                 </div>
               </div>
@@ -357,7 +370,7 @@
                 <label class="block text-xs font-semibold text-gray-500 mb-1">State Capital Gains %</label>
                 <div class="relative">
                   <input v-model.number="form.stateCG" type="number" min="0" max="20" placeholder="Enter state CG rate %"
-                    class="w-full pr-8 pl-3 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
+                    class="w-full pr-8 pl-3 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 text-sm outline-none transition" />
                   <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">%</span>
                 </div>
                 <p class="text-xs text-gray-400 mt-1">e.g. CA = 9.3%, TX/FL/NV = 0%</p>
@@ -831,7 +844,9 @@
           </div><!-- /inner space-y-4 -->
         </div><!-- /Right col -->
       </div><!-- /Grid -->
-    </div><!-- /Calculator -->
+      </div>
+      </div>
+    </main><!-- /Calculator -->
 
     <!-- ═══════════════════════════════════════════════
          SCENARIO PANEL
