@@ -19,7 +19,7 @@
           <nav class="hidden md:flex items-center gap-8">
             <NuxtLink to="/calculators" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Calculators</NuxtLink>
             <NuxtLink to="/pricing" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Pricing</NuxtLink>
-            <NuxtLink to="/blog" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</NuxtLink>
+            <a href="/blog/" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</a>
           </nav>
           <NuxtLink to="/pricing"
             class="inline-flex items-center gap-2 text-sm font-bold text-white px-5 py-2.5 rounded-lg transition hover:opacity-90"
@@ -2857,6 +2857,9 @@ const relatedCalcs = [
   { label: 'NOI Calculator',      href: '/noi-calculator' },
   { label: 'Rental Property',     href: '/rental-property-calculator' },
   { label: 'BRRRR Calculator',    href: '/brrrr-calculator' },
+  { label: 'Multifamily Property', href: '/multifamily-property-calculator' },
+  { label: 'Management Fee',     href: '/property-management-fee-calculator' },
+  { label: 'Airbnb / STR',      href: '/airbnb-str-calculator' },
 ]
 
 // ─── URL PERSISTENCE ─────────────────────────────────────────────────────────

@@ -19,7 +19,7 @@
           <nav class="hidden md:flex items-center gap-8">
             <NuxtLink to="/calculators" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Calculators</NuxtLink>
             <NuxtLink to="/pricing" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Pricing</NuxtLink>
-            <NuxtLink to="/blog" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</NuxtLink>
+            <a href="/blog/" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</a>
           </nav>
           <NuxtLink to="/pricing"
             class="inline-flex items-center gap-2 text-sm font-bold px-5 py-2.5 rounded-lg transition hover:opacity-90"
@@ -586,13 +586,13 @@
             </div>
 
             <!-- Save Scenario Button -->
-            <button @click="saveScenario"
+            <button @click="openSaveScenario"
               class="w-full py-3 rounded-xl font-bold text-sm transition hover:opacity-90 flex items-center justify-center gap-2"
-              style="background: #1e3a5f; color: white;">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/>
+              style="background: #f59e0b; color: #1e3a5f;">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
               </svg>
-              Save Current Scenario
+              Save Scenario
             </button>
 
             <!-- Share + PDF -->
@@ -626,90 +626,16 @@
       </div></div><!-- end gradient wrapper -->
 
       <!-- ═══════════════════════════════════════════════
-           SECTION 4: SAVED SCENARIOS WIDGET
-           IMMEDIATELY below calculator, BEFORE SEO content
+           SCENARIO PANEL
       ═══════════════════════════════════════════════ -->
-      <div id="saved-scenarios" class="mt-6 bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
-        <div class="px-6 py-5 border-b border-gray-100">
-          <div class="flex items-center justify-between">
-            <div>
-              <h2 class="text-xl font-extrabold" style="color: #1e3a5f;">Saved Scenarios</h2>
-              <p class="text-gray-500 text-sm mt-0.5">{{ savedScenarios.length }} of {{ MAX_SCENARIOS }} saved — compare different properties and assumptions</p>
-            </div>
-            <NuxtLink v-if="savedScenarios.length >= 2"
-              to="/compare-real-estate-deals?source=property-cash-flow-calculator"
-              class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition hover:opacity-90"
-              style="background: #1e3a5f; color: white;">
-              Compare All →
-            </NuxtLink>
-          </div>
-        </div>
-        <div class="p-6">
-          <!-- Empty state -->
-          <div v-if="savedScenarios.length === 0" class="text-center py-10">
-            <div class="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center mx-auto mb-3">
-              <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/>
-              </svg>
-            </div>
-            <p class="text-gray-600 font-medium text-sm">No saved scenarios yet</p>
-            <p class="text-gray-400 text-xs mt-1">Fill in the calculator, then click "Save Current Scenario" to save your analysis</p>
-          </div>
-          <!-- Scenarios grid -->
-          <div v-else class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div v-for="scenario in savedScenarios" :key="scenario.id"
-              class="bg-gray-50 rounded-2xl border border-gray-200 p-4 hover:shadow-sm transition-shadow">
-              <div class="flex items-start justify-between mb-2">
-                <div class="flex-1 min-w-0 mr-2">
-                  <div v-if="editingId !== scenario.id" class="flex items-center gap-1">
-                    <span class="text-sm font-bold text-gray-900 truncate">{{ scenario.label }}</span>
-                    <button @click="startEdit(scenario)" class="text-gray-300 hover:text-gray-500 transition flex-shrink-0">
-                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                      </svg>
-                    </button>
-                  </div>
-                  <input v-else
-                    v-model="editingLabel"
-                    @blur="finishEdit(scenario.id)"
-                    @keyup.enter="finishEdit(scenario.id)"
-                    class="text-sm font-bold text-gray-900 border border-indigo-300 rounded px-1 w-full focus:outline-none focus:border-indigo-500"
-                    autofocus />
-                  <div class="text-xs text-gray-400 mt-0.5">{{ scenario.date }}</div>
-                </div>
-                <button @click="deleteScenario(scenario.id)" class="text-gray-300 hover:text-red-400 transition-colors flex-shrink-0">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                  </svg>
-                </button>
-              </div>
-              <div class="space-y-1.5">
-                <div class="flex justify-between text-xs">
-                  <span class="text-gray-500">Verdict</span>
-                  <span class="font-bold px-1.5 py-0.5 rounded text-xs" :class="verdictBadgeClass(scenario.verdict)">{{ scenario.verdict }}</span>
-                </div>
-                <div class="flex justify-between text-xs">
-                  <span class="text-gray-500">Monthly CF</span>
-                  <span class="font-bold" :class="scenario.monthly_cash_flow >= 0 ? 'text-green-600' : 'text-red-600'">
-                    {{ scenario.monthly_cash_flow >= 0 ? '+' : '' }}{{ fmtDollar(scenario.monthly_cash_flow) }}
-                  </span>
-                </div>
-                <div class="flex justify-between text-xs">
-                  <span class="text-gray-500">DCR</span>
-                  <span class="font-bold text-gray-700">{{ scenario.dcr === null ? 'N/A' : fmt2(scenario.dcr) }}</span>
-                </div>
-                <div class="flex justify-between text-xs">
-                  <span class="text-gray-500">Break-even</span>
-                  <span class="font-bold text-gray-700">{{ scenario.break_even_occupancy_pct > 100 ? '>100%' : fmt1(scenario.break_even_occupancy_pct) + '%' }}</span>
-                </div>
-              </div>
-              <button @click="loadScenario(scenario)"
-                class="mt-3 w-full py-1.5 bg-white border border-gray-200 text-gray-700 rounded-lg text-xs font-semibold hover:bg-gray-50 transition-colors">
-                Load this scenario
-              </button>
-            </div>
-          </div>
-        </div>
+      <div class="mt-6">
+        <ScenarioPanel
+          calculator="property-cash-flow"
+          :has-result="!!results"
+          :result="currentScenarioResult"
+          :trigger-save="triggerScenarioSave"
+          @saved="onScenarioSaved"
+        />
       </div>
 
       <!-- ═══════════════════════════════════════════════
@@ -1263,7 +1189,7 @@
             <ul class="space-y-2 text-sm text-gray-500">
               <li><NuxtLink to="/calculators" class="hover:text-gray-700 transition">All Calculators</NuxtLink></li>
               <li><NuxtLink to="/pricing" class="hover:text-gray-700 transition">Pricing</NuxtLink></li>
-              <li><NuxtLink to="/blog" class="hover:text-gray-700 transition">Blog</NuxtLink></li>
+              <li><a href="/blog/" class="hover:text-gray-700 transition">Blog</a></li>
             </ul>
           </div>
         </div>
@@ -1278,7 +1204,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, nextTick } from 'vue'
 
 // ─── SEO ─────────────────────────────────────────────────────────────────────
 useHead({
@@ -1582,6 +1508,26 @@ function computeBreakEvenTier(beoPct) {
 // MAIN COMPUTED RESULTS
 // ============================================================
 const results = computed(() => calculateCashFlow())
+
+// ── SCENARIO PANEL ──────────────────────────────────
+const triggerScenarioSave = ref(false)
+function openSaveScenario() {
+  triggerScenarioSave.value = true
+  nextTick(() => { triggerScenarioSave.value = false })
+}
+const currentScenarioResult = computed(() => {
+  const r = results.value
+  if (!r) return undefined
+  return {
+    primaryMetric: 'Monthly Cash Flow',
+    primaryValue: (r.monthly_cash_flow >= 0 ? '+' : '') + '$' + Math.round(r.monthly_cash_flow),
+    badgeLabel: r.verdict,
+    monthlyCashFlow: r.monthly_cash_flow,
+    annualCashFlow: r.annual_cash_flow,
+    purchasePrice: inp.value.purchase_price,
+  }
+})
+function onScenarioSaved(_id) {}
 
 // ============================================================
 // KEY INSIGHT
@@ -1926,65 +1872,6 @@ function toggleFaq(i) {
 }
 
 // ============================================================
-// SAVED SCENARIOS
-// ============================================================
-const STORAGE_KEY = 'property-cash-flow-scenarios'
-const MAX_SCENARIOS = 20
-const savedScenarios = ref([])
-
-function saveScenario() {
-  const r = results.value
-  if (!r) return
-  if (savedScenarios.value.length >= MAX_SCENARIOS) {
-    alert(`Maximum ${MAX_SCENARIOS} scenarios reached. Delete one to save a new scenario.`)
-    return
-  }
-  const scenario = {
-    id: Date.now() + Math.random(),
-    label: `Scenario ${savedScenarios.value.length + 1}`,
-    date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
-    inputs: { ...inp.value, _opexMode: opexMode.value },
-    verdict: r.verdict,
-    monthly_cash_flow: r.monthly_cash_flow,
-    annual_cash_flow: r.annual_cash_flow,
-    cash_flow_yield_pct: r.cash_flow_yield_pct,
-    break_even_occupancy_pct: r.break_even_occupancy_pct,
-    break_even_tier: r.break_even_tier,
-    dcr: r.dcr,
-    oer_pct: r.oer_pct,
-    noi_annual: r.noi_annual,
-  }
-  const updated = [scenario, ...savedScenarios.value]
-  savedScenarios.value = updated
-  if (process.client) localStorage.setItem(STORAGE_KEY, JSON.stringify(updated))
-}
-
-function loadScenario(scenario) {
-  Object.assign(inp.value, scenario.inputs)
-  if (scenario.inputs._opexMode) opexMode.value = scenario.inputs._opexMode
-}
-
-function deleteScenario(id) {
-  if (!confirm('Delete this scenario?')) return
-  const updated = savedScenarios.value.filter(s => s.id !== id)
-  savedScenarios.value = updated
-  if (process.client) localStorage.setItem(STORAGE_KEY, JSON.stringify(updated))
-}
-
-function startEdit(scenario) {
-  editingId.value = scenario.id
-  editingLabel.value = scenario.label
-}
-
-function finishEdit(id) {
-  const scenario = savedScenarios.value.find(s => s.id === id)
-  if (scenario && editingLabel.value.trim()) {
-    scenario.label = editingLabel.value.trim()
-    if (process.client) localStorage.setItem(STORAGE_KEY, JSON.stringify(savedScenarios.value))
-  }
-  editingId.value = null
-  editingLabel.value = ''
-}
 
 // ============================================================
 // URL PARAMETER IMPORT
@@ -2008,18 +1895,10 @@ const URL_PARAM_MAP = {
 
 onMounted(() => {
   if (process.client) {
-    // Load saved scenarios
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY)
-      if (stored) savedScenarios.value = JSON.parse(stored)
-    } catch {}
-
     // Import URL params
     const params = new URLSearchParams(window.location.search)
-    let hasParams = false
     for (const [shortKey, fullKey] of Object.entries(URL_PARAM_MAP)) {
       if (params.has(shortKey)) {
-        hasParams = true
         const val = parseFloat(params.get(shortKey))
         if (!isNaN(val)) inp.value[fullKey] = val
       }
@@ -2243,5 +2122,7 @@ const relatedCalcs = [
   { to: '/real-estate-roi-calculator', icon: '🎯', name: 'Real Estate ROI Calculator', desc: 'Comprehensive Decision Engine across strategies' },
   { to: '/compare-deals', icon: '⚖️', name: 'Compare Real Estate Deals', desc: 'Side-by-side comparison of saved scenarios' },
   { to: '/mortgage-calculator-investment', icon: '🔢', name: 'Mortgage Investment Calculator', desc: 'Detailed investor mortgage breakdown' },
+  { to: '/property-management-fee-calculator', icon: '🔑', name: 'Management Fee Calculator', desc: 'True cost of property management on NOI & cash flow' },
+  { to: '/airbnb-str-calculator', icon: '🏡', name: 'Airbnb / STR Calculator', desc: 'Short-term rental revenue, NOI, break-even occupancy & cash flow' },
 ]
 </script>

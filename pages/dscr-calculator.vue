@@ -19,7 +19,7 @@
           <nav class="hidden md:flex items-center gap-8">
             <NuxtLink to="/calculators" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Calculators</NuxtLink>
             <NuxtLink to="/pricing" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Pricing</NuxtLink>
-            <NuxtLink to="/blog" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</NuxtLink>
+            <a href="/blog/" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</a>
           </nav>
           <NuxtLink to="/pricing"
             class="inline-flex items-center gap-2 text-sm font-bold text-white px-5 py-2.5 rounded-lg transition hover:opacity-90"
@@ -2691,6 +2691,10 @@ const relatedCalcs = [
   { label: 'Debt Yield Calculator',      href: '/debt-yield-calculator' },
   { label: 'Cash-on-Cash Return',        href: '/cash-on-cash-calculator' },
   { label: 'Rental Property Calculator', href: '/rental-property-calculator' },
+  { label: 'Closing Costs',             href: '/closing-costs-calculator' },
+  { label: 'Multifamily Property',       href: '/multifamily-property-calculator' },
+  { label: 'Airbnb / STR',              href: '/airbnb-str-calculator' },
+  { label: 'BRRRR Refinance',           href: '/brrrr-refinance-calculator' },
 ]
 
 const propertyInputTable = [

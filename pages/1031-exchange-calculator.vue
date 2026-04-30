@@ -19,7 +19,7 @@
           <nav class="hidden md:flex items-center gap-8">
             <NuxtLink to="/calculators" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Calculators</NuxtLink>
             <NuxtLink to="/pricing" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Pricing</NuxtLink>
-            <NuxtLink to="/blog" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</NuxtLink>
+            <a href="/blog/" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</a>
           </nav>
           <NuxtLink to="/pricing"
             class="inline-flex items-center gap-2 text-sm font-bold px-5 py-2.5 rounded-lg transition hover:opacity-90"
@@ -59,7 +59,6 @@
           <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">On this page</p>
           <ul class="hidden md:flex flex-wrap gap-x-5 gap-y-1.5">
             <li><a href="#calculator" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Calculator</a></li>
-            <li><a href="#saved-scenarios" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Saved Scenarios</a></li>
             <li><a href="#overview" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Overview</a></li>
             <li><a href="#search-entry-hooks" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Common Questions</a></li>
             <li><a href="#how-to-use" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">How to Use</a></li>
@@ -78,8 +77,7 @@
           <div class="md:hidden">
             <ul class="flex flex-col gap-y-2">
               <li><a href="#calculator" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Calculator</a></li>
-              <li><a href="#saved-scenarios" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Saved Scenarios</a></li>
-              <li><a href="#overview" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Overview</a></li>
+                <li><a href="#overview" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">Overview</a></li>
             </ul>
             <ul v-show="isNavExpanded" class="flex flex-col gap-y-2 mt-2">
               <li><a href="#how-to-use" class="text-sm font-medium text-gray-600 hover:text-yellow-700 transition">How to Use</a></li>
@@ -832,6 +830,15 @@
 
             <!-- Share + PDF -->
             <div class="p-4 border-t border-gray-100 space-y-2">
+              <!-- 1. PRIMARY: Save -->
+              <button @click="openSaveScenario"
+                class="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-sm transition hover:opacity-90"
+                style="background: #f59e0b; color: #1e3a5f;">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
+                </svg>
+                Save Scenario
+              </button>
               <div class="grid grid-cols-2 gap-2">
                 <button @click="shareResult"
                   class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border"
@@ -865,98 +872,17 @@
     </main><!-- end calculator main -->
 
     <!-- ═══════════════════════════════════════════════
-         SECTION 4: SAVED SCENARIOS WIDGET
+         SECTION 4: SAVED SCENARIOS (ScenarioPanel)
     ═══════════════════════════════════════════════ -->
-    <section id="saved-scenarios" class="max-w-[1100px] mx-auto px-4 pb-10">
-      <div class="rounded-2xl border border-gray-200 bg-white shadow-sm p-6">
-        <div class="flex items-center justify-between mb-5">
-          <div>
-            <h2 class="text-lg font-extrabold" style="color: #1e3a5f;">Saved Scenarios</h2>
-            <p class="text-sm text-gray-500">{{ savedScenarios.length }} of 20 saved — load any scenario to compare</p>
-          </div>
-          <button @click="saveCurrentScenario"
-            :disabled="!results"
-            class="inline-flex items-center gap-2 text-sm font-bold px-4 py-2 rounded-lg transition disabled:opacity-40 disabled:cursor-not-allowed hover:opacity-90"
-            style="background: #1e3a5f; color: white;">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-            </svg>
-            Save Current
-          </button>
-        </div>
-
-        <!-- Empty state -->
-        <div v-if="savedScenarios.length === 0" class="text-center py-10 rounded-xl bg-gray-50 border-2 border-dashed border-gray-200">
-          <svg class="w-10 h-10 text-gray-300 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
-          </svg>
-          <p class="text-gray-500 font-medium text-sm">No saved scenarios yet</p>
-          <p class="text-gray-400 text-xs mt-1">Fill in the calculator above and click "Save Current" to save up to 20 scenarios</p>
-        </div>
-
-        <!-- Saved scenarios list -->
-        <div v-else class="space-y-3">
-          <div v-for="sc in savedScenarios" :key="sc.id"
-            class="p-4 rounded-xl border border-gray-200 bg-gray-50 hover:bg-white hover:border-gray-300 transition">
-            <div class="flex items-start justify-between gap-3">
-              <div class="flex-1 min-w-0">
-                <!-- Label (editable) -->
-                <div v-if="editingScenarioId === sc.id" class="flex items-center gap-2 mb-2">
-                  <input v-model="editingLabel" type="text" maxlength="60"
-                    class="flex-1 px-2 py-1 text-sm font-bold rounded-lg border border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-400/40"
-                    @keydown.enter="saveLabel(sc.id)"
-                    @keydown.escape="editingScenarioId = null" />
-                  <button @click="saveLabel(sc.id)" class="text-xs font-bold text-indigo-600 hover:text-indigo-800">Save</button>
-                  <button @click="editingScenarioId = null" class="text-xs text-gray-400 hover:text-gray-600">Cancel</button>
-                </div>
-                <div v-else class="flex items-center gap-2 mb-2">
-                  <span class="text-sm font-bold text-gray-900 truncate">{{ sc.label }}</span>
-                  <button @click="startEdit(sc)" class="text-xs text-gray-400 hover:text-gray-600 flex-shrink-0">Edit</button>
-                </div>
-
-                <!-- Verdict + key metrics -->
-                <div class="flex flex-wrap items-center gap-2 text-xs">
-                  <span class="px-2 py-0.5 rounded-full font-bold border" :class="verdictCfg(sc.verdict).badge">
-                    {{ verdictCfg(sc.verdict).shortLabel }}
-                  </span>
-                  <span class="text-gray-700 font-semibold">Tax Deferred: <strong class="text-green-600">{{ fmtK(sc.tax_deferred) }}</strong></span>
-                  <span v-if="sc.total_boot > 0" class="text-amber-700">Boot: {{ fmtK(sc.total_boot) }}</span>
-                  <span v-if="sc.days_until_identification !== undefined" class="text-gray-500">
-                    ID: {{ sc.days_until_identification >= 0 ? sc.days_until_identification + 'd' : 'EXPIRED' }}
-                    / Ex: {{ sc.days_until_exchange >= 0 ? sc.days_until_exchange + 'd' : 'EXPIRED' }}
-                  </span>
-                </div>
-                <div class="mt-1 text-xs text-gray-400">{{ fmtTimestamp(sc.timestamp) }}</div>
-              </div>
-
-              <!-- Actions -->
-              <div class="flex items-center gap-2 flex-shrink-0">
-                <button @click="loadScenario(sc)"
-                  class="text-xs font-bold px-3 py-1.5 rounded-lg border transition"
-                  style="border-color: #1e3a5f; color: #1e3a5f;"
-                  @mouseover="$event.target.style.background='#1e3a5f'; $event.target.style.color='white'"
-                  @mouseleave="$event.target.style.background='transparent'; $event.target.style.color='#1e3a5f'">
-                  Load
-                </button>
-                <button @click="deleteScenario(sc.id)"
-                  class="text-xs text-gray-400 hover:text-red-600 transition px-2 py-1 rounded-lg hover:bg-red-50">
-                  ×
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Compare CTA -->
-        <div v-if="savedScenarios.length >= 2" class="mt-4 text-center">
-          <NuxtLink to="/compare-deals?source=1031-exchange"
-            class="inline-flex items-center gap-2 text-sm font-bold px-5 py-2.5 rounded-lg border-2 transition hover:opacity-90"
-            style="border-color: #f59e0b; color: #b45309; background: #fffbeb;">
-            Compare All in Compare Real Estate Deals →
-          </NuxtLink>
-        </div>
-      </div>
-    </section>
+    <div class="max-w-[1100px] mx-auto px-4 pb-6 mt-4">
+      <ScenarioPanel
+        calculator="1031-exchange"
+        :has-result="!!results"
+        :result="currentScenarioResult"
+        :trigger-save="triggerScenarioSave"
+        @saved="onScenarioSaved"
+      />
+    </div>
 
     <!-- ═══════════════════════════════════════════════
          SECTION 5: SEO CONTENT (16 sections)
@@ -1444,6 +1370,7 @@
 </template>
 
 <script setup>
+import { nextTick } from 'vue'
 // ============================================================
 // HEAD / SEO
 // ============================================================
@@ -1512,9 +1439,8 @@ const route = useRoute()
 // REACTIVE STATE
 // ============================================================
 const isNavExpanded = ref(false)
-const editingScenarioId = ref(null)
-const editingLabel = ref('')
 const shareSuccess = ref(false)
+const triggerScenarioSave = ref(false)
 
 // Today's date as YYYY-MM-DD
 const todayStr = new Date().toISOString().split('T')[0]
@@ -1541,8 +1467,6 @@ const inp = ref({
   // Timing
   sale_date: todayStr,
 })
-
-const savedScenarios = ref([])
 
 // ============================================================
 // COMPUTED HELPERS
@@ -2106,98 +2030,34 @@ function serializeInputsToUrlParams() {
 }
 
 // ============================================================
-// SAVED SCENARIOS
+// SCENARIO PANEL
 // ============================================================
-const STORAGE_KEY = '1031-exchange-scenarios'
-
-function loadSavedScenariosFromLocalStorage() {
-  try {
-    const stored = localStorage.getItem(STORAGE_KEY)
-    if (stored) savedScenarios.value = JSON.parse(stored)
-  } catch (e) { console.warn('Failed to load saved scenarios', e) }
+function openSaveScenario() {
+  triggerScenarioSave.value = true
+  nextTick(() => { triggerScenarioSave.value = false })
 }
 
-function persistScenarios() {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(savedScenarios.value))
-  } catch (e) { console.warn('Failed to persist scenarios', e) }
-}
-
-function generateId() {
-  return Date.now().toString(36) + Math.random().toString(36).slice(2)
-}
-
-function saveCurrentScenario() {
-  if (!results.value) return
-  if (savedScenarios.value.length >= 20) {
-    alert('Maximum 20 scenarios saved. Delete one before saving a new one.')
-    return
-  }
+const currentScenarioResult = computed(() => {
   const r = results.value
-  const sc = {
-    id: generateId(),
-    label: `Scenario ${savedScenarios.value.length + 1} — ${fmtDateStr(new Date())}`,
-    timestamp: Date.now(),
-    inputs: { ...inp.value },
-    verdict: r.verdict,
-    verdict_subtitle: r.verdict_subtitle,
-    tax_deferred: r.tax_deferred,
-    total_tax_if_sold: r.total_tax_if_sold,
-    tax_if_exchanged: r.tax_if_exchanged,
-    realized_gain: r.realized_gain,
-    ltcg_portion: r.ltcg_portion,
-    recapture_portion: r.recapture_portion,
-    federal_ltcg_tax: r.federal_ltcg_tax,
-    federal_recapture_tax: r.federal_recapture_tax,
-    state_tax: r.state_tax,
-    niit_tax: r.niit_tax,
-    cash_boot: r.cash_boot,
-    mortgage_boot: r.mortgage_boot,
-    trade_down_boot: r.trade_down_boot,
-    total_boot: r.total_boot,
-    total_boot_tax: r.total_boot_tax,
-    sale_date: inp.value.sale_date,
-    days_until_identification: r.days_until_id,
-    days_until_exchange: r.days_until_exchange,
-    url_params: serializeInputsToUrlParams(),
+  if (!r) return undefined
+  const cfg = verdictCfg(r.verdict)
+  return {
+    primaryMetric: 'Tax Deferred',
+    primaryValue: fmtDollarFull(r.tax_deferred),
+    badgeLabel: cfg.shortLabel,
+    badgeColor: cfg.badge,
+    purchasePrice: inp.value.replacement_purchase_price,
+    profit: r.tax_deferred,
   }
-  savedScenarios.value.unshift(sc)
-  persistScenarios()
-}
+})
 
-function deleteScenario(id) {
-  if (!confirm('Delete this scenario?')) return
-  savedScenarios.value = savedScenarios.value.filter(s => s.id !== id)
-  persistScenarios()
-}
-
-function loadScenario(sc) {
-  if (sc.inputs) {
-    inp.value = { ...inp.value, ...sc.inputs }
-  }
-}
-
-function startEdit(sc) {
-  editingScenarioId.value = sc.id
-  editingLabel.value = sc.label
-}
-
-function saveLabel(id) {
-  const sc = savedScenarios.value.find(s => s.id === id)
-  if (sc && editingLabel.value.trim()) {
-    sc.label = editingLabel.value.trim()
-    persistScenarios()
-  }
-  editingScenarioId.value = null
-  editingLabel.value = ''
-}
+function onScenarioSaved(_id) {}
 
 // ============================================================
 // LIFECYCLE
 // ============================================================
 onMounted(() => {
   importFromUrlParams(route.query)
-  loadSavedScenariosFromLocalStorage()
 })
 
 // ============================================================

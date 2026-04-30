@@ -15,6 +15,11 @@ export default defineNuxtConfig({
         { property: 'og:type', content: 'website' },
         { property: 'og:locale', content: 'en_US' },
       ],
+      
+      script: [
+        { src: 'https://www.googletagmanager.com/gtag/js?id=G-SQHLB3B5E5', async: true },
+        { innerHTML: "window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-SQHLB3B5E5')" }
+      ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },

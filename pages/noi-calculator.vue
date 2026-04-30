@@ -17,7 +17,7 @@
           <nav class="hidden md:flex items-center gap-8">
             <NuxtLink to="/calculators" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Calculators</NuxtLink>
             <NuxtLink to="/pricing" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Pricing</NuxtLink>
-            <NuxtLink to="/blog" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</NuxtLink>
+            <a href="/blog/" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</a>
           </nav>
           <NuxtLink to="/pricing"
             class="inline-flex items-center gap-2 text-sm font-bold px-5 py-2.5 rounded-lg transition hover:opacity-90"
@@ -1450,6 +1450,22 @@
             <NuxtLink to="/rental-property-calculator" class="bg-white/10 hover:bg-white/20 rounded-xl p-4 transition text-center">
               <p class="font-bold text-sm">Rental Property</p>
               <p class="text-xs text-blue-300 mt-0.5">Full cash flow analysis</p>
+            </NuxtLink>
+            <NuxtLink to="/multifamily-property-calculator" class="bg-white/10 hover:bg-white/20 rounded-xl p-4 transition text-center">
+              <p class="font-bold text-sm">Multifamily Property</p>
+              <p class="text-xs text-blue-300 mt-0.5">NOI, DSCR & break-even for apartments</p>
+            </NuxtLink>
+            <NuxtLink to="/property-management-fee-calculator" class="bg-white/10 hover:bg-white/20 rounded-xl p-4 transition text-center">
+              <p class="font-bold text-sm">Management Fee</p>
+              <p class="text-xs text-blue-300 mt-0.5">True cost impact on NOI</p>
+            </NuxtLink>
+            <NuxtLink to="/airbnb-str-calculator" class="bg-white/10 hover:bg-white/20 rounded-xl p-4 transition text-center">
+              <p class="font-bold text-sm">Airbnb / STR</p>
+              <p class="text-xs text-blue-300 mt-0.5">STR revenue & break-even</p>
+            </NuxtLink>
+            <NuxtLink to="/brrrr-refinance-calculator" class="bg-white/10 hover:bg-white/20 rounded-xl p-4 transition text-center">
+              <p class="font-bold text-sm">BRRRR Refinance</p>
+              <p class="text-xs text-blue-300 mt-0.5">Cash left, DSCR & appraisal gap</p>
             </NuxtLink>
           </div>
         </div>

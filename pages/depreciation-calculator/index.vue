@@ -19,7 +19,7 @@
           <nav class="hidden md:flex items-center gap-8">
             <NuxtLink to="/calculators" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Calculators</NuxtLink>
             <NuxtLink to="/pricing" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Pricing</NuxtLink>
-            <NuxtLink to="/blog" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</NuxtLink>
+            <a href="/blog/" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</a>
           </nav>
           <NuxtLink to="/pricing"
             class="inline-flex items-center gap-2 text-sm font-bold px-5 py-2.5 rounded-lg transition hover:opacity-90"
@@ -384,27 +384,6 @@
               </div>
             </div>
 
-            <!-- SECTION: Scenario Name -->
-            <div class="border-b border-gray-100">
-              <div class="px-5 py-3 bg-gray-50 border-b border-gray-100">
-                <h2 class="text-xs font-bold uppercase tracking-wider text-gray-500">Save This Scenario</h2>
-              </div>
-              <div class="px-4 py-3">
-                <div>
-                  <label class="block text-xs font-semibold text-gray-700 mb-1">Scenario Name</label>
-                  <input v-model="form.scenarioName" type="text"
-                    placeholder="Optional: name this depreciation scenario"
-                    class="w-full px-4 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-semibold text-sm" />
-                </div>
-                <button @click="saveScenario"
-                  :disabled="!hasResult"
-                  class="mt-3 w-full py-2.5 rounded-xl text-sm font-bold transition flex items-center justify-center gap-2"
-                  :class="hasResult ? 'bg-gray-900 text-white hover:bg-gray-700' : 'bg-gray-100 text-gray-400 cursor-not-allowed'">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>
-                  Save Scenario
-                </button>
-              </div>
-            </div>
 
           </template>
 
@@ -704,6 +683,42 @@
               </div>
             </template>
 
+            <!-- Share + PDF Export + Save Scenario -->
+            <div v-if="hasResult || revBasis !== null || revPeriod !== null" class="p-4 border-t border-gray-100 space-y-2">
+              <!-- 1. PRIMARY: Save -->
+              <button @click="openSaveScenario"
+                class="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-sm transition hover:opacity-90"
+                style="background: #f59e0b; color: #1e3a5f;">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
+                </svg>
+                Save Scenario
+              </button>
+              <!-- 2. SECONDARY: Share + PDF в одну строку -->
+              <div class="grid grid-cols-2 gap-2">
+                <button @click="shareUrl"
+                  class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border"
+                  :class="shareMsg
+                    ? 'border-green-400 text-green-700 bg-green-50'
+                    : 'border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50'">
+                  <svg v-if="!shareMsg" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                  </svg>
+                  <svg v-else class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  {{ shareMsg || 'Share' }}
+                </button>
+                <button @click="exportPdf"
+                  class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                  </svg>
+                  Export PDF
+                </button>
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -711,89 +726,20 @@
       </div>
       </div>
 
-      <!-- SHARE + PDF BUTTONS -->
-      <div class="mt-4 flex flex-wrap gap-3">
-        <button @click="shareUrl" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border-2 border-gray-200 bg-white text-sm font-semibold text-gray-700 hover:border-gray-300 transition">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
-          Share
-        </button>
-        <button @click="exportPdf" :disabled="!hasResult" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border-2 text-sm font-semibold transition"
-          :class="hasResult ? 'border-gray-900 bg-gray-900 text-white hover:bg-gray-700' : 'border-gray-200 bg-gray-100 text-gray-400 cursor-not-allowed'">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-          Export PDF
-        </button>
-        <span v-if="shareMsg" class="inline-flex items-center text-sm text-green-600 font-medium">{{ shareMsg }}</span>
-      </div>
-
     </main>
 
     <!-- ═══════════════════════════════════════════════
-         SAVED SCENARIOS
+         SCENARIO PANEL
     ═══════════════════════════════════════════════ -->
-    <section id="saved-scenarios" class="max-w-[1100px] mx-auto px-4 pb-10">
-      <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-        <div class="flex items-center justify-between mb-4">
-          <div>
-            <h2 class="text-lg font-extrabold" style="color: #1e3a5f;">Saved Scenarios</h2>
-            <p class="text-sm text-gray-500 mt-0.5">{{ savedScenarios.length }} / 20 saved</p>
-          </div>
-          <div class="flex gap-2">
-            <button v-if="savedScenarios.length > 0" @click="clearAllScenarios"
-              class="text-xs font-semibold text-red-500 hover:text-red-700 transition px-3 py-1.5 rounded-lg border border-red-200 hover:border-red-300">
-              Clear All
-            </button>
-          </div>
-        </div>
-
-        <div v-if="savedScenarios.length === 0" class="text-center py-8 text-gray-400">
-          <svg class="w-10 h-10 mx-auto mb-2 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-          <p class="text-sm">No scenarios saved yet. Calculate results and click "Save Scenario" to compare different properties.</p>
-        </div>
-
-        <div v-else class="overflow-x-auto">
-          <table class="w-full text-sm">
-            <thead>
-              <tr class="border-b border-gray-100">
-                <th class="text-left py-2 px-2 text-xs font-bold text-gray-400 uppercase tracking-wide">Name</th>
-                <th class="text-right py-2 px-2 text-xs font-bold text-gray-400 uppercase tracking-wide">Depreciable Basis</th>
-                <th class="text-right py-2 px-2 text-xs font-bold text-gray-400 uppercase tracking-wide">Annual Depr.</th>
-                <th class="text-right py-2 px-2 text-xs font-bold text-gray-400 uppercase tracking-wide">Accumulated</th>
-                <th class="text-right py-2 px-2 text-xs font-bold text-gray-400 uppercase tracking-wide">Status</th>
-                <th class="py-2 px-2"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="(sc, i) in savedScenarios" :key="sc.id"
-                class="border-b border-gray-50 hover:bg-gray-50 transition cursor-pointer"
-                @click="loadScenario(sc)">
-                <td class="py-2.5 px-2">
-                  <span class="font-semibold text-gray-800">{{ sc.name || `Scenario ${i + 1}` }}</span>
-                  <span class="block text-xs text-gray-400">{{ sc.propertyType }} · {{ sc.period }}yr</span>
-                </td>
-                <td class="py-2.5 px-2 text-right font-semibold text-gray-700">{{ formatCurrency(sc.depreciableBasis) }}</td>
-                <td class="py-2.5 px-2 text-right font-bold" style="color:#1e3a5f;">{{ formatCurrency(sc.annualDepreciation) }}</td>
-                <td class="py-2.5 px-2 text-right text-gray-600">{{ formatCurrency(sc.accumulatedDepreciation) }}</td>
-                <td class="py-2.5 px-2 text-right">
-                  <span class="text-xs font-bold px-2 py-0.5 rounded-full" :class="sc.statusBgClass">{{ sc.statusLabel }}</span>
-                </td>
-                <td class="py-2.5 px-2 text-right">
-                  <button @click.stop="removeScenario(sc.id)" class="text-gray-300 hover:text-red-400 transition text-xs">✕</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div v-if="savedScenarios.length > 1" class="mt-4 pt-4 border-t border-gray-100">
-          <NuxtLink to="/compare-real-estate-deals?source=depreciation-calculator"
-            class="inline-flex items-center gap-2 text-sm font-bold transition"
-            style="color: #f59e0b;">
-            Compare all deals side by side
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-          </NuxtLink>
-        </div>
-      </div>
-    </section>
+    <div class="max-w-[1100px] mx-auto px-4 pb-6 mt-4">
+      <ScenarioPanel
+        calculator="depreciation"
+        :has-result="hasResult"
+        :result="currentScenarioResult"
+        :trigger-save="triggerScenarioSave"
+        @saved="onScenarioSaved"
+      />
+    </div>
 
     <!-- ═══════════════════════════════════════════════
          SEO CONTENT
@@ -1109,7 +1055,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch } from 'vue'
+import { ref, computed, onMounted, nextTick, watch } from 'vue'
 
 // ── HEAD ──────────────────────────────────────────────
 useHead({
@@ -1208,8 +1154,6 @@ const revForm2 = ref({
   basis: '',
   targetDeduction: '',
 })
-
-const savedScenarios = ref([])
 
 // ── HELPERS ───────────────────────────────────────────
 const n = (v) => {
@@ -1312,6 +1256,39 @@ const hasResult = computed(() =>
   !mixedUseError.value
 )
 
+// ── SCENARIO PANEL ───────────────────────────────────
+const triggerScenarioSave = ref(false)
+function openSaveScenario() {
+  triggerScenarioSave.value = true
+  nextTick(() => { triggerScenarioSave.value = false })
+}
+const currentScenarioResult = computed(() => {
+  if (hasResult.value) {
+    return {
+      primaryMetric: 'Annual Depreciation',
+      primaryValue: formatCurrency(annualDepreciation.value),
+      badgeLabel: statusBadge.value?.label,
+      purchasePrice: purchasePrice.value,
+    }
+  }
+  if (revBasis.value !== null) {
+    return {
+      primaryMetric: 'Required Depreciable Basis',
+      primaryValue: formatCurrency(revBasis.value),
+      badgeLabel: 'Reverse',
+    }
+  }
+  if (revPeriod.value !== null) {
+    return {
+      primaryMetric: 'Required Recovery Period',
+      primaryValue: `${revPeriod.value.toFixed(1)} years`,
+      badgeLabel: 'Reverse',
+    }
+  }
+  return undefined
+})
+function onScenarioSaved(_id) {}
+
 // Depreciation Status
 const statusBadge = computed(() => {
   if (!hasResult.value) return { label: '—', bgClass: 'bg-gray-100 text-gray-500', description: '' }
@@ -1387,64 +1364,6 @@ const revPeriod = computed(() => {
   if (basis <= 0 || target <= 0) return null
   return basis / target
 })
-
-// ── SAVED SCENARIOS ───────────────────────────────────
-const STORAGE_KEY = 'depreciation-scenarios'
-
-onMounted(() => {
-  try {
-    const stored = localStorage.getItem(STORAGE_KEY)
-    if (stored) savedScenarios.value = JSON.parse(stored)
-  } catch {}
-})
-
-const persistScenarios = () => {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(savedScenarios.value))
-  } catch {}
-}
-
-const saveScenario = () => {
-  if (!hasResult.value) return
-  if (savedScenarios.value.length >= 20) {
-    savedScenarios.value.shift()
-  }
-  const sc = {
-    id: Date.now(),
-    name: form.value.scenarioName || `Property ${savedScenarios.value.length + 1}`,
-    propertyType: form.value.propertyType === 'residential' ? 'Residential' :
-                  form.value.propertyType === 'commercial' ? 'Commercial' :
-                  form.value.propertyType === 'str' ? 'STR' : 'Mixed-use',
-    period: recoveryPeriod.value,
-    depreciableBasis: depreciableBasis.value,
-    annualDepreciation: annualDepreciation.value,
-    accumulatedDepreciation: accumulatedDepreciation.value,
-    remainingBasis: remainingBasis.value,
-    statusLabel: statusBadge.value.label,
-    statusBgClass: statusBadge.value.bgClass,
-    inputs: { ...form.value },
-  }
-  savedScenarios.value.push(sc)
-  persistScenarios()
-  form.value.scenarioName = ''
-}
-
-const removeScenario = (id) => {
-  savedScenarios.value = savedScenarios.value.filter(s => s.id !== id)
-  persistScenarios()
-}
-
-const clearAllScenarios = () => {
-  savedScenarios.value = []
-  persistScenarios()
-}
-
-const loadScenario = (sc) => {
-  if (sc.inputs) {
-    Object.assign(form.value, sc.inputs)
-    calcMode.value = 'calculate'
-  }
-}
 
 // ── SHARE + PDF ───────────────────────────────────────
 const shareUrl = () => {

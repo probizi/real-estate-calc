@@ -19,7 +19,7 @@
           <nav class="hidden md:flex items-center gap-8">
             <NuxtLink to="/calculators" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Calculators</NuxtLink>
             <NuxtLink to="/pricing" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Pricing</NuxtLink>
-            <NuxtLink to="/blog" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</NuxtLink>
+            <a href="/blog/" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</a>
           </nav>
           <NuxtLink to="/pricing"
             class="inline-flex items-center gap-2 text-sm font-bold text-white px-5 py-2.5 rounded-lg transition hover:opacity-90"
@@ -1200,8 +1200,8 @@
           <div v-if="hasResult || findMaxPriceResult !== null || findMaxRehabResult !== null"
             class="bg-white rounded-xl border border-gray-200 overflow-hidden p-4 space-y-2">
 
-            <!-- Save Scenario — analyze mode only -->
-            <button v-if="calcMode === 'analyze' && hasResult" @click="openSaveScenario"
+            <!-- Save Scenario — all modes -->
+            <button v-if="hasResult" @click="openSaveScenario"
               class="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-sm transition hover:opacity-90"
               style="background: #f59e0b; color: #1e3a5f;">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -2769,18 +2769,51 @@ const findMaxRehabError = computed(() => {
 // ─── COMPUTED — SCENARIO RESULT (for ScenarioPanel) ──────────────────────────
 const currentScenarioResult = computed(() => {
   if (!hasResult.value) return undefined
-  return {
-    primaryMetric: 'Total Profit',
-    primaryValue: totalProfit.value >= 0 ? formatCurrency(totalProfit.value) : '-' + formatCurrency(Math.abs(totalProfit.value)),
-    badgeLabel: tier.value.label,
-    badgeColor: tier.value.bg1,
-    roi: roi.value,
-    totalProfit: totalProfit.value,
-    totalCashInvested: totalCashInvested.value,
-    holdPeriodMonths: form.holdPeriodMonths,
-    annualizedROI: annualizedROI.value,
-    profitPerMonth: profitPerMonth.value,
+  if (calcMode.value === 'analyze') {
+    return {
+      primaryMetric: 'Total Profit',
+      primaryValue: totalProfit.value >= 0 ? formatCurrency(totalProfit.value) : '-' + formatCurrency(Math.abs(totalProfit.value)),
+      badgeLabel: tier.value.label,
+      badgeColor: tier.value.bg1,
+      roi: roi.value,
+      totalProfit: totalProfit.value,
+      totalCashInvested: totalCashInvested.value,
+      holdPeriodMonths: form.holdPeriodMonths,
+      annualizedROI: annualizedROI.value,
+      profitPerMonth: profitPerMonth.value,
+    }
   }
+  if (calcMode.value === 'find-price' && findMaxPriceResult.value !== null) {
+    const r = calcFlipHelper(getBaseParams({ purchasePrice: findMaxPriceResult.value }))
+    return {
+      primaryMetric: 'Max Purchase Price',
+      primaryValue: formatCurrency(findMaxPriceResult.value),
+      badgeLabel: 'Reverse Solve',
+      badgeColor: '#2563eb',
+      roi: r.roi,
+      totalProfit: r.profit,
+      totalCashInvested: r.tci,
+      holdPeriodMonths: form.holdPeriodMonths,
+      annualizedROI: r.tci > 0 ? (Math.pow(1 + r.roi / 100, 12 / (Number(form.holdPeriodMonths) || 6)) - 1) * 100 : 0,
+      profitPerMonth: r.profit / (Number(form.holdPeriodMonths) || 6),
+    }
+  }
+  if (calcMode.value === 'find-rehab' && findMaxRehabResult.value !== null) {
+    const r = calcFlipHelper(getBaseParams({ rehabBudget: findMaxRehabResult.value }))
+    return {
+      primaryMetric: 'Max Rehab Budget',
+      primaryValue: formatCurrency(findMaxRehabResult.value),
+      badgeLabel: 'Reverse Solve',
+      badgeColor: '#059669',
+      roi: r.roi,
+      totalProfit: r.profit,
+      totalCashInvested: r.tci,
+      holdPeriodMonths: form.holdPeriodMonths,
+      annualizedROI: r.tci > 0 ? (Math.pow(1 + r.roi / 100, 12 / (Number(form.holdPeriodMonths) || 6)) - 1) * 100 : 0,
+      profitPerMonth: r.profit / (Number(form.holdPeriodMonths) || 6),
+    }
+  }
+  return undefined
 })
 
 // ─── FAQ DATA ─────────────────────────────────────────────────────────────────
@@ -2821,10 +2854,13 @@ const faqs = [
 
 // ─── RELATED CALCULATORS ─────────────────────────────────────────────────────
 const relatedCalcs = [
+  { label: 'House Flipping Profit Calculator', href: '/house-flipping-profit-calculator' },
   { label: 'Rental Property Calculator', href: '/rental-property-calculator' },
   { label: 'ARV Calculator',             href: '/arv-calculator' },
   { label: 'Cap Rate Calculator',        href: '/cap-rate-calculator' },
   { label: 'DSCR Calculator',            href: '/dscr-calculator' },
+  { label: 'Hard Money Loan Calculator', href: '/hard-money-loan-calculator' },
+  { label: 'Rehab Cost Estimator',       href: '/rehab-cost-estimator' },
 ]
 
 // ─── URL PERSISTENCE ─────────────────────────────────────────────────────────

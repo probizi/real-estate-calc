@@ -19,7 +19,7 @@
           <nav class="hidden md:flex items-center gap-8">
             <NuxtLink to="/calculators" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Calculators</NuxtLink>
             <NuxtLink to="/pricing" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Pricing</NuxtLink>
-            <NuxtLink to="/blog" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</NuxtLink>
+            <a href="/blog/" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</a>
           </nav>
           <NuxtLink to="/pricing"
             class="inline-flex items-center gap-2 text-sm font-bold text-white px-5 py-2.5 rounded-lg transition hover:opacity-90"
@@ -233,13 +233,6 @@
                   class="text-xs text-red-600 mt-1 font-medium">Must be between 1 and 40 years.</p>
               </div>
 
-              <!-- Scenario Name -->
-              <div>
-                <label class="block text-xs font-semibold text-gray-700 mb-1">Scenario Name</label>
-                <input v-model="form.scenarioName" type="text"
-                  placeholder="Optional: name this IRR scenario"
-                  class="w-full px-4 py-2.5 rounded-xl border-2 border-gray-300 hover:border-gray-400 bg-white focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none text-gray-900 font-semibold text-sm transition" />
-              </div>
 
             </div>
           </div>
@@ -601,15 +594,6 @@
               Results will appear here once you fill in the required fields.
             </div>
 
-            <!-- Save Scenario button -->
-            <button v-if="hasResult" @click="saveScenario"
-              class="w-full py-2.5 rounded-xl border-2 border-yellow-400 text-sm font-bold transition hover:bg-yellow-50 flex items-center justify-center gap-2"
-              style="color: #1e3a5f;">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/>
-              </svg>
-              Save Scenario
-            </button>
 
           </template>
 
@@ -685,22 +669,32 @@
       </div>
       </div>
 
-      <!-- ── SHARE + PDF BUTTONS ── -->
-      <div v-if="calcMode === 'standard'" class="mt-4 flex gap-3 justify-end">
-        <button @click="shareCalculation"
-          class="flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-300 bg-white text-sm font-semibold text-gray-700 hover:bg-gray-50 transition shadow-sm">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+      <!-- ── SAVE + SHARE + PDF ── -->
+      <div v-if="hasAnyResult" class="mt-4 p-4 bg-white rounded-2xl border border-gray-100 shadow-sm space-y-2">
+        <button @click="openSaveScenario"
+          class="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-sm transition hover:opacity-90"
+          style="background: #f59e0b; color: #1e3a5f;">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
           </svg>
-          Share
+          Save Scenario
         </button>
-        <button @click="exportPDF"
-          class="flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-300 bg-white text-sm font-semibold text-gray-700 hover:bg-gray-50 transition shadow-sm">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-          </svg>
-          Export PDF
-        </button>
+        <div class="grid grid-cols-2 gap-2">
+          <button @click="shareCalculation"
+            class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+            </svg>
+            Share
+          </button>
+          <button @click="exportPDF"
+            class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            Export PDF
+          </button>
+        </div>
       </div>
 
       <!-- ── CASH FLOW TIMELINE TABLE ── -->
@@ -820,62 +814,20 @@
         </div>
       </div>
 
-      <!-- ── SAVED SCENARIOS ── -->
-      <div v-if="savedScenarios.length > 0" class="mt-8">
-        <div class="flex items-center justify-between mb-3">
-          <h2 class="text-lg font-bold" style="color: #1e3a5f;">Saved Scenarios</h2>
-          <button @click="showScenarios = !showScenarios"
-            class="text-xs font-bold px-3 py-1.5 rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-50 transition">
-            {{ showScenarios ? 'Hide' : `Show (${savedScenarios.length})` }}
-          </button>
-        </div>
-        <div v-if="showScenarios" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          <div v-for="s in savedScenarios" :key="s.id"
-            class="bg-white rounded-xl border border-gray-200 p-3.5 shadow-sm">
-            <div class="flex items-start justify-between mb-2">
-              <div>
-                <p class="text-sm font-bold text-gray-800 leading-tight">{{ s.name }}</p>
-                <p class="text-xs text-gray-400">{{ s.date }}</p>
-              </div>
-              <button @click="deleteScenario(s.id)" class="text-gray-300 hover:text-red-400 transition ml-2">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                </svg>
-              </button>
-            </div>
-            <div class="space-y-1 text-xs">
-              <div class="flex justify-between">
-                <span class="text-gray-500">IRR</span>
-                <span class="font-bold" :class="s.results.irr !== null ? 'text-gray-800' : 'text-gray-400'">
-                  {{ s.results.irr !== null ? s.results.irr.toFixed(2) + '%' : 'N/A' }}
-                </span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-gray-500">Equity Multiple</span>
-                <span class="font-bold text-gray-800">
-                  {{ s.results.equityMultiple !== null ? s.results.equityMultiple.toFixed(2) + 'x' : '—' }}
-                </span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-gray-500">Total Profit</span>
-                <span class="font-bold" :class="s.results.totalProfit >= 0 ? 'text-green-700' : 'text-red-600'">
-                  {{ formatCurrency(s.results.totalProfit) }}
-                </span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-gray-500">Verdict</span>
-                <span class="font-bold text-gray-700">{{ s.results.verdict || '—' }}</span>
-              </div>
-            </div>
-            <button @click="loadScenario(s)"
-              class="mt-2.5 w-full py-1.5 rounded-lg border border-gray-200 text-xs font-bold text-gray-600 hover:bg-gray-50 transition">
-              Load
-            </button>
-          </div>
-        </div>
-      </div>
-
     </main>
+
+    <!-- ═══════════════════════════════════════════════
+         SCENARIO PANEL
+    ═══════════════════════════════════════════════ -->
+    <div class="max-w-[1100px] mx-auto px-4 pb-6 mt-4">
+      <ScenarioPanel
+        calculator="real-estate-irr"
+        :has-result="hasAnyResult"
+        :result="currentScenarioResult"
+        :trigger-save="triggerScenarioSave"
+        @saved="onScenarioSaved"
+      />
+    </div>
 
     <!-- ═══════════════════════════════════════════════
          SEO CONTENT
@@ -1224,12 +1176,8 @@ import { ref, computed, reactive, onMounted } from 'vue'
 // ============================================================
 // STATE
 // ============================================================
-const MAX_SCENARIOS = 20
-const LS_KEY = 'real-estate-irr-scenarios'
-
 const calcMode = ref('standard')
 const isNavExpanded = ref(false)
-const showScenarios = ref(false)
 
 const form = reactive({
   initialCash: '',
@@ -1240,12 +1188,10 @@ const form = reactive({
   sellingCosts: '',
   loanPayoff: '',
   taxOnSale: '',
-  scenarioName: ''
 })
 
 const additionalCapital = ref([])
 const reverseTargetIRR = ref('')
-const savedScenarios = ref([])
 
 // ============================================================
 // HELPERS
@@ -1715,42 +1661,46 @@ function removeContribution(idx) {
 }
 
 // ============================================================
-// SCENARIOS
+// SCENARIO PANEL
 // ============================================================
-function saveScenario() {
-  if (!hasResult.value) return
-  const scenario = {
-    id: Date.now(),
-    name: form.scenarioName || `Scenario ${savedScenarios.value.length + 1}`,
-    date: new Date().toLocaleDateString('en-US'),
-    inputs: { ...form },
-    additionalCapital: additionalCapital.value.map(c => ({ ...c })),
-    results: {
-      irr: irrValue.value,
-      irrStatus: irrStatus.value,
-      verdict: verdict.value?.key,
-      equityMultiple: equityMultiple.value,
-      totalProfit: totalProfit.value,
-      netSaleProceeds: netSaleProceeds.value,
-      simpleROI: simpleROI.value,
-      cashFlowTimeline: [...cashFlowTimeline.value]
+const triggerScenarioSave = ref(false)
+function openSaveScenario() {
+  triggerScenarioSave.value = true
+  nextTick(() => { triggerScenarioSave.value = false })
+}
+const hasAnyResult = computed(() =>
+  hasResult.value ||
+  (calcMode.value === 'find-cf' && requiredCF.value !== null) ||
+  (calcMode.value === 'find-sale' && !!requiredSalePrice.value)
+)
+const currentScenarioResult = computed(() => {
+  if (calcMode.value === 'standard' && hasResult.value) {
+    return {
+      primaryMetric: 'IRR',
+      primaryValue: irrValue.value !== null ? irrValue.value.toFixed(2) + '%' : 'N/A',
+      badgeLabel: verdict.value?.label,
+      badgeColor: verdict.value?.bg,
+      roi: irrValue.value,
+      profit: totalProfit.value,
     }
   }
-  savedScenarios.value = [scenario, ...savedScenarios.value].slice(0, MAX_SCENARIOS)
-  try { localStorage.setItem(LS_KEY, JSON.stringify(savedScenarios.value)) } catch (_) {}
-  showScenarios.value = true
-}
+  if (calcMode.value === 'find-cf' && requiredCF.value !== null) {
+    return {
+      primaryMetric: 'Required CF',
+      primaryValue: formatCurrency(requiredCF.value),
+      annualCashFlow: requiredCF.value,
+    }
+  }
+  if (calcMode.value === 'find-sale' && requiredSalePrice.value) {
+    return {
+      primaryMetric: 'Required Sale Price',
+      primaryValue: formatCurrency(requiredSalePrice.value.salePrice),
+    }
+  }
+  return undefined
+})
+function onScenarioSaved(_id) {}
 
-function deleteScenario(id) {
-  savedScenarios.value = savedScenarios.value.filter(s => s.id !== id)
-  try { localStorage.setItem(LS_KEY, JSON.stringify(savedScenarios.value)) } catch (_) {}
-}
-
-function loadScenario(scenario) {
-  Object.assign(form, scenario.inputs)
-  additionalCapital.value = (scenario.additionalCapital || []).map(c => ({ ...c }))
-  calcMode.value = 'standard'
-}
 
 // ============================================================
 // SHARE + PDF
@@ -1766,7 +1716,6 @@ function shareCalculation() {
   if (form.sellingCosts) p.set('scosts', form.sellingCosts)
   if (form.loanPayoff) p.set('loan', form.loanPayoff)
   if (form.taxOnSale) p.set('tax', form.taxOnSale)
-  if (form.scenarioName) p.set('name', encodeURIComponent(form.scenarioName))
   const url = `${window.location.origin}/real-estate-irr-calculator?${p.toString()}`
   navigator.clipboard?.writeText(url).then(() => alert('Link copied to clipboard!')).catch(() => alert('Copy the URL from the address bar.'))
 }
@@ -1776,7 +1725,7 @@ async function exportPDF() {
   try {
     const { jsPDF } = await import('jspdf')
     const doc = new jsPDF()
-    const name = form.scenarioName || 'Real Estate IRR Analysis'
+    const name = 'Real Estate IRR Analysis'
 
     doc.setFillColor(30, 58, 95)
     doc.rect(0, 0, 210, 18, 'F')
@@ -1924,11 +1873,6 @@ const relatedCalcs = [
 // LIFECYCLE — URL PARAMS + LOCALSTORAGE
 // ============================================================
 onMounted(() => {
-  try {
-    const saved = localStorage.getItem(LS_KEY)
-    if (saved) savedScenarios.value = JSON.parse(saved)
-  } catch (_) {}
-
   if (typeof window === 'undefined') return
   const p = new URLSearchParams(window.location.search)
   if (p.get('cash')) form.initialCash = p.get('cash')
@@ -1939,7 +1883,6 @@ onMounted(() => {
   if (p.get('scosts')) form.sellingCosts = p.get('scosts')
   if (p.get('loan')) form.loanPayoff = p.get('loan')
   if (p.get('tax')) form.taxOnSale = p.get('tax')
-  if (p.get('name')) form.scenarioName = decodeURIComponent(p.get('name'))
 })
 
 // ============================================================

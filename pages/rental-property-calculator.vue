@@ -19,7 +19,7 @@
           <nav class="hidden md:flex items-center gap-8">
             <NuxtLink to="/calculators" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Calculators</NuxtLink>
             <NuxtLink to="/pricing" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Pricing</NuxtLink>
-            <NuxtLink to="/blog" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</NuxtLink>
+            <a href="/blog/" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</a>
           </nav>
           <NuxtLink to="/pricing"
             class="inline-flex items-center gap-2 text-sm font-bold text-white px-5 py-2.5 rounded-lg transition hover:opacity-90"
@@ -1707,6 +1707,22 @@
               <p class="font-bold text-sm mb-1 group-hover:text-amber-800" style="color: #1e3a5f;">ARV Calculator</p>
               <p class="text-xs text-gray-500 group-hover:text-amber-700">After Repair Value estimation. Use to set purchase ceiling on value-add and renovation deals.</p>
             </NuxtLink>
+            <NuxtLink to="/multifamily-property-calculator" class="block p-5 rounded-xl border border-gray-200 bg-gray-50 hover:border-amber-300 hover:bg-amber-50 transition group">
+              <p class="font-bold text-sm mb-1 group-hover:text-amber-800" style="color: #1e3a5f;">Multifamily Property Calculator</p>
+              <p class="text-xs text-gray-500 group-hover:text-amber-700">NOI, DSCR, cash flow, cap rate, expense ratio & break-even occupancy for apartment buildings.</p>
+            </NuxtLink>
+            <NuxtLink to="/property-management-fee-calculator" class="block p-5 rounded-xl border border-gray-200 bg-gray-50 hover:border-amber-300 hover:bg-amber-50 transition group">
+              <p class="font-bold text-sm mb-1 group-hover:text-amber-800" style="color: #1e3a5f;">Management Fee Calculator</p>
+              <p class="text-xs text-gray-500 group-hover:text-amber-700">True cost of property management — monthly fee, leasing, markup — and impact on NOI and cash flow.</p>
+            </NuxtLink>
+            <NuxtLink to="/airbnb-str-calculator" class="block p-5 rounded-xl border border-gray-200 bg-gray-50 hover:border-amber-300 hover:bg-amber-50 transition group">
+              <p class="font-bold text-sm mb-1 group-hover:text-amber-800" style="color: #1e3a5f;">Airbnb / STR Calculator</p>
+              <p class="text-xs text-gray-500 group-hover:text-amber-700">Short-term rental revenue, NOI, break-even occupancy & cash flow projection.</p>
+            </NuxtLink>
+            <NuxtLink to="/brrrr-refinance-calculator" class="block p-5 rounded-xl border border-gray-200 bg-gray-50 hover:border-amber-300 hover:bg-amber-50 transition group">
+              <p class="font-bold text-sm mb-1 group-hover:text-amber-800" style="color: #1e3a5f;">BRRRR Refinance Calculator</p>
+              <p class="text-xs text-gray-500 group-hover:text-amber-700">Cash left in deal, DSCR, appraisal gap — dedicated refinance analysis for the BRRRR strategy.</p>
+            </NuxtLink>
           </div>
         </div>
 
@@ -1765,7 +1781,7 @@
             <p class="font-bold text-sm text-gray-700 mb-3">Company</p>
             <ul class="space-y-2 text-xs text-gray-500">
               <li><NuxtLink to="/pricing" class="hover:text-gray-700 transition">Pricing</NuxtLink></li>
-              <li><NuxtLink to="/blog" class="hover:text-gray-700 transition">Blog</NuxtLink></li>
+              <li><a href="/blog/" class="hover:text-gray-700 transition">Blog</a></li>
               <li><NuxtLink to="/calculators" class="hover:text-gray-700 transition">All Calculators</NuxtLink></li>
             </ul>
           </div>

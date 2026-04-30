@@ -17,7 +17,7 @@
           <nav class="hidden md:flex items-center gap-8">
             <NuxtLink to="/calculators" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Calculators</NuxtLink>
             <NuxtLink to="/pricing" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Pricing</NuxtLink>
-            <NuxtLink to="/blog" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</NuxtLink>
+            <a href="/blog/" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</a>
           </nav>
           <NuxtLink to="/pricing"
             class="inline-flex items-center gap-2 text-sm font-bold px-5 py-2.5 rounded-lg transition hover:opacity-90"
@@ -860,6 +860,22 @@
           <NuxtLink to="/debt-yield-calculator" class="flex flex-col gap-1 p-4 rounded-xl bg-gray-50 border border-gray-200 hover:border-yellow-400 hover:bg-yellow-50 transition">
             <p class="font-bold text-sm" style="color: #1e3a5f;">Debt Yield Calculator</p>
             <p class="text-xs text-gray-500">NOI ÷ Loan — lender risk metric for commercial lending</p>
+          </NuxtLink>
+          <NuxtLink to="/closing-costs-calculator" class="flex flex-col gap-1 p-4 rounded-xl bg-gray-50 border border-gray-200 hover:border-yellow-400 hover:bg-yellow-50 transition">
+            <p class="font-bold text-sm" style="color: #1e3a5f;">Closing Costs Calculator</p>
+            <p class="text-xs text-gray-500">Estimate total cash to close — down payment + closing costs</p>
+          </NuxtLink>
+          <NuxtLink to="/hard-money-loan-calculator" class="flex flex-col gap-1 p-4 rounded-xl bg-gray-50 border border-gray-200 hover:border-yellow-400 hover:bg-yellow-50 transition">
+            <p class="font-bold text-sm" style="color: #1e3a5f;">Hard Money Loan Calculator</p>
+            <p class="text-xs text-gray-500">Total financing cost, points, and cash needed for hard money</p>
+          </NuxtLink>
+          <NuxtLink to="/multifamily-property-calculator" class="flex flex-col gap-1 p-4 rounded-xl bg-gray-50 border border-gray-200 hover:border-yellow-400 hover:bg-yellow-50 transition">
+            <p class="font-bold text-sm" style="color: #1e3a5f;">Multifamily Property Calculator</p>
+            <p class="text-xs text-gray-500">NOI, DSCR, cash flow & break-even for apartment buildings</p>
+          </NuxtLink>
+          <NuxtLink to="/brrrr-refinance-calculator" class="flex flex-col gap-1 p-4 rounded-xl bg-gray-50 border border-gray-200 hover:border-yellow-400 hover:bg-yellow-50 transition">
+            <p class="font-bold text-sm" style="color: #1e3a5f;">BRRRR Refinance Calculator</p>
+            <p class="text-xs text-gray-500">Cash left in deal, DSCR & appraisal gap for BRRRR refi</p>
           </NuxtLink>
         </div>
       </div>

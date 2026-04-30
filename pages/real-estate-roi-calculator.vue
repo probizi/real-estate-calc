@@ -19,7 +19,7 @@
           <nav class="hidden md:flex items-center gap-8">
             <NuxtLink to="/calculators" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Calculators</NuxtLink>
             <NuxtLink to="/pricing" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Pricing</NuxtLink>
-            <NuxtLink to="/blog" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</NuxtLink>
+            <a href="/blog/" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</a>
           </nav>
           <NuxtLink to="/pricing"
             class="inline-flex items-center gap-2 text-sm font-bold text-white px-5 py-2.5 rounded-lg transition hover:opacity-90"
@@ -2261,5 +2261,9 @@ const relatedCalcs = [
   { href: '/fix-and-flip-calculator', title: 'Fix & Flip Calculator', desc: 'Detailed flip profit analysis', icon: '🔨', bg: '#fff7ed' },
   { href: '/noi-calculator', title: 'NOI Calculator', desc: 'Net operating income', icon: '🧮', bg: '#eff6ff' },
   { href: '/compare-deals', title: 'Compare Deals', desc: 'Side-by-side deal comparison', icon: '⚖️', bg: '#f8fafc' },
+  { href: '/multifamily-property-calculator', title: 'Multifamily Property', desc: 'NOI, DSCR & cash flow for apartments', icon: '🏢', bg: '#f0f9ff' },
+  { href: '/property-management-fee-calculator', title: 'Management Fee Calculator', desc: 'True cost of property management on NOI', icon: '🔑', bg: '#fef9f0' },
+  { href: '/airbnb-str-calculator', title: 'Airbnb / STR Calculator', desc: 'Short-term rental revenue & break-even', icon: '🏡', bg: '#fef7f0' },
+  { href: '/house-flipping-profit-calculator', title: 'House Flipping Profit', desc: 'Real flip profit after ALL costs', icon: '💰', bg: '#f0fdf4' },
 ]
 </script>

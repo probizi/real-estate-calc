@@ -19,7 +19,7 @@
           <nav class="hidden md:flex items-center gap-8">
             <NuxtLink to="/calculators" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Calculators</NuxtLink>
             <NuxtLink to="/pricing" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Pricing</NuxtLink>
-            <NuxtLink to="/blog" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</NuxtLink>
+            <a href="/blog/" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</a>
           </nav>
           <NuxtLink to="/pricing"
             class="inline-flex items-center gap-2 text-sm font-bold text-white px-5 py-2.5 rounded-lg transition hover:opacity-90"
@@ -661,8 +661,17 @@
           </div>
         </div>
 
-        <!-- Share + PDF -->
-        <div v-if="hasResult" class="grid grid-cols-2 gap-2 mt-6">
+        <!-- Save + Share + PDF -->
+        <div v-if="hasResult" class="mt-6 space-y-2">
+          <button @click="openSaveScenario"
+            class="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-sm transition hover:opacity-90"
+            style="background: #f59e0b; color: #1e3a5f;">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
+            </svg>
+            Save Scenario
+          </button>
+        <div class="grid grid-cols-2 gap-2">
           <button @click="shareResult"
             class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border"
             :class="shareSuccess
@@ -683,6 +692,7 @@
             </svg>
             Export PDF
           </button>
+        </div>
         </div>
 
       </section>
@@ -1542,6 +1552,11 @@ const shareSuccess = ref(false)
 const savedScenarios = ref([])
 const showUpgradeModal = ref(false)
 const triggerScenarioSave = ref(false)
+
+function openSaveScenario() {
+  triggerScenarioSave.value = true
+  nextTick(() => { triggerScenarioSave.value = false })
+}
 
 // Chart refs
 const wealthChartRef = ref(null)

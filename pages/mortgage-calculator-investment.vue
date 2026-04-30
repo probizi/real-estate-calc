@@ -19,7 +19,7 @@
           <nav class="hidden md:flex items-center gap-8">
             <NuxtLink to="/calculators" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Calculators</NuxtLink>
             <NuxtLink to="/pricing" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Pricing</NuxtLink>
-            <NuxtLink to="/blog" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</NuxtLink>
+            <a href="/blog/" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</a>
           </nav>
           <NuxtLink to="/pricing"
             class="inline-flex items-center gap-2 text-sm font-bold text-white px-5 py-2.5 rounded-lg transition hover:opacity-90"
@@ -1795,7 +1795,7 @@ Break-Even Rent (Gross Required Rent) = PITI / [(1−Vacancy%) × (1−OpEx%)]</
             <p class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">Company</p>
             <ul class="space-y-1.5 text-xs">
               <li><NuxtLink to="/pricing" class="hover:text-gray-300 transition">Pricing</NuxtLink></li>
-              <li><NuxtLink to="/blog" class="hover:text-gray-300 transition">Blog</NuxtLink></li>
+              <li><a href="/blog/" class="hover:text-gray-300 transition">Blog</a></li>
               <li><NuxtLink to="/about" class="hover:text-gray-300 transition">About</NuxtLink></li>
               <li><NuxtLink to="/privacy" class="hover:text-gray-300 transition">Privacy</NuxtLink></li>
               <li><NuxtLink to="/terms" class="hover:text-gray-300 transition">Terms</NuxtLink></li>

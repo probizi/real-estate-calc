@@ -22,7 +22,7 @@
           <nav class="hidden md:flex items-center gap-8">
             <NuxtLink to="/calculators" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Calculators</NuxtLink>
             <NuxtLink to="/pricing"     class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Pricing</NuxtLink>
-            <NuxtLink to="/blog"        class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</NuxtLink>
+            <a href="/blog/"        class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</a>
           </nav>
 
           <!-- CTA -->
@@ -435,6 +435,24 @@
             <div class="flex-1">
               <h3 class="text-lg font-bold mb-2" style="color: #1e3a5f;">Rent vs Buy Calculator</h3>
               <p class="text-sm text-gray-500 mb-4 leading-relaxed">Financial comparison of renting vs. buying — break-even year, wealth gap, and 10-year projection.</p>
+            </div>
+            <span class="inline-flex items-center gap-1 text-sm font-bold transition group-hover:gap-2" style="color: #f59e0b;">
+              Calculate Now
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </span>
+          </NuxtLink>
+
+          <!-- Real Estate IRR Calculator -->
+          <NuxtLink to="/real-estate-irr-calculator"
+            class="group bg-white p-7 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-yellow-400 flex flex-col">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-transform group-hover:scale-110" style="background: #1e3a5f;">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-lg font-bold mb-2" style="color: #1e3a5f;">Real Estate IRR Calculator</h3>
+              <p class="text-sm text-gray-500 mb-4 leading-relaxed">Internal Rate of Return with deal verdict — measure true annualized return accounting for all cash flows and exit proceeds.</p>
             </div>
             <span class="inline-flex items-center gap-1 text-sm font-bold transition group-hover:gap-2" style="color: #f59e0b;">
               Calculate Now
@@ -865,7 +883,7 @@
             <h3 class="font-bold text-white mb-4 text-sm uppercase tracking-wider">Company</h3>
             <ul class="space-y-2.5">
               <li><NuxtLink to="/about"   class="text-gray-400 hover:text-white text-sm transition">About</NuxtLink></li>
-              <li><NuxtLink to="/blog"    class="text-gray-400 hover:text-white text-sm transition">Blog</NuxtLink></li>
+              <li><a href="/blog/"    class="text-gray-400 hover:text-white text-sm transition">Blog</a></li>
               <li><NuxtLink to="/pricing" class="text-gray-400 hover:text-white text-sm transition">Pricing</NuxtLink></li>
               <li><NuxtLink to="/contact" class="text-gray-400 hover:text-white text-sm transition">Contact</NuxtLink></li>
             </ul>

@@ -17,7 +17,7 @@
           <nav class="hidden md:flex items-center gap-8">
             <NuxtLink to="/calculators" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Calculators</NuxtLink>
             <NuxtLink to="/pricing" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Pricing</NuxtLink>
-            <NuxtLink to="/blog" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</NuxtLink>
+            <a href="/blog/" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</a>
           </nav>
           <NuxtLink to="/pricing"
             class="inline-flex items-center gap-2 text-sm font-bold px-5 py-2.5 rounded-lg transition hover:opacity-90"
@@ -220,25 +220,6 @@
             </div>
           </div>
 
-          <!-- SCENARIO NAME -->
-          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-            <h2 class="text-lg font-bold mb-4" style="color: #1e3a5f;">Save Scenario</h2>
-            <div class="mb-3">
-              <label class="block text-sm font-semibold text-gray-700 mb-1">Scenario Name</label>
-              <input v-model="inp.scenarioName" type="text"
-                placeholder="Optional: name this property"
-                class="w-full px-4 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/40 outline-none transition text-gray-900 font-medium" />
-            </div>
-            <button @click="saveScenario"
-              :disabled="!canCalculate"
-              class="w-full py-2.5 rounded-xl font-bold text-sm transition"
-              :class="canCalculate ? 'text-white hover:opacity-90' : 'bg-gray-200 text-gray-400 cursor-not-allowed'"
-              :style="canCalculate ? 'background: #1e3a5f;' : ''">
-              Save This Scenario
-            </button>
-            <p v-if="scenarioSavedMsg" class="text-xs text-green-600 font-semibold mt-2 text-center">{{ scenarioSavedMsg }}</p>
-          </div>
-
           <!-- VALIDATION ERRORS -->
           <div v-if="errors.length" class="bg-red-50 border border-red-200 rounded-2xl p-4">
             <p class="text-sm font-bold text-red-700 mb-2">Please fix the following:</p>
@@ -427,7 +408,16 @@
           </div>
 
           <!-- SHARE + PDF EXPORT -->
-          <div v-if="canCalculate && !errors.length" class="flex gap-3">
+          <div v-if="canCalculate && !errors.length" class="space-y-2">
+            <button @click="openSaveScenario"
+              class="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-sm transition hover:opacity-90"
+              style="background: #f59e0b; color: #1e3a5f;">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
+              </svg>
+              Save Scenario
+            </button>
+            <div class="flex gap-3">
             <button @click="shareUrl"
               class="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border border-gray-300 hover:border-gray-400 font-semibold text-sm text-gray-700 transition bg-white">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -442,6 +432,7 @@
               </svg>
               Export PDF
             </button>
+            </div>
           </div>
 
           <!-- NEXT CALCULATORS -->
@@ -495,49 +486,17 @@
       </div>
     </main>
 
-    <!-- SAVED SCENARIOS -->
-    <div id="saved-scenarios" class="max-w-[1100px] mx-auto px-4 sm:px-6 pb-8">
-      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-        <div class="flex items-center justify-between mb-4">
-          <h2 class="text-lg font-bold" style="color: #1e3a5f;">Saved Scenarios</h2>
-          <span class="text-xs text-gray-400">{{ savedScenarios.length }}/20</span>
-        </div>
-        <div v-if="savedScenarios.length === 0" class="text-center py-8 text-gray-400 text-sm">
-          No saved scenarios yet. Fill in inputs above and click "Save This Scenario."
-        </div>
-        <div v-else class="space-y-3">
-          <div v-for="(sc, idx) in savedScenarios" :key="sc.id"
-            class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 rounded-xl border border-gray-100 bg-gray-50 hover:bg-gray-100 transition">
-            <div class="flex-1 min-w-0">
-              <p class="text-sm font-bold text-gray-800 truncate">{{ sc.name || 'Unnamed Property' }}</p>
-              <p class="text-xs text-gray-500 mt-0.5">
-                Price: {{ formatCurrency(sc.price) }} · Rent: {{ formatCurrency(sc.rent) }}/yr ·
-                GRM: <strong>{{ sc.grm }}</strong> ·
-                <span :class="sc.verdict === 'EXCELLENT' ? 'text-green-700' : sc.verdict === 'GOOD' ? 'text-blue-700' : sc.verdict === 'CONCERNING' ? 'text-amber-700' : 'text-red-700'" class="font-bold">{{ sc.verdict }}</span>
-              </p>
-              <p class="text-xs text-gray-400 mt-0.5">{{ sc.marketType }} · {{ sc.propertyType }}</p>
-            </div>
-            <div class="flex gap-2 flex-shrink-0">
-              <button @click="loadScenario(sc)"
-                class="px-3 py-1.5 rounded-lg text-xs font-bold text-white transition hover:opacity-90"
-                style="background: #1e3a5f;">
-                Load
-              </button>
-              <button @click="deleteScenario(idx)"
-                class="px-3 py-1.5 rounded-lg text-xs font-bold text-red-600 border border-red-200 hover:bg-red-50 transition bg-white">
-                Delete
-              </button>
-            </div>
-          </div>
-          <div class="flex justify-end pt-2">
-            <NuxtLink to="/compare-deals?source=gross-rent-multiplier-calculator"
-              class="inline-flex items-center gap-2 text-sm font-bold px-4 py-2 rounded-xl transition hover:opacity-90"
-              style="background: #f59e0b; color: #1e3a5f;">
-              Compare All Deals
-            </NuxtLink>
-          </div>
-        </div>
-      </div>
+    <!-- ═══════════════════════════════════════════════
+         SCENARIO PANEL
+    ═══════════════════════════════════════════════ -->
+    <div class="max-w-[1100px] mx-auto px-4 sm:px-6 pb-6 mt-4">
+      <ScenarioPanel
+        calculator="gross-rent-multiplier"
+        :has-result="canCalculate && !errors.length"
+        :result="currentScenarioResult"
+        :trigger-save="triggerScenarioSave"
+        @saved="onScenarioSaved"
+      />
     </div>
 
     <!-- SEO CONTENT -->
@@ -879,7 +838,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted } from 'vue'
+import { ref, computed, watch, onMounted, nextTick } from 'vue'
 
 // ─── SEO HEAD ─────────────────────────────────────────────────────────────────
 useHead({
@@ -965,8 +924,25 @@ useHead({
 // ─── STATE ─────────────────────────────────────────────────────────────────────
 const isNavExpanded = ref(false)
 const shareCopied = ref(false)
-const scenarioSavedMsg = ref('')
-const savedScenarios = ref([])
+// ─── SCENARIO PANEL ──────────────────────────────────────────────────────────
+const triggerScenarioSave = ref(false)
+function openSaveScenario() {
+  triggerScenarioSave.value = true
+  nextTick(() => { triggerScenarioSave.value = false })
+}
+const currentScenarioResult = computed(() => {
+  if (!canCalculate.value || errors.value.length || !result.value) return undefined
+  return {
+    primaryMetric: 'GRM',
+    primaryValue: result.value.grm.toFixed(2),
+    badgeLabel: verdict.value,
+    badgeColor: verdictColor.value,
+    grossRentMultiplier: result.value.grm,
+    purchasePrice: inp.value.price,
+    grossIncome: inp.value.rent,
+  }
+})
+function onScenarioSaved(_id) {}
 
 const inp = ref({
   price: null,
@@ -1238,78 +1214,7 @@ onMounted(() => {
   if (params.get('type')) inp.value.propertyType = params.get('type')
   if (params.get('market')) inp.value.marketType = params.get('market')
   if (params.get('target')) inp.value.targetGrm = parseFloat(params.get('target'))
-  if (params.get('name')) inp.value.scenarioName = params.get('name')
-
-  loadSavedScenarios()
 })
-
-// ─── SAVED SCENARIOS ──────────────────────────────────────────────────────────
-function loadSavedScenarios () {
-  if (typeof window === 'undefined') return
-  try {
-    const raw = localStorage.getItem('grm-scenarios')
-    savedScenarios.value = raw ? JSON.parse(raw) : []
-  } catch {
-    savedScenarios.value = []
-  }
-}
-
-function saveScenario () {
-  if (!canCalculate.value || errors.value.length || !result.value) return
-  if (savedScenarios.value.length >= 20) {
-    scenarioSavedMsg.value = 'Maximum 20 scenarios reached. Delete one to save a new scenario.'
-    setTimeout(() => { scenarioSavedMsg.value = '' }, 3000)
-    return
-  }
-  const sc = {
-    id: Date.now(),
-    name: inp.value.scenarioName || 'Unnamed Property',
-    price: inp.value.price,
-    rent: inp.value.rent,
-    otherIncome: safeOtherIncome.value,
-    vacancyRate: safeVacancy.value,
-    vacancyAffectsOtherIncome: inp.value.vacancyAffectsOtherIncome,
-    expenseRatio: inp.value.expenseRatio,
-    propertyType: inp.value.propertyType,
-    marketType: inp.value.marketType,
-    targetGrm: effectiveTargetGrm.value,
-    grm: result.value.grm.toFixed(2),
-    incomeAdjustedGrm: result.value.incomeAdjustedGrm ? result.value.incomeAdjustedGrm.toFixed(2) : null,
-    effectiveGrm: result.value.effectiveGrm ? result.value.effectiveGrm.toFixed(2) : null,
-    verdict: verdict.value,
-    requiredRent: result.value.requiredRent
-  }
-  savedScenarios.value.unshift(sc)
-  try {
-    localStorage.setItem('grm-scenarios', JSON.stringify(savedScenarios.value))
-    scenarioSavedMsg.value = 'Scenario saved!'
-    setTimeout(() => { scenarioSavedMsg.value = '' }, 2000)
-  } catch {
-    scenarioSavedMsg.value = 'Failed to save scenario.'
-    setTimeout(() => { scenarioSavedMsg.value = '' }, 2000)
-  }
-}
-
-function loadScenario (sc) {
-  inp.value.price = sc.price
-  inp.value.rent = sc.rent
-  inp.value.otherIncome = sc.otherIncome || null
-  inp.value.vacancyRate = sc.vacancyRate || null
-  inp.value.vacancyAffectsOtherIncome = sc.vacancyAffectsOtherIncome || false
-  inp.value.expenseRatio = sc.expenseRatio || null
-  inp.value.propertyType = sc.propertyType || 'Single-family'
-  inp.value.marketType = sc.marketType || 'Balanced market'
-  inp.value.targetGrm = sc.targetGrm || null
-  inp.value.scenarioName = sc.name || ''
-  window.scrollTo({ top: 0, behavior: 'smooth' })
-}
-
-function deleteScenario (idx) {
-  savedScenarios.value.splice(idx, 1)
-  try {
-    localStorage.setItem('grm-scenarios', JSON.stringify(savedScenarios.value))
-  } catch {}
-}
 
 // ─── SHARE URL ────────────────────────────────────────────────────────────────
 function shareUrl () {

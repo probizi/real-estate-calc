@@ -19,7 +19,7 @@
           <nav class="hidden md:flex items-center gap-8">
             <NuxtLink to="/calculators" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Calculators</NuxtLink>
             <NuxtLink to="/pricing" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Pricing</NuxtLink>
-            <NuxtLink to="/blog" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</NuxtLink>
+            <a href="/blog/" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</a>
           </nav>
           <NuxtLink to="/pricing"
             class="inline-flex items-center gap-2 text-sm font-bold text-white px-5 py-2.5 rounded-lg transition hover:opacity-90"
@@ -1409,6 +1409,30 @@
             <div class="font-bold text-gray-800 text-sm mb-1">Cap Rate Calculator</div>
             <p class="text-xs text-gray-500 mb-2">NOI ÷ Property Value — the core income property performance metric.</p>
             <p class="text-xs text-indigo-600">Use for post-rehab rental analysis → assess income property value</p>
+          </NuxtLink>
+          <NuxtLink to="/hard-money-loan-calculator" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 hover:border-amber-300 hover:shadow-md transition block">
+            <div class="text-2xl mb-2">💰</div>
+            <div class="font-bold text-gray-800 text-sm mb-1">Hard Money Loan Calculator</div>
+            <p class="text-xs text-gray-500 mb-2">Total financing cost, points, interest, and cash needed for hard money deals.</p>
+            <p class="text-xs text-indigo-600">Use after ARV estimate → check if financing still leaves profit</p>
+          </NuxtLink>
+          <NuxtLink to="/rehab-cost-estimator" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 hover:border-amber-300 hover:shadow-md transition block">
+            <div class="text-2xl mb-2">🏗️</div>
+            <div class="font-bold text-gray-800 text-sm mb-1">Rehab Cost Estimator</div>
+            <p class="text-xs text-gray-500 mb-2">Estimate total renovation budget with hard/soft costs, contingency, and location adjustment.</p>
+            <p class="text-xs text-indigo-600">Use before ARV analysis → know your real rehab cost input</p>
+          </NuxtLink>
+          <NuxtLink to="/house-flipping-profit-calculator" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 hover:border-green-300 hover:shadow-md transition block">
+            <div class="text-2xl mb-2">💵</div>
+            <div class="font-bold text-gray-800 text-sm mb-1">House Flipping Profit Calculator</div>
+            <p class="text-xs text-gray-500 mb-2">Real flip profit after rehab, holding, financing, and selling costs.</p>
+            <p class="text-xs text-indigo-600">Use after ARV estimate → see net profit and max purchase price</p>
+          </NuxtLink>
+          <NuxtLink to="/brrrr-refinance-calculator" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 hover:border-blue-300 hover:shadow-md transition block">
+            <div class="text-2xl mb-2">🔄</div>
+            <div class="font-bold text-gray-800 text-sm mb-1">BRRRR Refinance Calculator</div>
+            <p class="text-xs text-gray-500 mb-2">Cash left in deal, DSCR, and appraisal gap for the refinance step.</p>
+            <p class="text-xs text-indigo-600">Use after ARV estimate → test if refinance recovers your capital</p>
           </NuxtLink>
         </div>
       </section>

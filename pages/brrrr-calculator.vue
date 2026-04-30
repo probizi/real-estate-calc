@@ -19,7 +19,7 @@
           <nav class="hidden md:flex items-center gap-8">
             <NuxtLink to="/calculators" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Calculators</NuxtLink>
             <NuxtLink to="/pricing" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Pricing</NuxtLink>
-            <NuxtLink to="/blog" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</NuxtLink>
+            <a href="/blog/" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</a>
           </nav>
           <NuxtLink to="/pricing"
             class="inline-flex items-center gap-2 text-sm font-bold px-5 py-2.5 rounded-lg transition hover:opacity-90"
@@ -902,30 +902,37 @@
             </template>
 
             <!-- ACTION BUTTONS (all 3 modes) -->
-            <div class="flex flex-wrap gap-2 pt-1">
-              <button @click="shareResult"
-                class="flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-semibold text-gray-600 hover:text-gray-800 bg-white transition">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
-                {{ shareSuccess ? 'Copied!' : 'Share' }}
-              </button>
-              <button @click="exportPDF"
-                class="flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 hover:border-gray-300 text-sm font-semibold text-gray-600 hover:text-gray-800 bg-white transition">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-                Export PDF
-              </button>
-              <button v-if="calcMode === 'analyze' && hasResult" @click="triggerScenarioSave = !triggerScenarioSave"
-                class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold text-white transition"
-                style="background: #1e3a5f;">
+            <div v-if="hasResult" class="p-4 border-t border-gray-100 space-y-2">
+              <button @click="openSaveScenario"
+                class="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-sm transition hover:opacity-90"
+                style="background: #f59e0b; color: #1e3a5f;">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
+                </svg>
                 Save Scenario
               </button>
               <!-- Mortgage Investment integration patch -->
               <a v-if="form.av" :href="`/mortgage-calculator-investment?p=${form.av || ''}&dp=25&mode=3`"
-                class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold text-white transition bg-indigo-600 hover:bg-indigo-700">
+                class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold text-white transition bg-indigo-600 hover:bg-indigo-700">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                 </svg>
                 Compare refi terms (Mortgage Calc)
               </a>
+              <div class="grid grid-cols-2 gap-2">
+                <button @click="shareResult"
+                  class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border"
+                  :class="shareSuccess ? 'border-green-400 text-green-700 bg-green-50' : 'border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50'">
+                  <svg v-if="!shareSuccess" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+                  <svg v-else class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  {{ shareSuccess ? 'Copied!' : 'Share' }}
+                </button>
+                <button @click="exportPDF"
+                  class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                  Export PDF
+                </button>
+              </div>
             </div>
 
           <!-- Phase 1 HM Financing Summary (for all modes) -->
@@ -1532,6 +1539,7 @@
           <NuxtLink to="/dscr-calculator" class="px-5 py-2.5 rounded-xl font-bold text-sm bg-white/10 hover:bg-white/20 transition text-white">DSCR Calculator</NuxtLink>
           <NuxtLink to="/arv-calculator" class="px-5 py-2.5 rounded-xl font-bold text-sm bg-white/10 hover:bg-white/20 transition text-white">ARV Calculator</NuxtLink>
           <NuxtLink to="/cash-on-cash-calculator" class="px-5 py-2.5 rounded-xl font-bold text-sm bg-white/10 hover:bg-white/20 transition text-white">Cash-on-Cash Calculator</NuxtLink>
+          <NuxtLink to="/brrrr-refinance-calculator" class="px-5 py-2.5 rounded-xl font-bold text-sm bg-white/10 hover:bg-white/20 transition text-white">BRRRR Refinance Calculator</NuxtLink>
         </div>
       </section>
 
@@ -1610,7 +1618,7 @@
             <ul class="space-y-2">
               <li><NuxtLink to="/compare-deals" class="text-sm text-gray-500 hover:text-gray-800 transition">Compare Deals</NuxtLink></li>
               <li><NuxtLink to="/calculators" class="text-sm text-gray-500 hover:text-gray-800 transition">All Calculators</NuxtLink></li>
-              <li><NuxtLink to="/blog" class="text-sm text-gray-500 hover:text-gray-800 transition">Blog</NuxtLink></li>
+              <li><a href="/blog/" class="text-sm text-gray-500 hover:text-gray-800 transition">Blog</a></li>
               <li><NuxtLink to="/pricing" class="text-sm text-gray-500 hover:text-gray-800 transition">Pricing</NuxtLink></li>
             </ul>
           </div>
@@ -1646,6 +1654,10 @@ const isNavExpanded = ref(false)
 const calcMode = ref('analyze')
 const shareSuccess = ref(false)
 const triggerScenarioSave = ref(false)
+function openSaveScenario() {
+  triggerScenarioSave.value = true
+  nextTick(() => { triggerScenarioSave.value = false })
+}
 
 const modeTabs = [
   { key: 'analyze', label: 'Analyze BRRRR', color: '#d97706' },

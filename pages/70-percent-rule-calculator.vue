@@ -31,7 +31,7 @@
           <nav class="hidden md:flex items-center gap-8">
             <NuxtLink to="/calculators" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Calculators</NuxtLink>
             <NuxtLink to="/pricing" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Pricing</NuxtLink>
-            <NuxtLink to="/blog" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</NuxtLink>
+            <a href="/blog/" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</a>
           </nav>
           <NuxtLink to="/pricing"
             class="inline-flex items-center gap-2 text-sm font-bold text-white px-5 py-2.5 rounded-lg transition hover:opacity-90"
@@ -1280,6 +1280,24 @@
               <div>
                 <p class="font-semibold text-gray-800 text-sm">Cap Rate Calculator</p>
                 <p class="text-xs text-gray-500 mt-0.5">Capitalization rate calculation for income-producing properties. Useful for rental exit strategy analysis.</p>
+              </div>
+            </a>
+            <a href="/hard-money-loan-calculator" class="flex gap-4 p-4 rounded-xl border border-gray-200 hover:border-amber-300 hover:shadow-sm transition">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-amber-600">
+                <span class="text-white text-xs font-bold">HML</span>
+              </div>
+              <div>
+                <p class="font-semibold text-gray-800 text-sm">Hard Money Loan Calculator</p>
+                <p class="text-xs text-gray-500 mt-0.5">Total financing cost, points, interest, and cash needed. See if your flip still works after hard money.</p>
+              </div>
+            </a>
+            <a href="/rehab-cost-estimator" class="flex gap-4 p-4 rounded-xl border border-gray-200 hover:border-amber-300 hover:shadow-sm transition">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background: #1e3a5f;">
+                <span class="text-white text-xs font-bold">RCE</span>
+              </div>
+              <div>
+                <p class="font-semibold text-gray-800 text-sm">Rehab Cost Estimator</p>
+                <p class="text-xs text-gray-500 mt-0.5">Estimate renovation budget with hard/soft costs and contingency. Get accurate rehab cost before running the 70% Rule.</p>
               </div>
             </a>
           </div>

@@ -19,7 +19,7 @@
           <nav class="hidden md:flex items-center gap-8">
             <NuxtLink to="/calculators" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Calculators</NuxtLink>
             <NuxtLink to="/pricing" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Pricing</NuxtLink>
-            <NuxtLink to="/blog" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</NuxtLink>
+            <a href="/blog/" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</a>
           </nav>
           <NuxtLink to="/pricing"
             class="inline-flex items-center gap-2 text-sm font-bold text-white px-5 py-2.5 rounded-lg transition hover:opacity-90"
@@ -3517,7 +3517,11 @@ const relatedCalcs = [
   { name: 'Cap Rate / NOI / DSCR / Cash-on-Cash', href: '/cap-rate-calculator', desc: 'Component metrics used throughout each strategy. Validate individual deal economics before comparing.' },
   { name: 'DSCR Calculator', href: '/dscr-calculator', desc: 'Debt Service Coverage Ratio — critical for rental and BRRRR deals. Helps validate financing feasibility.' },
   { name: 'NOI Calculator', href: '/noi-calculator', desc: 'Net Operating Income — the fundamental cash flow metric beneath all rental and BRRRR analysis. Useful for verifying NOI inputs before importing to Compare Deals.' },
-  { name: 'Cash-on-Cash Return Calculator', href: '/cash-on-cash-calculator', desc: 'Year-1 cash-on-cash return for rentals. Cross-check your rental\'s Year-1 CoC against the Compare Deals output for internal consistency.' }
+  { name: 'Cash-on-Cash Return Calculator', href: '/cash-on-cash-calculator', desc: 'Year-1 cash-on-cash return for rentals. Cross-check your rental\'s Year-1 CoC against the Compare Deals output for internal consistency.' },
+  { name: 'Multifamily Property Calculator', href: '/multifamily-property-calculator', desc: 'NOI, DSCR, cash flow, cap rate, expense ratio & break-even occupancy analysis for apartment buildings with 5+ units.' },
+  { name: 'Property Management Fee Calculator', href: '/property-management-fee-calculator', desc: 'Full management cost breakdown — monthly fee, leasing, renewals, markup — and impact on NOI and cash flow.' },
+  { name: 'Airbnb / STR Calculator', href: '/airbnb-str-calculator', desc: 'Short-term rental revenue projection — occupancy, ADR, cleaning costs, platform fees, NOI & break-even occupancy.' },
+  { name: 'House Flipping Profit Calculator', href: '/house-flipping-profit-calculator', desc: 'Real flip profit after rehab, holding, financing, and selling costs. Net profit, margin, ROI, max purchase price.' }
 ]
 
 const disclaimers = [

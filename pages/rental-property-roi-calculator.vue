@@ -19,7 +19,7 @@
           <nav class="hidden md:flex items-center gap-8">
             <NuxtLink to="/calculators" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Calculators</NuxtLink>
             <NuxtLink to="/pricing" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Pricing</NuxtLink>
-            <NuxtLink to="/blog" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</NuxtLink>
+            <a href="/blog/" class="text-gray-600 hover:text-gray-900 font-medium text-sm transition">Blog</a>
           </nav>
           <NuxtLink to="/pricing"
             class="inline-flex items-center gap-2 text-sm font-bold text-white px-5 py-2.5 rounded-lg transition hover:opacity-90"
@@ -453,43 +453,6 @@
                 <p class="font-bold text-sm" :class="result.yr1CoC >= 6 ? 'text-green-600' : result.yr1CoC >= 3 ? 'text-amber-600' : 'text-red-600'">{{ result.yr1CoC.toFixed(2) }}%</p>
               </div>
 
-              <!-- Save + Share + PDF -->
-              <div class="pt-3 mt-3 border-t border-gray-100 space-y-2">
-                <button @click="openSaveScenario"
-                  class="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-sm transition hover:opacity-90"
-                  style="background: #f59e0b; color: #1e3a5f;">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
-                  </svg>
-                  Save Scenario
-                </button>
-                <!-- Mortgage Investment integration patch -->
-                <a :href="`/mortgage-calculator-investment?p=${form.purchasePrice || ''}&dp=${form.downPayment || 25}&lr=${form.loanRate || 7.5}&lt=${form.loanTerm || 30}&mode=1`"
-                  class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl font-semibold text-sm transition text-white bg-indigo-600 hover:bg-indigo-700">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-                  </svg>
-                  Adjust loan terms (Mortgage Calc)
-                </a>
-                <div class="grid grid-cols-2 gap-2">
-                  <button @click="shareResult"
-                    class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border"
-                    :class="shareSuccess ? 'border-green-400 text-green-700 bg-green-50' : 'border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50'">
-                    <svg v-if="!shareSuccess" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
-                    </svg>
-                    <svg v-else class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                    {{ shareSuccess ? 'Copied!' : 'Share' }}
-                  </button>
-                  <button @click="exportPDF"
-                    class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                    </svg>
-                    Export PDF
-                  </button>
-                </div>
-              </div>
             </div>
 
             <!-- Wealth Waterfall Chart -->
@@ -834,6 +797,44 @@
           </div>
           <div v-if="result && calcMode === 'compare' && !compareYearsValid" class="bg-emerald-50 rounded-2xl border border-emerald-100 p-6 text-center text-sm text-emerald-700">
             Enter two different Sell Year values (1–30) above to compare exit timings.
+          </div>
+
+          <!-- Save + Share + PDF — all modes -->
+          <div v-if="hasResult" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 space-y-2">
+            <button @click="openSaveScenario"
+              class="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-sm transition hover:opacity-90"
+              style="background: #f59e0b; color: #1e3a5f;">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
+              </svg>
+              Save Scenario
+            </button>
+            <!-- Mortgage Investment integration patch -->
+            <a :href="`/mortgage-calculator-investment?p=${form.purchasePrice || ''}&dp=${form.downPayment || 25}&lr=${form.loanRate || 7.5}&lt=${form.loanTerm || 30}&mode=1`"
+              class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl font-semibold text-sm transition text-white bg-indigo-600 hover:bg-indigo-700">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+              </svg>
+              Adjust loan terms (Mortgage Calc)
+            </a>
+            <div class="grid grid-cols-2 gap-2">
+              <button @click="shareResult"
+                class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border"
+                :class="shareSuccess ? 'border-green-400 text-green-700 bg-green-50' : 'border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50'">
+                <svg v-if="!shareSuccess" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                </svg>
+                <svg v-else class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                {{ shareSuccess ? 'Copied!' : 'Share' }}
+              </button>
+              <button @click="exportPDF"
+                class="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-semibold text-sm transition border border-gray-200 text-gray-600 hover:border-gray-300 hover:bg-gray-50">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+                Export PDF
+              </button>
+            </div>
           </div>
 
           <!-- Disclaimer -->
